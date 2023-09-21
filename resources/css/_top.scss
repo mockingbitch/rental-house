@@ -1,0 +1,110 @@
+.signin2 {
+    .container {
+        .search-box {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+
+            .has-search {
+                .form-control-feedback {
+                    position: absolute;
+                    z-index: 2;
+                    display: block;
+                    width: 2.375rem;
+                    height: 2.375rem;
+                    line-height: 2.375rem;
+                    text-align: center;
+                    pointer-events: none;
+                    color: #aaa;
+                }
+
+                @media (max-width: 575px) {
+                    .form-control-feedback {
+                        padding: 8px 0 0 2px;
+                    }
+                }
+
+                .form-control {
+                    padding-left: 2.375rem;
+                    width: 568px;
+                    height: 44px;
+                    border-radius: 5px;
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    outline:none;
+                    padding: -20px;
+                }
+
+                .form-control:focus{
+                    border:1px solid #56b4ef;
+                    box-shadow: 0px 0px 3px 1px #c8def0;
+                }
+
+                @media (max-width: 575px) {
+                    .form-control {
+                        width: 250px;
+                    }
+                }
+            }
+
+            .icon-search {
+                margin: 5px 0 5px 8px;
+            }
+        }
+
+        .content {
+            .top-content {
+                margin-top: 50px;
+        
+                .image {
+                    width: 100%;
+                    height: 100px;
+                    background-size: cover;
+                    border-radius: 6px;
+                }
+
+                .rating {
+                    span {
+                        font-size: 12px;
+                    }
+                }
+
+                .title {
+                    font-size: 16px;
+                }
+
+                .price, .description, .age, .lesson-time {
+                    font-size: 12px;
+                }
+        
+                .price, .age, .lesson-time {
+                    opacity: 0.6;
+                }
+        
+                a {
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+.item {
+    color: black;
+}
+
+:deep(.swiper-pagination) {
+    bottom: 0;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+    padding-left: 25px;
+}
+
+:deep(.swiper-pagination-bullet) {
+    border-radius: 3px;
+}
+:deep(.swiper-pagination-bullet-active){
+    background-color: #003E49;
+}

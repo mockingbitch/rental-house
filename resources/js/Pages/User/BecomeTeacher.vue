@@ -1,0 +1,289 @@
+<script setup>
+import Step1 from "../../Components/BecomeTeacher/Step1.vue";
+import Step2 from "../../Components/BecomeTeacher/Step2.vue";
+import Step3 from "../../Components/BecomeTeacher/Step3.vue";
+import Default from "../../Components/BecomeTeacher/Default.vue";
+import ApplySuccess from "../../Components/BecomeTeacher/ApplySuccess.vue";
+import showResultStep1 from "../../Components/BecomeTeacher/showResultStep1.vue";
+import showResultStep2 from "../../Components/BecomeTeacher/showResultStep2.vue";
+import showResultStep3 from "../../Components/BecomeTeacher/showResultStep3.vue";
+import { ref, computed } from "vue";
+import { useForm } from "@inertiajs/vue3";
+
+const props = defineProps({
+    cities: Array,
+    countries: Array,
+    teacherInformation: Object,
+    teacherWorkHistories: Array,
+    user: Object,
+    step: Number,
+});
+
+const computedStatus = computed(() => {
+    if (props.teacherInformation?.step === 1) {
+        return {
+            statusStep1: 2,
+            statusStep2: null,
+            statusStep3: 0,
+        };
+    } else if (props.teacherInformation?.step === 2) {
+        return {
+            statusStep1: 2,
+            statusStep2: 2,
+            statusStep3: null,
+        };
+    } else if (props.teacherInformation?.step === 3) {
+        return {
+            statusStep1: 2,
+            statusStep2: 2,
+            statusStep3: 1,
+        };
+    } else {
+        return {
+            statusStep1: null,
+            statusStep2: 0,
+            statusStep3: 0,
+        };
+    }
+});
+
+const state = ref({
+    step: props.step ?? 4,
+    showResult: 0,
+    status: computedStatus,
+});
+
+const dataStep1 = ref({
+    ...props.teacherInformation, 
+    'first_name': props.user?.first_name,
+    'last_name': props.user?.last_name,
+    'first_name_kana': props.user?.first_name_kana,
+    'last_name_kana': props.user?.last_name_kana,
+    'email': props.user?.email,
+    'year': props.user?.year,
+    'month': props.user?.month,
+    'day': props.user?.day,
+    'country_id': props.user?.country_id,
+    'city_id': props.user?.city_id,
+});
+const dataStep3 = ref(props.teacherWorkHistories);
+const form = computed(() => {
+    return useForm({
+        //step1
+        first_name: dataStep1.value?.first_name,
+        last_name: dataStep1.value?.last_name,
+        first_name_kana: dataStep1.value?.first_name_kana,
+        last_name_kana: dataStep1.value?.last_name_kana,
+        email: dataStep1.value?.email,
+        year: dataStep1.value?.year,
+        month: dataStep1.value?.month,
+        country: dataStep1.value?.country,
+        day: dataStep1.value?.day,
+        country_code: dataStep1.value?.country_code,
+        phone: dataStep1.value?.phone,
+        city_id: dataStep1.value?.city_id,
+        headline: dataStep1.value?.headline,
+        about: dataStep1.value?.about,
+        introduction_video: dataStep1.value?.introduction_video,
+        bank_name: dataStep1.value?.bank_name,
+        branch_code: dataStep1.value?.branch_code,
+        account_type: dataStep1.value?.account_type,
+        account_number: dataStep1.value?.account_number,
+        account_name: dataStep1.value?.account_name,
+        profile_image: dataStep1.value?.profile_image,
+        job: dataStep1.value?.job,
+        salary: dataStep1.value?.salary,
+        //step2
+        //step3
+        school: dataStep1.value?.school,
+        major: dataStep1.value?.major,
+        major_specialize: dataStep1.value?.major_specialize,
+        admission_year: dataStep1.value?.admission_year,
+        admission_month: dataStep1.value?.admission_month,
+        admission_day: dataStep1.value?.admission_day,
+        graduation_year: dataStep1.value?.graduation_year,
+        graduation_month: dataStep1.value?.graduation_month,
+        graduation_day: dataStep1.value?.graduation_day,
+        academic_certificate: dataStep1.value?.academic_certificate,
+        work_histories: dataStep3.value,
+    });
+});
+
+
+// đổi step
+const changeStep1 = (data) => {
+    state.value.step = 1;
+};
+
+const changeStep2 = (data) => {
+    state.value.step = 2;
+};
+
+const changeStep3 = (data) => {
+    state.value.step = 3;
+};
+
+// show result step
+const showResult1 = (data) => {
+    state.value.showResult = 1;
+    state.value.step = 0;
+};
+
+const showResult2 = (data) => {
+    state.value.showResult = 2;
+    state.value.step = 0;
+};
+
+const showResult3 = (data) => {
+    state.value.showResult = 3;
+    state.value.step = 0;
+};
+
+//show confirm các step
+const showConfirmStep1 = (data) => {
+    dataStep1.value = data;
+    showResult1();
+};
+
+const showConfirmStep2 = (data) => {
+    // dataStep2.value = data;
+    showResult2();
+};
+
+const showConfirmStep3 = (data) => {
+    dataStep3.value = data;
+    showResult3();
+};
+
+// Hoàn thành các step và gửi form data
+const step1Success = (data) => {
+    state.value.step = 5;
+    state.value.status.statusStep1 = 2;
+    state.value.status.statusStep2 = null;
+    dataStep1.value = data;
+    state.value.showResult = 0;
+};
+
+const step2Success = () => {
+    state.value.step = 5;
+    state.value.status.statusStep2 = 2;
+    state.value.status.statusStep3 = null;
+    state.value.showResult = 0;
+};
+
+const step3Success = (data) => {
+    state.value.step = 5;
+    state.value.status.statusStep3 = 1;
+    dataStep3.value = data;
+    state.value.showResult = 0;
+};
+
+// Quay về màn chính
+const backToOnboarding = (data) => {
+    state.value.step = 4;
+    state.value.showResult = 0;
+};
+
+const backToStep = (step) => {
+    state.value.step = step;
+    state.value.showResult = 0;
+};
+
+const hanndleCancel = () => {
+    state.value.step = 4;
+    state.value.showResult = 0;
+    state.value.status.statusStep1 = null;
+    state.value.status.statusStep2 = 0;
+    state.value.status.statusStep3 = 0;
+    dataStep1.value = null;
+    dataStep3.value = null;
+};
+
+const imageDataStep3 = ref();
+const saveImageStep3 = (data) => {
+    imageDataStep3.value = data;
+};
+
+const saveData = (data) => {
+    dataStep1.value = data;
+};
+const saveDataStep3 = (data) => {
+    dataStep3.value = data;
+};
+</script>
+
+<template>
+    <Step1
+        v-if="state.step === 1"
+        :cities="props.cities"
+        :dataStep1="dataStep1"
+        :countries="props.countries"
+        :country_codes="props.country_codes"
+        :user="props.user"
+        @back-to-default="showConfirmStep1"
+        @handle-cancel="hanndleCancel"
+    ></Step1>
+    <Step2
+        v-if="state.step === 2"
+        @back-to-default="showConfirmStep2"
+        @handle-cancel="backToOnboarding"
+    ></Step2>
+    <Step3
+        v-if="state.step === 3"
+        :dataTeacher="props.teacherInformation"
+        :dataStep3="dataStep3"
+        :dataImage="imageDataStep3"
+        @back-to-default="showConfirmStep3"
+        @handle-cancel="backToOnboarding"
+        @save-image-step3="saveImageStep3"
+    ></Step3>
+    <Default
+        v-if="state.step === 4"
+        :step="state.step"
+        :status="state.status"
+        @changeStep1="changeStep1"
+        @changeStep2="changeStep2"
+        @changeStep3="changeStep3"
+        @showResultStep1="showResult1"
+        @showResultStep2="showResult2"
+        @showResultStep3="showResult3"
+    ></Default>
+    <ApplySuccess
+        v-if="state.step === 5"
+        @back-to-dashboard="backToOnboarding"
+    ></ApplySuccess>
+    <showResultStep1
+        v-if="state.showResult === 1"
+        :cities="props.cities"
+        :dataStep1="dataStep1"
+        :countries="props.countries"
+        @back-to-onboarding="backToStep(1)"
+        @confirm-step1="step1Success"
+        @save-data="saveData"
+        @move-to-onboarding="backToOnboarding"
+        :showButtonConfirm="state.status.statusStep1"
+    />
+    <showResultStep2
+        v-if="state.showResult === 2"
+        @back-to-onboarding="backToStep(2)"
+        @confirm-step2="step2Success"
+        :showButtonConfirm="state.status.statusStep2"
+        @move-to-onboarding="backToOnboarding"
+    />
+    <showResultStep3
+        v-if="state.showResult === 3"
+        :dataTeacher="props.teacherInformation"
+        :dataStep3="dataStep3"
+        @back-to-onboarding="backToStep(3)"
+        @confirm-step3="step3Success"
+        :showButtonConfirm="state.status.statusStep3"
+        :saveDataImageStep3="imageDataStep3"
+        @save-data="saveDataStep3"
+        @move-to-onboarding="backToOnboarding"
+        @save-data-image="saveImageStep3"
+    />
+</template>
+
+<style lang="scss" scoped>
+@import "./_BecomeTeacher.scss";
+</style>
