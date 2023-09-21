@@ -19,10 +19,10 @@ const props = defineProps({
 
 const emits = defineEmits(["setClickSkipButton", "setClickDeleteButton"]);
 
-const isOpenOffDialog = ref(false);
-const isOpenOffListDialog = ref(false);
-const isOpenDeleteDialog = ref(false);
-const handleOpenOffDialog = () => {
+let isOpenOffDialog = ref(false);
+let isOpenOffListDialog = ref(false);
+let isOpenDeleteDialog = ref(false);
+let handleOpenOffDialog = () => {
     isOpenOffDialog.value = true;
 };
 const handleOpenOffListDialog = () => {
