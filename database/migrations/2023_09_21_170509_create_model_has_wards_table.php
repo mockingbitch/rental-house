@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->string('name_jp')->nullable();
-            $table->string('name_en')->nullable();
-            $table->string('name_vn')->nullable();
+        Schema::create('model_has_wards', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('model_id');
+            $table->string('model_type');
+            $table->string('ward_code');
+            $table->foreign('ward_code')->references('code')->on('wards');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('model_has_wards');
     }
 };

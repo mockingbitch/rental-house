@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('model_has_categories', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->integer('model_id');
-            $table->string('model_type');
-            $table->integer('category_id');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
+            $table->string('name_vi');
+            $table->string('name_en');
+            $table->string('description_vi')->nullable();
+            $table->string('description_en')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_has_categories');
+        Schema::dropIfExists('tags');
     }
 };

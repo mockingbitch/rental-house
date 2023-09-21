@@ -13,18 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->integer('lesson_id');
-            $table->foreign('lesson_id')
-                ->references('id')
-                ->on('lessons')
-                ->onDelete('cascade');
-            $table->integer('lesson_number');
-            $table->string('file');
-            $table->enum('status', [0, 1])
-                ->default(1)
-                ->comment('0: Inactive; 1: Active');
+            $table->string('name_vi');
+            $table->string('name_en');
+            $table->string('description_vi')->nullable();
+            $table->string('description_en')->nullable();
+            $table->text('icon');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('categories');
     }
 };

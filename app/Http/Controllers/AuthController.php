@@ -2,62 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
-use App\Constants\CommonConstants;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 use App\Constants\UserConstants;
+use App\Constants\CommonConstants;
 use App\Constants\NotificationConstants;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\AccountInfoRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
-use App\Http\Requests\AccountInfoRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\User\PasswordResetRepositoryInterface;
 use App\Services\MailService;
 use App\Services\NotificationService;
 use Inertia\Inertia;
+use Inertia\Response;
 use Laravel\Socialite\Facades\Socialite;
 use Carbon\Carbon;
 use DB;
-use Inertia\Response;
 
 class AuthController extends Controller
 {
     /**
-     * @var userRepository
-     */
-    protected $userRepository;
-
-    /**
-     * @var passwordResetRepository
-     */
-    protected $passwordResetRepository;
-
-    /**
-     * @var mailService
-     */
-    protected $mailService;
-
-    /**
-     * @param UserRepositoryInterface $userRepository
-     * @param PasswordResetRepositoryInterface $passwordResetRepository
      * @param MailService $mailService
      * @param NotificationService $notificationService
+     * @param UserRepositoryInterface $userRepository
+     * @param PasswordResetRepositoryInterface $passwordResetRepository
      */
     public function __construct(
-        UserRepositoryInterface $userRepository,
-        PasswordResetRepositoryInterface $passwordResetRepository,
-        MailService $mailService,
+        public MailService $mailService,
         public NotificationService $notificationService,
-    ) {
-        $this->userRepository   = $userRepository;
-        $this->mailService      = $mailService;
-        $this->passwordResetRepository   = $passwordResetRepository;
+        public UserRepositoryInterface $userRepository,
+        public PasswordResetRepositoryInterface $passwordResetRepository,
+        )
+    {
+
     }
 
     /**
@@ -76,19 +60,16 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) :
             Log::info('login credentials');
-            if (auth()->user()->email_verified_at === null) {
+            if (auth()->user()->email_verified_at === null) :
                 return redirect()
                     ->route('register.success')
                     ->with(UserConstants::COL_EMAIL, $credentials[UserConstants::COL_EMAIL]);
-            }
-
+            endif;
             if (auth()->user()->role == UserConstants::ROLE_TEACHER) :
-
                 return redirect()
                         ->route('teacher.dashboard')
                         ->with(CommonConstants::MSG, __('messages.login.SM-001'));
             endif;
-
             if (session()->has('url.intended')):
                 return redirect(session()->pull('url.intended'));
             endif;

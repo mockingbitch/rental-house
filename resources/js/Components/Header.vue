@@ -13,11 +13,11 @@ const props = defineProps({
     },
 });
 const page = usePage();
-const notifications = computed(
-    () => page.props?.auth?.user?.role == 2
-    ? page.props?.teacher_notifications
-    : page.props?.user_notifications 
-    );
+const notifications = computed(() =>
+    page.props?.auth?.user?.role == 2
+        ? page.props?.teacher_notifications
+        : page.props?.user_notifications
+);
 
 const emits = defineEmits();
 
@@ -79,7 +79,7 @@ const isSearchPage = computed(() => {
                         v-if="!$page.props.auth.user"
                         :href="route('register.method')"
                         class="buttonHeader green"
-                        >Join</Link
+                        >Đăng ký</Link
                     >
                     <Link
                         v-if="$page.props.auth.user && !props.isReviewForm"
