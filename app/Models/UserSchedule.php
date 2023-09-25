@@ -23,4 +23,9 @@ class UserSchedule extends Model
         'schedule_id',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

@@ -86,6 +86,11 @@ class User extends Authenticatable
         return $this->hasMany(Kid::class, 'parent_id', 'id');
     }
 
+    public function user_schedules()
+    {
+        return $this->hasMany(UserSchedule::class, 'user_id', 'id');
+    }
+
     /**
      * The channels the user receives notification broadcasts on.
      */

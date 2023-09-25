@@ -1,8 +1,8 @@
 <script setup>
-import Header from "@/Components/Header.vue";
-import Footer from "@/Components/Footer.vue";
-import Search from "@/Components/Search.vue";
 import { ref, onMounted, onBeforeUnmount, computed, defineProps } from "vue";
+import Header from "@/Components/Header/Header.vue";
+import Footer from "@/Components/Footer/Footer.vue";
+import Search from "@/Components/Search/Search.vue";
 
 const props = defineProps({
     isReviewForm: Boolean,
@@ -55,17 +55,5 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-main {
-    min-height: calc(100vh - 54px - 80px);
-    padding-bottom: 52px;
-
-    @media screen and (max-width: 991px) and (min-height: 500px) {
-        min-height: calc(100vh - 54px - 52px);
-        padding-bottom: 0;
-    }
-}
-
-.hideHeader {
-    display: none;
-}
+@import './layout';
 </style>

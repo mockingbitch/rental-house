@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, defineProps } from "vue";
-import HeaderDashboard from "../Components/HeaderDashboard.vue";
-import Footer from "@/Components/Footer.vue";
+import HeaderDashboard from "@/Components/Header/HeaderDashboard.vue";
+import Footer from "@/Components/Footer/Footer.vue";
 
 const windowWidth = ref(window.innerWidth);
 const currentUrl = ref(window.location.pathname);
@@ -47,13 +47,5 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-main {
-    min-height: calc(100vh - 54px - 80px);
-    padding-bottom: 52px;
-
-    @media screen and (max-width: 991px) and (min-height: 500px) {
-        min-height: calc(100vh - 54px - 52px);
-        padding-bottom: 0;
-    }
-}
+@import './layoutdashboard';
 </style>

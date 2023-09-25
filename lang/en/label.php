@@ -4,7 +4,6 @@ return [
     'user' => [
         'field'   => [
             'email'                 => 'Email',
-            'adult_email'           => 'Adult Email',
             'password'              => 'Password',
             'password_confirmation' => 'Confirm Password',
             'firstName'             => 'First Name',
@@ -79,7 +78,8 @@ return [
         'title'                 => 'Sign Up',
         'for_users'             => 'For users',
         'login_here'            => 'Login here',
-        'brief_greeting'        => 'A brief greeting or a description of a new registration request',
+        'short_brief'           => 'Please choose method sign up method below',
+        'brief_greeting'        => 'To access full articles on rentalhouse.com and personal account details.',
         'registration_email'    => 'New registration with email address',
         'registration_google'   => 'Register from Google',
     ],
@@ -87,7 +87,8 @@ return [
         'here'              => 'here',
         'login'             => 'Login',
         'for_user'          => 'For users',
-        'brief_greeting'    => 'A brief greeting or a description of a new registration request',
+        'short_brief'       => 'Please choose sign in method below',
+        'brief_greeting'    => 'To access full articles on rentalhouse.com and personal account details.',
         'login_with_email'  => 'Login with your email address',
         'login_with_google' => 'Login with Google',
         'forgot_password'   => 'Forgot your password?',
