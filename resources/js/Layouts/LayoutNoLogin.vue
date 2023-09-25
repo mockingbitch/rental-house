@@ -1,7 +1,6 @@
 <script setup>
-import HeaderNoLogin from '@/Components/HeaderNoLogin.vue';
-import Footer from '@/Components/Footer.vue';
-
+import HeaderNoLogin from '@/Components/Header/HeaderNoLogin.vue';
+import Footer from '@/Components/Footer/Footer.vue';
 </script>
 
 <template>
@@ -13,7 +12,5 @@ import Footer from '@/Components/Footer.vue';
 </template>
 
 <style lang="scss" scoped>
-#content {
-    min-height: calc(100vh - 100px - 80px);
-}
+@import './layoutnologin';
 </style>

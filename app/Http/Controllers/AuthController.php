@@ -90,7 +90,7 @@ class AuthController extends Controller
      */
     public function loginView(): Response
     {
-        return Inertia::render('Auth/Login');
+        return Inertia::render('Auth/Login/Login');
     }
 
     /**
@@ -99,7 +99,7 @@ class AuthController extends Controller
      */
     public function loginMethod(): Response
     {
-        return Inertia::render('Auth/LoginMethod');
+        return Inertia::render('Auth/Login/LoginMethod');
     }
 
     /**
@@ -120,9 +120,9 @@ class AuthController extends Controller
      * @Route get("/register", name="register")
      * @return Response
      */
-    public function registerForm(): Response
+    public function registerView(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register/Register');
     }
 
     /**
@@ -131,7 +131,7 @@ class AuthController extends Controller
      */
     public function registerMethod(): Response
     {
-        return Inertia::render('Auth/RegisterMethod', [
+        return Inertia::render('Auth/Register/RegisterMethod', [
             Constant::MSG => session()->get(Constant::MSG),
         ]);
     }
@@ -142,7 +142,7 @@ class AuthController extends Controller
      */
     public function registerSuccess(): Response
     {
-        return Inertia::render('Auth/RegisterSuccess', [
+        return Inertia::render('Auth/Register/RegisterSuccess', [
             UserConstant::COL_EMAIL => session()->get(UserConstant::COL_EMAIL)
         ]);
     }
@@ -161,30 +161,27 @@ class AuthController extends Controller
         $data['expires_in']     = Carbon::now()->addDay(1);
 
         try {
-            $user = DB::transaction(function () use ($data) {
-                $user       = $this->userRepository->create($data);
-                $send_mail  = $this->mailService->sendMail($user, $data);
-
-                return $user;
+            DB::transaction(function () use ($data) {
+                $user = $this->userRepository->create($data);
+                if ($user) :
+                    $this->mailService->sendMail($user, $data);
+                    // $this->notificationService->sendNotification(
+                    //     $user,
+                    //     [
+                    //         'title'     => 'Welcome to RentalHouse',
+                    //         'target'    => route('top'),
+                    //     ],
+                    //     NotificationConstants::BROADCAST_USER,
+                    // );
+                endif;
             });
             DB::commit();
-
-            if ($user) :
-                $this->notificationService->sendNotification(
-                    $user,
-                    [
-                        'title'     => '新規のアカウント登録ありがとうございます。',
-                        'target'    => route('top'),
-                    ],
-                    NotificationConstants::BROADCAST_USER,
-                );
-            endif;
 
             return redirect()
                 ->route('register.success')
                 ->with([
-                    Constant::MSG        => __('messages.register.SM-001'),
-                    UserConstant::COL_EMAIL    => $data[UserConstant::COL_EMAIL]
+                    'message'   => __('messages.register.SM-001'),
+                    'email'     => $data['email'],
                 ]);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -201,9 +198,18 @@ class AuthController extends Controller
      */
     public function redirectToGoogle()
     {
-        session(['prev_url' => url()->previous()]);
-        $redirectUrl = Socialite::driver(Constant::GOOGLE)->redirect()->getTargetUrl();
-        return response('', 409)->header('X-Inertia-Location', $redirectUrl);
+        session([
+            'prev_url' => url()->previous()
+        ]);
+        $redirectUrl = Socialite::driver(Constant::GOOGLE)
+            ->redirect()
+            ->getTargetUrl();
+
+        return response('', 409)
+            ->header(
+                'X-Inertia-Location',
+                $redirectUrl
+            );
     }
 
     /**

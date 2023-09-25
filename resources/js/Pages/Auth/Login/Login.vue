@@ -1,25 +1,22 @@
 <script setup>
-
-import {useForm} from '@inertiajs/vue3';
-import UlError from '@/Components/UlError.vue';
-import PError from '@/Components/PError.vue';
-import LayoutSignin from '../../Layouts/LayoutSignin.vue';
 import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+import UlError from '@/Components/Common/UlError.vue';
+import PError from '@/Components/Common/PError.vue';
+import LayoutSignin from '@/Layouts/LayoutSignin.vue';
 
 const form = useForm({
     email: '',
     password: '',
-})
+});
+
+const showPassword = ref(false);
 
 const submit = () => {
     form.post(route('login'), {
         onFinish: () => form.reset('password')
     })
-}
-
-defineProps({});
-
-const showPassword = ref(false);
+};
 </script>
 
 <template>
@@ -31,15 +28,35 @@ const showPassword = ref(false);
                         <h2 class="title">
                             {{ lang().label.login.title }}
                         </h2>
-                        <div class="form__wrap-item" :class="{ error: form.errors.email }">
-                            <label for="Email">{{ lang().label.user.field.email }}</label>
-                            <input type="text" v-model="form.email" name="email" :placeholder="lang().label.user.field.email">
+                        <div
+                            class="form__wrap-item"
+                            :class="{ error: form.errors.email }"
+                        >
+                            <label for="Email">
+                                {{ lang().label.user.field.email }}
+                            </label>
+                            <input
+                                type="text"
+                                v-model="form.email"
+                                name="email"
+                                :placeholder="lang().label.user.field.email"
+                            >
                             <UlError :message="form.errors.email" />
                         </div>
-                        <div class="form__wrap-item" :class="{ error: form.errors.password }">
-                            <label for="Password">{{ lang().label.user.field.password }}</label>
+                        <div
+                            class="form__wrap-item"
+                            :class="{ error: form.errors.password }"
+                        >
+                            <label for="Password">
+                                {{ lang().label.user.field.password }}
+                            </label>
                             <div class="inputWrap">
-                                <input :type="showPassword ? 'text' : 'password'" v-model="form.password" name="password" :placeholder="lang().label.user.field.password">
+                                <input
+                                    :type="showPassword ? 'text' : 'password'"
+                                    v-model="form.password"
+                                    name="password"
+                                    :placeholder="lang().label.user.field.password"
+                                >
                                 <div @click="showPassword = !showPassword">
                                     <i v-if="showPassword" class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="16" viewBox="0 0 23 16" fill="none">
@@ -54,14 +71,16 @@ const showPassword = ref(false);
                                 </div>
                             </div>
                             <UlError :message="form.errors.password" />
-
                             <ul class="note">
                                 <li>※ {{ lang().label.login.hint }}</li>
                                 <li>※ {{ lang().label.login.note }}</li>
                             </ul>
                         </div>
                         <PError :message="form.errors.error_message" />
-                        <button type="submit" class="mainButton bg-green mt-0">
+                        <button
+                            type="submit"
+                            class="mainButton bg-green mt-0"
+                        >
                             <p>{{ lang().label.login.button }}</p>
                         </button>
                     </div>
