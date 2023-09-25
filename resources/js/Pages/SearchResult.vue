@@ -640,7 +640,7 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
         font-weight: 700;
         line-height: 19px;
         letter-spacing: -0.01em;
-        color: #418997;
+        color: #5392F9 ;
     }
 }
 

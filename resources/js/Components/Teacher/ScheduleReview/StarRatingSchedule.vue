@@ -47,7 +47,7 @@ const props = defineProps({
         margin-left: 2px;
         gap: 2px;
         .star-rating-schedule-number-star {
-            color: #418997;
+            color: #5392F9 ;
             font-weight: 700;
         }
     }

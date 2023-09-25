@@ -80,7 +80,7 @@ const setClickDeleteButton = (value) => {
     }
 }
 .reserved-delete-notice {
-    color: #418997;
+    color: #5392F9 ;
     background-color: #E1EFF2;
     height: 54px;
     padding: 8px;

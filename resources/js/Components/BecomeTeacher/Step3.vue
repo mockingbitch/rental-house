@@ -198,7 +198,7 @@
                                 href="#"
                                 style="
                                     text-decoration: underline;
-                                    color: #418997;
+                                    color: #5392F9 ;
                                 "
                                 >こちら</a
                             >
@@ -818,7 +818,7 @@ const addHistory = () => {
 }
 
 .checked {
-    color: #418997;
+    color: #5392F9 ;
 }
 
 .isDisable {

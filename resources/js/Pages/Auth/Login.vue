@@ -70,3 +70,6 @@ const showPassword = ref(false);
         </div>
     </LayoutSignin>
 </template>
+<style lang="scss" scoped>
+@import './login';
+</style>

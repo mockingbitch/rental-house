@@ -189,7 +189,7 @@
 
                     &.checked {
                         .listday__checkbox {
-                            background-color: #418997;
+                            background-color: #5392F9 ;
                             color: #fff;
                             font-size: 12px;
                         }
@@ -214,7 +214,7 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 14px;
-                color: #418997;
+                color: #5392F9 ;
             }
             button {
                 flex: 2.5;
@@ -225,7 +225,7 @@
                 height: 40px;
                 align-items: center;
                 font-size: 14px;
-                background-color: #418997;
+                background-color: #5392F9 ;
 
                 p {
                     margin-left: 10px;
@@ -355,7 +355,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #418997;
+        background-color: #5392F9 ;
         min-height: 50px;
         margin-top: 20px;
         border-radius: 4px;
@@ -369,7 +369,7 @@
         }
 
         @media (min-width: 768px) {
-            background-color: #003E49;
+            background-color: #5392F9 ;
         }
     }
 }

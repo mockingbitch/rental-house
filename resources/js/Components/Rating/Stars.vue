@@ -13,10 +13,10 @@ defineProps({
             :star-size="10"
             :read-only="true"
             :increment="0.01"
-            :active-color="'#418997'"
+            :active-color="'#5392F9 '"
             inactive-color="#ffffff"
             :show-rating="false"
-			:border-color="'#418997'"
+			:border-color="'#5392F9 '"
 			:border-width="2"
 			:rounded-corners="true"
         />

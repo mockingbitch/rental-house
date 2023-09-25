@@ -159,7 +159,7 @@ const totalApplied = (application) => {
     background-color: #e1eff2;
     border-radius: 4px;
     font-size: 10px;
-    color: #418997;
+    color: #5392F9 ;
 }
 .ended-lesson {
     background-color: #989898 !important;

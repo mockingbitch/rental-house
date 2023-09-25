@@ -46,7 +46,7 @@ defineProps({
 <style lang="scss" scoped>
 @import "./_multistep.scss";
 .green-bar {
-    background-color: #418997 !important;
+    background-color: #5392F9  !important;
 }
 
 .progress__wrap .progressBar {

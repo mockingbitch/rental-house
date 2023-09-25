@@ -124,7 +124,7 @@ body {
   .title.green-cl {
     line-height: 1.63;
     font-size: 16px;
-    color: #003E49; }
+    color: #5392F9 ; }
   @media screen and (max-width: 991px) and (min-height: 500px) {
     /* line 1, scss/imports/core/_elements.scss */
     .title {
@@ -202,11 +202,11 @@ body {
     background-color: #CACACA; }
   /* line 50, scss/imports/core/_elements.scss */
   .mainButton.bg-green {
-    background-color: #003E49;
+    background-color: #5392F9 ;
     color: #fff; }
   .mainButton.bg-green.register-btn {
     margin-top: 0;
-    background-color: #003E49;
+    background-color: #5392F9 ;
     color: #fff; }
   /* line 54, scss/imports/core/_elements.scss */
   .mainButton.bg-gray {
@@ -235,16 +235,16 @@ body {
 /* line 75, scss/imports/core/_elements.scss */
 .buttonHeader {
   padding: 2px 20px;
-  border: 1px solid #418997;
+  border: 1px solid #5392F9 ;
   font-weight: bold;
   border-radius: 100px;
   margin: 0 10px;
-  color: #418997;
+  color: #5392F9 ;
   font-size: 14px;
   line-height: 22.4px; height: 32px; width: 80px; display: flex;justify-content: center; align-items: center; white-space: nowrap;}
   /* line 84, scss/imports/core/_elements.scss */
   .buttonHeader.green {
-    background-color: #418997;
+    background-color: #5392F9 ;
     color: #fff; }
 
 /* line 90, scss/imports/core/_elements.scss */
@@ -281,13 +281,13 @@ body {
   font-size: 18px;
   font-family: Noto Sans JP;
   line-height: 28.8px;
-  color: #003E49;
+  color: #5392F9 ;
   text-transform: none;
   font-size: 14px;
 }
   /* line 121, scss/imports/core/_elements.scss */
   .textLink a {
-    color: #003E49;
+    color: #5392F9 ;
     font-weight: bold;
     text-decoration: underline;
     cursor: pointer; }
@@ -303,7 +303,7 @@ body {
       font-size: 14px;
       font-family: Noto Sans JP;
       line-height: 19.2px;
-      color: #003E49;
+      color: #5392F9 ;
       text-transform: none; } }
 
 /* line 131, scss/imports/core/_elements.scss */
@@ -426,7 +426,7 @@ body {
           margin-bottom: 8px; }
           /* line 228, scss/imports/core/_elements.scss */
           .form__wrap-item .intersest-items li.active {
-            background-color: #003E49;
+            background-color: #5392F9 ;
             color: #fff;
             font-weight: bold; }
             /* line 232, scss/imports/core/_elements.scss */
@@ -2526,8 +2526,8 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
-  border: 2px solid #418997;
-  color: #418997;
+  border: 2px solid #5392F9 ;
+  color: #5392F9 ;
   cursor: pointer;
 }
 .progress__wrap .circle span {
@@ -2537,13 +2537,13 @@ html {
   font-size: 12px;
 }
 .progress__wrap .circle.active {
-  background-color: #418997;
+  background-color: #5392F9 ;
   color: #fff;
-  border: 2px solid #418997
+  border: 2px solid #5392F9 
 }
 .progress__wrap .circle.active span {
   font-weight: bold;
-  color: #418997;
+  color: #5392F9 ;
 }
 .progress__wrap .circle.finish {
   background-color: #B1B1B1;
@@ -2674,8 +2674,8 @@ html {
 
 /* line 69, scss/imports/core/_select.scss */
 .item.checked .checkbox {
-  background-color: #418997;
-  border-color: #418997; }
+  background-color: #5392F9 ;
+  border-color: #5392F9 ; }
 
 /* line 73, scss/imports/core/_select.scss */
 .checkbox .check-icon {
@@ -2732,11 +2732,11 @@ header .navPc {
         padding-right: 5px; }
       /* line 39, scss/imports/core/_header.scss */
       header .navPc__right a.border {
-        border: 1px solid #003E49;
+        border: 1px solid #5392F9 ;
         border-radius: 8px; }
       /* line 43, scss/imports/core/_header.scss */
       header .navPc__right a.borderRight {
-        border-right: 1px solid #003E49;
+        border-right: 1px solid #5392F9 ;
         margin-right: 20px; }
   @media (max-width: 1199px) {
     /* line 50, scss/imports/core/_header.scss */
@@ -2851,8 +2851,8 @@ header .navMobile__wrap {
       /* line 70, scss/imports/core/_headerTop.scss */
       .headerTop .navPc__search textarea:focus, .headerTop .navPc__search input:focus {
         outline: none !important;
-        border: 1px solid #418997;
-        box-shadow: 0 0 10px #418997; }
+        border: 1px solid #5392F9 ;
+        box-shadow: 0 0 10px #5392F9 ; }
       /* line 75, scss/imports/core/_headerTop.scss */
       .headerTop .navPc__search textarea.mobile, .headerTop .navPc__search input.mobile {
         display: none; }
@@ -2896,8 +2896,8 @@ header .navMobile__wrap {
         /* line 114, scss/imports/core/_headerTop.scss */
         .headerTop .navPc__search textarea:focus, .headerTop .navPc__search input:focus {
           outline: none !important;
-          border: 1px solid #418997;
-          box-shadow: 0 0 10px #418997; }
+          border: 1px solid #5392F9 ;
+          box-shadow: 0 0 10px #5392F9 ; }
         /* line 119, scss/imports/core/_headerTop.scss */
         .headerTop .navPc__search textarea.mobile, .headerTop .navPc__search input.mobile {
           display: block; }
@@ -2933,7 +2933,7 @@ footer {}
   /* line 7, scss/imports/core/_footer.scss */
   footer .bottom {
     height: 80px;
-    background-color: #003E49;
+    background-color: #5392F9 ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2983,8 +2983,8 @@ footer {}
         white-space: nowrap; }
       /* line 27, scss/imports/core/_footerMobile.scss */
       .footerMobile ul li.active {
-        border-top: 2px solid #418997;
-        color: #418997; }
+        border-top: 2px solid #5392F9 ;
+        color: #5392F9 ; }
       @media screen and (max-width: 991px) and (min-height: 500px) {
         /* line 31, scss/imports/core/_footerMobile.scss */
         .footerMobile ul li.isShowMobile {
@@ -3079,7 +3079,7 @@ footer {}
   /* line 8, scss/imports/pages/_signinStep.scss */
   .signinStep .skip a {
     font-size: 12px;
-    color: #003E49;
+    color: #5392F9 ;
     display: flex;
     align-items: center; }
     /* line 13, scss/imports/pages/_signinStep.scss */
@@ -3216,7 +3216,7 @@ footer {}
     font-size: 14px; }
     /* line 53, scss/imports/pages/_detailLesson.scss */
     .detailLesson .author__right p span {
-      color: #418997; }
+      color: #5392F9 ; }
 
 /* line 60, scss/imports/pages/_detailLesson.scss */
 .detailLesson .form__wrap {
@@ -3274,7 +3274,7 @@ footer {}
         background-color: #F4F4F4; }
         /* line 101, scss/imports/pages/_detailLesson.scss */
         .detailLesson .form__wrap .attributes ul li span {
-          color: #418997;
+          color: #5392F9 ;
           font-weight: bold; }
         /* line 105, scss/imports/pages/_detailLesson.scss */
         .detailLesson .form__wrap .attributes ul li p {
@@ -3332,7 +3332,7 @@ footer {}
       justify-content: space-between;
       width: 100%;
       padding: 16px 32px 16px  16px;
-      background-color: #418997;
+      background-color: #5392F9 ;
       color: #fff;
       border-radius: 8px;
       align-items: center;
@@ -3650,7 +3650,7 @@ footer {}
     font-size: 14px; }
     /* line 314, scss/imports/core/_elements.scss */
     .author__right p span {
-      color: #418997; }
+      color: #5392F9 ; }
 
 /* line 379, scss/imports/core/_elements.scss */
 .buttonFun {
@@ -3691,7 +3691,7 @@ footer {}
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #418997;
+      color: #5392F9 ;
       text-decoration: underline;
       font-size: 14px; }
   @media screen and (max-width: 991px) and (min-height: 500px) {
@@ -3945,7 +3945,7 @@ footer {}
               font-weight: 700; }
             /* line 212, scss/imports/pages/_joinLesson.scss */
             .joinLesson .form__wrap .detail .center ul li p.green, .joinLesson .form__wrap .detail .center ul li span.green {
-              color: #418997; }
+              color: #5392F9 ; }
             /* line 215, scss/imports/pages/_joinLesson.scss */
             .joinLesson .form__wrap .detail .center ul li p.red, .joinLesson .form__wrap .detail .center ul li span.red {
               color: red; }
@@ -4025,7 +4025,7 @@ input[type=checkbox]:hover {
 
 /* line 360, scss/imports/core/_elements.scss */
 input[type=checkbox]:checked {
-  background-color: #418997;
+  background-color: #5392F9 ;
   opacity: 1; }
 
 /* line 365, scss/imports/core/_elements.scss */
@@ -4045,6 +4045,7 @@ input[type=checkbox]:before {
            /* line 2, scss/imports/core/_headerSignin.scss */
 .headerSignin{
   position: relative;
+  background-color: #20274d;
 }
 .headerSignin h1 {
   display: none; }
@@ -4116,8 +4117,8 @@ input[type=checkbox]:before {
       /* line 70, scss/imports/core/_headerSignin.scss */
       .headerSignin .navPc__search textarea:focus, .headerSignin .navPc__search input:focus {
         outline: none !important;
-        border: 1px solid #418997;
-        box-shadow: 0 0 10px #418997; }
+        border: 1px solid #5392F9 ;
+        box-shadow: 0 0 10px #5392F9 ; }
       /* line 75, scss/imports/core/_headerSignin.scss */
       .headerSignin .navPc__search textarea.mobile, .headerSignin .navPc__search input.mobile {
         display: none; }
@@ -4159,8 +4160,8 @@ input[type=checkbox]:before {
         /* line 114, scss/imports/core/_headerSignin.scss */
         .headerSignin .navPc__search textarea:focus, .headerSignin .navPc__search input:focus {
           outline: none !important;
-          border: 1px solid #418997;
-          box-shadow: 0 0 10px #418997; }
+          border: 1px solid #5392F9 ;
+          box-shadow: 0 0 10px #5392F9 ; }
         /* line 119, scss/imports/core/_headerSignin.scss */
         .headerSignin .navPc__search textarea.mobile, .headerSignin .navPc__search input.mobile {
           display: block; }
@@ -4254,7 +4255,7 @@ input[type=checkbox]:before {
   margin-top: 32px !important;
 }
 .text-green-coral {
-  color: #003E49 !important;
+  color: #5392F9  !important;
 }
 .border-black {
   border: 1px solid #000 !important;

@@ -358,7 +358,7 @@ const listCategories = (categories) => {
         line-height: 22.4px;
         letter-spacing: -0.14px;
         white-space: nowrap;
-        color: #418997 !important;
+        color: #5392F9  !important;
     }
     .create__request-button-right {
         font-size: 14px;

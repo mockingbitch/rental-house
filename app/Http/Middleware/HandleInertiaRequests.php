@@ -83,30 +83,24 @@ class HandleInertiaRequests extends Middleware
                     'query'=>$request->query(),
                 ]);
             },
-            'cities' => City::all(),
-            'countries' => Country::all(),
-            'categories' => Category::all(),
-            'verify_teacher' => [
-                'common_user' => UserConstants::COMMON_USER,
-                'request_verifying' => UserConstants::REQUEST_VERIFYING,
-                'request_verified' => UserConstants::REQUEST_VERIFIED,
-                'request_denied' => UserConstants::REQUEST_DENIED,
-            ],
-            'user_role' => [
-                'admin' => UserConstants::ROLE_ADMIN,
-                'teacher' => UserConstants::ROLE_TEACHER,
-                'parent' => UserConstants::ROLE_PARENT,
-            ],
-            'user_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
-                    ->notifications
-                    ->sortBy('created_at')
-                    ->where('type', 'App\Notifications\UserNotification')
-                    ->all() : [],
-            'teacher_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
-                    ->notifications
-                    ->sortBy('created_at')
-                    ->where('type', 'App\Notifications\TeacherNotification')
-                    ->all() : [],
+            // 'cities' => City::all(),
+            // 'countries' => Country::all(),
+            // 'categories' => Category::all(),
+            // 'user_role' => [
+            //     'admin' => UserConstants::ROLE_ADMIN,
+            //     'teacher' => UserConstants::ROLE_TEACHER,
+            //     'parent' => UserConstants::ROLE_PARENT,
+            // ],
+            // 'user_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
+            //         ->notifications
+            //         ->sortBy('created_at')
+            //         ->where('type', 'App\Notifications\UserNotification')
+            //         ->all() : [],
+            // 'teacher_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
+            //         ->notifications
+            //         ->sortBy('created_at')
+            //         ->where('type', 'App\Notifications\TeacherNotification')
+            //         ->all() : [],
         ]);
     }
 }

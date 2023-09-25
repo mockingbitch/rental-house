@@ -45,8 +45,8 @@ const props = defineProps({
     width: 100%;
 }
 .mainButton {
-    border: 1px solid #003E49;
-    color: #003E49;
+    border: 1px solid #5392F9 ;
+    color: #5392F9 ;
 }
 .textLink {
     margin: 16px 0px !important;

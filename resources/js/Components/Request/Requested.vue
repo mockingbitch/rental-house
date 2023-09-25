@@ -262,7 +262,7 @@ const formatWeekDays = (data) => {
 }
 .list__request-create-btn {
     display: flex;
-    background-color: #418997;
+    background-color: #5392F9 ;
     width: 343px;
     max-height: 50px;
     align-items: center;
@@ -315,7 +315,7 @@ const formatWeekDays = (data) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #418997;
+    color: #5392F9 ;
     gap: 4px;
     padding: 14px 15.75px;
     cursor: pointer;
@@ -360,8 +360,8 @@ const formatWeekDays = (data) => {
     font-size: 14px;
 }
 .modal__btn-btn-left {
-    border: 1px solid #418997;
-    color: #418997;
+    border: 1px solid #5392F9 ;
+    color: #5392F9 ;
     background-color: white;
     cursor: pointer;
 }

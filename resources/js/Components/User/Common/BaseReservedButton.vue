@@ -10,13 +10,13 @@ const props = defineProps({
 });
 
 const button1 = {
-    backgroundColor: "#418997",
+    backgroundColor: "#5392F9 ",
     color: "#fff",
 };
 
 const button2 = {
     backgroundColor: "#E1EFF2",
-    color: "#418997",
+    color: "#5392F9 ",
 };
 </script>
 

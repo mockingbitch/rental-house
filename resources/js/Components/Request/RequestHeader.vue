@@ -17,9 +17,9 @@ const changeTab = () => {
         <div
             class="request__header-item"
             :style="{
-                color: appliedTab ? '#418997' : '#4D4D4D',
+                color: appliedTab ? '#5392F9 ' : '#4D4D4D',
                 fontWeight: appliedTab ? 'bold' : 'normal',
-                borderBottom: appliedTab ? '2px solid #418997' : 'none',
+                borderBottom: appliedTab ? '2px solid #5392F9 ' : 'none',
             }"
             @click="changeTab"
         >
@@ -28,9 +28,9 @@ const changeTab = () => {
         <div
             class="request__header-item"
             :style="{
-                color: listRequestTab ? '#418997' : '#4D4D4D',
+                color: listRequestTab ? '#5392F9 ' : '#4D4D4D',
                 fontWeight: listRequestTab ? 'bold' : 'normal',
-                borderBottom: listRequestTab ? '2px solid #418997' : 'none',
+                borderBottom: listRequestTab ? '2px solid #5392F9 ' : 'none',
             }"
             @click="changeTab"
         >

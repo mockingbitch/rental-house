@@ -181,7 +181,7 @@ const closeConfirmModal = () => {
     display: flex;
     gap: 8px;
     background-color: #e1eff2;
-    color: #418997;
+    color: #5392F9 ;
     border-radius: 4px;
     margin-top: 24px;
 }
@@ -191,7 +191,7 @@ const closeConfirmModal = () => {
 }
 .empty__request-create-btn {
     display: flex;
-    background-color: #418997;
+    background-color: #5392F9 ;
     width: 100%;
     max-height: 50px;
     align-items: center;

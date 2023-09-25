@@ -124,14 +124,14 @@ export default defineComponent({
             left: 0;
             right: 0;
             height: 2px;
-            background-color: #418997;
+            background-color: #5392F9 ;
         }
     }
 
     &.isActive {
         .header-category_item_title {
             font-weight: 700;
-            color: #418997;
+            color: #5392F9 ;
         }
     }
 }

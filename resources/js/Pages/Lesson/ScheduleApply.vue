@@ -133,7 +133,7 @@ const breadcrumbItems = [
 @import "./_lesson.scss";
 .btn-green {
     color: #fff;
-    background-color: #418997;
+    background-color: #5392F9 ;
 }
 </style>
 

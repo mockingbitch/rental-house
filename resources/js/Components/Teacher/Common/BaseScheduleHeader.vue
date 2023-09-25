@@ -53,8 +53,8 @@ const currentUrl = window.location.pathname;
         }
         .isActive {
             font-weight: bold;
-            color: #418997;
-            border-bottom: 2px solid #418997;
+            color: #5392F9 ;
+            border-bottom: 2px solid #5392F9 ;
         }
     }
 }

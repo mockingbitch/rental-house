@@ -124,7 +124,7 @@ const prev = () => {
     padding-bottom: 50px;
 }
 .green-bar {
-    background-color: #418997 !important;
+    background-color: #5392F9  !important;
 }
 
 .progress__wrap .progressBar {

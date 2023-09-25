@@ -122,7 +122,7 @@ body {
   font-size: 24px; }
   /* line 4, scss/imports/core/_elements.scss */
   .title.green-cl {
-    color: #003E49; }
+    color: #5392F9 ; }
   @media screen and (max-width: 991px) and (min-height: 500px) {
     /* line 1, scss/imports/core/_elements.scss */
     .title {
@@ -169,7 +169,7 @@ body {
       margin-right: 5px; }
   /* line 50, scss/imports/core/_elements.scss */
   .mainButton.bg-green {
-    background-color: #003E49;
+    background-color: #5392F9 ;
     color: #fff; }
   /* line 54, scss/imports/core/_elements.scss */
   .mainButton.bg-gray {
@@ -197,16 +197,16 @@ body {
 /* line 75, scss/imports/core/_elements.scss */
 .buttonHeader {
   padding: 5px 17px;
-  border: 1px solid #418997;
+  border: 1px solid #5392F9 ;
   font-weight: bold;
   border-radius: 100px;
   margin: 0 10px;
-  color: #418997;
+  color: #5392F9 ;
   font-size: 14px;
   line-height: 22.4px; }
   /* line 84, scss/imports/core/_elements.scss */
   .buttonHeader.green {
-    background-color: #418997;
+    background-color: #5392F9 ;
     color: #fff; }
 
 /* line 90, scss/imports/core/_elements.scss */
@@ -243,7 +243,7 @@ body {
   font-size: 18px;
   font-family: Noto Sans JP;
   line-height: 28.8px;
-  color: #003E49;
+  color: #5392F9 ;
   text-transform: none; }
   /* line 121, scss/imports/core/_elements.scss */
   .textLink a {
@@ -256,7 +256,7 @@ body {
       font-size: 14px;
       font-family: Noto Sans JP;
       line-height: 19.2px;
-      color: #003E49;
+      color: #5392F9 ;
       text-transform: none; } }
 
 /* line 131, scss/imports/core/_elements.scss */
@@ -374,7 +374,7 @@ body {
           margin-bottom: 8px; }
           /* line 228, scss/imports/core/_elements.scss */
           .form__wrap-item .intersest-items li.active {
-            background-color: #003E49;
+            background-color: #5392F9 ;
             color: #fff;
             font-weight: bold; }
             /* line 232, scss/imports/core/_elements.scss */
@@ -2682,11 +2682,11 @@ header .navPc {
         padding-right: 5px; }
       /* line 39, scss/imports/core/_header.scss */
       header .navPc__right a.border {
-        border: 1px solid #003E49;
+        border: 1px solid #5392F9 ;
         border-radius: 8px; }
       /* line 43, scss/imports/core/_header.scss */
       header .navPc__right a.borderRight {
-        border-right: 1px solid #003E49;
+        border-right: 1px solid #5392F9 ;
         margin-right: 20px; }
   @media (max-width: 1199px) {
     /* line 50, scss/imports/core/_header.scss */
@@ -2796,8 +2796,8 @@ header .navMobile__wrap {
       /* line 70, scss/imports/core/_headerTop.scss */
       .headerTop .navPc__search textarea:focus, .headerTop .navPc__search input:focus {
         outline: none !important;
-        border: 1px solid #418997;
-        box-shadow: 0 0 10px #418997; }
+        border: 1px solid #5392F9 ;
+        box-shadow: 0 0 10px #5392F9 ; }
       /* line 75, scss/imports/core/_headerTop.scss */
       .headerTop .navPc__search textarea.mobile, .headerTop .navPc__search input.mobile {
         display: none; }
@@ -2839,8 +2839,8 @@ header .navMobile__wrap {
         /* line 114, scss/imports/core/_headerTop.scss */
         .headerTop .navPc__search textarea:focus, .headerTop .navPc__search input:focus {
           outline: none !important;
-          border: 1px solid #418997;
-          box-shadow: 0 0 10px #418997; }
+          border: 1px solid #5392F9 ;
+          box-shadow: 0 0 10px #5392F9 ; }
         /* line 119, scss/imports/core/_headerTop.scss */
         .headerTop .navPc__search textarea.mobile, .headerTop .navPc__search input.mobile {
           display: block; }
@@ -2876,11 +2876,11 @@ footer {
   /* line 3, scss/imports/core/_footer.scss */
   footer .top {
     height: 495px;
-    background: #003E4914; }
+    background: #5392F9 14; }
   /* line 7, scss/imports/core/_footer.scss */
   footer .bottom {
     height: 80px;
-    background-color: #003E49;
+    background-color: #5392F9 ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2924,8 +2924,8 @@ footer:has(.footerMobile) {
           white-space: nowrap; }
         /* line 30, scss/imports/core/_footerMobile.scss */
         footer:has(.footerMobile) .footerMobile ul li.active {
-          border-top: 2px solid #418997;
-          color: #418997; }
+          border-top: 2px solid #5392F9 ;
+          color: #5392F9 ; }
         @media screen and (max-width: 991px) and (min-height: 500px) {
           /* line 34, scss/imports/core/_footerMobile.scss */
           footer:has(.footerMobile) .footerMobile ul li.isShowMobile {
@@ -2979,7 +2979,7 @@ footer:has(.footerMobile) {
   /* line 8, scss/imports/pages/_signinStep.scss */
   .signinStep .skip a {
     font-size: 12px;
-    color: #003E49;
+    color: #5392F9 ;
     display: flex;
     align-items: center; }
     /* line 13, scss/imports/pages/_signinStep.scss */

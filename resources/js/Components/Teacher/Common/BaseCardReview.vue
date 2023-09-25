@@ -18,9 +18,9 @@
                 :star-size="29"
                 :increment="1"
                 inactive-color="#ffffff"
-                :active-color="'#418997'"
+                :active-color="'#5392F9 '"
                 :border-width="5"
-                :border-color="'#418997'"
+                :border-color="'#5392F9 '"
                 :show-rating="false"
                 :rounded-corners="true"
                 :star-points="[
@@ -96,7 +96,7 @@ watch(
         font-weight: 400;
         line-height: 19.2px; /* 19.2px */
         letter-spacing: -0.12px;
-        color: #418997;
+        color: #5392F9 ;
     }
 }
 :deep(.vue-star-rating) {

@@ -115,7 +115,7 @@ const averageRevenueChange = (totalRevenue() / props.lessons.filter(item => item
 }
 
 .achievement__item__add {
-    color: #418997;
+    color: #5392F9 ;
     font-weight: bold;
     margin-left: 2px;
 }

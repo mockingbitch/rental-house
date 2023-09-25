@@ -227,7 +227,7 @@ const totalApplied = (lesson) => {
     background-color: #e1eff2;
     border-radius: 4px;
     font-size: 10px;
-    color: #418997;
+    color: #5392F9 ;
 }
 .draft-lesson {
     background-color: #ffedc9 !important;

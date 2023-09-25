@@ -14,8 +14,8 @@ import { defineProps } from "vue";
 const { label, submitButton } = defineProps(["label", "submitButton"]);
 
 const submitButtonStyles = {
-    backgroundColor: submitButton ? "#418997" : "transparent",
-    color: submitButton ? "white" : "#418997",
+    backgroundColor: submitButton ? "#5392F9 " : "transparent",
+    color: submitButton ? "white" : "#5392F9 ",
     textDecoration: submitButton ? "none" : "underline",
 };
 

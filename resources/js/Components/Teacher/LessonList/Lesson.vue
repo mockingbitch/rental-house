@@ -285,7 +285,7 @@ const totalApplied = (lesson) => {
             >
                 <path
                     d="M17.5 10C17.5 10.1658 17.4342 10.3247 17.3169 10.4419C17.1997 10.5592 17.0408 10.625 16.875 10.625H10.625V16.875C10.625 17.0408 10.5592 17.1997 10.4419 17.3169C10.3247 17.4342 10.1658 17.5 10 17.5C9.83424 17.5 9.67527 17.4342 9.55806 17.3169C9.44085 17.1997 9.375 17.0408 9.375 16.875V10.625H3.125C2.95924 10.625 2.80027 10.5592 2.68306 10.4419C2.56585 10.3247 2.5 10.1658 2.5 10C2.5 9.83424 2.56585 9.67527 2.68306 9.55806C2.80027 9.44085 2.95924 9.375 3.125 9.375H9.375V3.125C9.375 2.95924 9.44085 2.80027 9.55806 2.68306C9.67527 2.56585 9.83424 2.5 10 2.5C10.1658 2.5 10.3247 2.56585 10.4419 2.68306C10.5592 2.80027 10.625 2.95924 10.625 3.125V9.375H16.875C17.0408 9.375 17.1997 9.44085 17.3169 9.55806C17.4342 9.67527 17.5 9.83424 17.5 10Z"
-                    fill="#418997"
+                    fill="#5392F9 "
                 />
             </svg>
             <span class="course-create-title">{{ lang().label.lesson_course.add_course }}</span>
@@ -305,7 +305,7 @@ const totalApplied = (lesson) => {
                 >
                     <path
                         d="M17.5 10C17.5 10.1658 17.4342 10.3247 17.3169 10.4419C17.1997 10.5592 17.0408 10.625 16.875 10.625H10.625V16.875C10.625 17.0408 10.5592 17.1997 10.4419 17.3169C10.3247 17.4342 10.1658 17.5 10 17.5C9.83424 17.5 9.67527 17.4342 9.55806 17.3169C9.44085 17.1997 9.375 17.0408 9.375 16.875V10.625H3.125C2.95924 10.625 2.80027 10.5592 2.68306 10.4419C2.56585 10.3247 2.5 10.1658 2.5 10C2.5 9.83424 2.56585 9.67527 2.68306 9.55806C2.80027 9.44085 2.95924 9.375 3.125 9.375H9.375V3.125C9.375 2.95924 9.44085 2.80027 9.55806 2.68306C9.67527 2.56585 9.83424 2.5 10 2.5C10.1658 2.5 10.3247 2.56585 10.4419 2.68306C10.5592 2.80027 10.625 2.95924 10.625 3.125V9.375H16.875C17.0408 9.375 17.1997 9.44085 17.3169 9.55806C17.4342 9.67527 17.5 9.83424 17.5 10Z"
-                        fill="#418997"
+                        fill="#5392F9 "
                     />
                 </svg>
                 <span class="course-create-title">{{ lang().label.lesson_course.add_course }}</span>
@@ -354,7 +354,7 @@ const totalApplied = (lesson) => {
                 <div class="lesson-change-status-dialog-content">Are you sure to withdraw the lesson ?
                 The Lesson status change to draft status.</div>
                 <div class="lesson-change-status-dialog-btn">
-                    <ButtonDeleteRequest :label="'キャンセル'" @click="isOpenChangeStatusDialog = false" style="border: 1px solid #418997; color: #418997"/>
+                    <ButtonDeleteRequest :label="'キャンセル'" @click="isOpenChangeStatusDialog = false" style="border: 1px solid #5392F9 ; color: #5392F9 "/>
                     <ButtonDeleteRequest :label="'申請取下げ'" :submit-button="true"  @click="draftLesson" />
                 </div>
             </div>
@@ -385,7 +385,7 @@ const totalApplied = (lesson) => {
     font-size: 12px;
 }
 .sendback-text {
-    color: #418997;
+    color: #5392F9 ;
     text-decoration: underline;
     font-weight: 700;
     font-size: 12px;

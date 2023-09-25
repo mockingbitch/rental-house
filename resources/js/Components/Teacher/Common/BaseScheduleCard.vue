@@ -290,7 +290,7 @@ const kidApplied = (course) => {
         justify-content: center;
         height: calc(100% / 3 * 2);
         .base-schedule-card-info-item-title-text {
-            color: #418997;
+            color: #5392F9 ;
             text-decoration: underline;
             cursor: pointer;
         }
@@ -356,8 +356,8 @@ const kidApplied = (course) => {
             cursor: pointer;
             background-color: white;
             border-radius: 4px;
-            border: 1px solid #418997;
-            color: #418997;
+            border: 1px solid #5392F9 ;
+            color: #5392F9 ;
             font-family: "Noto Sans JP";
             font-size: 14px;
         }
@@ -367,7 +367,7 @@ const kidApplied = (course) => {
             cursor: pointer;
             border: none;
             border-radius: 4px;
-            background-color: #418997;
+            background-color: #5392F9 ;
             color: white;
             font-family: "Noto Sans JP";
             font-size: 14px;

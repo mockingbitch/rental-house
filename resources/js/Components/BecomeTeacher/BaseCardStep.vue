@@ -203,7 +203,7 @@ const ReviewResult = () => {
     margin: 16px 0;
     padding: 16px;
     a {
-        color: #418997;
+        color: #5392F9 ;
         text-decoration: underline;
         font-weight: 700;
     }
@@ -214,7 +214,7 @@ const ReviewResult = () => {
         .icon-step {
             width: 24px;
             height: 24px;
-            background-color: #418997;
+            background-color: #5392F9 ;
             border-radius: 100px;
         }
         .title-content {
@@ -225,7 +225,7 @@ const ReviewResult = () => {
     .button-step {
         margin-top: 8px;
         font-size: 14px;
-        background-color: #418997;
+        background-color: #5392F9 ;
         height: 50px;
         color: #ffffff;
         font-weight: 700;
@@ -277,7 +277,7 @@ const ReviewResult = () => {
     &[data-status="1"] {
         .button-step {
             background-color: #e3e3e3;
-            color: #418997;
+            color: #5392F9 ;
         }
         @media screen and (min-width: 720px) {
             .content-step {
@@ -296,14 +296,14 @@ const ReviewResult = () => {
         }
         .button-step {
             background-color: white;
-            color: #418997;
+            color: #5392F9 ;
             font-weight: 400;
             text-decoration: underline;
         }
         .title-step {
             .icon-step {
                 background-color: white;
-                border: 1px solid #418997;
+                border: 1px solid #5392F9 ;
             }
         }
         @media screen and (min-width: 720px) {

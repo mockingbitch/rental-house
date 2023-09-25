@@ -87,7 +87,7 @@ const closeConfirmModal = () => {
     font-weight: 700;
     padding: 16px 31.5px;
     border-radius: 100px;
-    background-color: #418997;
+    background-color: #5392F9 ;
     color: white;
     border: none;
     cursor: pointer;

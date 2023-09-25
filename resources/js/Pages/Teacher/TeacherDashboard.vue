@@ -138,7 +138,7 @@ const latestLesson = () => {
     border-radius: 100px;
 
     display: flex;
-    background-color: #418997;
+    background-color: #5392F9 ;
     width: 250px;
     max-height: 50px;
     align-items: center;

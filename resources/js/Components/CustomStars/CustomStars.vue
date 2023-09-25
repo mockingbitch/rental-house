@@ -17,7 +17,7 @@ defineProps({
             :star-size="11"
             :read-only="true"
             :increment="0.01"
-            :active-color="'#418997'"
+            :active-color="'#5392F9 '"
             :inactive-color="bgStar"
             :show-rating="false"
             :border-color="'#b1b1b1'"

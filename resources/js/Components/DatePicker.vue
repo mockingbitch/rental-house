@@ -565,12 +565,12 @@ td.faded {
 }
 
 td.rangeDate {
-    background-color: #418997;
+    background-color: #5392F9 ;
     border-radius: 8px;
 }
 
 a:hover {
-    background-color: #418997;
+    background-color: #5392F9 ;
     border-radius: 8px;
     color: #fff !important;
 }
@@ -581,7 +581,7 @@ a.active {
 }
 
 a.dateInRage {
-    color: #418997;
+    color: #5392F9 ;
 }
 
 a.rangeDate {

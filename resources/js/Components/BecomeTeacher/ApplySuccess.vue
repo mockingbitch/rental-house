@@ -94,13 +94,13 @@ const handleBackToDashboard = () => {
     width: 343px;
 }
 .button-dash-board {
-    background-color: #418997;
+    background-color: #5392F9 ;
     color: #ffffff;
     cursor: pointer;
 }
 .button-top {
     background-color: #ffffff;
-    color: #003e49;
+    color: #5392F9 ;
     font-size: 14px;
     border: 1px solid #000;
 }

@@ -66,7 +66,7 @@ const isRouteActive = (routeName) => {
                         </li>
                     </Link>
                     <div v-if="!isLogin">
-                        <Link :href="route('login.method')">
+                        <Link :href="route('user.menu')">
                             <li>
                                 <i
                                     ><img src="/img/icon/account.svg" alt=""
@@ -76,13 +76,15 @@ const isRouteActive = (routeName) => {
                         </Link>
                     </div>
                     <div v-else>
-                        <li
-                            v-on:click="navOpen = !navOpen"
-                            v-bind:class="{ active: navOpen }"
-                        >
-                            <i><img src="/img/icon/account.svg" alt="" /></i>
-                            <p>アカウント</p>
-                        </li>
+                        <Link :href="route('user.menu')">
+                            <li
+                                v-bind:class="{ active: navOpen }"
+                                v-on:click="navOpen = !navOpen"
+                            >
+                                <i><img src="/img/icon/account.svg" alt="" /></i>
+                                <p>アカウント</p>
+                            </li>
+                        </Link>
                         <div id="sidemenu">
                             <transition name="fade" appear>
                                 <div
@@ -216,7 +218,7 @@ const isRouteActive = (routeName) => {
                             <p>レビュー管理</p>
                         </li>
                     </Link>
-                    <Link>
+                    <Link :href="route('teacher.balance.check')">
                         <li v-if="isLogin">
                             <i
                                 ><img

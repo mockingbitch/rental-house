@@ -244,7 +244,7 @@ const isApplied = (request) => {
 }
 .list__request-create-btn {
     display: flex;
-    background-color: #418997;
+    background-color: #5392F9 ;
     width: 368px;
     max-height: 50px;
     align-items: center;
@@ -277,7 +277,7 @@ const isApplied = (request) => {
     display: flex;
     gap: 8px;
     background-color: #e1eff2;
-    color: #418997;
+    color: #5392F9 ;
     border-radius: 4px;
 }
 @media all and (max-width: 768px) {

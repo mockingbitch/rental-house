@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
-use App\Constants\UserConstants;
-use App\Constants\CommonConstants;
+use App\Constants\Constant;
+use App\Constants\UserConstant;
 use App\Constants\NotificationConstants;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -53,22 +53,22 @@ class AuthController extends Controller
     public function login(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->only(
-            UserConstants::COL_EMAIL,
-            UserConstants::COL_PASSWORD
+            UserConstant::COL_EMAIL,
+            UserConstant::COL_PASSWORD
         );
-        $credentials[UserConstants::COL_VENDOR] = UserConstants::VENDOR_EMAIL;
+        $credentials[UserConstant::COL_VENDOR] = UserConstant::VENDOR_EMAIL;
 
         if (auth()->attempt($credentials)) :
             Log::info('login credentials');
             if (auth()->user()->email_verified_at === null) :
                 return redirect()
                     ->route('register.success')
-                    ->with(UserConstants::COL_EMAIL, $credentials[UserConstants::COL_EMAIL]);
+                    ->with(UserConstant::COL_EMAIL, $credentials[UserConstant::COL_EMAIL]);
             endif;
-            if (auth()->user()->role == UserConstants::ROLE_TEACHER) :
+            if (auth()->user()->role == UserConstant::ROLE_TEACHER) :
                 return redirect()
                         ->route('teacher.dashboard')
-                        ->with(CommonConstants::MSG, __('messages.login.SM-001'));
+                        ->with(Constant::MSG, __('messages.login.SM-001'));
             endif;
             if (session()->has('url.intended')):
                 return redirect(session()->pull('url.intended'));
@@ -76,10 +76,10 @@ class AuthController extends Controller
 
             return redirect()
                     ->route('top')
-                    ->with(CommonConstants::MSG, __('messages.login.SM-001'));
+                    ->with(Constant::MSG, __('messages.login.SM-001'));
         else:
             throw ValidationException::withMessages([
-                CommonConstants::ERR_MSG => trans('messages.login.EM-001'),
+                Constant::ERR_MSG => trans('messages.login.EM-001'),
             ]);
         endif;
     }
@@ -88,7 +88,7 @@ class AuthController extends Controller
      * @Route get("/login", name="login")
      * @return Response
      */
-    public function index(): Response
+    public function loginView(): Response
     {
         return Inertia::render('Auth/Login');
     }
@@ -113,7 +113,7 @@ class AuthController extends Controller
 
         return redirect()
             ->route('login.method')
-            ->with(CommonConstants::MSG, __('messages.logout.SM-001'));
+            ->with(Constant::MSG, __('messages.logout.SM-001'));
     }
 
     /**
@@ -132,7 +132,7 @@ class AuthController extends Controller
     public function registerMethod(): Response
     {
         return Inertia::render('Auth/RegisterMethod', [
-            CommonConstants::MSG => session()->get(CommonConstants::MSG),
+            Constant::MSG => session()->get(Constant::MSG),
         ]);
     }
 
@@ -143,7 +143,7 @@ class AuthController extends Controller
     public function registerSuccess(): Response
     {
         return Inertia::render('Auth/RegisterSuccess', [
-            UserConstants::COL_EMAIL => session()->get(UserConstants::COL_EMAIL)
+            UserConstant::COL_EMAIL => session()->get(UserConstant::COL_EMAIL)
         ]);
     }
 
@@ -155,7 +155,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): RedirectResponse
     {
         $data = $request->all();
-        $data['vendor']         = UserConstants::VENDOR_EMAIL;
+        $data['vendor']         = UserConstant::VENDOR_EMAIL;
         $data['password']       = Hash::make($request->password);
         $data['remember_token'] = Str::random(60);
         $data['expires_in']     = Carbon::now()->addDay(1);
@@ -183,14 +183,14 @@ class AuthController extends Controller
             return redirect()
                 ->route('register.success')
                 ->with([
-                    CommonConstants::MSG        => __('messages.register.SM-001'),
-                    UserConstants::COL_EMAIL    => $data[UserConstants::COL_EMAIL]
+                    Constant::MSG        => __('messages.register.SM-001'),
+                    UserConstant::COL_EMAIL    => $data[UserConstant::COL_EMAIL]
                 ]);
         } catch (\Throwable $th) {
             DB::rollback();
 
             throw ValidationException::withMessages([
-                CommonConstants::ERR_MSG => trans('messages.login.EM-001'),
+                Constant::ERR_MSG => trans('messages.login.EM-001'),
             ]);
         }
     }
@@ -202,7 +202,7 @@ class AuthController extends Controller
     public function redirectToGoogle()
     {
         session(['prev_url' => url()->previous()]);
-        $redirectUrl = Socialite::driver(CommonConstants::GOOGLE)->redirect()->getTargetUrl();
+        $redirectUrl = Socialite::driver(Constant::GOOGLE)->redirect()->getTargetUrl();
         return response('', 409)->header('X-Inertia-Location', $redirectUrl);
     }
 
@@ -212,7 +212,7 @@ class AuthController extends Controller
      */
     public function handleGoogleCallback(): RedirectResponse
     {
-        $g_user = Socialite::driver(CommonConstants::GOOGLE)->user();
+        $g_user = Socialite::driver(Constant::GOOGLE)->user();
         $existing_user = $this->userRepository->findUserByEmail($g_user->email);
 
         if($existing_user) :
@@ -222,12 +222,12 @@ class AuthController extends Controller
 
                     return redirect()
                         ->route('register.method')
-                        ->with(CommonConstants::MSG, __('messages.register.EM-002'));
+                        ->with(Constant::MSG, __('messages.register.EM-002'));
 
                 case route('login.method'):
                     session()->forget('prev_url');
                     auth()->login($existing_user);
-                    if ($existing_user->{UserConstants::COL_ROLE} == UserConstants::ROLE_TEACHER):
+                    if ($existing_user->{UserConstant::COL_ROLE} == UserConstant::ROLE_TEACHER):
                         return redirect()
                             ->route('teacher.dashboard');
                     endif;
@@ -239,26 +239,26 @@ class AuthController extends Controller
 
                     return redirect()
                         ->route('top')
-                        ->with(CommonConstants::MSG, __('messages.login.SM-001'));
+                        ->with(Constant::MSG, __('messages.login.SM-001'));
 
                 default:
                     session()->forget('prev_url');
 
                     return redirect()
                         ->route('top')
-                        ->with(CommonConstants::MSG, __('messages.login.EM-002'));
+                        ->with(Constant::MSG, __('messages.login.EM-002'));
             endswitch;
         endif;
 
         $data = [
-            UserConstants::COL_NICK_NAME        => $g_user->user[UserConstants::G_DATA_NAME],
-            UserConstants::COL_FIRST_NAME       => $g_user->user[UserConstants::G_DATA_GIVEN_NAME],
-            UserConstants::COL_LAST_NAME        => $g_user->user[UserConstants::G_DATA_FAMILY_NAME],
-            UserConstants::COL_EMAIL            => $g_user->user[UserConstants::G_DATA_EMAIL],
-            UserConstants::COL_AVATAR           => $g_user->user[UserConstants::G_DATA_PICTURE],
-            UserConstants::COL_REGION           => $g_user->user[UserConstants::G_DATA_LOCALE],
-            UserConstants::COL_VENDOR           => UserConstants::VENDOR_GOOGLE,
-            UserConstants::COL_REMEMBER_TOKEN   => Str::random(60),
+            UserConstant::COL_NICK_NAME        => $g_user->user[UserConstant::G_DATA_NAME],
+            UserConstant::COL_FIRST_NAME       => $g_user->user[UserConstant::G_DATA_GIVEN_NAME],
+            UserConstant::COL_LAST_NAME        => $g_user->user[UserConstant::G_DATA_FAMILY_NAME],
+            UserConstant::COL_EMAIL            => $g_user->user[UserConstant::G_DATA_EMAIL],
+            UserConstant::COL_AVATAR           => $g_user->user[UserConstant::G_DATA_PICTURE],
+            UserConstant::COL_REGION           => $g_user->user[UserConstant::G_DATA_LOCALE],
+            UserConstant::COL_VENDOR           => UserConstant::VENDOR_GOOGLE,
+            UserConstant::COL_REMEMBER_TOKEN   => Str::random(60),
             'expires_in'                        => Carbon::now()->addDay(1),
         ];
 
@@ -284,15 +284,15 @@ class AuthController extends Controller
             return redirect()
                 ->route('register.success')
                 ->with([
-                    CommonConstants::MSG    => __('messages.register.SM-001'),
-                    'email'                 => $g_user->user[UserConstants::G_DATA_EMAIL],
+                    Constant::MSG    => __('messages.register.SM-001'),
+                    'email'                 => $g_user->user[UserConstant::G_DATA_EMAIL],
                 ]);
         } catch (\Throwable $th) {
             DB::rollback();
 
             return redirect()
                 ->route('register.method')
-                ->with(CommonConstants::MSG, __('messages.register.EM-001'));
+                ->with(Constant::MSG, __('messages.register.EM-001'));
         }
     }
 
@@ -313,15 +313,15 @@ class AuthController extends Controller
     {
         $reset_password_record = $this->passwordResetRepository
             ->findOneBy([
-                UserConstants::COL_EMAIL => $request->email
+                UserConstant::COL_EMAIL => $request->email
             ]);
 
         if(!$reset_password_record) :
             $user_token = Str::random(64);
             $data = [
-                UserConstants::COL_EMAIL => $request->email,
-                CommonConstants::TOKEN => $user_token,
-                CommonConstants::COL_CREATED => Carbon::now()
+                UserConstant::COL_EMAIL => $request->email,
+                Constant::TOKEN => $user_token,
+                Constant::COL_CREATED => Carbon::now()
             ];
             $new_reset_password_record = $this->passwordResetRepository->create($data);
             $send_mail = $this->mailService
@@ -351,7 +351,7 @@ class AuthController extends Controller
     public function forgotPasswordPending(): Response
     {
         return Inertia::render('Auth/ForgotPassword/ForgotPasswordPending', [
-            UserConstants::COL_EMAIL => session()->get(UserConstants::COL_EMAIL)
+            UserConstant::COL_EMAIL => session()->get(UserConstant::COL_EMAIL)
         ]);
     }
 
@@ -375,13 +375,13 @@ class AuthController extends Controller
     public function resetPassword(ResetPasswordRequest $request): RedirectResponse
     {
         $reset_password_record = $this->passwordResetRepository->findOneBy([
-            UserConstants::COL_EMAIL => $request->email,
-            CommonConstants::TOKEN => $request->token
+            UserConstant::COL_EMAIL => $request->email,
+            Constant::TOKEN => $request->token
         ]);
 
         if(!$reset_password_record) :
             throw ValidationException::withMessages([
-                CommonConstants::MSG => __('messages.reset_password.EM-001'),
+                Constant::MSG => __('messages.reset_password.EM-001'),
             ]);
         endif;
 
@@ -390,20 +390,20 @@ class AuthController extends Controller
                 $user_update = $this->userRepository
                     ->updateUserByEmail(
                         $request->email,
-                        [UserConstants::COL_PASSWORD => Hash::make($request->password)]
+                        [UserConstant::COL_PASSWORD => Hash::make($request->password)]
                     );
                 $reset_password_delete = $this->passwordResetRepository->deleteByEmail($request->email);
             });
             DB::commit();
 
             return to_route('reset.password.success')
-                ->with(CommonConstants::MSG, __('messages.reset_password.SM-001'));
+                ->with(Constant::MSG, __('messages.reset_password.SM-001'));
         } catch (\Throwable $th) {
             DB::rollback();
 
             return redirect()
                 ->back()
-                ->with(CommonConstants::MSG, __('messages.register.EM-001'));
+                ->with(Constant::MSG, __('messages.register.EM-001'));
         }
     }
 
