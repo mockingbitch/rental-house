@@ -88,7 +88,7 @@ const submit = () => {
                             <p>{{ lang().label.register?.registration_email }}</p>
                         </button>
                         <div class="policy">
-                            <span>{{ lang().label.register.dottree }}
+                            <span>{{ lang().label.register.RentalHouse }}
                                 <a href="#">{{ lang().label.register?.term_of_service }}</a>
                                 ・<a href="#">{{ lang().label.register?.privacy_policy }}</a>
                                 ・<a href="#">{{ lang().label.register?.external_service }}</a>

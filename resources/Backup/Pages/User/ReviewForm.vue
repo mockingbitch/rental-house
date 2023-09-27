@@ -139,7 +139,7 @@ const handleSubmitForm = () => {
             <div class="logo d-flex justify-content-center align-items-center">
                 <Link :href="route('top')">
                     <i
-                        ><img src="/img/logo/DotreesReview.svg" alt="DotTrees"
+                        ><img src="/img/logo/DotreesReview.svg" alt="RentalHouses"
                     /></i>
                 </Link>
                 <div class="icon-review">

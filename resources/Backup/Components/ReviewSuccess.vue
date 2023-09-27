@@ -24,7 +24,7 @@
                     class="button-return button-dash-board d-flex justify-content-center align-items-center"
                     @click="handleBackToDashboard"
                 >
-                    DottreesののTOPページに戻る
+                    RentalHousesののTOPページに戻る
                 </div>
             </Link>
         </div>

@@ -15,7 +15,7 @@ const props = defineProps({
                     <i
                         ><img
                             src="../../../../public/img/logo/DotreesReview.svg"
-                            alt="DotTrees"
+                            alt="RentalHouses"
                     /></i>
                 </Link>
             </div>

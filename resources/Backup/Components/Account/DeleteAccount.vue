@@ -163,7 +163,7 @@ const options = [
             </div>
             <Link :href="route('top')"
                 ><ButtonRequest
-                    :label="'DottreeのTOPページに移動'"
+                    :label="'RentalHouseのTOPページに移動'"
                     :submit-button="true"
             /></Link>
         </div>

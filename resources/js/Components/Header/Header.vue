@@ -40,11 +40,11 @@ const isSearchPage = computed(() => {
                         <div class="logo">
                             <i
                                 ><img
-                                    src="/img/logo/DotTrees.svg"
-                                    alt="DotTrees"
+                                    src="/img/logo/RentalHouses.svg"
+                                    alt="RentalHouses"
                             /></i>
                         </div>
-                        <h1>DotTrees</h1>
+                        <h1>RentalHouses</h1>
                     </Link>
                 </div>
                 <div class="navPc__search" v-if="!props.isReviewForm">

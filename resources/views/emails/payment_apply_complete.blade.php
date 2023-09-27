@@ -1,5 +1,5 @@
 @component('mail::message')
-# DotTrees
+# Rental House
 <p>{{ $user['first_name'] }} 様</p>
 <p>いつもお世話になっております。</p>
 <p>この度はレッスンの予約ありがとうございました。</p>
