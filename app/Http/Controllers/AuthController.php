@@ -65,11 +65,6 @@ class AuthController extends Controller
                     ->route('register.success')
                     ->with(UserConstant::COL_EMAIL, $credentials[UserConstant::COL_EMAIL]);
             endif;
-            if (auth()->user()->role == UserConstant::ROLE_TEACHER) :
-                return redirect()
-                        ->route('teacher.dashboard')
-                        ->with(Constant::MSG, __('messages.login.SM-001'));
-            endif;
             if (session()->has('url.intended')):
                 return redirect(session()->pull('url.intended'));
             endif;
@@ -272,7 +267,7 @@ class AuthController extends Controller
             $user = DB::transaction(function () use ($data) {
                 $user       = $this->userRepository->create($data);
                 $send_mail  = $this->mailService->sendMail($user, $data);
-                
+
                 return $user;
             });
             DB::commit();
