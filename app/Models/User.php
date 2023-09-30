@@ -24,17 +24,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nick_name',
         'first_name',
-        'first_name_kana',
         'last_name',
-        'last_name_kana',
         'email',
         'password',
         'description',
         'avatar',
-        'role',
-        'verify_teacher',
+        'ward_id',
         'status',
         'country_id',
         'city_id',
@@ -56,10 +52,9 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'teacher_information',
-        'country',
-        'city',
-        'kids',
+        // 'country',
+        // 'city',
+        // 'kids',
     ];
 
     /**
@@ -71,40 +66,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function teacher_information()
-    {
-        return $this->hasOne(\App\Models\TeacherInformation::class, 'teacher_id', 'id');
-    }
+    // public function country()
+    // {
+    //     return $this->belongsTo(Country::class, 'country_id',  'id');
+    // }
 
-    public function country()
-    {
-        return $this->belongsTo(Country::class, 'country_id',  'id');
-    }
-    
-    public function city()
-    {
-        return $this->belongsTo(City::class, 'city_id', 'id');
-    }
+    // public function city()
+    // {
+    //     return $this->belongsTo(City::class, 'city_id', 'id');
+    // }
 
-    public function kids()
-    {
-        return $this->hasMany(Kid::class, 'parent_id', 'id');
-    }
+    // public function kids()
+    // {
+    //     return $this->hasMany(Kid::class, 'parent_id', 'id');
+    // }
 
-    public function user_schedules()
-    {
-        return $this->hasMany(UserSchedule::class, 'user_id', 'id');
-    }
+    // public function user_schedules()
+    // {
+    //     return $this->hasMany(UserSchedule::class, 'user_id', 'id');
+    // }
 
-    /**
-     * The channels the user receives notification broadcasts on.
-     */
-    public function receivesBroadcastNotificationsOn(): string
-    {
-        if ($this->role == 2) :
-            return 'Teacher.'.$this->id;
-        endif;
-        
-        return 'User.'.$this->id;
-    }
+    // /**
+    //  * The channels the user receives notification broadcasts on.
+    //  */
+    // public function receivesBroadcastNotificationsOn(): string
+    // {
+    //     if ($this->role == 2) :
+    //         return 'Teacher.'.$this->id;
+    //     endif;
+
+    //     return 'User.'.$this->id;
+    // }
 }
