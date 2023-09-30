@@ -22,7 +22,7 @@ const isRouteActive = (routeName) => {
     <div>
         <footer>
             <div class="bottom">
-                <p>Copyright © dottree, Inc. All Rights Reserved</p>
+                <p>Copyright © RentalHouse, Inc. All Rights Reserved</p>
             </div>
         </footer>
         <div class="footerMobileBlock"></div>

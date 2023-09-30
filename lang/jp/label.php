@@ -110,7 +110,7 @@ return [
         'external_service'      => '外部サービス',
         'term'                  => 'とのID連携に関する同意項目に同意いただいた上で、次にお進みください。',
         'registration_email'    => 'メールアドレスで新規登録',
-        'dottree'               => 'Dottreeの',
+        'RentalHouse'               => 'RentalHouseの',
     ],
     'register_method' => [
         'or'                    => 'もしくは、',
@@ -135,7 +135,7 @@ return [
     'register_success' => [
         'here'                      => 'こちら',
         'contact_us'                => 'お問い合わせは',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'                => '認証URLの有効期限は24時間です。',
         'verify_email'              => 'メール認証をお願いします！',
         'click_the_url'             => 'メールに送信されたURLをクリックして',
@@ -153,7 +153,7 @@ return [
     ],
     'forgot_password_pending' => [
         'here'                  => 'こちら',
-        'copy_right'            => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'            => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'            => '認証URLの有効期限は5分です。',
         'contact_us'            => 'お問い合わせは',
         'please_reset'          => '再設定を行なってください。',
@@ -174,10 +174,10 @@ return [
     ],
     'reset_password_success' => [
         'here'                      => 'こちら',
-        'we_hope'                   => '引き続きDottreeをお楽しみください。',
+        'we_hope'                   => '引き続きRentalHouseをお楽しみください。',
         'contact_us'                => 'お問い合わせは',
         'return_top'                => 'TOPページに戻る',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'return_login'              => 'ログインページに戻る',
         'reset_password'            => 'パスワード再設定',
         'password_has_been_reset'   => 'パスワード再設定が完了しました。',
@@ -189,7 +189,7 @@ return [
         'to_dashboard'                  => 'ダッシュボードに戻る',
         'contact_us'                    => 'お問い合わせはこ',
         'here'                          => 'ちら',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     "create_lesson_failed" => [
         'notification'                  => 'lessonの登録が失敗しました。',
@@ -201,7 +201,7 @@ return [
         'to_dashboard'                  => 'Dashboardに戻る（下書き保存）',
         'contact_us'                    => 'お問い合わせは',
         'here'                          => 'こちら',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     'information' => [
         'index' => [

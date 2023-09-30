@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'author' => \App\Http\Middleware\Authorization::class,
         'handle.oldurl' => \App\Http\Middleware\HandleOldUrl::class,
+        'permission' => \App\Http\Middleware\Permission::class,
     ];
 }

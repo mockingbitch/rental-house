@@ -5,9 +5,10 @@ class RoleConstant
 {
     const NAME = 'Role';
 
-    const ROLE_SUPER_ADMIN  = 'Super Admin';
-    const ROLE_HOUSE_HOLDER = 'House holder';
-    const ROLE_GUEST        = 'Guest';
+    const ROLE_SUPER_ADMIN  = 'Super Administrator';
+    const ROLE_ADMIN        = 'Administrator';
+    const ROLE_LESSOR       = 'Lessor';
+    const ROLE_LESSEE       = 'Lessee';
 
     const COLUMN_ID         = 'id';
     const COLUMN_NAME       = 'name';

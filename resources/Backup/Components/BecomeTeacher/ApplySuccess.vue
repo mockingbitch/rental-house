@@ -35,7 +35,7 @@
                     <div
                         class="button-return button-top d-flex flex-column justify-content-center align-items-center"
                     >
-                        DottreesののTOPページに戻る
+                        RentalHousesののTOPページに戻る
                     </div>
                 </Link>
             </div>

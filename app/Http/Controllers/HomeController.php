@@ -8,6 +8,11 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
+    public function adminDashboard()
+    {
+        return view('dashboard');
+    }
+  
     /**
      * @Route get("/", name="top")
      *

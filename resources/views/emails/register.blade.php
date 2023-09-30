@@ -1,5 +1,5 @@
 @component('mail::message')
-# DotTrees
+# Rental House
 <p>いつもお世話になっております。 この度はメールアドレスの登録ありがとうございました。</p>
 <p>以下のURLからアカウント登録のご対応をお願いいたします。</p>
 <p>本メールの有効期限は 24時間です。 (期限 : {{ $data['expires_in'] }} ) </p>

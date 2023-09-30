@@ -72,7 +72,7 @@ return [
         'external_service'      => 'External service',
         'term'                  => 'Please agree to the consent items regarding ID linkage with and proceed to the next step.',
         'registration_email'    => 'New registration with email address',
-        'dottree'               => "Dottree's",
+        'RentalHouse'               => "RentalHouse's",
     ],
     'register_method' => [
         'or'                    => 'or',
@@ -98,7 +98,7 @@ return [
     'register_success' => [
         'here'                      => 'here',
         'contact_us'                => 'Contact us',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'                => 'Authentication URL expires in :attribute minutes.',
         'verify_email'              => 'Please verify your email!',
         'click_the_url'             => 'Click the URL sent to your email',
@@ -116,7 +116,7 @@ return [
     ],
     'forgot_password_pending' => [
         'here'                  => 'here',
-        'copy_right'            => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'            => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'            => 'Authentication URL expires in :attribute minutes.',
         'contact_us'            => 'Contact us',
         'please_reset'          => 'Please reset.',
@@ -137,10 +137,10 @@ return [
     ],
     'reset_password_success' => [
         'here'                      => 'here',
-        'we_hope'                   => 'We hope you continue to enjoy Dottree.',
+        'we_hope'                   => 'We hope you continue to enjoy RentalHouse.',
         'contact_us'                => 'Contact us',
         'return_top'                => 'Return to TOP page',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'return_login'              => 'Return to login page',
         'reset_password'            => 'Resetting a password',
         'password_has_been_reset'   => 'Password has been reset.',
@@ -181,7 +181,7 @@ return [
         'to_dashboard'                  => 'Return to Dashboard',
         'contact_us'                    => 'Contact us',
         'here'                          => 'here',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     "create_lesson_failed" => [
         'notification'                  => 'Registration of lesson failed.',
@@ -193,7 +193,7 @@ return [
         'to_dashboard'                  => 'Return to Dashboard (Save Draft)',
         'contact_us'                    => 'Contact us',
         'here'                          => 'here',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     'information' => [
         'index' => [
@@ -234,7 +234,7 @@ return [
             'alternatively'     => 'Alternatively, it will guide you to the class search.',
             'register_teacher'  => 'Register as a teacher',
             'go_to_dashboard'   => 'Go to dashboard',
-            'go_to_top_page'    => 'Go to top page of Dottree',
+            'go_to_top_page'    => 'Go to top page of RentalHouse',
             'contact_us'        => 'Contact us',
         ]
     ],

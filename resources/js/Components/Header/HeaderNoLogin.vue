@@ -31,7 +31,7 @@ const showModalSearch = ref(false);
                 <div class="navPc__left">
                     <Link :href="route('top')">
                         <div class="logo">
-                            <i><img src="/img/logo/DotTrees.svg" alt="DotTrees"></i>
+                            <i><img src="/img/logo/RentalHouses.svg" alt="RentalHouses"></i>
                         </div>
                         <h1>RentalHouse</h1>
                     </Link>
@@ -41,7 +41,7 @@ const showModalSearch = ref(false);
                 <div class="navMobile__wrap">
                     <i><img src="/img/icon/arrownLeft.svg" alt="back"></i>
                     <div class="logo">
-                        <i><img src="/img/logo/DotTrees.svg" alt="DotTrees"></i>
+                        <i><img src="/img/logo/RentalHouses.svg" alt="RentalHouses"></i>
                     </div>
                     <h1>RentalHouse</h1>
                 </div>

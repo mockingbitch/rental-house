@@ -11,12 +11,12 @@
                 class="step-container-title d-flex justify-content-center"
                 style="padding-bottom: 8px; margin-top: 16px"
             >
-                Welcome to Dottrees
+                Welcome to RentalHouses
             </div>
             <div class="d-flex flex-column align-items-center">
                 <span
                     >You're only a few steps away from teaching on
-                    Dottrees.</span
+                    RentalHouses.</span
                 >
                 <span
                     >Please follow our step-by-step guide to get started!

@@ -75,7 +75,7 @@ const closeConfirmModal = () => {
                 {{ lang().label.request.requested.note }}
             </div>
             <div v-else>
-                (仮)探しているレッスンがなければ、Dottreeにログイン（新規登録）をして、リクエストしましょう！
+                (仮)探しているレッスンがなければ、RentalHouseにログイン（新規登録）をして、リクエストしましょう！
             </div>
         </div>
         <img

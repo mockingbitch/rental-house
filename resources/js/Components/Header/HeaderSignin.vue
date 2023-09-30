@@ -39,8 +39,8 @@ const handelBack = () => {
                         <img src="/img/icon/Search.svg" alt="">
                     </button>
                     <div class="search__wrap">
-                        <input class="pc searchInput" type="text" placeholder="日付、年齢、料金、フリーキーワードで検索" readonly/>
-                        <textarea class="mobile searchInput" type="text" placeholder="日付、年齢、料金、&#13;&#10;フリーキーワードで検索"></textarea>
+                        <input class="pc searchInput" type="text" placeholder="Enter something..." readonly/>
+                        <textarea class="mobile searchInput" type="text" placeholder="Enter something...&#13;&#10;..."></textarea>
                     </div>
                     <button class="buttonImage right">
                         <img src="/img/icon/Category.svg" alt="">

@@ -16,7 +16,6 @@ class PermissionConstant
     const MSG_DELETED_FAILED    = 'Permission deleted failed';
     const MSG_UPDATED_FAILED    = 'Permission updated failed';
 
-
     const PERMISSIONS = [
         'read_post'         => 'Read Post',     //1
         'create_post'       => 'Create Post',   //2
@@ -44,6 +43,6 @@ class PermissionConstant
         'create_tag'        => 'Create Tag',        //24
         'update_tag'        => 'Update Tag',        //25
         'delete_tag'        => 'Delete Tag',        //26
-
+        'view_admin'        => 'View Admin', //27
     ];
 }

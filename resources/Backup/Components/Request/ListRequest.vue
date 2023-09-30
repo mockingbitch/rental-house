@@ -92,7 +92,7 @@ const isApplied = (request) => {
         <div v-if="!props.isLoggedIn && !props.userId" class="empty__request-note mt-4">
             <img src="/img/icon/TeacherRequest/tree.svg" alt="" />
             <div>
-                (仮)探しているレッスンがなければ、Dottreeにログイン（新規登録）をして、リクエストしましょう！
+                (仮)探しているレッスンがなければ、RentalHouseにログイン（新規登録）をして、リクエストしましょう！
             </div>
         </div>
         <!-- <div v-if="props.listRequest?.length && !props.isUser" class="list__request-group-day">2023/08/31</div> -->

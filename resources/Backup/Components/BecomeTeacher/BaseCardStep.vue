@@ -34,7 +34,7 @@
                 <a href="#">{{
                     props.status === 0
                         ? "here"
-                        : "becoming an educator on Dottrees"
+                        : "becoming an educator on RentalHouses"
                 }}</a>
             </div>
             <span
