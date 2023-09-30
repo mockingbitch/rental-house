@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('model_has_wards', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('model_id');
+            $table->integer('model_id');
             $table->string('model_type');
             $table->string('ward_code');
-            $table->foreign('ward_code')->references('code')->on('wards');
             $table->timestamps();
             $table->softDeletes();
         });

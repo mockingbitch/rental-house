@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Constants\PermissionConstant;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,11 @@ Route::get('/setlang/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return back();
 })->name('setlang');
-
-Route::get('/', [HomeController::class, 'index'])->name('top');
+Route::controller(HomeController::class)->group(function() {
+    Route::get('/', 'index')->name('top');
+    // Route::get('/admin', 'adminDashboard')->name('admin.dashboard')->middleware('permission:view_admin');
+    Route::get('/admin', 'adminDashboard')->name('admin.dashboard');
+});
 Route::get('login-method', [AuthController::class, 'loginMethod'])->name('login.method');
 Route::get('login', [AuthController::class, 'loginView'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
@@ -41,3 +46,11 @@ Route::get('reset-password-success', [AuthController::class, 'resetPasswordSucce
 
 Route::get('/notification/detail', [NotificationController::class, 'notificationDetail'])->name('notification.detail');
 Route::post('/url-intended', [AuthController::class, 'urlIntended'])->name('url.intended.create');
+
+//ADMIN
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('category', 'get');
+    Route::post('category', 'create')->middleware('permission:' . PermissionConstant::PERMISSIONS['create_category']);
+    Route::post('edit/category', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_category']);
+    Route::get('delete/category', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_category']);
+});
