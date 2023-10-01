@@ -517,4 +517,13 @@ return [
         'review' => 'Review',
         'price' => 'Price',
     ],
+    'category' => [
+        'field' => [
+            'name_vi' => 'Name_vi',
+            'name_en' => 'Name_en',
+            'description_vi' => 'Description_vi',
+            'description_en' => 'Description_en',
+            'icon' => 'Icon'
+        ]
+    ]
 ];

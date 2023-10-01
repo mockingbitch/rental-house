@@ -35,4 +35,8 @@ return [
         'SM-001' => 'Create course success!',
         'EM-001' => 'Create course failed!',
     ],
+    'create_category' => [
+        'SM-001' => 'Create category success!',
+        'EM-001' => 'Create category failed!',
+    ],
 ];
