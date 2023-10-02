@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Constants\Constant;
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
 use App\Repositories\User\CategoryRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
+    /**
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
     public function __construct(
         public CategoryRepositoryInterface $categoryRepository,
         )
@@ -21,80 +23,84 @@ class CategoryController extends Controller
 
     /**
      * get list categories
-     * @Route get("category.get")
-     * @return Factory|View|RedirectResponse
+     * @Route get("/category" name="category.get")
+     * @return View
      */
-    public function get()
+    public function get(): View
     {
         $categories = $this->categoryRepository->all();
+
         return view('categories.list', [
             'categories' => $categories,
         ]);
     }
 
     /**
-     * create category
-     * @Route post("category.create")
-     * @param CategoryRequest
+     * @Route post("/category" name="category.create")
+     * @param CategoryRequest $request
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function create(CategoryRequest $request)
+    public function create(CategoryRequest $request): RedirectResponse
     {
         $data = $request->all();
         try {
             $this->categoryRepository->create($data);
-            return redirect()->route('category.get')->with('errCode', 1);
+
+            return redirect()
+                ->route('category.get')
+                ->with('errCode', 1);
         } catch (\Throwable $th) {
-            throw ValidationException::withMessages([
-                Constant::ERR_MSG => trans('messages.create_category.EM-001'),
-            ]);
-            return redirect()->route('category.get')->with('errCode', 0);
+            return redirect()
+                ->route('category.get')
+                ->with('errCode', 0);
         }
     }
 
     /**
-     * update category
-     * @Route post("category.update")
-     * @param CategoryRequest
-     * @param int $id
+     * @Route post("/edit/{id}/category" name="category.update")
+     * @param CategoryRequest $request
+     * @param integer|null $id
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, ?int $id): RedirectResponse
     {
         $data = $request->all();
         try {
             $this->categoryRepository->update($id, $data);
-            return redirect()->route('category.get')->with('errCode', 1);
+
+            return redirect()
+                ->route('category.get')
+                ->with('errCode', 1);
         } catch (\Throwable $th) {
-            throw ValidationException::withMessages([
-                Constant::ERR_MSG => trans('messages.update_category.EM-001'),
-            ]);
-            return redirect()->route('category.get')->with('errCode', 0);
+            return redirect()
+                ->route('category.get')
+                ->with('errCode', 0);
         }
     }
 
     /**
-     * delete category
-     * @Route post("category.delete")
+     * @Route get("/delete/category" name="category.delete")
+     * @param Request $request
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $errCode = $this->categoryRepository->delete($request->id);
-        return redirect()->route('category.get')->with('errCode', $errCode);
+
+        return redirect()
+            ->route('category.get')
+            ->with('errCode', $errCode);
     }
 
     /**
-     * get detail category
-     * @Route get("category.detail")
-     * @return Factory|View|RedirectResponse
+     * @Route get("/detail/{id}/category" name="category.detail")
+     * @param integer|null $id
+     * @return View
      */
-    public function detail($id)
+    public function detail(?int $id): View
     {
         $category = $this->categoryRepository->find($id);
+        
         return view('categories.detail', [
             'category' => $category,
         ]);

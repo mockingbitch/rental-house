@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Constants\Constant;
 use App\Http\Requests\TagRequest;
 use App\Repositories\User\TagRepositoryInterface;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class TagController extends Controller
 {
+    /**
+     * @param TagRepositoryInterface $tagRepository
+     */
     public function __construct(
         public TagRepositoryInterface $tagRepository,
         )
@@ -19,80 +23,84 @@ class TagController extends Controller
 
     /**
      * get list tags
-     * @Route get("tag.get")
-     * @return Factory|View|RedirectResponse
+     * @Route get("/tag" name="tag.get")
+     * @return View
      */
-    public function get()
+    public function get(): View
     {
         $tags = $this->tagRepository->all();
+
         return view('tags.list', [
             'tags' => $tags,
         ]);
     }
 
     /**
-     * create tag
-     * @Route post("tag.create")
-     * @param TagRequest
+     * @Route post("/tag" name="tag.create")
+     * @param TagRequest $request
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function create(TagRequest $request)
+    public function create(TagRequest $request): RedirectResponse
     {
         $data = $request->all();
         try {
             $this->tagRepository->create($data);
-            return redirect()->route('tag.get')->with('errCode', 1);
+
+            return redirect()
+                ->route('tag.get')
+                ->with('errCode', 1);
         } catch (\Throwable $th) {
-            throw ValidationException::withMessages([
-                Constant::ERR_MSG => trans('messages.create_tag.EM-001'),
-            ]);
-            return redirect()->route('tag.get')->with('errCode', 0);
+            return redirect()
+                ->route('tag.get')
+                ->with('errCode', 0);
         }
     }
 
     /**
-     * update tag
-     * @Route post("tag.update")
-     * @param TagRequest
-     * @param int $id
+     * @Route post("/edit/{id}/tag" name="tag.update")
+     * @param TagRequest $request
+     * @param integer|null $id
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(TagRequest $request, $id)
+    public function update(TagRequest $request, ?int $id): RedirectResponse
     {
         $data = $request->all();
         try {
             $this->tagRepository->update($id, $data);
-            return redirect()->route('tag.get')->with('errCode', 1);
+
+            return redirect()
+                ->route('tag.get')
+                ->with('errCode', 1);
         } catch (\Throwable $th) {
-            throw ValidationException::withMessages([
-                Constant::ERR_MSG => trans('messages.update_tag.EM-001'),
-            ]);
-            return redirect()->route('tag.get')->with('errCode', 0);
+            return redirect()
+                ->route('tag.get')
+                ->with('errCode', 0);
         }
     }
 
     /**
-     * delete tag
-     * @Route post("tag.delete")
+     * @Route get("/delete/tag" name="tag.delete")
+     * @param Request $request
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $errCode = $this->tagRepository->delete($request->id);
-        return redirect()->route('tag.get')->with('errCode', $errCode);
+
+        return redirect()
+            ->route('tag.get')
+            ->with('errCode', $errCode);
     }
 
     /**
-     * get detail tag
-     * @Route get("tag.detail")
-     * @return Factory|View|RedirectResponse
+     * @Route get("/detail/{id}/tag" name="tag.detail")
+     * @param integer|null $id
+     * @return View
      */
-    public function detail($id)
+    public function detail(?int $id): View
     {
         $tag = $this->tagRepository->find($id);
+        
         return view('tags.detail', [
             'tag' => $tag,
         ]);
