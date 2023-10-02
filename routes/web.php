@@ -5,6 +5,7 @@ use App\Constants\PermissionConstant;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,11 @@ Route::controller(CategoryController::class)->group(function () {
     Route::post('category', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_category'])->name('category.create');
     Route::post('edit/{id}/category', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_category'])->name('category.update');
     Route::get('delete/category', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_category'])->name('category.delete');
+});
+Route::controller(TagController::class)->group(function () {
+    Route::get('tag', 'get')->name('tag.get');
+    Route::get('detail/{id}/tag', 'detail')->name('tag.detail');
+    Route::post('tag', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_tag'])->name('tag.create');
+    Route::post('edit/{id}/tag', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_tag'])->name('tag.update');
+    Route::get('delete/tag', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_tag'])->name('tag.delete');
 });

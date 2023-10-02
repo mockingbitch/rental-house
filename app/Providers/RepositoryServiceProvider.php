@@ -17,6 +17,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'User\UserRepositoryInterface' => 'User\UserRepository',
             'User\PasswordResetRepositoryInterface' => 'User\PasswordResetRepository',
             'User\CategoryRepositoryInterface' => 'User\CategoryRepository',
+            'User\TagRepositoryInterface' => 'User\TagRepository',
         ];
 
         foreach ($repositories as $key => $value) {
