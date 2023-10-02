@@ -51,7 +51,8 @@ Route::post('/url-intended', [AuthController::class, 'urlIntended'])->name('url.
 //ADMIN
 Route::controller(CategoryController::class)->group(function () {
     Route::get('category', 'get')->name('category.get');
+    Route::get('detail/{id}/category', 'detail')->name('category.detail');
     Route::post('category', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_category'])->name('category.create');
-    Route::post('edit/category', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_category'])->name('category.update');
-    Route::get('delete/{id}/category', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_category'])->name('category.delete');
+    Route::post('edit/{id}/category', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_category'])->name('category.update');
+    Route::get('delete/category', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_category'])->name('category.delete');
 });

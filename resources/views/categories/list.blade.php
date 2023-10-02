@@ -15,22 +15,16 @@
         >
             @csrf
             <div class="form-group mt-4">
-                <label for="inputName">Name_vi</label>
+                <label for="inputName">Name_vi @if ($errors->has('name_vi'))<p class="text-error">*{{$errors->first('name_vi')}}</p>@endif</label>
                 <input type="text" class="form-control"
                     id="nameVi" name="name_vi" value="{{old('name_vi')}}"
                     placeholder="Enter Name_vi">
-                @if($errors->has('name_vi'))
-                    <div class="error-msg">{{ $errors->first('name_vi') }}</div>
-                @endif
             </div>
             <div class="form-group">
-                <label for="inputCity">Name_en</label>
+                <label for="inputCity">Name_en @if ($errors->has('name_en'))<p class="text-error">*{{$errors->first('name_en')}}</p>@endif</label>
                 <input type="text" class="form-control"
                     name="name_en" id="nameEn" value="{{old('name_en')}}"
                     placeholder="Enter Name_en">
-                @if($errors->has('name_en'))
-                    <div class="error-msg">{{ $errors->first('name_en') }}</div>
-                @endif
             </div>
             <div class="form-group">
                 <label for="inputCity">Description_vi</label>
@@ -45,13 +39,10 @@
                     placeholder="Enter Description_en">
             </div>
             <div class="form-group">
-                <label for="inputCity">Icon</label>
+                <label for="inputCity">Icon @if ($errors->has('icon'))<p class="text-error">*{{$errors->first('icon')}}</p>@endif</label>
                 <input type="text" class="form-control"
                     name="icon" id="icon" value="{{old('icon')}}"
                     placeholder="Enter Icon">
-                @if($errors->has('icon'))
-                    <div class="error-msg">{{ $errors->first('icon') }}</div>
-                @endif
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -101,7 +92,8 @@
                                 <span class="badge badge-sm bg-gradient-success"></span>
                             </td>
                             <td class="align-middle" style="font-size:20px">
-                                <a href="" class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                <a class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip"
+                                    data-original-title="Edit Category" href="{{route('category.detail', ['id' => $category->id])}}">
                                     <i style="font-size:20px" class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a onclick="return confirm('Are you sure you want to delete this?')"
@@ -119,6 +111,16 @@
     </div>
     @else
     <h2 class="my-4 mx-4">No category found</h2>
+    @endif
+    @if(Session::has('errCode') && Session::get('errCode') ==  1)
+        <script>
+            swal({title: "successfuly", text: "{{Session::get('msg')}}", icon: "success", button: "{{__('close')}}"})
+        </script>
+    @endif
+    @if(Session::has('errCode') && Session::get('errCode') == 0)
+        <script>
+            swal({title: "failurely", text: "{{Session::get('errMsg')}}", icon: "warning", button: "{{__('close')}}"})
+        </script>
     @endif
     <script>
         function create() {

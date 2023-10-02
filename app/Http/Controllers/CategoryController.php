@@ -29,27 +29,48 @@ class CategoryController extends Controller
         $data = $request->all();
         try {
             DB::transaction(function () use ($data) {
-                $category = $this->categoryRepository->create($data);
+                $this->categoryRepository->create($data);
             });
             DB::commit();
 
-            return redirect()->route('category.get');
+            return redirect()->route('category.get')->with('errCode', 1);
         } catch (\Throwable $th) {
             DB::rollBack();
             throw ValidationException::withMessages([
                 Constant::ERR_MSG => trans('messages.create_category.EM-001'),
             ]);
+            return redirect()->route('category.get')->with('errCode', 0);
         }
     }
 
-    public function update()
+    public function update(CategoryRequest $request, $id)
     {
+        $data = $request->all();
+        try {
+            DB::transaction(function () use ($id, $data) {
+                $this->categoryRepository->update($id, $data);
+            });
+            DB::commit();
 
+            return redirect()->route('category.get')->with('errCode', 1);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw ValidationException::withMessages([
+                Constant::ERR_MSG => trans('messages.update_category.EM-001'),
+            ]);
+            return redirect()->route('category.get')->with('errCode', 0);
+        }
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $this->categoryRepository->delete($id);
-        return redirect()->route('category.get');
+        $errCode = $this->categoryRepository->delete($request->id);
+        return redirect()->route('category.get')->with('errCode', $errCode);
+    }
+
+    public function detail($id)
+    {
+        $category = Category::find($id);
+        return view('categories.detail', compact('category'));
     }
 }

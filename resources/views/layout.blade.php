@@ -45,6 +45,7 @@ $breadcrumb = 'test';
         rel="stylesheet"
         />
         <link href="{{asset('css/app.css')}}" rel="stylesheet" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
