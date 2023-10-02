@@ -167,7 +167,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Room' ? 'active' : ''}}" href="">
+                <a class="nav-link {{$breadcrumb == 'Room' ? 'active' : ''}}" href="{{route('tag.get')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -207,7 +207,7 @@ $breadcrumb = 'test';
                     </g>
                     </svg>
                 </div>
-                <span class="nav-link-text ms-1">Rooms</span>
+                <span class="nav-link-text ms-1">Tags</span>
                 </a>
             </li>
             <li class="nav-item">
