@@ -1,5 +1,5 @@
 <script setup>
-import ButtonRequest from "@/Components/Request/ButtonRequest.vue";
+import ButtonCommon from "@/Components/Button/ButtonCommon.vue";
 import { useForm } from "@inertiajs/vue3";
 import { computed, ref, reactive } from "vue";
 
@@ -134,13 +134,13 @@ const confirmInformation = () => {
                 <div class="button-container">
                     <div class="create__request-button">
                         <div class="lineFull"></div>
-                        <ButtonRequest
+                        <ButtonCommon
                             :label="'戻る'"
                             :submit-button="false"
                             class="create__request-button-left"
                             @click="backToPrevStep"
                         />
-                        <ButtonRequest
+                        <ButtonCommon
                             :label="'申請する'"
                             :submit-button="true"
                             class="create__request-button-right"

@@ -101,7 +101,7 @@ const isRouteActive = (routeName) => {
                                                 <li
                                                     v-if="
                                                         user.verify_teacher !=
-                                                        verifyTeacher.request_verified
+                                                        verifyTeacher?.request_verified
                                                     "
                                                     class="sidemenu__item"
                                                 >
@@ -114,9 +114,9 @@ const isRouteActive = (routeName) => {
                                                 <li
                                                     v-if="
                                                         user.verify_teacher ==
-                                                            verifyTeacher.request_verified &&
+                                                            verifyTeacher?.request_verified &&
                                                         user.role ==
-                                                            userRole.parent
+                                                            userRole?.parent
                                                     "
                                                     class="sidemenu__item"
                                                 >

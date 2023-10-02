@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import Step2 from "./StepAccountInformation.vue";
-import Step3 from "./StepLearnerInformation.vue";
-import Step3Confirm from "./StepConfirmInformation.vue";
+import Step2 from "./Step2.vue";
+import Step3 from "./Step3.vue";
+import StepConfirmInformation from "./StepConfirmInformation.vue";
 import LayoutNoLogin from "@/Layouts/LayoutNoLogin.vue";
 
 const props = defineProps({
@@ -97,13 +97,13 @@ const prev = () => {
                                 </div>
                             </div>
                         </div>
-                        <StepAccountInformation
+                        <Step2
                             :step="step"
                             :ziggy="ziggy"
                             :user="props.user"
                             @nextStep="next"
                         />
-                        <StepLearnerInformation
+                        <Step3
                             :step="step"
                             :ziggy="ziggy"
                             :user="props.user"
