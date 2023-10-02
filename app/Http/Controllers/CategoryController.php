@@ -18,24 +18,34 @@ class CategoryController extends Controller
     {
 
     }
+
+    /**
+     * get list categories
+     * @Route get("category.get")
+     * @return Factory|View|RedirectResponse
+     */
     public function get()
     {
-        $categories = Category::all();
-        return view('categories.list', compact('categories'));
+        $categories = $this->categoryRepository->all();
+        return view('categories.list', [
+            'categories' => $categories,
+        ]);
     }
 
+    /**
+     * create category
+     * @Route post("category.create")
+     * @param CategoryRequest
+     * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function create(CategoryRequest $request)
     {
         $data = $request->all();
         try {
-            DB::transaction(function () use ($data) {
-                $this->categoryRepository->create($data);
-            });
-            DB::commit();
-
+            $this->categoryRepository->create($data);
             return redirect()->route('category.get')->with('errCode', 1);
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw ValidationException::withMessages([
                 Constant::ERR_MSG => trans('messages.create_category.EM-001'),
             ]);
@@ -43,18 +53,21 @@ class CategoryController extends Controller
         }
     }
 
+    /**
+     * update category
+     * @Route post("category.update")
+     * @param CategoryRequest
+     * @param int $id
+     * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->all();
         try {
-            DB::transaction(function () use ($id, $data) {
-                $this->categoryRepository->update($id, $data);
-            });
-            DB::commit();
-
+            $this->categoryRepository->update($id, $data);
             return redirect()->route('category.get')->with('errCode', 1);
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw ValidationException::withMessages([
                 Constant::ERR_MSG => trans('messages.update_category.EM-001'),
             ]);
@@ -62,15 +75,28 @@ class CategoryController extends Controller
         }
     }
 
+    /**
+     * delete category
+     * @Route post("category.delete")
+     * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function delete(Request $request)
     {
         $errCode = $this->categoryRepository->delete($request->id);
         return redirect()->route('category.get')->with('errCode', $errCode);
     }
 
+    /**
+     * get detail category
+     * @Route get("category.detail")
+     * @return Factory|View|RedirectResponse
+     */
     public function detail($id)
     {
-        $category = Category::find($id);
-        return view('categories.detail', compact('category'));
+        $category = $this->categoryRepository->find($id);
+        return view('categories.detail', [
+            'category' => $category,
+        ]);
     }
 }
