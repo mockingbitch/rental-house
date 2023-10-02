@@ -44,6 +44,8 @@ $breadcrumb = 'test';
         href="{{asset('dashboard/css/soft-ui-dashboard.css?v=1.0.5')}}"
         rel="stylesheet"
         />
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -118,7 +120,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Hotel' ? 'active' : ''}}" href="">
+                <a class="nav-link {{$breadcrumb == 'Hotel' ? 'active' : ''}}" href="{{route('category.get')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -161,7 +163,7 @@ $breadcrumb = 'test';
                     </g>
                     </svg>
                 </div>
-                <span class="nav-link-text ms-1">Hotels</span>
+                <span class="nav-link-text ms-1">Categories</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -403,7 +405,7 @@ $breadcrumb = 'test';
                 <span class="nav-link-text ms-1">Profile</span>
                 </a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="../pages/sign-up.html">
                 <div
@@ -713,7 +715,7 @@ $breadcrumb = 'test';
         <div class="container-fluid py-4">
             <div class="row">
             <div class="col-12">
-                
+
                 {{-- CODE GOES HERE  --}}
                 @yield('content')
 

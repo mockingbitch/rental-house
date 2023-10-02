@@ -36,3 +36,8 @@ html {
     width: 100%;
     text-align: center;
 }
+
+.text-error {
+    color: #E71A41;
+	font-size: 14px;
+}
