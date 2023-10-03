@@ -63,7 +63,10 @@ class AuthController extends Controller
             if (auth()->user()->email_verified_at === null) :
                 return redirect()
                     ->route('register.success')
-                    ->with(UserConstant::COL_EMAIL, $credentials[UserConstant::COL_EMAIL]);
+                    ->with(
+                        UserConstant::COL_EMAIL,
+                        $credentials[UserConstant::COL_EMAIL]
+                    );
             endif;
             if (session()->has('url.intended')):
                 return redirect(session()->pull('url.intended'));
@@ -213,10 +216,10 @@ class AuthController extends Controller
      */
     public function handleGoogleCallback(): RedirectResponse
     {
-        $g_user = Socialite::driver(Constant::GOOGLE)->user();
-        $existing_user = $this->userRepository->findUserByEmail($g_user->email);
+        $googleUser = Socialite::driver(Constant::GOOGLE)->user();
+        $existingGoogleUser = $this->userRepository->findUserByEmail($googleUser->email);
 
-        if($existing_user) :
+        if($existingGoogleUser) :
             switch (session('prev_url')):
                 case route('register.method'):
                     session()->forget('prev_url');
@@ -227,14 +230,9 @@ class AuthController extends Controller
 
                 case route('login.method'):
                     session()->forget('prev_url');
-                    auth()->login($existing_user);
-                    if ($existing_user->{UserConstant::COL_ROLE} == UserConstant::ROLE_TEACHER):
-                        return redirect()
-                            ->route('teacher.dashboard');
-                    endif;
+                    auth()->login($existingGoogleUser);
 
                     if (session()->has('url.intended')):
-                        // redirect and delete destination url from session
                         return redirect(session()->pull('url.intended'));
                     endif;
 
@@ -250,43 +248,41 @@ class AuthController extends Controller
                         ->with(Constant::MSG, __('messages.login.EM-002'));
             endswitch;
         endif;
-
         $data = [
-            UserConstant::COL_NICK_NAME        => $g_user->user[UserConstant::G_DATA_NAME],
-            UserConstant::COL_FIRST_NAME       => $g_user->user[UserConstant::G_DATA_GIVEN_NAME],
-            UserConstant::COL_LAST_NAME        => $g_user->user[UserConstant::G_DATA_FAMILY_NAME],
-            UserConstant::COL_EMAIL            => $g_user->user[UserConstant::G_DATA_EMAIL],
-            UserConstant::COL_AVATAR           => $g_user->user[UserConstant::G_DATA_PICTURE],
-            UserConstant::COL_REGION           => $g_user->user[UserConstant::G_DATA_LOCALE],
+            UserConstant::COL_FIRST_NAME       => $googleUser->user[UserConstant::G_DATA_GIVEN_NAME],
+            UserConstant::COL_LAST_NAME        => $googleUser->user[UserConstant::G_DATA_FAMILY_NAME],
+            UserConstant::COL_EMAIL            => $googleUser->user[UserConstant::G_DATA_EMAIL],
+            UserConstant::COL_AVATAR           => $googleUser->user[UserConstant::G_DATA_PICTURE],
+            UserConstant::COL_REGION           => $googleUser->user[UserConstant::G_DATA_LOCALE],
             UserConstant::COL_VENDOR           => UserConstant::VENDOR_GOOGLE,
             UserConstant::COL_REMEMBER_TOKEN   => Str::random(60),
-            'expires_in'                        => Carbon::now()->addDay(1),
+            'expires_in'                       => Carbon::now()->addDay(1),
         ];
 
         try {
             $user = DB::transaction(function () use ($data) {
-                $user       = $this->userRepository->create($data);
-                $send_mail  = $this->mailService->sendMail($user, $data);
+                $user = $this->userRepository->create($data);
+                $this->mailService->sendMail($user, $data);
 
                 return $user;
             });
             DB::commit();
-            if ($user) :
-                $this->notificationService->sendNotification(
-                    $user,
-                    [
-                        'title'     => '新規のアカウント登録ありがとうございます。',
-                        'target'    => route('top'),
-                    ],
-                    NotificationConstants::BROADCAST_USER,
-                );
-            endif;
+            // if ($user) :
+            //     $this->notificationService->sendNotification(
+            //         $user,
+            //         [
+            //             'title'     => '新規のアカウント登録ありがとうございます。',
+            //             'target'    => route('top'),
+            //         ],
+            //         NotificationConstants::BROADCAST_USER,
+            //     );
+            // endif;
 
             return redirect()
                 ->route('register.success')
                 ->with([
-                    Constant::MSG    => __('messages.register.SM-001'),
-                    'email'                 => $g_user->user[UserConstant::G_DATA_EMAIL],
+                    'message'   => __('messages.register.SM-001'),
+                    'email'     => $googleUser->user[UserConstant::G_DATA_EMAIL],
                 ]);
         } catch (\Throwable $th) {
             DB::rollback();

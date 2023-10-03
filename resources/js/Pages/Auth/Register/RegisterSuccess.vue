@@ -14,7 +14,11 @@ const props = defineProps({
                     <img src="/img/signin.jpg" alt="signin" class="signin__wrap-banner">
                     <div class="signin__wrap-content">
                         <h2 class="title">{{ lang().label.register_success.verify_email }}</h2>
-                        <a class="mainButton bg-gray" href="#">
+                        <a
+                            class="mainButton bg-gray"
+                            href="https://mail.google.com"
+                            target="_blank"
+                        >
                             <p>{{ props.email }}</p>
                         </a>
                         <span class="subText">{{ lang().label.register_success.expires_in }}</span>

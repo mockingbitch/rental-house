@@ -2,7 +2,7 @@
 import { useForm } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import Modal from './Modal/Modal.vue';
+import Modal from '@/Components/Modal/Modal.vue';
 
 const formSearch = useForm({
     keyword: '',
@@ -31,7 +31,7 @@ const showModalSearch = ref(false);
                 <div class="navPc__left">
                     <Link :href="route('top')">
                         <div class="logo">
-                            <i><img src="/img/logo/RentalHouses.svg" alt="RentalHouses"></i>
+                            <i><img src="/img/logo/RentalHouse.svg" alt="RentalHouses"></i>
                         </div>
                         <h1>RentalHouse</h1>
                     </Link>
@@ -41,7 +41,7 @@ const showModalSearch = ref(false);
                 <div class="navMobile__wrap">
                     <i><img src="/img/icon/arrownLeft.svg" alt="back"></i>
                     <div class="logo">
-                        <i><img src="/img/logo/RentalHouses.svg" alt="RentalHouses"></i>
+                        <i><img src="/img/logo/RentalHouse.svg" alt="RentalHouses"></i>
                     </div>
                     <h1>RentalHouse</h1>
                 </div>

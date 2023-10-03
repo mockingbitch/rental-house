@@ -1,10 +1,10 @@
 <script setup>
 import { ref, watch, computed, toRef } from 'vue'
 import { useForm, usePage } from '@inertiajs/vue3'
-import UlError from '@/Components/UlError.vue';
-import PError from '@/Components/PError.vue';
-import DatePickerSignIn from "@/Components/DatePickerSignIn.vue";
-import CustomSelect from "@/Components/Request/Common/CustomSelect.vue";
+import UlError from '@/Components/Common/UlError.vue';
+import PError from '@/Components/Common/PError.vue';
+import DatePicker from "@/Components/DatePicker/DatePicker.vue";
+import CustomSelect from "@/Components/Select/CustomSelect.vue";
 
 const props = defineProps({
     step: Number,

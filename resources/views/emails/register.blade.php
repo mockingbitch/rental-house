@@ -1,13 +1,13 @@
 @component('mail::message')
 # Rental House
-<p>いつもお世話になっております。 この度はメールアドレスの登録ありがとうございました。</p>
-<p>以下のURLからアカウント登録のご対応をお願いいたします。</p>
-<p>本メールの有効期限は 24時間です。 (期限 : {{ $data['expires_in'] }} ) </p>
+<p>Thank you always. Thank you for registering your email address.</p>
+<p>Please register for an account using the URL below.</p>
+<p>This email is valid for 24 hours. (deadline : {{ $data['expires_in'] }} ) </p>
 @component('mail::button', ['url' => route('user.information', ['token' => $data['remember_token']])])
-アカウント登録 URL
+Account registration URL
 @endcomponent
 <p>========== </p>
-<p>*本メールは、自動的に配信しています。また送信専用のため、直接ご返信いただいてもお問い合わせにはお答えできませんので、あらかじめご了承ください。</p>
+<p>*This email is automatically delivered. Also, please note that we cannot respond to your inquiry even if you reply directly, as it is for sending only.</p>
 <p> ==========</p>
 
 {{ config('app.name') }}
