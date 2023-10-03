@@ -39,10 +39,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'registerView')->name('register');
     Route::post('register', 'register');
     Route::get('register-success', 'registerSuccess')->name('register.success');
-    
+
     Route::get('auth/google', 'redirectToGoogle')->name('login.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
-    
+
     Route::get('forgot-password', 'forgotPasswordForm')->name('forgot.password');
     Route::post('forgot-password', 'sendForgotMail');
     Route::get('forgot-password-pending', 'forgotPasswordPending')->name('forgot.password-pending');
@@ -56,6 +56,7 @@ Route::post('/url-intended', [AuthController::class, 'urlIntended'])->name('url.
 
 Route::controller(UserController::class)->group(function () {
     Route::get('user-information', 'userInformation')->name('user.information');
+    Route::post('user-information', 'updateUserInformation')->name('account.info');
 });
 
 //ADMIN

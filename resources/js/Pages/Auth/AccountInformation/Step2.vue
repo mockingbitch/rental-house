@@ -15,11 +15,8 @@ const page = usePage();
 const emit = defineEmits(['nextStep'])
 
 const form = useForm({
-    firstName: props.user?.first_name ?? '',
-    firstNameKana: props.user?.first_name_kana ?? '',
-    lastName: props.user?.last_name ?? '',
-    lastNameKana: props.user?.last_name_kana ?? '',
-    nickName: props.user?.nick_name ?? '',
+    first_name: props.user?.first_name ?? '',
+    last_name: props.user?.last_name ?? '',
     year: props.user?.year ?? '',
     month: props.user?.month ?? '',
     day: props.user?.day ?? '',
@@ -121,7 +118,7 @@ const submitForm = () => {
 
 const handleSelectCountry = (country, cities) => {
     listCity.value = cities.filter(city => city.country_id == country.id);
-    
+
     form.country = country;
     isOpenSelectCountry.value = ! isOpenSelectCountry;
 }
@@ -167,7 +164,7 @@ const handleSelectCity = (city) => {
                     </li>
                 </ul>
             </div>
-            
+
             <!-- City -->
             <div class="form__wrap-item" :class="{'error': form.errors.city}" >
                 <div>
@@ -198,51 +195,21 @@ const handleSelectCity = (city) => {
                     </li>
                 </ul>
             </div>
-            
-            <!-- Adult nickname -->
-            <div class="form__wrap-item" :class="{'error': form.errors.nickName}">
-                <label for="nickname">{{ lang().label.information.account_info.adult_nick_name }}</label>
-                <div class="inputWrap">
-                    <input type="text" v-model="form.nickName" name="nickName" placeholder="Nickname">
-                    <UlError :message="form.errors.nickName" />
-                </div>
-                <ul class="note">
-                    <li>※ {{ lang().label.information.account_info.note_nick_name }}</li>
-                </ul>
-            </div>
 
             <!-- First name + Last name -->
             <div class="form__wrap-item twoItem">
-                <div :class="{'error': form.errors.firstName}">
-                    <label for="firstName">{{ lang().label.information.account_info.adult_first_name }}</label>
+                <div :class="{'error': form.errors.first_name}">
+                    <label for="first_name">{{ lang().label.information.account_info.adult_first_name }}</label>
                     <div class="inputWrap">
-                        <input type="text" v-model="form.firstName" name="firstName" placeholder="name">
-                        <UlError :message="form.errors.firstName" />
+                        <input type="text" v-model="form.first_name" name="first_name" placeholder="name">
+                        <UlError :message="form.errors.first_name" />
                     </div>
                 </div>
-                <div :class="{'error': form.errors.lastName}">
-                    <label for="lastName">{{ lang().label.information.account_info.adult_last_name }}</label>
+                <div :class="{'error': form.errors.last_name}">
+                    <label for="last_name">{{ lang().label.information.account_info.adult_last_name }}</label>
                     <div class="inputWrap">
-                        <input type="text" v-model="form.lastName" name="lastName" placeholder="name">
-                        <UlError :message="form.errors.lastName" />
-                    </div>
-                </div>
-            </div>
-
-            <!-- First name kana + Last name kana -->
-            <div class="form__wrap-item twoItem" v-if="displayNameKanaForJapanese">
-                <div :class="{'error': form.errors.firstNameKana}">
-                    <label for="firstNameKana">{{ lang().label.information.account_info.adult_first_name_kana }}</label>
-                    <div class="inputWrap">
-                        <input type="text" v-model="form.firstNameKana" name="firstNameKana" placeholder="name">
-                        <UlError :message="form.errors.firstNameKana" />
-                    </div>
-                </div>
-                <div :class="{'error': form.errors.lastNameKana}">
-                    <label for="lastNameKana">{{ lang().label.information.account_info.adult_last_name_kana }}</label>
-                    <div class="inputWrap">
-                        <input type="text" v-model="form.lastNameKana" name="lastNameKana" placeholder="name">
-                        <UlError :message="form.errors?.lastNameKana" />
+                        <input type="text" v-model="form.last_name" name="last_name" placeholder="name">
+                        <UlError :message="form.errors.last_name" />
                     </div>
                 </div>
             </div>
@@ -294,11 +261,10 @@ const handleSelectCity = (city) => {
                     <PError :message="form.errors.birthday" />
                 </div>
             </div>
-                       
             <button class="mainButton bg-green" @click="submitForm">
                 <p>{{ lang().label.information.account_info.next }}</p>
                 <i class="after"><img src="/img/icon/CaretRight.svg" alt="CaretRight"></i>
-            </button>         
+            </button>
         </form>
     </transition>
 </template>
