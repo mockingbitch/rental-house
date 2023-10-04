@@ -7,6 +7,8 @@ class UserConstant
     public const MSG_NOT_FOUND = 'User not found';
     public const TBL_NAME = 'users';
 
+    public const STORAGE_LINK_AVATAR = 'public/avatar';
+
     public const ROLE_SUP_ADMIN = 0;
     public const ROLE_ADMIN     = 1;
     public const ROLE_LESSOR    = 2;

@@ -14,6 +14,12 @@ const page = usePage();
 const emit = defineEmits(['nextStep'])
 
 const form = useForm({
+    avatar_preview: props.user?.avatar_preview ?? '',
+    avatar: props.user?.avatar ?? '',
+    avatar_validation: '',
+    province: props.user?.province ?? {},
+    district: props.user?.district ?? {},
+    ward: props.user?.ward ?? {},
     first_name: props.user?.first_name ?? '',
     last_name: props.user?.last_name ?? '',
     year: props.user?.year ?? '',
@@ -21,9 +27,7 @@ const form = useForm({
     day: props.user?.day ?? '',
     birthday: props.user?.birthday ?? '',
     params: props.ziggy.query,
-    province: props.user?.province ?? {},
-    district: props.user?.district ?? {},
-    ward: props.user?.ward ?? {},
+    confirm: false,
 })
 
 let isOpenSelectDistrict = ref(false);
@@ -67,7 +71,7 @@ const arrayMonths = computed(() => {
 
 // generate array day
 const newestDay = new Date().getDate();
-const arrrayDays = computed(() => {
+const arrayDays = computed(() => {
     let month = toRef(form.month);
     let year = toRef(form.year);
     let maxDay = null;
@@ -97,25 +101,26 @@ const arrrayDays = computed(() => {
 
     return result;
 });
-const updateBirthDayYear = (data) => {
-    form.year = data;
+const handleUploadAvatar = () => {
+    document.getElementById("fileUpload").click();
 };
-const updateMonth = (data) => {
-    form.month = data;
-};
-const updateDays = (data) => {
-    form.day = data;
-};
-const submitForm = () => {
-    form.post(route('account.info'), {
-        preserveScroll: true,
-        onSuccess: (response) => {
-            emit('nextStep', form);
-        },
-        onError: (e) => {
-            console.log(e);
+const handleOnchangeAvatar = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+        var allowedExtensions = /(\.jpeg|\.png|\.jpg|\.gif|\.bmp)$/i;
+
+        if (!allowedExtensions.exec(file.name)) {
+            form.avatar_validation =
+                "File type only accept JPEG、JPG、PNG、GIF、BMP";
+        } else {
+            form.avatar_preview = reader.result;
+            form.avatar = e.target.files[0];
+            form.avatar_validation = "";
         }
-    })
+    };
+
+    reader.readAsDataURL(file);
 };
 const handleSelectProvince = (province) => {
     form.province = province;
@@ -132,19 +137,107 @@ const handleSelectWard = (ward) => {
     form.ward = ward;
     isOpenSelectWard.value = ! isOpenSelectWard;
 };
+const updateBirthDayYear = (data) => {
+    form.year = data;
+};
+const updateMonth = (data) => {
+    form.month = data;
+};
+const updateDays = (data) => {
+    form.day = data;
+};
+const submitForm = () => {
+    form.post(route('account.info'), {
+        preserveScroll: true,
+        onFinish: () => {
+            if (
+                Object.keys(form.errors).length === 0 &&
+                form.errors.constructor === Object
+            ) {
+                emit('nextStep', form);
+            }
+        },
+    })
+};
 </script>
+
 <template>
     <transition name="slide-fade">
         <form v-show="step === 2"
             class="form"
             @submit.prevent="submit"
         >
+            <!-- Profile image -->
+            <div class="form__wrap-item">
+                <label for="Title">
+                    Profile Image
+                    <i class="with-tooltip" :data-tooltip-content="lang().label.information.account_info.province_tooltip" >
+                        <img src="img/icon/Question.svg" alt="Question">
+                    </i>
+                    <span class="required-input">*</span>
+                </label>
+                <div class="upload-image-container">
+                    <div class="display-image">
+                        <img
+                            class="profile-image-preview"
+                            v-if="form.avatar_preview || form.avatar"
+                            :src="form.avatar_preview || form.avatar"
+                            alt=""
+                        />
+                    </div>
+                    <div
+                        @click="handleUploadAvatar"
+                        class="button-upload-image justify-content-center"
+                    >
+                        <input
+                            @change="handleOnchangeAvatar"
+                            id="fileUpload"
+                            type="file"
+                            hidden
+                        />
+                        <div
+                            class="button-upload align-items-center justify-content-center"
+                            :class="{ active: form.avatar_preview || form.avatar }"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                            >
+                                <path
+                                    d="M17.5 11.8755V16.2505C17.5 16.582 17.3683 16.9 17.1339 17.1344C16.8995 17.3688 16.5815 17.5005 16.25 17.5005H3.75C3.41848 17.5005 3.10054 17.3688 2.86612 17.1344C2.6317 16.9 2.5 16.582 2.5 16.2505V11.8755C2.5 11.7097 2.56585 11.5508 2.68306 11.4336C2.80027 11.3163 2.95924 11.2505 3.125 11.2505C3.29076 11.2505 3.44973 11.3163 3.56694 11.4336C3.68415 11.5508 3.75 11.7097 3.75 11.8755V16.2505H16.25V11.8755C16.25 11.7097 16.3158 11.5508 16.4331 11.4336C16.5503 11.3163 16.7092 11.2505 16.875 11.2505C17.0408 11.2505 17.1997 11.3163 17.3169 11.4336C17.4342 11.5508 17.5 11.7097 17.5 11.8755ZM7.31719 6.69268L9.375 4.63409V11.8755C9.375 12.0413 9.44085 12.2002 9.55806 12.3174C9.67527 12.4346 9.83424 12.5005 10 12.5005C10.1658 12.5005 10.3247 12.4346 10.4419 12.3174C10.5592 12.2002 10.625 12.0413 10.625 11.8755V4.63409L12.6828 6.69268C12.8001 6.80996 12.9591 6.87584 13.125 6.87584C13.2909 6.87584 13.4499 6.80996 13.5672 6.69268C13.6845 6.5754 13.7503 6.41634 13.7503 6.25049C13.7503 6.08464 13.6845 5.92558 13.5672 5.8083L10.4422 2.6833C10.3841 2.62519 10.3152 2.57909 10.2393 2.54764C10.1635 2.51619 10.0821 2.5 10 2.5C9.91787 2.5 9.83654 2.51619 9.76066 2.54764C9.68479 2.57909 9.61586 2.62519 9.55781 2.6833L6.43281 5.8083C6.31554 5.92558 6.24965 6.08464 6.24965 6.25049C6.24965 6.41634 6.31554 6.5754 6.43281 6.69268C6.55009 6.80996 6.70915 6.87584 6.875 6.87584C7.04085 6.87584 7.19991 6.80996 7.31719 6.69268Z"
+                                    :fill="
+                                        form.avatar_preview || form.avatar
+                                            ? '#5392f9'
+                                            : 'white'
+                                    "
+                                />
+                            </svg>
+                            {{
+                                form.avatar_preview || form.avatar
+                                    ? "Upload"
+                                    : lang().label.onboarding?.button?.upload_image
+                            }}
+                        </div>
+                    </div>
+                    <UlError :message="form.avatar_validation" />
+                    <ul class="note">
+                        <li>※ Upload your profile image</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Province -->
             <div class="form__wrap-item" :class="{'error': form.errors.province}" >
                 <div>
                     <label for="Province">
                         {{ lang().label.information.account_info.province }}
-                        <i class="with-tooltip" :data-tooltip-content="lang().label.information.account_info.province_tooltip" >
+                        <i 
+                            class="with-tooltip"
+                            :data-tooltip-content="lang().label.information.account_info.province_tooltip"
+                        >
                             <img src="img/icon/Question.svg" alt="Question">
                         </i>
                     </label>
@@ -153,7 +246,11 @@ const handleSelectWard = (ward) => {
                     :class="{ 'open': isOpenSelectProvince === true }"
                     @click="isOpenSelectProvince = ! isOpenSelectProvince"
                 >
-                    <span class="btn-text">
+                    <span :class="{
+                            'btn-text': !form.province?.name,
+                            'btn-text-active': form.province?.name
+                        }"
+                    >
                         {{ form.province?.name ?? lang().label.information.account_info.province }}
                     </span>
                     <span class="arrow-dwn">
@@ -161,7 +258,6 @@ const handleSelectWard = (ward) => {
                     </span>
                 </div>
                 <UlError :message="form.errors.province" />
-
                 <ul class="list-items">
                     <li class="item"
                         :class="{ 
@@ -192,7 +288,11 @@ const handleSelectWard = (ward) => {
                     :class="{ 'open': isOpenSelectDistrict === true }"
                     @click="isOpenSelectDistrict = ! isOpenSelectDistrict"
                 >
-                    <span class="btn-text">
+                    <span :class="{
+                            'btn-text': !form.district?.name,
+                            'btn-text-active': form.district?.name
+                        }"
+                    >
                         {{ form.district?.name ?? lang().label.information.account_info.district }}
                     </span>
                     <span class="arrow-dwn">
@@ -200,7 +300,6 @@ const handleSelectWard = (ward) => {
                     </span>
                 </div>
                 <UlError :message="form.errors.district" />
-
                 <ul class="list-items">
                     <li class="item"
                         :class="{
@@ -231,7 +330,11 @@ const handleSelectWard = (ward) => {
                     :class="{ 'open': isOpenSelectWard === true }"
                     @click="isOpenSelectWard = ! isOpenSelectWard"
                 >
-                    <span class="btn-text">
+                    <span :class="{
+                            'btn-text': !form.ward?.name,
+                            'btn-text-active': form.ward?.name
+                        }"
+                    >
                         {{ form.ward?.name ?? lang().label.information.account_info.ward }}
                     </span>
                     <span class="arrow-dwn">
@@ -239,7 +342,6 @@ const handleSelectWard = (ward) => {
                     </span>
                 </div>
                 <UlError :message="form.errors.ward" />
-
                 <ul class="list-items">
                     <li class="item"
                         :class="{
@@ -316,7 +418,7 @@ const handleSelectWard = (ward) => {
                         <label for="Title">Day</label>
                         <CustomSelect
                             :value-selected="form.day"
-                            :options="arrrayDays"
+                            :options="arrayDays"
                             :place-holder="'DD'"
                             up-side-down-mobile
                             :isOnBoarding="true"
@@ -329,9 +431,10 @@ const handleSelectWard = (ward) => {
                     v-if="form.errors.birthday"
                     class="error__wrapper"
                 >
-                    <PError :message="form.errors.birthday" />
+                    <UlError :message="form.errors.birthday" />
                 </div>
             </div>
+            <PError :message="form.errors.error" />
             <button class="mainButton bg-green" @click="submitForm">
                 <p>{{ lang().label.information.account_info.next }}</p>
                 <i class="after"><img src="/img/icon/CaretRight.svg" alt="CaretRight"></i>
@@ -341,6 +444,6 @@ const handleSelectWard = (ward) => {
 </template>
 
 <style lang="scss" scoped>
-@import './_information.scss';
+@import './information';
 @import './step2';
 </style>

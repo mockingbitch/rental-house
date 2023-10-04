@@ -24,12 +24,16 @@ class UserInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|max:50',
-            'last_name' => 'required|max:50',
-            'year' => 'required',
-            'month' => 'required',
-            'day' => 'required',
-            'birthday' => 'required'
+            'avatar'        => 'required|mimes:jpeg,png,jpg,gif,bmp',
+            'province'      => 'required',
+            'district'      => 'required',
+            'ward'          => 'required',
+            'first_name'    => 'required|max:50',
+            'last_name'     => 'required|max:50',
+            'year'          => 'required',
+            'month'         => 'required',
+            'day'           => 'required',
+            'birthday'      => 'required'
         ];
     }
 
@@ -41,9 +45,9 @@ class UserInfoRequest extends FormRequest
     public function attributes()
     {
         return [
-            'first_name'     => __('label.user.field.firstName'),
-            'last_name'  => __('label.user.field.lastName'),
-            'birthday'  => __('label.user.field.birthday')
+            'first_name'    => __('label.user.field.firstName'),
+            'last_name'     => __('label.user.field.lastName'),
+            'birthday'      => __('label.user.field.birthday')
         ];
     }
 }
