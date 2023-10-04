@@ -17,6 +17,7 @@ const form = useForm({
     avatar_preview: props.user?.avatar_preview ?? '',
     avatar: props.user?.avatar ?? '',
     avatar_validation: '',
+    isUploadNewAvatar: false,
     province: props.user?.province ?? {},
     district: props.user?.district ?? {},
     ward: props.user?.ward ?? {},
@@ -116,6 +117,7 @@ const handleOnchangeAvatar = (e) => {
         } else {
             form.avatar_preview = reader.result;
             form.avatar = e.target.files[0];
+            form.isUploadNewAvatar = true;
             form.avatar_validation = "";
         }
     };
@@ -158,6 +160,7 @@ const submitForm = () => {
             }
         },
     })
+    console.log(form);
 };
 </script>
 

@@ -24,7 +24,7 @@ class UserInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar'        => 'required|mimes:jpeg,png,jpg,gif,bmp',
+            'avatar'        => 'required|' . ($this->isUploadNewAvatar ? 'mimes:jpeg,png,jpg,gif,bmp' : 'string'),
             'province'      => 'required',
             'district'      => 'required',
             'ward'          => 'required',
