@@ -532,7 +532,7 @@ const handleClose = () => {
                                 <span
                                     v-if="!formSearch.start_date_draft"
                                     value=""
-                                    style="font-size: 12px; font-weight: 400;"
+                                    style="font-size: 16px; font-weight: 400;"
                                 >
                                     本日
                                 </span>
@@ -558,7 +558,7 @@ const handleClose = () => {
                                 <span
                                     v-if="!formSearch.end_date_draft"
                                     value=""
-                                    style="font-size: 12px; font-weight: 400;"
+                                    style="font-size: 16px; font-weight: 400;"
                                 >
                                     上限なし
                                 </span>

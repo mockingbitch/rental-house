@@ -73,7 +73,7 @@ const props = defineProps({
     line-height: 1.6;
     white-space: nowrap;
     margin-bottom: 0;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 19.2px; /* 19.2px */

@@ -189,7 +189,7 @@ onBeforeUnmount(() => {
     color: #1b1b1b;
     cursor: pointer;
     text-decoration: underline;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 19.2px; /* 19.2px */

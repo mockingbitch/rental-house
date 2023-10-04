@@ -290,7 +290,7 @@ const options = [
         border: 1px solid #b1b1b1;
         border-radius: 4px;
         font-family: Noto Sans JP;
-        font-size: 12px;
+        font-size: 16px;
         margin-top: 8px;
         cursor: pointer;
     }
@@ -317,7 +317,7 @@ const options = [
 }
 .off-list-modal-container {
     min-width: 368px;
-    font-size: 12px;
+    font-size: 16px;
     font-family: Noto Sans JP;
     .off-list-modal-wrap {
         height: 216px;

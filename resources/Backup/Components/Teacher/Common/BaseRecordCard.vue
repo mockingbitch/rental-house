@@ -283,7 +283,7 @@ const lessonRevenue = () => {
     background-color: #f4f4f4;
     border-radius: 4px;
     padding: 8px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
     line-height: 2.25;

@@ -79,12 +79,12 @@ const timeRangeValidate = () => {
         flex: 1;
     }
     &-title {
-        font-size: 12px;
+        font-size: 16px;
     }
     .input-to {
         margin: 8px 8px;
         transform: translateY(8px);
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 .time__range-select-title-options {

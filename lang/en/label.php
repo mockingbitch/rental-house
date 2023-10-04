@@ -203,15 +203,16 @@ return [
             'learner_info' => 'Learner info',
         ],
         'account_info' => [
-            'adult_first_name'  => 'Adult first name',
-            'adult_last_name'   => 'Adult last name',
-            'adult_nick_name'   => 'Adult Nickname',
+            'first_name'  => 'First name',
+            'last_name'   => 'Last name',
             'birthday'          => 'Birthday',
-            'country'           => 'Residential Country',
-            'city'              => 'City',
+            'province'          => 'Province',
+            'district'          => 'District',
+            'ward'              => 'Ward',
             'next'              => 'Next',
-            'city_tooltip'      => "Please select the city where you live.",
-            'country_tooltip'   => "Please select the country you live in.",
+            'province_tooltip'  => 'Please select the province where you live.',
+            'district_tooltip'  => 'Please select the distric where you live.',
+            'ward_tooltip'      => 'Please select the ward you live in.',
             'note_nick_name'    => 'After completing the temporary account creation, you can change your email address.'
         ],
         'learner_info' => [

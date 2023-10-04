@@ -52,7 +52,7 @@ const handleClick = (item) => {
     width: 100%;
     background-color: #f4f4f4;
     padding: 16px 100px;
-    font-size: 12px;
+    font-size: 16px;
     gap: 4px;
 
     .bread__item-wrapper {

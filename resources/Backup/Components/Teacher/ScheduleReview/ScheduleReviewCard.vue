@@ -115,7 +115,7 @@ const reviewDate = new Date(props.review?.created_at);
 </template>
 <style scoped lang="scss">
 .schedule-review-card-container {
-    font-size: 12px;
+    font-size: 16px;
     padding: 16px;
     .schedule-review-card-date {
         margin-bottom: 8px;

@@ -125,7 +125,7 @@
             label {
                 padding-bottom: 10px;
                 color: #000000;
-                font-size: 12px;
+                font-size: 16px;
             }
 
             .inputWrap {
@@ -166,12 +166,12 @@
 
             .errorMsg,
             .form__wrap-item .note {
-                font-size: 12px;
+                font-size: 16px;
             }
             .content-drop-down {
                 display: flex;
                 color: #1b1b1b;
-                font-size: 12px;
+                font-size: 16px;
                 justify-content: center;
                 align-items: center;
                 position: relative;
@@ -191,7 +191,7 @@
                         .listday__checkbox {
                             background-color: #5392F9 ;
                             color: #fff;
-                            font-size: 12px;
+                            font-size: 16px;
                         }
                     }
                 }
@@ -381,7 +381,7 @@
     width: 100%;
     .select {
         .select__title-text {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 400;
             line-height: 19px;
             letter-spacing: -0.01em;

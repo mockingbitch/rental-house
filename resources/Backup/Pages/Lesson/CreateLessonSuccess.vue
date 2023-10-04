@@ -51,6 +51,6 @@ const props = defineProps({
 .textLink {
     margin: 16px 0px !important;
     padding: 16px !important;
-    font-size: 12px;
+    font-size: 16px;
 }
 </style>

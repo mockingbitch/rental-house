@@ -47,7 +47,7 @@ const isApplied = () => {
     max-width: 400px;
     width: 100%;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 16px;
 }
 @media all and (max-width: 768px) {
     .teacher__request-container {

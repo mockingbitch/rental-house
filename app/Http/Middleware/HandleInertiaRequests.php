@@ -83,9 +83,9 @@ class HandleInertiaRequests extends Middleware
                     'query'=>$request->query(),
                 ]);
             },
-            // 'cities' => City::all(),
-            // 'countries' => Country::all(),
-            // 'categories' => Category::all(),
+            'provinces' => \App\Models\Address\Province::all(),
+            'districts' => \App\Models\Address\District::all(),
+            'wards' => \App\Models\Address\Ward::all(),
             // 'user_role' => [
             //     'admin' => UserConstants::ROLE_ADMIN,
             //     'teacher' => UserConstants::ROLE_TEACHER,

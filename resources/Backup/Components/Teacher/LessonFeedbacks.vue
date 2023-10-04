@@ -46,7 +46,7 @@ const newestReview = ref(props.lesson.review[props.lesson.review.length - 1]);
 <style scoped lang="scss">
 .lesson__feedback-wrap {
     padding: 16px;
-    font-size: 12px;
+    font-size: 16px;
     flex-direction: column;
     gap: 8px;
     color: #1b1b1b;

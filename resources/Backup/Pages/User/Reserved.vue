@@ -84,7 +84,7 @@ const setClickDeleteButton = (value) => {
     background-color: #E1EFF2;
     height: 54px;
     padding: 8px;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 160%;
     letter-spacing: -0.12px;
     border-radius: 4px;

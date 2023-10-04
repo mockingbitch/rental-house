@@ -51,7 +51,7 @@ const button2 = {
     border-radius: 8px;
     border: none;
     font-family: Noto Sans JP;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;

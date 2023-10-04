@@ -81,7 +81,7 @@ watch(
     }
     &-content {
         color: #1b1b1b;
-        font-size: 12px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 19.2px; /* 19.2px */
@@ -91,7 +91,7 @@ watch(
         padding: 10px 0;
     }
     &-note {
-        font-size: 12px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 19.2px; /* 19.2px */

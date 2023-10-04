@@ -169,7 +169,7 @@ const totalApplied = (application) => {
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
 }
 .base__reserved-content-info {
