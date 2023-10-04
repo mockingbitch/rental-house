@@ -366,29 +366,29 @@ const totalApplied = (lesson) => {
 .pending-lesson {
     background-color: #FFEDC9 !important;
     color: #1b1b1b !important;
-    font-size: 12px;
+    font-size: 16px;
 }
 .sendback-lesson {
     background-color: #FFE8EC !important;
     color: #E71A41 !important;
-    font-size: 12px;
+    font-size: 16px;
 }
 .recall-lesson {
     background-color: #E1EFF2 !important;
     color: #E71A41 !important;
-    font-size: 12px;
+    font-size: 16px;
 }
 .pending-text {
     color: #E71A41;
     text-decoration: underline;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
 }
 .sendback-text {
     color: #5392F9 ;
     text-decoration: underline;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
 }
 .base__lesson-avatar {
     border-radius: 4px !important;

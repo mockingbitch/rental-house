@@ -314,7 +314,7 @@ const handleSubmitForm = () => {
         gap: 8px;
         label {
             color: #1b1b1b;
-            font-size: 12px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: 19.2px; /* 19.2px */
@@ -324,7 +324,7 @@ const handleSubmitForm = () => {
             border-radius: 4px;
             padding: 8px 10px;
             font-family: "Noto Sans JP";
-            font-size: 12px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: 19.2px; /* 19.2px */
@@ -372,7 +372,7 @@ const handleSubmitForm = () => {
     }
     &-warning {
         color: #e71a41;
-        font-size: 12px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 19.2px; /* 19.2px */
@@ -399,7 +399,7 @@ const handleSubmitForm = () => {
             background-color: #f4f4f4;
             &-title {
                 color: #000000;
-                font-size: 12px;
+                font-size: 16px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: 19.2px; /* 19.2px */
@@ -408,7 +408,7 @@ const handleSubmitForm = () => {
             &-content {
                 margin-top: 8px;
                 .no-comment {
-                    font-size: 12px;
+                    font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 19.2px; /* 19.2px */
@@ -420,7 +420,7 @@ const handleSubmitForm = () => {
                         gap: 4px;
                         &-name {
                             color: #000000;
-                            font-size: 12px;
+                            font-size: 16px;
                             font-style: normal;
                             font-weight: 400;
                             line-height: 160%; /* 19.2px */
@@ -430,7 +430,7 @@ const handleSubmitForm = () => {
                     &-content {
                         margin-top: 2px;
                         color: #000000;
-                        font-size: 12px;
+                        font-size: 16px;
                         font-style: normal;
                         font-weight: 400;
                         line-height: 19.2px; /* 19.2px */

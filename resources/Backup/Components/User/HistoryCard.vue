@@ -41,7 +41,7 @@ const hasReviewd = (course) => {
         border: 1px solid #b1b1b1;
         border-radius: 4px;
         font-family: Noto Sans JP;
-        font-size: 12px;
+        font-size: 16px;
         margin-top: 8px;
         cursor: pointer;
     }

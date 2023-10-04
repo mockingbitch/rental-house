@@ -568,7 +568,7 @@ const rating = lessonRating(props.lessons)
                                         <p
                                             style="
                                                 margin-left: 2px;
-                                                font-size: 12px;
+                                                font-size: 16px;
                                                 font-weight: 400;
                                                 line-height: 160%;
                                             "

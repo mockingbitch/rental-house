@@ -193,7 +193,7 @@ watch(
 .custom-timezone-title {
     color: #1b1b1b;
     margin-top: 16px;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 19.2px; /* 19.2px */
@@ -202,7 +202,7 @@ watch(
 
 .custom-timezone-text {
     color: #000000;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 19.2px; /* 19.2px */

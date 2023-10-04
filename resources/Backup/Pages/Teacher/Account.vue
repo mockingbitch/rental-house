@@ -119,7 +119,7 @@ const togglePopup = () => {
     max-width: 400px;
     margin: 0 auto;
     padding: 0 16px;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 19.2px;
     color: #1b1b1b;
     margin-bottom: 261px;

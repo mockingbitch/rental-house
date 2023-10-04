@@ -175,7 +175,7 @@ const options = [
     max-width: 400px;
     margin: 0px auto;
     font-family: Noto Sans JP;
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
     .delete-account-content {
         padding: 16px;
@@ -195,7 +195,7 @@ const options = [
     max-width: 400px;
     margin: 0px auto;
     font-family: Noto Sans JP;
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
     gap: 16px;
     text-align: center;
@@ -237,7 +237,7 @@ const options = [
     }
 }
 .delete-account-modal-container {
-    font-size: 12px;
+    font-size: 16px;
     font-family: Noto Sans JP;
     .delete-account-modal-title {
         font-size: 16px;
@@ -276,12 +276,12 @@ const options = [
             border-radius: 4px;
             border: 1px solid #e3e3e3;
             margin-top: 8px;
-            font-size: 12px;
+            font-size: 16px;
             height: 44px;
             width: 100%;
         }
         div {
-            font-size: 12px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: 19.2px;

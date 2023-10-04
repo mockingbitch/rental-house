@@ -199,7 +199,7 @@ body main section.pd {
     /* line 11, scss/imports/core/_layouts.scss */
     html,
     body {
-        font-size: 12px;
+        font-size: 16px;
         font-family: Noto Sans JP;
         line-height: 19.2px;
         color: #000000;
@@ -236,7 +236,7 @@ body main section.pd {
 }
 
 .description {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
 }
@@ -244,14 +244,14 @@ body main section.pd {
 .price,
 .age,
 .lesson-time {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     color: #989898;
     line-height: 19.2px;
 }
 
 .count {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 19.2px;
     display: flex;
     align-items: center;
@@ -521,7 +521,7 @@ body main section.pd {
 .form__wrap-item label {
     display: flex;
     padding-bottom: 10px;
-    font-size: 12px;
+    font-size: 16px;
     align-items: center;
     color: #000000;
 }
@@ -529,7 +529,7 @@ body main section.pd {
 .form__wrap-item label i {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 16px;
     color: #7f7f7f;
     padding: 2px;
 }
@@ -556,7 +556,7 @@ body main section.pd {
 /* line 206, scss/imports/core/_elements.scss */
 .form__wrap-item .errorMsg,
 .form__wrap-item .note {
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 209, scss/imports/core/_elements.scss */
 .form__wrap-item .note {
@@ -3200,7 +3200,7 @@ html {
     position: absolute;
     bottom: -25px;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 14px;
 }
 .progress__wrap .circle.active {
     background-color: #5392f9;
@@ -3239,7 +3239,7 @@ html {
     width: max-content;
     background: #4d4d4d;
     opacity: 0;
-    font-size: 12px;
+    font-size: 16px;
     visibility: hidden;
     transform: translate(-50%, 18px) scale(0.8);
     z-index: 2;
@@ -3282,7 +3282,7 @@ html {
 /* line 12, scss/imports/core/_select.scss */
 .select-btn .btn-text {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 16, scss/imports/core/_select.scss */
@@ -3329,7 +3329,7 @@ html {
     transition: 0.3s;
     padding: 0 15px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 53, scss/imports/core/_select.scss */
@@ -3548,31 +3548,31 @@ header .navMobile__wrap .logo {
 /* line 46, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea::-webkit-input-placeholder,
 .headerTop .navPc__search input::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 51, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::-moz-placeholder,
 .headerTop .navPc__search input ::-moz-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 56, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea :-ms-input-placeholder,
 .headerTop .navPc__search input :-ms-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 61, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::-webkit-input-placeholder,
 .headerTop .navPc__search input ::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 66, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::placeholder,
 .headerTop .navPc__search input ::placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 70, scss/imports/core/_headerTop.scss */
@@ -3810,7 +3810,7 @@ footer .bottom {
 }
 .signin__wrap-content .sub-title {
     line-height: 1.6;
-    font-size: 12px;
+    font-size: 16px;
 }
 @media screen and (max-width: 991px) and (min-height: 500px) {
     /* line 10, scss/imports/pages/_signin.scss */
@@ -3820,7 +3820,7 @@ footer .bottom {
 }
 /* line 16, scss/imports/pages/_signin.scss */
 .signin__wrap-content .subText {
-    font-size: 12px;
+    font-size: 16px;
     color: #b1b1b1;
     padding-bottom: 16px;
 }
@@ -3828,7 +3828,7 @@ footer .bottom {
 .signin__wrap-content .content {
     line-height: 1.6;
     margin-bottom: 0px;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 2, scss/imports/pages/_signin2.scss */
@@ -3862,7 +3862,7 @@ footer .bottom {
 }
 /* line 8, scss/imports/pages/_signinStep.scss */
 .signinStep .skip a {
-    font-size: 12px;
+    font-size: 16px;
     color: #5392f9;
     display: flex;
     align-items: center;
@@ -4101,7 +4101,7 @@ footer .bottom {
 }
 /* line 105, scss/imports/pages/_detailLesson.scss */
 .detailLesson .form__wrap .attributes ul li p {
-    font-size: 12px;
+    font-size: 16px;
     color: #989898;
 }
 /* line 112, scss/imports/pages/_detailLesson.scss */
@@ -4171,7 +4171,7 @@ footer .bottom {
 }
 /* line 158, scss/imports/pages/_detailLesson.scss */
 .detailLesson .form__wrap .schedule .item__left {
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 160, scss/imports/pages/_detailLesson.scss */
 .detailLesson .form__wrap .schedule .item__left .top {
@@ -4243,7 +4243,7 @@ footer .bottom {
 /* line 216, scss/imports/pages/_detailLesson.scss */
 .detailLesson .form__wrap .reviewWrap .item .time {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
     padding-bottom: 8px;
 }
 /* line 221, scss/imports/pages/_detailLesson.scss */
@@ -4377,7 +4377,7 @@ footer .bottom {
 }
 /* line 63, scss/imports/pages/_searchResult.scss */
 .searchResult .result .item__bottom .content {
-    font-size: 12px;
+    font-size: 16px;
     color: #989898;
     line-height: 19.2px;
     word-break: break-all;
@@ -4411,7 +4411,7 @@ footer .bottom {
 @media screen and (max-width: 991px) and (min-height: 500px) {
     /* line 81, scss/imports/pages/_searchResult.scss */
     .searchResult .result .item__bottom ul li .author__right > p {
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 /* line 89, scss/imports/pages/_searchResult.scss */
@@ -4425,7 +4425,7 @@ footer .bottom {
 }
 /* line 98, scss/imports/pages/_searchResult.scss */
 .searchResult .result .item__bottom ul li .star > p {
-    font-size: 12px;
+    font-size: 16px;
     color: #989898;
     line-height: 19.2px;
     text-align: center;
@@ -4466,7 +4466,7 @@ footer .bottom {
 }
 /* line 143, scss/imports/pages/_searchResult.scss */
 .searchResult .noData .top p {
-    font-size: 12px;
+    font-size: 16px;
     color: #989898;
     text-align: center;
     padding-top: 16px;
@@ -4632,7 +4632,7 @@ footer .bottom {
 /* line 2, scss/imports/pages/_joinLesson.scss */
 .joinLesson .miniTitle {
     padding-bottom: 12px;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 6, scss/imports/pages/_joinLesson.scss */
@@ -4712,7 +4712,7 @@ footer .bottom {
 }
 /* line 64, scss/imports/pages/_joinLesson.scss */
 .joinLesson .item .input label {
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 8px;
 }
 /* line 68, scss/imports/pages/_joinLesson.scss */
@@ -4724,27 +4724,27 @@ footer .bottom {
     padding-left: 10px;
     border: 1px solid #e3e3e3;
     color: #b1b1b1;
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 76, scss/imports/pages/_joinLesson.scss */
 .joinLesson .item .input input::-webkit-input-placeholder,
 .joinLesson .item .input select::-webkit-input-placeholder {
     /* Edge */
     color: #b1b1b1;
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 80, scss/imports/pages/_joinLesson.scss */
 .joinLesson .item .input input::-ms-input-placeholder,
 .joinLesson .item .input select::-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #b1b1b1;
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 84, scss/imports/pages/_joinLesson.scss */
 .joinLesson .item .input input::placeholder,
 .joinLesson .item .input select::placeholder {
     color: #b1b1b1;
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 90, scss/imports/pages/_joinLesson.scss */
 .joinLesson .item .center {
@@ -4881,7 +4881,7 @@ footer .bottom {
 }
 /* line 189, scss/imports/pages/_joinLesson.scss */
 .joinLesson .form__wrap .detail .center ul.listQuestions li span {
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 6.5px;
 }
 /* line 193, scss/imports/pages/_joinLesson.scss */
@@ -4945,7 +4945,7 @@ footer .bottom {
 }
 /* line 237, scss/imports/pages/_joinLesson.scss */
 .joinLesson .form__wrap .detail .policy p {
-    font-size: 12px;
+    font-size: 16px;
     word-break: break-all;
     line-height: 19.2px;
 }
@@ -4980,7 +4980,7 @@ footer .bottom {
 /* line 329, scss/imports/core/_elements.scss */
 .breadcrumb ul li {
     padding-left: 4px;
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 332, scss/imports/core/_elements.scss */
 .breadcrumb ul li a {
@@ -5098,31 +5098,31 @@ input[type="checkbox"]:before {
 /* line 46, scss/imports/core/_headerSignin.scss */
 .headerSignin .navPc__search textarea::-webkit-input-placeholder,
 .headerSignin .navPc__search input::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 51, scss/imports/core/_headerSignin.scss */
 .headerSignin .navPc__search textarea ::-moz-placeholder,
 .headerSignin .navPc__search input ::-moz-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 56, scss/imports/core/_headerSignin.scss */
 .headerSignin .navPc__search textarea :-ms-input-placeholder,
 .headerSignin .navPc__search input :-ms-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 61, scss/imports/core/_headerSignin.scss */
 .headerSignin .navPc__search textarea ::-webkit-input-placeholder,
 .headerSignin .navPc__search input ::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 66, scss/imports/core/_headerSignin.scss */
 .headerSignin .navPc__search textarea ::placeholder,
 .headerSignin .navPc__search input ::placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 70, scss/imports/core/_headerSignin.scss */

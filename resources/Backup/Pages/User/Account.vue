@@ -285,7 +285,7 @@ const listCategories = (categories) => {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 19.2px;
     color: #1b1b1b;
     .user-account-title {
@@ -416,7 +416,7 @@ const listCategories = (categories) => {
 
 .note {
     color: #7f7f7f;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 19.2px */

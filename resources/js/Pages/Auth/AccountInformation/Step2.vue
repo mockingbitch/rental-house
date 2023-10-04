@@ -3,7 +3,6 @@ import { ref, watch, computed, toRef } from 'vue'
 import { useForm, usePage } from '@inertiajs/vue3'
 import UlError from '@/Components/Common/UlError.vue';
 import PError from '@/Components/Common/PError.vue';
-import DatePicker from "@/Components/DatePicker/DatePicker.vue";
 import CustomSelect from "@/Components/Select/CustomSelect.vue";
 
 const props = defineProps({
@@ -21,14 +20,32 @@ const form = useForm({
     month: props.user?.month ?? '',
     day: props.user?.day ?? '',
     birthday: props.user?.birthday ?? '',
-    country: props.user?.country ?? {},
-    city: props.user?.city ?? {},
     params: props.ziggy.query,
+    province: props.user?.province ?? {},
+    district: props.user?.district ?? {},
+    ward: props.user?.ward ?? {},
 })
 
-let isOpenSelectCity = ref(false);
-let isOpenSelectCountry = ref(false);
-let listCity = ref(form.country?.id ? page.props.cities.filter(city => city.country_id == form.country.id) : []);
+let isOpenSelectDistrict = ref(false);
+let isOpenSelectProvince = ref(false);
+let isOpenSelectWard = ref(false);
+let listDistrict = ref(page.props.districts);
+let listWard = ref(page.props.wards);
+
+// update birday when year, month, day changed
+watch(form, (newValue) => {
+    form.birthday = [newValue.year, newValue.month, newValue.day].join('-');
+    if (form.province) {
+        listDistrict.value = page.props?.districts?.filter(
+            item => item.province_code == form.province.code
+            );
+    }
+    if (form.district) {
+        listWard.value = page.props?.wards?.filter(
+            item => item.district_code == form.district.code
+            );
+    }
+});
 
 // generate array year
 let arrayYears = ref([]);
@@ -36,8 +53,6 @@ const newestYear = new Date().getFullYear();
 for (let i = newestYear; i >= newestYear - 100; i--) {
     arrayYears.value.push(i);
 };
-
-
 // generate array month
 const newestMonth = new Date().getMonth() + 1
 const arrayMonths = computed(() => {
@@ -48,8 +63,7 @@ const arrayMonths = computed(() => {
     }
 
     return result;
-})
-
+});
 
 // generate array day
 const newestDay = new Date().getDate();
@@ -82,28 +96,16 @@ const arrrayDays = computed(() => {
     }
 
     return result;
-})
-
-// update birday when year, month, day changed
-watch(form, (newValue) => {
-    form.birthday = [newValue.year, newValue.month, newValue.day].join('-');
 });
-
 const updateBirthDayYear = (data) => {
     form.year = data;
 };
 const updateMonth = (data) => {
     form.month = data;
 };
-
 const updateDays = (data) => {
     form.day = data;
 };
-
-const displayNameKanaForJapanese = computed(() => {
-    return form.country.id === 1 ? true : false;
-});
-
 const submitForm = () => {
     form.post(route('account.info'), {
         preserveScroll: true,
@@ -114,19 +116,22 @@ const submitForm = () => {
             console.log(e);
         }
     })
-}
-
-const handleSelectCountry = (country, cities) => {
-    listCity.value = cities.filter(city => city.country_id == country.id);
-
-    form.country = country;
-    isOpenSelectCountry.value = ! isOpenSelectCountry;
-}
-
-const handleSelectCity = (city) => {
-    form.city = city;
-    isOpenSelectCity.value = ! isOpenSelectCity;
-}
+};
+const handleSelectProvince = (province) => {
+    form.province = province;
+    form.district = null;
+    form.ward = null;
+    isOpenSelectProvince.value = ! isOpenSelectProvince;
+};
+const handleSelectDistrict = (district) => {
+    form.district = district;
+    form.ward = null;
+    isOpenSelectDistrict.value = ! isOpenSelectDistrict;
+};
+const handleSelectWard = (ward) => {
+    form.ward = ward;
+    isOpenSelectWard.value = ! isOpenSelectWard;
+};
 </script>
 <template>
     <transition name="slide-fade">
@@ -134,64 +139,116 @@ const handleSelectCity = (city) => {
             class="form"
             @submit.prevent="submit"
         >
-            <!-- Country -->
-            <div class="form__wrap-item" :class="{'error': form.errors.country}" >
+            <!-- Province -->
+            <div class="form__wrap-item" :class="{'error': form.errors.province}" >
                 <div>
-                    <label for="Country">
-                        {{ lang().label.information.account_info.country }}
-                        <i class="with-tooltip" :data-tooltip-content="lang().label.information.account_info.country_tooltip" >
+                    <label for="Province">
+                        {{ lang().label.information.account_info.province }}
+                        <i class="with-tooltip" :data-tooltip-content="lang().label.information.account_info.province_tooltip" >
                             <img src="img/icon/Question.svg" alt="Question">
                         </i>
                     </label>
                 </div>
                 <div class="select-btn"
-                    :class="{ 'open': isOpenSelectCountry === true }"
-                    @click="isOpenSelectCountry = ! isOpenSelectCountry"
+                    :class="{ 'open': isOpenSelectProvince === true }"
+                    @click="isOpenSelectProvince = ! isOpenSelectProvince"
                 >
-                    <span class="btn-text">{{ form.country.name_jp ?? lang().label.information.account_info.country }}</span>
+                    <span class="btn-text">
+                        {{ form.province?.name ?? lang().label.information.account_info.province }}
+                    </span>
                     <span class="arrow-dwn">
                         <i><img src="img/icon/CaretDown.svg" alt=""></i>
                     </span>
                 </div>
-                <UlError :message="form.errors.country" />
+                <UlError :message="form.errors.province" />
 
                 <ul class="list-items">
                     <li class="item"
-                        :class="{checked: form.country.id === country.id, 'checked-items': form.country.id === country.id}"
-                        v-for="country in $page.props.countries"
-                        @click="handleSelectCountry(country, $page.props.cities)">
-                        <span class="item-text">{{ country['name_' + $page.props.locale] }}</span>
+                        :class="{ 
+                            checked: form.province.code === province.code, 
+                            'checked-items': form.province.code === province.code
+                            }"
+                        v-for="province in page.props.provinces"
+                        @click="handleSelectProvince(province)">
+                        <span class="item-text">{{ province.name }}</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- City -->
-            <div class="form__wrap-item" :class="{'error': form.errors.city}" >
+            <!-- District -->
+            <div class="form__wrap-item" :class="{'error': form.errors.district}" >
                 <div>
-                    <label for="City">
-                        {{ lang().label.information.account_info.city }}
-                        <i class="with-tooltip" :data-tooltip-content="lang().label.information.account_info.city_tooltip">
+                    <label for="District">
+                        {{ lang().label.information.account_info.district }}
+                        <i
+                            class="with-tooltip"
+                            :data-tooltip-content="lang().label.information.account_info.district_tooltip"
+                        >
                             <img src="img/icon/Question.svg" alt="Question">
                         </i>
                     </label>
                 </div>
                 <div class="select-btn"
-                    :class="{ 'open': isOpenSelectCity === true }"
-                    @click="isOpenSelectCity = ! isOpenSelectCity"
+                    :class="{ 'open': isOpenSelectDistrict === true }"
+                    @click="isOpenSelectDistrict = ! isOpenSelectDistrict"
                 >
-                    <span class="btn-text">{{ form.city.name_jp ?? lang().label.information.account_info.city }}</span>
+                    <span class="btn-text">
+                        {{ form.district?.name ?? lang().label.information.account_info.district }}
+                    </span>
                     <span class="arrow-dwn">
                         <i><img src="img/icon/CaretDown.svg" alt=""></i>
                     </span>
                 </div>
-                <UlError :message="form.errors.city" />
+                <UlError :message="form.errors.district" />
 
                 <ul class="list-items">
                     <li class="item"
-                        :class="{checked: form.city.id === city.id, 'checked-items': form.city.id === city.id }"
-                        v-for="city in listCity"
-                        @click="handleSelectCity(city)">
-                        <span class="item-text">{{ city.name_jp }}</span>
+                        :class="{
+                            checked: form.district?.code === district.code,
+                            'checked-items': form.district?.code === district.code
+                            }"
+                        v-for="district in listDistrict"
+                        @click="handleSelectDistrict(district)">
+                        <span class="item-text">{{ district.name }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Ward -->
+            <div class="form__wrap-item" :class="{'error': form.errors.ward}" >
+                <div>
+                    <label for="Ward">
+                        {{ lang().label.information.account_info.ward }}
+                        <i
+                            class="with-tooltip"
+                            :data-tooltip-content="lang().label.information.account_info.ward_tooltip"
+                        >
+                            <img src="img/icon/Question.svg" alt="Question">
+                        </i>
+                    </label>
+                </div>
+                <div class="select-btn"
+                    :class="{ 'open': isOpenSelectWard === true }"
+                    @click="isOpenSelectWard = ! isOpenSelectWard"
+                >
+                    <span class="btn-text">
+                        {{ form.ward?.name ?? lang().label.information.account_info.ward }}
+                    </span>
+                    <span class="arrow-dwn">
+                        <i><img src="img/icon/CaretDown.svg" alt=""></i>
+                    </span>
+                </div>
+                <UlError :message="form.errors.ward" />
+
+                <ul class="list-items">
+                    <li class="item"
+                        :class="{
+                            checked: form.ward?.code === ward.code,
+                            'checked-items': form.ward?.code === ward.code
+                            }"
+                        v-for="ward in listWard"
+                        @click="handleSelectWard(ward)">
+                        <span class="item-text">{{ ward.name }}</span>
                     </li>
                 </ul>
             </div>
@@ -199,16 +256,30 @@ const handleSelectCity = (city) => {
             <!-- First name + Last name -->
             <div class="form__wrap-item twoItem">
                 <div :class="{'error': form.errors.first_name}">
-                    <label for="first_name">{{ lang().label.information.account_info.adult_first_name }}</label>
+                    <label for="first_name">
+                        {{ lang().label.information.account_info.first_name }}
+                    </label>
                     <div class="inputWrap">
-                        <input type="text" v-model="form.first_name" name="first_name" placeholder="name">
+                        <input
+                            type="text"
+                            v-model="form.first_name"
+                            name="first_name"
+                            placeholder="First name"
+                        >
                         <UlError :message="form.errors.first_name" />
                     </div>
                 </div>
                 <div :class="{'error': form.errors.last_name}">
-                    <label for="last_name">{{ lang().label.information.account_info.adult_last_name }}</label>
+                    <label for="last_name">
+                        {{ lang().label.information.account_info.last_name }}
+                    </label>
                     <div class="inputWrap">
-                        <input type="text" v-model="form.last_name" name="last_name" placeholder="name">
+                        <input
+                            type="text"
+                            v-model="form.last_name"
+                            name="last_name"
+                            placeholder="Last name"
+                        >
                         <UlError :message="form.errors.last_name" />
                     </div>
                 </div>
@@ -270,15 +341,6 @@ const handleSelectCity = (city) => {
 </template>
 
 <style lang="scss" scoped>
-@import "./_information.scss";
-.error__wrapper {
-    .errorMsg2 {
-        font-size: 10px;
-        background-color: transparent;
-        padding: 0px;
-    }
-}
-.form-wrap-tripple {
-    margin-bottom: 5px;
-}
+@import './_information.scss';
+@import './step2';
 </style>

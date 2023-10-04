@@ -239,7 +239,7 @@ const ReviewResult = () => {
     }
     .stripe-note {
         font-family: Noto Sans JP;
-        font-size: 12px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 160%; /* 19.2px */

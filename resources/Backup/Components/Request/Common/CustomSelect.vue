@@ -249,7 +249,7 @@ export default {
     user-select: none;
 }
 .select__input-value {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;

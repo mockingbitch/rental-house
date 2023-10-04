@@ -161,7 +161,7 @@ const ratePoints = () => {
             background-color: #f4f4f4;
             &-title {
                 color: #000000;
-                font-size: 12px;
+                font-size: 16px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: 19.2px; /* 19.2px */
@@ -170,7 +170,7 @@ const ratePoints = () => {
             &-content {
                 margin-top: 8px;
                 .no-comment {
-                    font-size: 12px;
+                    font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 19.2px; /* 19.2px */
@@ -182,7 +182,7 @@ const ratePoints = () => {
                         gap: 4px;
                         &-name {
                             color: #000000;
-                            font-size: 12px;
+                            font-size: 16px;
                             font-style: normal;
                             font-weight: 400;
                             line-height: 160%; /* 19.2px */
@@ -192,7 +192,7 @@ const ratePoints = () => {
                     &-content {
                         margin-top: 2px;
                         color: #000000;
-                        font-size: 12px;
+                        font-size: 16px;
                         font-style: normal;
                         font-weight: 400;
                         line-height: 19.2px; /* 19.2px */

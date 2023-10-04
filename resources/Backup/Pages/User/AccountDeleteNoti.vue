@@ -38,7 +38,7 @@ import { Link } from '@inertiajs/vue3'
     max-width: 400px;
     margin: 0px auto;
     font-family: Noto Sans JP;
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
     align-items: center;
     .delete-account-content {
@@ -91,7 +91,7 @@ import { Link } from '@inertiajs/vue3'
     max-width: 400px;
     margin: 0px auto;
     font-family: Noto Sans JP;
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
     gap: 16px;
     text-align: center;

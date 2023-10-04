@@ -33,7 +33,7 @@ const props = defineProps({
 </template>
 <style scoped lang="scss">
 .star-rating-schedule-container {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 160%;
     letter-spacing: -0.12px;
     padding: 8px 16px;

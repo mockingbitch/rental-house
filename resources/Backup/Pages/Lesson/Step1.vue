@@ -537,7 +537,7 @@ select {
 }
 
 .fs-12 {
-    font-size: 12px;
+    font-size: 16px;
     color: #1b1b1b;
     font-weight: 400;
     line-height: 160%; /* 19.2px */

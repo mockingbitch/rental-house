@@ -129,7 +129,7 @@ const handleFilterTitle = () => {
 <style lang="scss" scoped>
 @import "../LessonList/LessonList";
 .create-course-search-text {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 160%; /* 19.2px */
     letter-spacing: -0.12px;

@@ -6,7 +6,7 @@ form {
         max-width: 400px;
         margin: 0 auto;
         padding: 0 16px;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 19.2px;
         color: #1b1b1b;
         // margin-bottom: 261px;
@@ -49,7 +49,7 @@ form {
             height: 108px;
             resize: none;
             &::placeholder {
-                font-size: 12px !important;
+                font-size: 16px !important;
                 font-weight: 400;
                 line-height: 19px;
                 letter-spacing: -0.01em;
@@ -272,9 +272,9 @@ form {
         padding: 12.5px 10px;
         margin-bottom: 0;
         height: 44px;
-        font-size: 12px;
+        font-size: 16px;
         &::placeholder {
-            font-size: 12px !important;
+            font-size: 16px !important;
             font-weight: 400;
             line-height: 19px;
             letter-spacing: -0.01em;

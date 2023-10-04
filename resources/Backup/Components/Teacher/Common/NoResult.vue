@@ -28,7 +28,7 @@
         letter-spacing: -0.16px;
     }
     &-note {
-        font-size: 12px;
+        font-size: 16px;
         line-height: 1.6;
         letter-spacing: -0.12px;
         font-weight: 400;

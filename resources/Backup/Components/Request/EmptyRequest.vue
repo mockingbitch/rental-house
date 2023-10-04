@@ -226,7 +226,7 @@ const closeConfirmModal = () => {
     font-weight: 700;
 }
 .empty__request-content-info {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 16px;
 }
 .btn-border-none {

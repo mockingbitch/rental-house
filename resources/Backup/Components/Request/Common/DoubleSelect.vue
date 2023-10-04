@@ -84,7 +84,7 @@ const handleSelect2 = (value) => {
     .select {
         flex: 1;
         .select__title-text {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 400;
             line-height: 19px;
             letter-spacing: -0.01em;
@@ -131,7 +131,7 @@ const handleSelect2 = (value) => {
 }
 .to-text {
     width: 12px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;
@@ -150,7 +150,7 @@ const handleSelect2 = (value) => {
 }
 
 .title-text {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;

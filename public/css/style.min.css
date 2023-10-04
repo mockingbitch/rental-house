@@ -199,7 +199,7 @@ body main section.pd {
     /* line 11, scss/imports/core/_layouts.scss */
     html,
     body {
-        font-size: 12px;
+        font-size: 16px;
         font-family: Noto Sans JP;
         line-height: 19.2px;
         color: #000000;
@@ -467,7 +467,7 @@ body main section.pd {
 .form__wrap-item label i {
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 16px;
     color: #7f7f7f;
     padding: 2px;
 }
@@ -494,7 +494,7 @@ body main section.pd {
 /* line 206, scss/imports/core/_elements.scss */
 .form__wrap-item .errorMsg,
 .form__wrap-item .note {
-    font-size: 12px;
+    font-size: 16px;
 }
 /* line 209, scss/imports/core/_elements.scss */
 .form__wrap-item .note {
@@ -3204,7 +3204,7 @@ html {
     width: max-content;
     background: #4d4d4d;
     opacity: 0;
-    font-size: 12px;
+    font-size: 16px;
     visibility: hidden;
     transform: translate(-50%, 18px) scale(0.8);
     transition: visibility, opacity, transform 200ms;
@@ -3233,7 +3233,7 @@ html {
 /* line 12, scss/imports/core/_select.scss */
 .select-btn .btn-text {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 16, scss/imports/core/_select.scss */
@@ -3280,7 +3280,7 @@ html {
     transition: 0.3s;
     padding: 0 15px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* line 53, scss/imports/core/_select.scss */
@@ -3492,31 +3492,31 @@ header .navMobile__wrap .logo {
 /* line 46, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea::-webkit-input-placeholder,
 .headerTop .navPc__search input::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 51, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::-moz-placeholder,
 .headerTop .navPc__search input ::-moz-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 56, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea :-ms-input-placeholder,
 .headerTop .navPc__search input :-ms-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 61, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::-webkit-input-placeholder,
 .headerTop .navPc__search input ::-webkit-input-placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 66, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__search textarea ::placeholder,
 .headerTop .navPc__search input ::placeholder {
-    font-size: 12px;
+    font-size: 16px;
     padding-top: 12px;
 }
 /* line 70, scss/imports/core/_headerTop.scss */
@@ -3763,7 +3763,7 @@ footer:has(.footerMobile) .footerMobile ul li.active {
 }
 /* line 8, scss/imports/pages/_signinStep.scss */
 .signinStep .skip a {
-    font-size: 12px;
+    font-size: 16px;
     color: #5392f9;
     display: flex;
     align-items: center;

@@ -596,8 +596,8 @@ button {
 }
 
 .title-date {
-    font-size: 12px !important;
-    font-size: 12px;
+    font-size: 16px !important;
+    font-size: 16px;
     font-weight: 700;
     line-height: 19px;
     letter-spacing: -0.01em;
@@ -614,7 +614,7 @@ button {
 
     span {
         color: #4d4d4d;
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 400;
         line-height: 19px;
         letter-spacing: -0.01em;

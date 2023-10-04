@@ -35,7 +35,7 @@
             }
             .list-meeting {
                 &-title {
-                    font-size: 12px;
+                    font-size: 16px;
                     padding-top: 12px;
                 }
                 &-content {
@@ -54,7 +54,7 @@
                     padding: 12px 8px 0px;
                     gap: 4px;
                     &-content {
-                        font-size: 12px;
+                        font-size: 16px;
                         color: #5392F9 ;
                         cursor: pointer;
                     }
@@ -92,7 +92,7 @@
                         color: #ff5575;
                     }
                     .time-register {
-                        font-size: 12px;
+                        font-size: 16px;
                         color: #7f7f7f;
                     }
                 }
@@ -100,7 +100,7 @@
             .student-member-question {
                 gap: 4px;
                 &-content {
-                    font-size: 12px;
+                    font-size: 16px;
                     color: #7f7f7f;
                     word-wrap: break-word;
                 }
@@ -125,7 +125,7 @@
             padding: 8px 0;
         }
         &-select-day {
-            font-size: 12px;
+            font-size: 16px;
             white-space: nowrap;
             gap: 4px;
             .day-select {
@@ -190,7 +190,7 @@
             padding: 15.5px 0;
             &-content {
                 color: #e71a41;
-                font-size: 12px;
+                font-size: 16px;
                 text-decoration: underline;
                 text-decoration-color: #e71a41;
                 cursor: pointer;
@@ -272,7 +272,7 @@
 }
 .tripple-select {
     &-title {
-        font-size: 12px;
+        font-size: 16px;
         padding-bottom: 6.5px;
         padding-top: 16px;
     }
@@ -300,12 +300,12 @@
         flex: 1;
     }
     &-title {
-        font-size: 12px;
+        font-size: 16px;
     }
     .form-wrap-to {
         margin: 8px 8px;
         transform: translateY(8px);
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 .double-select-title-options {

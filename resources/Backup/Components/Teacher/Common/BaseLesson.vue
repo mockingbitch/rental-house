@@ -242,7 +242,7 @@ const totalApplied = (lesson) => {
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: 16px;
 }
 .base__lesson-content-info {
     display: flex;

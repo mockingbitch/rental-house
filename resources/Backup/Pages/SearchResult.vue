@@ -471,7 +471,7 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
             }
 
             .header-category_item_title {
-                font-size: 12px;
+                font-size: 16px;
                 font-weight: 400;
                 line-height: 19px;
                 letter-spacing: -0.01em;
@@ -529,14 +529,14 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
     height: 34px;
 }
 .keyword-text {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;
     color: #4d4d4d;
 }
 .day-text {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;
@@ -554,7 +554,7 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
     height: calc(19px * 4);
 }
 .result__description {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: -0.01em;
@@ -636,7 +636,7 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
         justify-content: center;
         align-items: center;
         height: 38px;
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 19px;
         letter-spacing: -0.01em;
@@ -663,7 +663,7 @@ const ratingSuggest = props.listSuggest.map((lesson) => {
     span {
         color: #4D4D4D;
         font-family: Noto Sans JP;
-        font-size: 12px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 160%; /* 19.2px */

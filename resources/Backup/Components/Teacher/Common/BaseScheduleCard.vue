@@ -279,7 +279,7 @@ const kidApplied = (course) => {
     background-color: #f4f4f4;
     border-radius: 4px;
     padding: 8px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
     line-height: 1.5;
@@ -328,12 +328,12 @@ const kidApplied = (course) => {
             color: #1b1b1b;
         }
         .schedule-modal-has-result-date {
-            font-size: 12px;
+            font-size: 16px;
             color: #7f7f7f;
             gap: 4px;
         }
         .schedule-modal-has-result-content {
-            font-size: 12px;
+            font-size: 16px;
             color: #7f7f7f;
             gap: 4px;
             line-height: 160%;
