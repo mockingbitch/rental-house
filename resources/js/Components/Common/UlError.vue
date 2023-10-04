@@ -7,3 +7,7 @@ defineProps(['message']);
         <li>{{ message }}</li>
     </ul>
 </template>
+
+<style lang='scss' scoped>
+@import './ulerror';
+</style>

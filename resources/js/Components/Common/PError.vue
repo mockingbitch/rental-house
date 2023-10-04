@@ -7,3 +7,7 @@ defineProps(['message']);
         <p>{{ message }}</p>
     </div>
 </template>
+
+<style lang='scss' scoped>
+@import './perror';
+</style>

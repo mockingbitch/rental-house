@@ -5,6 +5,7 @@ import UlError from '@/Components/Common/UlError.vue';
 import PError from '@/Components/Common/PError.vue';
 import DatePicker from "@/Components/DatePicker/DatePicker.vue";
 import CustomSelect from "@/Components/Select/CustomSelect.vue";
+import ButtonCommon from "@/Components/Button/ButtonCommon.vue";
 
 const props = defineProps({
     step: Number,
@@ -14,21 +15,21 @@ const props = defineProps({
 
 const emit = defineEmits(['nextStep']);
 
-const submitForm = () => {
-    form.post(route('learner.info'), {
-        preserveScroll: true,
-        onSuccess: (response) => {
-            emit('nextStep', form)
-        },
-        onError: (e) => {
-            console.log(e);
-        }
-    });
-}
-
 const backToPrevStep = () => {
     emit("prev-step");
 };
+const confirmInformation = () => {
+    form.confirm = true;
+    // form.post(route('learner.info'), {
+    //     preserveScroll: true,
+    //     onSuccess: (response) => {
+    //         emit('nextStep', form)
+    //     },
+    //     onError: (e) => {
+    //         console.log(e);
+    //     }
+    // });
+}
 </script>
 
 <template>
@@ -39,41 +40,116 @@ const backToPrevStep = () => {
             action="#"
             @submit.prevent="next"
         >
-            <div class="skip-item">
-                <img
+            <div class="step-container">
+                <div
+                    class="step-container-header d-flex align-items-center justify-content-center"
+                >
+                    <span class="step-container-header-content"
+                        >登録内容を確認お願いします</span
+                    >
+                </div>
+
+                <div class="skip-item" style="margin-top: 40px;">
+                    <img
                         src="/img/icon/arrownLeft.svg"
                         alt=""
                         @click="backToPrevStep"
-                />
-                <a href="javascript:void(0)" @click="emit('nextStep', form)" >
-                    {{ lang().label.information.learner_info.skip }}
-                    <i><img src="img/icon/CaretRightGreenCl.svg" alt="CaretRightGreenCl"></i>
-                </a>
+                    />
+                </div>
+                <!-- Account (Parent) Information -->
+                <div class="result-content" >
+                    <div class="result-content-group first-content">
+                        <div class="title-content">Residential Area</div>
+                        <div class="filled-content">
+                            {{ props.accountInforForm?.country['name_' + $page.props.locale] }}
+                        </div>
+                    </div>
+                    <div class="result-content-group">
+                        <div class="title-content">Redifential City</div>
+                        <div class="filled-content">
+                            {{ props.accountInforForm?.city['name_' + $page.props.locale] }}
+                        </div>
+                    </div>
+                    <div class="result-content-group">
+                        <div class="title-content">Adult Nickname</div>
+                        <div class="filled-content">
+                            {{ props.accountInforForm?.nickName }}
+                        </div>
+                    </div>
+                    <div class="result-content-group">
+                        <div class="title-content">Adult name</div>
+                        <div class="filled-content">
+                            {{ props.accountInforForm?.firstName }}
+                            {{ props.accountInforForm?.lastName }}
+                        </div>
+                    </div>
+                    <div class="result-content-group last-content">
+                        <div class="title-content">Birthday</div>
+                        <div class="filled-content">
+                            {{ props.accountInforForm?.year % 1000 }}/{{
+                                props.accountInforForm?.month
+                            }}/{{ props.accountInforForm?.day }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learners (kids) information -->
+                <div v-if="props.learnerInforForm">
+                    <div class="result-content" v-for="(item, index) in props.learnerInforForm.kids" :id="index">
+                        <div class="result-content-group first-content">
+                            <div class="title-content">Kid Nickname</div>
+                            <div class="filled-content">
+                                {{ item?.nickName }}
+                            </div>
+                        </div>
+                        <div class="result-content-group">
+                            <div class="title-content">Kid name</div>
+                            <div class="filled-content">
+                                {{ item?.name }}
+                            </div>
+                        </div>
+                        <div class="result-content-group">
+                            <div class="title-content">Birthday</div>
+                            <div class="filled-content">
+                                {{ item?.year % 1000 }}/{{
+                                    item?.month
+                                }}/{{ item?.day }}
+                            </div>
+                        </div>
+                        <div class="result-content-group last-content">
+                            <div class="title-content">Interest Category</div>
+                            <div class="filled-content">
+                                {{ item?.categories.map((category_id) => {
+                                    return $page.props.categories.find((category) => category.id == category_id)['name_' + $page.props.locale];
+                                }).join(',') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <div class="create__request-button">
+                        <div class="lineFull"></div>
+                        <ButtonCommon
+                            :label="'戻る'"
+                            :submit-button="false"
+                            class="create__request-button-left"
+                            @click="backToPrevStep"
+                        />
+                        <ButtonCommon
+                            :label="'申請する'"
+                            :submit-button="true"
+                            class="create__request-button-right"
+                            @click="handleConfirmUpdate"
+                        />
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="mainButton step-3-btn" @click="handleAddChild">
-                <p>
-                    <img src="img/icon/Plus.svg" alt="Plus">
-                    {{ lang().label.information.learner_info.another_kids }}
-                </p>
-            </button>
-            <button type="submit" class="mainButton step-3-btn bg-green" @click="submitForm">
-                <p>{{ lang().label.information.learner_info.complete_register }}</p>
-                <i class="after"><img src="img/icon/CaretRight.svg" alt="CaretRight"></i>
-            </button>
         </form>
     </transition>
 </template>
 
 <style lang="scss" scoped>
-@import "./_information.scss";
-.error__wrapper {
-    .errorMsg2 {
-        font-size: 10px;
-        background-color: transparent;
-        padding: 0px;
-    }
-}
-.form-wrap-tripple {
-    margin-bottom: 5px;
-}
+@import "./stepconfirm";
 </style>
+

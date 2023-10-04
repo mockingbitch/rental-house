@@ -222,7 +222,7 @@ body main section.pd {
 /* line 4, scss/imports/core/_elements.scss */
 .title.green-cl {
     line-height: 1.63;
-    font-size: 16px;
+    font-size: 25px;
     color: #5392f9;
 }
 @media screen and (max-width: 991px) and (min-height: 500px) {

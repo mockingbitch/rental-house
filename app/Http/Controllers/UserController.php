@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Constants\UserConstant;
 use App\Http\Requests\UserInfoRequest;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Services\FileService;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -16,6 +18,7 @@ class UserController extends Controller
      */
     public function __construct(
         public UserRepositoryInterface $userRepository,
+        public FileService $fileService,
         )
     {
 
@@ -29,7 +32,10 @@ class UserController extends Controller
     public function userInformation(Request $request): Response
     {
         $user = $this->userRepository
-            ->findByAttrFirst('remember_token', $request->token);
+            ->findByAttrFirst(
+                UserConstant::COL_REMEMBER_TOKEN,
+                $request->token
+            );
 
         return Inertia::render('Auth/AccountInformation/Index', [
             'user' => $user,
@@ -39,17 +45,29 @@ class UserController extends Controller
     /**
      * @Route post("/user-information" name="account.info")
      * @param UserRequest $request
+     * @throws ValidationException
      */
     public function updateUserInformation(UserInfoRequest $request)
     {
         $data = $request->all();
-        $user = $this->userRepository
-            ->findByAttrFirst('remember_token', $data['params']['token']);
         try {
-            $user->update($data);
+            $user = $this->userRepository
+                ->findByAttrFirst(
+                    UserConstant::COL_REMEMBER_TOKEN,
+                    $data['params']['token']
+                );
+            if ($request->confirm) :
+                $data[
+                    UserConstant::COL_AVATAR
+                    ] = $this->fileService->storeFile(
+                        $request->avatar,
+                        UserConstant::STORAGE_LINK_AVATAR
+                    );
+                $user->update($data);
+            endif;
         } catch (\Throwable $th) {
             throw ValidationException::withMessages([
-                'error' => trans('messages.register.EM-001'),
+                'error' => 'Failed to update',
             ]);
         }
     }

@@ -11,13 +11,10 @@ const props = defineProps({
 });
 
 let step = ref(2);
-let accountInforForm = null;
-let learnerInforForm = null;
 
 const next = (data) => {
     step.value += 1;
 };
-
 const prev = () => {
     step.value -= 1;
 };
@@ -30,9 +27,9 @@ const prev = () => {
                 <div class="form">
                     <div class="form__wrap">
                         <div class="progress" v-if="step === 2 || step === 3">
-                            <h2 class="title green-cl">
+                            <h1 class="title green-cl">
                                 {{ lang().label.information.index.title }}
-                            </h2>
+                            </h1>
                             <div class="progress__wrap">
                                 <div
                                     :class="`progressBar bar-1 ${
@@ -49,10 +46,9 @@ const prev = () => {
                                         src="/img/icon/StepNumber/NumberOne.png"
                                         alt=""
                                     />
-                                    <span>{{
-                                        lang().label.information.index
-                                            .verification
-                                    }}</span>
+                                    <span>
+                                        {{ lang().label.information.index.verification }}
+                                    </span>
                                 </div>
                                 <div
                                     class="circle"
@@ -71,10 +67,9 @@ const prev = () => {
                                         src="/img/icon/StepNumber/NumberTwo.png"
                                         alt=""
                                     />
-                                    <span>{{
-                                        lang().label.information.index
-                                            .account_info
-                                    }}</span>
+                                    <span>
+                                        {{ lang().label.information.index.account_info }}
+                                    </span>
                                 </div>
                                 <div
                                     class="circle"
@@ -90,10 +85,9 @@ const prev = () => {
                                         src="/img/icon/StepNumber/NumberThree.png"
                                         alt=""
                                     />
-                                    <span>{{
-                                        lang().label.information.index
-                                            .learner_info
-                                    }}</span>
+                                    <span>
+                                        {{ lang().label.information.index.learner_info }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -106,15 +100,6 @@ const prev = () => {
                         <Step3
                             :step="step"
                             :ziggy="ziggy"
-                            :user="props.user"
-                            @nextStep="next"
-                            @prevStep="prev"
-                        />
-                        <StepConfirmInformation
-                            :step="step"
-                            :ziggy="ziggy"
-                            :accountInforForm="accountInforForm"
-                            :learnerInforForm="learnerInforForm"
                             :user="props.user"
                             @nextStep="next"
                             @prevStep="prev"
