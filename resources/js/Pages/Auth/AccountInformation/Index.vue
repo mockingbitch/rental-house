@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useForm, usePage } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import Step2 from "./Step2.vue";
 import Step3 from "./Step3.vue";
 import StepConfirmInformation from "./StepConfirmInformation.vue";
