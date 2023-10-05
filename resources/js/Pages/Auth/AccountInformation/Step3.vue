@@ -11,6 +11,7 @@ const props = defineProps({
     step: Number,
     ziggy: Object,
     user: Object,
+    form: Object,
 });
 
 const emit = defineEmits(['nextStep']);
@@ -45,7 +46,7 @@ const confirmInformation = () => {
                     class="step-container-header d-flex align-items-center justify-content-center"
                 >
                     <span class="step-container-header-content"
-                        >登録内容を確認お願いします</span
+                        >Please check the registration details</span
                     >
                 </div>
 
@@ -56,73 +57,39 @@ const confirmInformation = () => {
                         @click="backToPrevStep"
                     />
                 </div>
-                <!-- Account (Parent) Information -->
+                <!-- Account Information -->
                 <div class="result-content" >
                     <div class="result-content-group first-content">
-                        <div class="title-content">Residential Area</div>
+                        <div class="title-content">Residential Province</div>
                         <div class="filled-content">
-                            {{ props.accountInforForm?.country['name_' + $page.props.locale] }}
+                            {{ props.form?.province.name}}
                         </div>
                     </div>
                     <div class="result-content-group">
-                        <div class="title-content">Redifential City</div>
+                        <div class="title-content">Redifential District</div>
                         <div class="filled-content">
-                            {{ props.accountInforForm?.city['name_' + $page.props.locale] }}
+                            {{ props.form?.district.name }}
                         </div>
                     </div>
                     <div class="result-content-group">
-                        <div class="title-content">Adult Nickname</div>
+                        <div class="title-content">Redifential Ward</div>
                         <div class="filled-content">
-                            {{ props.accountInforForm?.nickName }}
+                            {{ props.form?.ward.name }}
                         </div>
                     </div>
                     <div class="result-content-group">
                         <div class="title-content">Adult name</div>
                         <div class="filled-content">
-                            {{ props.accountInforForm?.firstName }}
-                            {{ props.accountInforForm?.lastName }}
+                            {{ props.form?.first_name }}
+                            {{ props.form?.last_name }}
                         </div>
                     </div>
                     <div class="result-content-group last-content">
                         <div class="title-content">Birthday</div>
                         <div class="filled-content">
-                            {{ props.accountInforForm?.year % 1000 }}/{{
-                                props.accountInforForm?.month
-                            }}/{{ props.accountInforForm?.day }}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Learners (kids) information -->
-                <div v-if="props.learnerInforForm">
-                    <div class="result-content" v-for="(item, index) in props.learnerInforForm.kids" :id="index">
-                        <div class="result-content-group first-content">
-                            <div class="title-content">Kid Nickname</div>
-                            <div class="filled-content">
-                                {{ item?.nickName }}
-                            </div>
-                        </div>
-                        <div class="result-content-group">
-                            <div class="title-content">Kid name</div>
-                            <div class="filled-content">
-                                {{ item?.name }}
-                            </div>
-                        </div>
-                        <div class="result-content-group">
-                            <div class="title-content">Birthday</div>
-                            <div class="filled-content">
-                                {{ item?.year % 1000 }}/{{
-                                    item?.month
-                                }}/{{ item?.day }}
-                            </div>
-                        </div>
-                        <div class="result-content-group last-content">
-                            <div class="title-content">Interest Category</div>
-                            <div class="filled-content">
-                                {{ item?.categories.map((category_id) => {
-                                    return $page.props.categories.find((category) => category.id == category_id)['name_' + $page.props.locale];
-                                }).join(',') }}
-                            </div>
+                            {{ props.form?.year % 1000 }}/{{
+                                props.form?.month
+                            }}/{{ props.form?.day }}
                         </div>
                     </div>
                 </div>

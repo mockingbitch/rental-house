@@ -237,7 +237,7 @@ const submitForm = () => {
                 <div>
                     <label for="Province">
                         {{ lang().label.information.account_info.province }}
-                        <i 
+                        <i
                             class="with-tooltip"
                             :data-tooltip-content="lang().label.information.account_info.province_tooltip"
                         >
@@ -263,8 +263,8 @@ const submitForm = () => {
                 <UlError :message="form.errors.province" />
                 <ul class="list-items">
                     <li class="item"
-                        :class="{ 
-                            checked: form.province.code === province.code, 
+                        :class="{
+                            checked: form.province.code === province.code,
                             'checked-items': form.province.code === province.code
                             }"
                         v-for="province in page.props.provinces"

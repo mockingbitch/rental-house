@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { useForm, usePage } from '@inertiajs/vue3'
 import Step2 from "./Step2.vue";
 import Step3 from "./Step3.vue";
 import StepConfirmInformation from "./StepConfirmInformation.vue";
@@ -10,9 +11,40 @@ const props = defineProps({
     user: Object,
 });
 
+const form = useForm({
+    avatar_preview: '',
+    avatar: '',
+    avatar_validation: '',
+    isUploadNewAvatar: false,
+    province:{},
+    district: {},
+    ward: {},
+    first_name: '',
+    last_name: '',
+    year: '',
+    month: '',
+    day: '',
+    birthday: '',
+    params: props.ziggy.query,
+    confirm: false,
+})
 let step = ref(2);
 
 const next = (data) => {
+    form.avatar_preview = data.avatar_preview;
+    form.avatar = data.avatar;
+    form.avatar_validation = data.avatar_validation;
+    form.isUploadNewAvatar = data.isUploadNewAvatar;
+    form.province = data.province;
+    form.district = data.district;
+    form.ward = data.ward;
+    form.first_name = data.first_name;
+    form.last_name = data.last_name;
+    form.year = data.year;
+    form.month = data.month;
+    form.day = data.day;
+    form.birthday = data.birthday;
+    form.confirm = data.confirm;
     step.value += 1;
 };
 const prev = () => {
@@ -103,6 +135,7 @@ const prev = () => {
                             :user="props.user"
                             @nextStep="next"
                             @prevStep="prev"
+                            :form="form"
                         />
                     </div>
                 </div>

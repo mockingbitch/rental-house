@@ -200,7 +200,7 @@ return [
             'title' => 'Sign up',
             'verification' => 'Verification',
             'account_info' => 'Account info',
-            'learner_info' => 'Learner info',
+            'learner_info' => 'Confirm info',
         ],
         'account_info' => [
             'first_name'  => 'First name',
