@@ -20,16 +20,32 @@ const backToPrevStep = () => {
     emit("prev-step");
 };
 const confirmInformation = () => {
-    form.confirm = true;
-    // form.post(route('learner.info'), {
-    //     preserveScroll: true,
-    //     onSuccess: (response) => {
-    //         emit('nextStep', form)
-    //     },
-    //     onError: (e) => {
-    //         console.log(e);
-    //     }
-    // });
+    const form = useForm({
+        avatar_preview: props.form.avatar_preview,
+        avatar: props.form.avatar,
+        avatar_validation: props.form.avatar_validation,
+        isUploadNewAvatar: props.form.isUploadNewAvatar,
+        province:props.form.province,
+        district: props.form.district,
+        ward: props.form.ward,
+        first_name: props.form.first_name,
+        last_name: props.form.last_name,
+        year: props.form.year,
+        month: props.form.month,
+        day: props.form.day,
+        birthday: props.form.birthday,
+        params: props.ziggy.query,
+        confirm: true
+    })
+    form.post(route('account.info'), {
+        preserveScroll: true,
+        onSuccess: (response) => {
+            window.location.href = "/setup-successfully";
+        },
+        onError: (e) => {
+            console.log(e);
+        }
+    });
 }
 </script>
 
@@ -87,7 +103,7 @@ const confirmInformation = () => {
                     <div class="result-content-group last-content">
                         <div class="title-content">Birthday</div>
                         <div class="filled-content">
-                            {{ props.form?.year % 1000 }}/{{
+                            {{ props.form?.year }}/{{
                                 props.form?.month
                             }}/{{ props.form?.day }}
                         </div>
@@ -107,7 +123,7 @@ const confirmInformation = () => {
                             :label="'申請する'"
                             :submit-button="true"
                             class="create__request-button-right"
-                            @click="handleConfirmUpdate"
+                            @click="confirmInformation"
                         />
                     </div>
                 </div>

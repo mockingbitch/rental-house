@@ -48,6 +48,12 @@ return [
 			'button_input_review'    => 'レビューを回答する',
 			'button_show_review'    => '回答したレビューを見る',
         ],
+        'update' => [
+            'setup_success' => 'Setup Information Successfully',
+            'contact_us'    => 'Contact us',
+            'here'          => 'here',
+            'copy_right'    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
+        ]
     ],
     'kid' => [
         'field' => [

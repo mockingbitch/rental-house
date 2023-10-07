@@ -8,6 +8,7 @@ use App\Constants\UserConstant;
 use App\Http\Requests\UserInfoRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\FileService;
+use App\Services\MailService;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -15,10 +16,13 @@ class UserController extends Controller
 {
     /**
      * @param UserRepositoryInterface $userRepository
+     * @param FileService $fileService
+     * @param MailService $mailService
      */
     public function __construct(
         public UserRepositoryInterface $userRepository,
         public FileService $fileService,
+        public MailService $mailService
         )
     {
 
@@ -57,18 +61,35 @@ class UserController extends Controller
                     $data['params']['token']
                 );
             if ($request->confirm) :
-                $data[
-                    UserConstant::COL_AVATAR
-                    ] = $this->fileService->storeFile(
-                        $request->avatar,
-                        UserConstant::STORAGE_LINK_AVATAR
-                    );
-                $user->update($data);
+                if (gettype($data[UserConstant::COL_AVATAR]) !== 'string') :
+                    $data[
+                        UserConstant::COL_AVATAR
+                        ] = $this->fileService->storeFile(
+                            $request->avatar,
+                            UserConstant::STORAGE_LINK_AVATAR
+                        );
+                endif;
+                
+                $result = $user->update($data);
+                if ($result) :
+                    $this->mailService->sendMailSetupSuccessfully($user, $data);
+                    auth()->loginUsingId($user->id);
+                endif;
             endif;
         } catch (\Throwable $th) {
             throw ValidationException::withMessages([
                 'error' => 'Failed to update',
             ]);
         }
+    }
+
+    /**
+     * @Route get("/setup-successfully" name="user.setup.success")
+     *
+     * @return Response
+     */
+    public function setupUserSuccessfully()
+    {
+        return Inertia::render('Auth/AccountInformation/SetupSuccessfully');
     }
 }

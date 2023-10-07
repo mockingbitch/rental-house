@@ -160,7 +160,6 @@ const submitForm = () => {
             }
         },
     })
-    console.log(form);
 };
 </script>
 

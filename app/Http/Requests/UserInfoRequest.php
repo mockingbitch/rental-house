@@ -23,18 +23,24 @@ class UserInfoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'avatar'        => 'required|' . ($this->isUploadNewAvatar ? 'mimes:jpeg,png,jpg,gif,bmp' : 'string'),
-            'province'      => 'required',
-            'district'      => 'required',
-            'ward'          => 'required',
-            'first_name'    => 'required|max:50',
-            'last_name'     => 'required|max:50',
-            'year'          => 'required',
-            'month'         => 'required',
-            'day'           => 'required',
-            'birthday'      => 'required'
-        ];
+        $data = $this->all();
+        if(!$data['confirm']) :
+
+            return [
+                'avatar'        => 'required|' . ($this->isUploadNewAvatar ? 'mimes:jpeg,png,jpg,gif,bmp' : 'string'),
+                'province'      => 'required',
+                'district'      => 'required',
+                'ward'          => 'required',
+                'first_name'    => 'required|max:50',
+                'last_name'     => 'required|max:50',
+                'year'          => 'required',
+                'month'         => 'required',
+                'day'           => 'required',
+                'birthday'      => 'required'
+            ];
+        endif;
+
+            return [];
     }
 
     /**
