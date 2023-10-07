@@ -31,8 +31,13 @@ html {
 }
 
 .header-category_item_title {
-    font-size: 12px;
+    font-size: 16px;
     white-space: nowrap;
     width: 100%;
     text-align: center;
+}
+
+.text-error {
+    color: #E71A41;
+	font-size: 14px;
 }

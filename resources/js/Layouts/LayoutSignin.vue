@@ -1,7 +1,6 @@
 <script setup>
-import HeaderSignin from '@/Components/HeaderSignin.vue';
-import Footer from '@/Components/Footer.vue';
-
+import HeaderSignin from '@/Components/Header/HeaderSignin.vue';
+import Footer from '@/Components/Footer/Footer.vue';
 </script>
 
 <template>
@@ -9,4 +8,9 @@ import Footer from '@/Components/Footer.vue';
     <main>
         <slot />
     </main>
+    <Footer />
 </template>
+
+<style lang='scss' scoped>
+@import './layoutsignin';
+</style>

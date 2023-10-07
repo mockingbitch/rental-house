@@ -1,13 +1,13 @@
 @component('mail::message')
-<p>{{ $data['first_name'] }}様</p>
-<p>いつもお世話になっております。</p>
-<p>この度はアカウントの登録ありがとうございました。</p>
-<p>以下のURLからアカウント登録内容の確認、変更が可能です。</p>
+<p>{{ $data['first_name'] }}</p>
+<p>Thank you always.</p>
+<p>Thank you for registering your account.</p>
+<p>You can check and change your account registration details from the URL below.</p>
 @component('mail::button', ['url' => $data['url']])
-アカウント登録 URL
+Account registration URL
 @endcomponent
 <p>========== </p>
-<p>*本メールは、自動的に配信しています。また送信専用のため、直接ご返信いただいてもお問い合わせにはお答えできませんので、あらかじめご了承ください。</p>
+<p>*This email is automatically delivered. Also, please note that we cannot respond to your inquiry even if you reply directly, as it is for sending only.</p>
 <p> ==========</p>
 
 {{ config('app.name') }}

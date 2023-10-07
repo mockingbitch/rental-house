@@ -1,5 +1,5 @@
 <x-mail::message>
-# DotTrees
+# Rental House
 
 Reset password notification
 

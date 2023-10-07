@@ -11,8 +11,9 @@ class FileService
      */
     public function storeFile($image, $path = '') : String
     {
+        $domain = request()->getSchemeAndHttpHost();
         $result = $image->store($path);
         
-        return str_replace('public/', 'storage/', $result);
+        return $domain . '/' . str_replace('public/', 'storage/', $result);
     }
 }

@@ -1,0 +1,89 @@
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .form__wrap-item {
+        .intersest-items {
+            li {
+                cursor: pointer;
+            }
+        }
+
+        .dp__input {
+            padding-left: 40px;
+        }
+
+        .error {
+            color: red;
+            
+            label {
+                color: red;
+            }
+
+            input {
+                border-color: red; 
+            }
+
+            .note {
+                color: #7F7F7F; 
+            }
+
+            ::-webkit-input-placeholder {
+                /* Edge */
+                color: red; 
+            }
+
+            :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: red; 
+            }
+
+            ::placeholder {
+                color: red; 
+            }
+
+            .select__wrapper .select__input-wrapper {
+                border-color: red; 
+            }
+        }
+    }
+
+    .form__wrap-item.error {
+        .select-btn {
+            border-color: red;
+        }
+
+        span {
+            color: #7F7F7F;
+        }
+    }
+
+    .tripple-select {
+        gap: 8px;
+        .form-wrap-tripple {
+            flex: 1;
+        }
+    }
+
+    .skip-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 16px; 
+        /* line 8, scss/imports/pages/_signinStep.scss */
+        a {
+            font-size: 16px;
+            color: #5392F9 ;
+            display: flex;
+            align-items: center; 
+        }
+        /* line 13, scss/imports/pages/_signinStep.scss */
+        img {
+            height: 22px; 
+            cursor: pointer;
+        }
+    }
+}

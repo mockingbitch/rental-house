@@ -1,0 +1,95 @@
+<script setup>
+
+import { useForm } from '@inertiajs/vue3';
+import UlError from '@/Components/UlError.vue';
+import PError from '@/Components/PError.vue'
+import LayoutSignin from '../../Layouts/LayoutSignin.vue';
+import { ref } from 'vue';
+
+const form = useForm({
+    email: '',
+    password: '',
+})
+
+const submit = () => {
+    form.post(route('register'), {
+        onFinish: () => form.reset('password')
+    })
+}
+
+defineProps({
+
+});
+
+const showPassword = ref(false);
+</script>
+
+<template>
+    <LayoutSignin>
+        <div class="signin2">
+            <div class="container">
+                <form class="form" @submit.prevent="submit">
+                    <div class="form__wrap">
+                        <h2 class="register-title title">
+                            {{ lang().label.register.title }}
+                        </h2>
+                        <div class="form__wrap-item" :class="{ error: form.errors.email }">
+                            <label for="Email">{{ lang().label.user.field.adult_email }}</label>
+                            <input type="text"
+                                v-model="form.email"
+                                name="email"
+                                :placeholder="lang().label.user.field.adult_email"
+                                class="register-input"
+                            >
+                            <UlError :message="form.errors.email" />
+                            <ul class="note">
+                                <li>※{{ lang().label.register.note_email }}</li>
+                            </ul>
+                        </div>
+                        <div class="form__wrap-item" :class="{ error: form.errors.password }">
+                            <label for="Password">{{ lang().label.user.field.password }}</label>
+                            <div class="inputWrap">
+                                <input :type="showPassword ? 'text' : 'password'"
+                                    v-model="form.password"
+                                    name="password"
+                                    :placeholder="lang().label.user.field.password"
+                                    class="register-input"
+                                >
+                                <div @click="showPassword = !showPassword">
+                                    <i v-if="showPassword" class="icon" style="{ top: 30% }">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="16" viewBox="0 0 23 16" fill="none">
+                                            <path d="M11.4306 0.915283C6.52031 0.915283 2.3269 3.9695 0.62793 8.28076C2.3269 12.592 6.52031 15.6462 11.4306 15.6462C16.3409 15.6462 20.5344 12.592 22.2333 8.28076C20.5344 3.9695 16.3409 0.915283 11.4306 0.915283ZM11.4306 13.1911C8.72013 13.1911 6.52031 10.9913 6.52031 8.28076C6.52031 5.57026 8.72013 3.37044 11.4306 3.37044C14.1411 3.37044 16.3409 5.57026 16.3409 8.28076C16.3409 10.9913 14.1411 13.1911 11.4306 13.1911ZM11.4306 5.33457C9.8004 5.33457 8.48444 6.65053 8.48444 8.28076C8.48444 9.91098 9.8004 11.2269 11.4306 11.2269C13.0609 11.2269 14.3768 9.91098 14.3768 8.28076C14.3768 6.65053 13.0609 5.33457 11.4306 5.33457Z" fill="#B1B1B1"/>
+                                        </svg>
+                                    </i>
+                                    <i v-else class="icon" style="{ top: 30% }">
+                                        <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.8129 13.6719C17.7416 13.7126 17.6628 13.7389 17.5813 13.7491C17.4998 13.7594 17.417 13.7534 17.3378 13.7317C17.2585 13.7099 17.1844 13.6727 17.1195 13.6223C17.0547 13.5718 17.0004 13.509 16.9598 13.4376L15.4754 10.8438C14.6125 11.4273 13.6605 11.8669 12.6567 12.1454L13.1153 14.8969C13.1288 14.9779 13.1263 15.0608 13.1077 15.1408C13.0892 15.2208 13.0551 15.2964 13.0074 15.3632C12.9596 15.4301 12.8992 15.4868 12.8295 15.5303C12.7598 15.5737 12.6822 15.603 12.6012 15.6165C12.5679 15.6219 12.5342 15.6248 12.5004 15.6251C12.3526 15.6248 12.2096 15.5722 12.0969 15.4765C11.9842 15.3808 11.909 15.2483 11.8848 15.1024L11.434 12.4008C10.4834 12.5331 9.51904 12.5331 8.56842 12.4008L8.11764 15.1024C8.09338 15.2485 8.01801 15.3813 7.90498 15.477C7.79194 15.5727 7.64857 15.6252 7.50045 15.6251C7.4659 15.6249 7.43142 15.622 7.39732 15.6165C7.31631 15.603 7.23874 15.5737 7.16905 15.5303C7.09936 15.4868 7.03891 15.4301 6.99117 15.3632C6.94343 15.2964 6.90933 15.2208 6.89081 15.1408C6.8723 15.0608 6.86973 14.9779 6.88326 14.8969L7.3442 12.1454C6.34078 11.866 5.38936 11.4256 4.52701 10.8415L3.04732 13.4376C2.96444 13.582 2.82759 13.6876 2.66686 13.7311C2.50614 13.7746 2.33471 13.7525 2.19029 13.6696C2.04587 13.5867 1.94029 13.4499 1.89678 13.2891C1.85327 13.1284 1.87538 12.957 1.95826 12.8126L3.52076 10.0782C2.97193 9.60402 2.46726 9.08105 2.01295 8.51568C1.95629 8.45242 1.91312 8.37828 1.88607 8.29778C1.85902 8.21728 1.84866 8.13211 1.85562 8.04748C1.86258 7.96284 1.88671 7.88051 1.92655 7.80551C1.96639 7.73052 2.02109 7.66442 2.08732 7.61127C2.15355 7.55811 2.22992 7.51901 2.31176 7.49636C2.3936 7.4737 2.4792 7.46796 2.56334 7.47948C2.64748 7.49101 2.72838 7.51956 2.80112 7.56339C2.87385 7.60723 2.93689 7.66542 2.98639 7.73443C4.28326 9.33912 6.55201 11.2501 10.0004 11.2501C13.4489 11.2501 15.7176 9.33677 17.0145 7.73443C17.0634 7.66401 17.1263 7.60441 17.1993 7.55934C17.2722 7.51428 17.3537 7.4847 17.4386 7.47246C17.5234 7.46022 17.6099 7.46558 17.6926 7.4882C17.7753 7.51082 17.8525 7.55022 17.9194 7.60394C17.9862 7.65766 18.0412 7.72457 18.0811 7.80049C18.121 7.87641 18.1448 7.95972 18.1511 8.04524C18.1574 8.13075 18.146 8.21665 18.1177 8.29759C18.0893 8.37852 18.0446 8.45276 17.9864 8.51568C17.5321 9.08105 17.0274 9.60402 16.4786 10.0782L18.0411 12.8126C18.083 12.8838 18.1104 12.9627 18.1216 13.0447C18.1329 13.1266 18.1277 13.21 18.1065 13.2899C18.0853 13.3698 18.0484 13.4448 17.998 13.5103C17.9476 13.5759 17.8847 13.6308 17.8129 13.6719Z" fill="#B1B1B1"/>
+                                        </svg>
+                                    </i>
+                                </div>
+                            </div>
+                            <UlError :message="form.errors.password" />
+
+                            <ul class="note">
+                                <li>※ {{ lang().label.register.hint_password }}</li>
+                                <li>※ {{ lang().label.register.note_password }}</li>
+                            </ul>
+                        </div>
+                        <PError :message="form.errors.error_message" />
+                        <button type="submit" class="mainButton bg-green register-btn" href="#">
+                            <p>{{ lang().label.register.registration_email }}</p>
+                        </button>
+                        <div class="policy">
+                            <span>{{ lang().label.register.RentalHouse }}
+                                <a href="#">{{ lang().label.register.term_of_service }}</a>
+                                ・<a href="#">{{ lang().label.register.privacy_policy }}</a>
+                                ・<a href="#">{{ lang().label.register.external_service }}</a>
+                                {{ lang().label.register.term }}
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </LayoutSignin>
+</template>

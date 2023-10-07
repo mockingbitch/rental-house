@@ -4,7 +4,6 @@ return [
     'user' => [
         'field'   => [
             'email'                 => 'Email',
-            'adult_email'           => 'Adult Email',
             'password'              => 'Password',
             'password_confirmation' => 'Confirm Password',
             'firstName'             => 'First Name',
@@ -49,6 +48,12 @@ return [
 			'button_input_review'    => 'レビューを回答する',
 			'button_show_review'    => '回答したレビューを見る',
         ],
+        'update' => [
+            'setup_success' => 'Setup Information Successfully',
+            'contact_us'    => 'Contact us',
+            'here'          => 'here',
+            'copy_right'    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
+        ]
     ],
     'kid' => [
         'field' => [
@@ -72,14 +77,15 @@ return [
         'external_service'      => 'External service',
         'term'                  => 'Please agree to the consent items regarding ID linkage with and proceed to the next step.',
         'registration_email'    => 'New registration with email address',
-        'dottree'               => "Dottree's",
+        'RentalHouse'               => "RentalHouse's",
     ],
     'register_method' => [
         'or'                    => 'or',
         'title'                 => 'Sign Up',
         'for_users'             => 'For users',
         'login_here'            => 'Login here',
-        'brief_greeting'        => 'A brief greeting or a description of a new registration request',
+        'short_brief'           => 'Please choose method sign up method below',
+        'brief_greeting'        => 'To access full articles on rentalhouse.com and personal account details.',
         'registration_email'    => 'New registration with email address',
         'registration_google'   => 'Register from Google',
     ],
@@ -87,7 +93,8 @@ return [
         'here'              => 'here',
         'login'             => 'Login',
         'for_user'          => 'For users',
-        'brief_greeting'    => 'A brief greeting or a description of a new registration request',
+        'short_brief'       => 'Please choose sign in method below',
+        'brief_greeting'    => 'To access full articles on rentalhouse.com and personal account details.',
         'login_with_email'  => 'Login with your email address',
         'login_with_google' => 'Login with Google',
         'forgot_password'   => 'Forgot your password?',
@@ -97,7 +104,7 @@ return [
     'register_success' => [
         'here'                      => 'here',
         'contact_us'                => 'Contact us',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'                => 'Authentication URL expires in :attribute minutes.',
         'verify_email'              => 'Please verify your email!',
         'click_the_url'             => 'Click the URL sent to your email',
@@ -115,7 +122,7 @@ return [
     ],
     'forgot_password_pending' => [
         'here'                  => 'here',
-        'copy_right'            => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'            => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'expires_in'            => 'Authentication URL expires in :attribute minutes.',
         'contact_us'            => 'Contact us',
         'please_reset'          => 'Please reset.',
@@ -136,10 +143,10 @@ return [
     ],
     'reset_password_success' => [
         'here'                      => 'here',
-        'we_hope'                   => 'We hope you continue to enjoy Dottree.',
+        'we_hope'                   => 'We hope you continue to enjoy RentalHouse.',
         'contact_us'                => 'Contact us',
         'return_top'                => 'Return to TOP page',
-        'copy_right'                => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                => 'Copyright © RentalHouse, Inc. All Rights Reserved',
         'return_login'              => 'Return to login page',
         'reset_password'            => 'Resetting a password',
         'password_has_been_reset'   => 'Password has been reset.',
@@ -180,7 +187,7 @@ return [
         'to_dashboard'                  => 'Return to Dashboard',
         'contact_us'                    => 'Contact us',
         'here'                          => 'here',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     "create_lesson_failed" => [
         'notification'                  => 'Registration of lesson failed.',
@@ -192,25 +199,26 @@ return [
         'to_dashboard'                  => 'Return to Dashboard (Save Draft)',
         'contact_us'                    => 'Contact us',
         'here'                          => 'here',
-        'copy_right'                    => 'Copyright © dottree, Inc. All Rights Reserved',
+        'copy_right'                    => 'Copyright © RentalHouse, Inc. All Rights Reserved',
     ],
     'information' => [
         'index' => [
             'title' => 'Sign up',
             'verification' => 'Verification',
             'account_info' => 'Account info',
-            'learner_info' => 'Learner info',
+            'learner_info' => 'Confirm info',
         ],
         'account_info' => [
-            'adult_first_name'  => 'Adult first name',
-            'adult_last_name'   => 'Adult last name',
-            'adult_nick_name'   => 'Adult Nickname',
+            'first_name'  => 'First name',
+            'last_name'   => 'Last name',
             'birthday'          => 'Birthday',
-            'country'           => 'Residential Country',
-            'city'              => 'City',
+            'province'          => 'Province',
+            'district'          => 'District',
+            'ward'              => 'Ward',
             'next'              => 'Next',
-            'city_tooltip'      => "Please select the city where you live.",
-            'country_tooltip'   => "Please select the country you live in.",
+            'province_tooltip'  => 'Please select the province where you live.',
+            'district_tooltip'  => 'Please select the distric where you live.',
+            'ward_tooltip'      => 'Please select the ward you live in.',
             'note_nick_name'    => 'After completing the temporary account creation, you can change your email address.'
         ],
         'learner_info' => [
@@ -233,7 +241,7 @@ return [
             'alternatively'     => 'Alternatively, it will guide you to the class search.',
             'register_teacher'  => 'Register as a teacher',
             'go_to_dashboard'   => 'Go to dashboard',
-            'go_to_top_page'    => 'Go to top page of Dottree',
+            'go_to_top_page'    => 'Go to top page of RentalHouse',
             'contact_us'        => 'Contact us',
         ]
     ],
@@ -516,4 +524,21 @@ return [
         'review' => 'Review',
         'price' => 'Price',
     ],
+    'category' => [
+        'field' => [
+            'name_vi' => 'Name_vi',
+            'name_en' => 'Name_en',
+            'description_vi' => 'Description_vi',
+            'description_en' => 'Description_en',
+            'icon' => 'Icon'
+        ]
+    ],
+    'tag' => [
+        'field' => [
+            'name_vi' => 'Name_vi',
+            'name_en' => 'Name_en',
+            'description_vi' => 'Description_vi',
+            'description_en' => 'Description_en',
+        ]
+    ]
 ];

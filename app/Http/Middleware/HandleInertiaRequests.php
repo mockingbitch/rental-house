@@ -51,6 +51,9 @@ class HandleInertiaRequests extends Middleware
             ],
             'auth' => [
                 'user' => $request->user(),
+                'role' => $request->user()
+                    ? $request->user()->getRoleNames()[0]
+                    : '',
             ],
             'app' => [
                 'name' => config('app.name'),
@@ -83,30 +86,24 @@ class HandleInertiaRequests extends Middleware
                     'query'=>$request->query(),
                 ]);
             },
-            'cities' => City::all(),
-            'countries' => Country::all(),
-            'categories' => Category::all(),
-            'verify_teacher' => [
-                'common_user' => UserConstants::COMMON_USER,
-                'request_verifying' => UserConstants::REQUEST_VERIFYING,
-                'request_verified' => UserConstants::REQUEST_VERIFIED,
-                'request_denied' => UserConstants::REQUEST_DENIED,
-            ],
-            'user_role' => [
-                'admin' => UserConstants::ROLE_ADMIN,
-                'teacher' => UserConstants::ROLE_TEACHER,
-                'parent' => UserConstants::ROLE_PARENT,
-            ],
-            'user_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
-                    ->notifications
-                    ->sortBy('created_at')
-                    ->where('type', 'App\Notifications\UserNotification')
-                    ->all() : [],
-            'teacher_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
-                    ->notifications
-                    ->sortBy('created_at')
-                    ->where('type', 'App\Notifications\TeacherNotification')
-                    ->all() : [],
+            'provinces' => \App\Models\Address\Province::all(),
+            'districts' => \App\Models\Address\District::all(),
+            'wards' => \App\Models\Address\Ward::all(),
+            // 'user_role' => [
+            //     'admin' => UserConstants::ROLE_ADMIN,
+            //     'teacher' => UserConstants::ROLE_TEACHER,
+            //     'parent' => UserConstants::ROLE_PARENT,
+            // ],
+            // 'user_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
+            //         ->notifications
+            //         ->sortBy('created_at')
+            //         ->where('type', 'App\Notifications\UserNotification')
+            //         ->all() : [],
+            // 'teacher_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
+            //         ->notifications
+            //         ->sortBy('created_at')
+            //         ->where('type', 'App\Notifications\TeacherNotification')
+            //         ->all() : [],
         ]);
     }
 }

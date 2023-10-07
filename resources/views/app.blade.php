@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>DotTrees</title>
-    <meta name="title" content="" />
-    <meta name="description" content="" />
+    <title>Rental House</title>
+    <link rel="icon" type="image/svg" sizes="64x64" href="{{ asset('/img/rental-house.svg') }}">
+    <meta name="title" content="Rental house" />
+    <meta name="description" content="rental house" />
     @csrf
 
     <!-- Scripts -->
@@ -14,9 +15,8 @@
     @vite('resources/js/bootstrap.js')
     @vite('resources/js/app.js') @inertiaHead
     @inertiaHead
-    <script src="https://js.stripe.com/v3/"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    {{-- <script src="https://js.stripe.com/v3/"></script> --}}
+    <link rel="stylesheet" href="{{ asset('/css/fontawesome.min.css') }}"
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('scss/style.css.map') }}">

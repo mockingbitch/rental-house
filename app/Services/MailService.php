@@ -6,6 +6,7 @@ use App\Mail\SendMailRegister;
 use App\Mail\SendMailResetPassword;
 use App\Mail\InfoRegistration;
 use App\Mail\PaymentApplyComplete;
+use App\Mail\SendMailSetupUser;
 use Mail;
 
 class MailService
@@ -29,5 +30,9 @@ class MailService
     public function sendMailPaymentApplyComplete(object $user, array $data = [])
     {
         Mail::to($user->email)->send(new PaymentApplyComplete($user, $data));
+    }
+    public function sendMailSetupSuccessfully(object $user, array $data = [])
+    {
+        Mail::to($user->email)->send(new SendMailSetupUser($user, $data));
     }
 }

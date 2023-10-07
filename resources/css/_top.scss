@@ -66,7 +66,7 @@
 
                 .rating {
                     span {
-                        font-size: 12px;
+                        font-size: 16px;
                     }
                 }
 
@@ -75,7 +75,7 @@
                 }
 
                 .price, .description, .age, .lesson-time {
-                    font-size: 12px;
+                    font-size: 16px;
                 }
         
                 .price, .age, .lesson-time {
@@ -106,5 +106,5 @@
     border-radius: 3px;
 }
 :deep(.swiper-pagination-bullet-active){
-    background-color: #003E49;
+    background-color: #5392F9 ;
 }
