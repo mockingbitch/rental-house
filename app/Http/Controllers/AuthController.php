@@ -163,6 +163,7 @@ class AuthController extends Controller
                 $user = $this->userRepository->create($data);
                 if ($user) :
                     $this->mailService->sendMail($user, $data);
+                    $user->assignRole('Lessee');
                     // $this->notificationService->sendNotification(
                     //     $user,
                     //     [
@@ -260,23 +261,24 @@ class AuthController extends Controller
         ];
 
         try {
-            $user = DB::transaction(function () use ($data) {
+            DB::transaction(function () use ($data) {
                 $user = $this->userRepository->create($data);
-                $this->mailService->sendMail($user, $data);
+                if ($user) :
+                    $user->assignRole('Lessee');
+                    $this->mailService->sendMail($user, $data);
+                    // $this->notificationService->sendNotification(
+                    //     $user,
+                    //     [
+                    //         'title'     => '新規のアカウント登録ありがとうございます。',
+                    //         'target'    => route('top'),
+                    //     ],
+                    //     NotificationConstants::BROADCAST_USER,
+                    // );
+                endif;
 
                 return $user;
             });
             DB::commit();
-            // if ($user) :
-            //     $this->notificationService->sendNotification(
-            //         $user,
-            //         [
-            //             'title'     => '新規のアカウント登録ありがとうございます。',
-            //             'target'    => route('top'),
-            //         ],
-            //         NotificationConstants::BROADCAST_USER,
-            //     );
-            // endif;
 
             return redirect()
                 ->route('register.success')

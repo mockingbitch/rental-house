@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Rental House</title>
-    <meta name="title" content="" />
-    <meta name="description" content="" />
+    <link rel="icon" type="image/svg" sizes="64x64" href="{{ asset('/img/rental-house.svg') }}">
+    <meta name="title" content="Rental house" />
+    <meta name="description" content="rental house" />
     @csrf
 
     <!-- Scripts -->

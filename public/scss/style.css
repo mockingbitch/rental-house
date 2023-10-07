@@ -3506,7 +3506,7 @@ header .navMobile__wrap .logo {
     /* margin-right: 75px; */
 }
 .headerTop .navPc__left .logo img {
-    width: 144px;
+    /* width: 144px; */
 }
 /* line 17, scss/imports/core/_headerTop.scss */
 .headerTop .navPc__left ul {

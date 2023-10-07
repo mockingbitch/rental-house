@@ -98,7 +98,7 @@ const isSearchPage = computed(() => {
                         :user="page.props.auth.user"
                         :isDashBoardTeacher="false"
                     />
-                    <Humberger :humberger-color="'black'" />
+                    <Humberger :hamburger-color="'white'" />
                 </div>
                 <div v-if="!isSearchPage" class="lineFull"></div>
             </div>

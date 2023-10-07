@@ -1,9 +1,9 @@
 <script setup>
 import { usePage, Link } from "@inertiajs/vue3";
 import { ref, computed, defineProps, defineEmits } from "vue";
-import Humberger from "@/Components/Humberger/Humberger.vue";
-import MultiLanguage from "./MultiLanguage.vue";
-import Notification from "./Notification.vue";
+import Hamburger from "@/Components/Hamburger/Hamburger.vue";
+// import MultiLanguage from "./MultiLanguage.vue";
+// import Notification from "./Notification.vue";
 
 const props = defineProps({
     isReviewForm: Boolean,
@@ -14,7 +14,7 @@ const props = defineProps({
 });
 const page = usePage();
 const notifications = computed(() =>
-    page.props?.auth?.user?.role == 2
+    page.props?.auth?.user?.role == "Lessor"
         ? page.props?.teacher_notifications
         : page.props?.user_notifications
 );
@@ -40,7 +40,7 @@ const isSearchPage = computed(() => {
                         <div class="logo">
                             <i
                                 ><img
-                                    src="/img/logo/RentalHouses.svg"
+                                    src="/img/logo/RentalHouse.svg"
                                     alt="RentalHouses"
                             /></i>
                         </div>
@@ -55,13 +55,13 @@ const isSearchPage = computed(() => {
                         <input
                             class="pc searchInput"
                             type="text"
-                            placeholder="日付、年齢、料金、フリーキーワードで検索"
+                            placeholder="Search here ..."
                             readonly
                         />
                         <textarea
                             class="mobile searchInput"
                             type="text"
-                            placeholder="日付、年齢、料金、&#13;&#10;フリーキーワードで検索"
+                            placeholder="Search here ..."
                         ></textarea>
                     </div>
                     <button class="buttonImage right" @click="toggleSearch">
@@ -73,32 +73,35 @@ const isSearchPage = computed(() => {
                         v-if="!$page.props.auth.user"
                         :href="route('login.method')"
                         class="buttonHeader"
-                        >Sign in</Link
                     >
+                        Sign in
+                    </Link>
                     <Link
                         v-if="!$page.props.auth.user"
                         :href="route('register.method')"
                         class="buttonHeader green"
-                        >Đăng ký</Link
                     >
+                        Join
+                    </Link>
                     <Link
                         v-if="$page.props.auth.user && !props.isReviewForm"
                         :href="route('logout')"
                         class="buttonHeader"
-                        >Logout</Link
                     >
+                        Logout
+                    </Link>
                     <!-- <button class="buttonImage">
                         <img src="/img/icon/List.svg" alt="" />
                     </button> -->
                     <!-- multi language -->
-                    <MultiLanguage />
-                    <Notification
+                    <!-- <MultiLanguage /> -->
+                    <!-- <Notification
                         v-if="page.props.auth.user"
                         :notifications="notifications"
                         :user="page.props.auth.user"
                         :isDashBoardTeacher="false"
-                    />
-                    <Humberger :humberger-color="'black'" />
+                    /> -->
+                    <Hamburger :hamburger-color="'white'" />
                 </div>
                 <div v-if="!isSearchPage" class="lineFull"></div>
             </div>
@@ -107,11 +110,5 @@ const isSearchPage = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "./header.scss";
-.search__wrap {
-    cursor: pointer;
-}
-.searchInput {
-    cursor: pointer;
-}
+@import "./header";
 </style>
