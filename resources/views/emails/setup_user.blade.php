@@ -2,7 +2,7 @@
 # Rental House
 <p>Thank you always. Thank you for setting up your information.</p>
 <p>Please visit the dashboard using the URL below.</p>
-@component('mail::button', ['url' => route('admin.dashboard')])
+@component('mail::button', ['url' => route('top')])
 Dashboard
 @endcomponent
 <p>========== </p>
