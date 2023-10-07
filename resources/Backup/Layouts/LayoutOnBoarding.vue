@@ -53,9 +53,8 @@ const handleClick = () => {
                     alt=""
                     class="hide-icon"
                 />
-                <Humberger :humberger-color="'white'" />
+                <Humberger :hamburger-color="'white'" />
                 <!-- <img src="/img/icon/TeacherDashboard/dot.svg" alt="" /> -->
-
             </div>
             <div
                 class="navDashBoardCenter d-flex justify-content-center align-items-center"

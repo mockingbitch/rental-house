@@ -35,42 +35,42 @@ export default defineComponent({
                 {
                     id: 0,
                     name: "banner-1",
-                    image: "https://wallpapers.com/images/featured/beautiful-house-background-x1yu28g8twzle26l.jpg",
+                    image: "/img/banner-1.jpeg",
                 },
                 {
                     id: 1,
                     name: "banner-2",
-                    image: "https://wallpapers.com/images/featured/beautiful-house-background-x1yu28g8twzle26l.jpg",
+                    image: "/img/banner-1.jpeg",
                 },
                 { 
                     id: 2,
                     name: "banner-3",
-                    image: "https://wallpapers.com/images/featured/beautiful-house-background-x1yu28g8twzle26l.jpg" 
+                    image: "/img/banner-1.jpeg" 
                 },
                 { 
                     id: 3,
                     name: "banner-4",
-                    image: "https://wallpapers.com/images/featured/beautiful-house-background-x1yu28g8twzle26l.jpg"
+                    image: "/img/banner-1.jpeg"
                 },
                 {
                     id: 4,
                     name: "banner-5",
-                    image: "https://wallpapers.com/images/featured/beautiful-house-background-x1yu28g8twzle26l.jpg",
+                    image: "/img/banner-1.jpeg",
                 },
                 {
                     id: 5,
                     name: "banner-6",
-                    image: "img/banner-3.png",
+                    image: "/img/banner-1.jpeg",
                 },
                 {
                     id: 6,
                     name: "banner-6",
-                    image: "img/banner-2.png",
+                    image: "/img/banner-1.jpeg",
                 },
                 {
                     id: 7,
                     name: "banner-6",
-                    image: "img/banner-1.png",
+                    image: "/img/banner-1.jpeg",
                 },
             ],
             imagesLoaded: 0,

@@ -26,7 +26,7 @@ const notifications = computed(() => page.props?.teacher_notifications);
                     :user="page.props.auth.user"
                     :isDashBoardTeacher="true"
                 />
-                <Humberger :humberger-color="'white'" />
+                <Humberger :hamburger-color="'white'" />
             </div>
         </div>
     </div>

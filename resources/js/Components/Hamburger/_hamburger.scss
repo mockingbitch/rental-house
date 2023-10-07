@@ -1,16 +1,22 @@
 #sidemenu {
     position: relative;
+	width: 30px;
+    height: 30px;
+
+	:deep(.select-language-item-text) {
+        transform: translate(90%, -10%);
+    }
 
 	nav {
-		width: 150px;
-        max-height: 250px;
+		width: 375px;
 		position: absolute;
 		top: calc(100% + 25px);
 		right: 6px;
 		z-index: 99;
         background-color: #FFF;
-        border:1px solid #000 ;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+        border: none;
+		border-radius: 8px;
+		box-shadow: 0px -0.30914px 2.23268px 0px rgba(0, 0, 0, 0.04), 0px -0.78184px 5.64662px 0px rgba(0, 0, 0, 0.06), 0px -1.59488px 11.51857px 0px rgba(0, 0, 0, 0.07), 0px -3.28515px 23.72607px 0px rgba(0, 0, 0, 0.09), 0px -9px 65px 0px rgba(0, 0, 0, 0.13);
 	}
 
 	.sidemenu {
@@ -25,6 +31,8 @@
 			appearance: none;
 			cursor: pointer;
 			outline: none;
+			// width: 28px;
+			// height: 28px;
 
 			span {
 				display: block;
@@ -115,8 +123,6 @@
 		background-color: rgba(0, 0, 0, 0);
 	}
 }
-
-
 .translateX-enter-active {
     transition: all 0.3s ease-out;
 }

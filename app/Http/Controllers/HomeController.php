@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
-  
+
     /**
      * @Route get("/", name="top")
      *
@@ -20,6 +20,23 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('Top');
+        $listHouse = [];
+        $house = [
+            'cover_image' => 'https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg',
+            'title' => 'Vjpro luxury',
+            'lessor' => [
+                'first_name' => 'Phong',
+                'last_name' => 'Trần',
+            ],
+            'price' => 1600000,
+            'min_capacity' => 1,
+            'max_capacity' => 5,
+        ];
+        $objHouse = (object) $house;
+        $listHouse[] = $objHouse;
+
+        return Inertia::render('Client/Top', [
+            'houses' => $listHouse,
+        ]);
     }
 }

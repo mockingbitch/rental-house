@@ -81,7 +81,9 @@ const isRouteActive = (routeName) => {
                                 v-bind:class="{ active: navOpen }"
                                 v-on:click="navOpen = !navOpen"
                             >
-                                <i><img src="/img/icon/account.svg" alt="" /></i>
+                                <i
+                                    ><img src="/img/icon/account.svg" alt=""
+                                /></i>
                                 <p>アカウント</p>
                             </li>
                         </Link>
@@ -369,7 +371,7 @@ const isRouteActive = (routeName) => {
     img {
         svg {
             path {
-                fill: #418997 !important;
+                fill: #5392f9 !important;
             }
         }
     }

@@ -20,10 +20,6 @@ const submit = () => {
 const showModalSearch = ref(false);
 </script>
 
-<style lang="scss" scoped>
-@import './header.scss';
-</style>
-
 <template>
     <header>
         <div class="container">
@@ -49,3 +45,7 @@ const showModalSearch = ref(false);
         </div>
     </header>
 </template>
+
+<style lang="scss" scoped>
+@import './header.scss';
+</style>

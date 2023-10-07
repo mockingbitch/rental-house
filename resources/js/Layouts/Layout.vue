@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, computed, defineProps } from "vue";
 import Header from "@/Components/Header/Header.vue";
 import Footer from "@/Components/Footer/Footer.vue";
-import Search from "@/Components/Search/Search.vue";
+// import Search from "@/Components/Search/Search.vue";
 
 const props = defineProps({
     isReviewForm: Boolean,

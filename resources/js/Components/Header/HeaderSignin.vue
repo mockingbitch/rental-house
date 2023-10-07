@@ -23,7 +23,7 @@ const handelBack = () => {
 </script>
 
 <template>
-       <div class="headerSignin">
+    <div class="headerSignin">
         <div class="container">
             <div class="navPc">
                 <div class="navPc__left">
@@ -68,7 +68,7 @@ const handelBack = () => {
                     <!-- <button class="buttonImage">
                         <img src="/img/icon/List.svg" alt="" />
                     </button> -->
-                    <Humberger />
+                    <!-- <Humberger /> -->
                 </div>
                 <div class="lineFull"></div>
             </div>
