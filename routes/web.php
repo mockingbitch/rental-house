@@ -57,6 +57,7 @@ Route::post('/url-intended', [AuthController::class, 'urlIntended'])->name('url.
 Route::controller(UserController::class)->group(function () {
     Route::get('user-information', 'userInformation')->name('user.information');
     Route::post('user-information', 'updateUserInformation')->name('account.info');
+    Route::get('setup-successfully', 'setupUserSuccessfully')->name('user.setup.success');
 });
 
 //ADMIN
