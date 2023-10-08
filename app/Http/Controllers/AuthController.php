@@ -156,7 +156,7 @@ class AuthController extends Controller
         $data['vendor']         = UserConstant::VENDOR_EMAIL;
         $data['password']       = Hash::make($request->password);
         $data['remember_token'] = Str::random(60);
-        $data['expires_in']     = Carbon::now()->addDay(1);
+        $data['expires_in']     = Carbon::now()->addHour(1);
 
         try {
             DB::transaction(function () use ($data) {
@@ -218,9 +218,13 @@ class AuthController extends Controller
     public function handleGoogleCallback(): RedirectResponse
     {
         $googleUser = Socialite::driver(Constant::GOOGLE)->user();
-        $existingGoogleUser = $this->userRepository->findUserByEmail($googleUser->email);
+        $existingGoogleUser = $this->userRepository
+            ->findUserByEmail($googleUser->email);
 
-        if($existingGoogleUser) :
+        if(
+            $existingGoogleUser
+            && $existingGoogleUser->email_verified_at !== null
+            ) :
             switch (session('prev_url')):
                 case route('register.method'):
                     session()->forget('prev_url');
@@ -249,6 +253,7 @@ class AuthController extends Controller
                         ->with(Constant::MSG, __('messages.login.EM-002'));
             endswitch;
         endif;
+
         $data = [
             UserConstant::COL_FIRST_NAME       => $googleUser->user[UserConstant::G_DATA_GIVEN_NAME],
             UserConstant::COL_LAST_NAME        => $googleUser->user[UserConstant::G_DATA_FAMILY_NAME],
@@ -257,28 +262,31 @@ class AuthController extends Controller
             UserConstant::COL_REGION           => $googleUser->user[UserConstant::G_DATA_LOCALE],
             UserConstant::COL_VENDOR           => UserConstant::VENDOR_GOOGLE,
             UserConstant::COL_REMEMBER_TOKEN   => Str::random(60),
-            'expires_in'                       => Carbon::now()->addDay(1),
+            'expires_in'                       => Carbon::now()->addHour(1),
         ];
 
         try {
-            DB::transaction(function () use ($data) {
+            if (
+                $existingGoogleUser
+                && $existingGoogleUser->email_verified_at == null
+                ) :
+                $user = $existingGoogleUser;
+                $user->update($data);
+            else :
                 $user = $this->userRepository->create($data);
-                if ($user) :
-                    $user->assignRole('Lessee');
-                    $this->mailService->sendMail($user, $data);
-                    // $this->notificationService->sendNotification(
-                    //     $user,
-                    //     [
-                    //         'title'     => '新規のアカウント登録ありがとうございます。',
-                    //         'target'    => route('top'),
-                    //     ],
-                    //     NotificationConstants::BROADCAST_USER,
-                    // );
-                endif;
-
-                return $user;
-            });
-            DB::commit();
+            endif;
+            if ($user) :
+                $user->assignRole('Lessee');
+                $this->mailService->sendMail($user, $data);
+                // $this->notificationService->sendNotification(
+                //     $user,
+                //     [
+                //         'title'     => '新規のアカウント登録ありがとうございます。',
+                //         'target'    => route('top'),
+                //     ],
+                //     NotificationConstants::BROADCAST_USER,
+                // );
+            endif;
 
             return redirect()
                 ->route('register.success')
@@ -287,8 +295,6 @@ class AuthController extends Controller
                     'email'     => $googleUser->user[UserConstant::G_DATA_EMAIL],
                 ]);
         } catch (\Throwable $th) {
-            DB::rollback();
-
             return redirect()
                 ->route('register.method')
                 ->with(Constant::MSG, __('messages.register.EM-001'));

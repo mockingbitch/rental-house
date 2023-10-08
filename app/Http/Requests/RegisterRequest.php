@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
-use App\Rules\HalfWidth;
 
 class RegisterRequest extends FormRequest
 {
@@ -27,8 +26,23 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'     => ['required','email','unique:App\Models\User,email','max:255', new HalfWidth],
-            'password'  => ['required','min:6','max:20', new HalfWidth],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique(app(User::class)->getTable())
+                    ->ignore($this->email)
+                    ->whereNotNull('email_verified_at'),
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:20',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
+            ],
         ];
     }
     

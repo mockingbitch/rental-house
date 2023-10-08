@@ -18,5 +18,5 @@ const emit = defineEmits(['completeTodo']);
 </template>
 
 <style lang="scss" scoped>
-@import './_modal.scss';
+@import './modal';
 </style>

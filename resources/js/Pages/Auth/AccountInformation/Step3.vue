@@ -76,25 +76,25 @@ const confirmInformation = () => {
                 <!-- Account Information -->
                 <div class="result-content" >
                     <div class="result-content-group first-content">
-                        <div class="title-content">Residential Province</div>
+                        <div class="title-content">Province</div>
                         <div class="filled-content">
                             {{ props.form?.province.name}}
                         </div>
                     </div>
                     <div class="result-content-group">
-                        <div class="title-content">Redifential District</div>
+                        <div class="title-content">District</div>
                         <div class="filled-content">
                             {{ props.form?.district.name }}
                         </div>
                     </div>
                     <div class="result-content-group">
-                        <div class="title-content">Redifential Ward</div>
+                        <div class="title-content">Ward</div>
                         <div class="filled-content">
                             {{ props.form?.ward.name }}
                         </div>
                     </div>
                     <div class="result-content-group">
-                        <div class="title-content">Adult name</div>
+                        <div class="title-content">Name</div>
                         <div class="filled-content">
                             {{ props.form?.first_name }}
                             {{ props.form?.last_name }}
@@ -114,13 +114,13 @@ const confirmInformation = () => {
                     <div class="create__request-button">
                         <div class="lineFull"></div>
                         <ButtonCommon
-                            :label="'戻る'"
+                            :label="'Back'"
                             :submit-button="false"
                             class="create__request-button-left"
                             @click="backToPrevStep"
                         />
                         <ButtonCommon
-                            :label="'申請する'"
+                            :label="'Confirm'"
                             :submit-button="true"
                             class="create__request-button-right"
                             @click="confirmInformation"
