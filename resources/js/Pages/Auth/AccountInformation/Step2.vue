@@ -12,7 +12,7 @@ const props = defineProps({
 })
 const page = usePage();
 const emit = defineEmits(['nextStep'])
-
+console.log(props.user);
 const form = useForm({
     avatar_preview: props.user?.avatar_preview ?? '',
     avatar: props.user?.avatar ?? '',

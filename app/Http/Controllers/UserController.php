@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use App\Constants\UserConstant;
 use App\Http\Requests\UserInfoRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\FileService;
 use App\Services\MailService;
+use Carbon\Carbon;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -69,11 +71,14 @@ class UserController extends Controller
                             UserConstant::STORAGE_LINK_AVATAR
                         );
                 endif;
+                $data[UserConstant::COL_EMAIL_VERIFIED_AT] = Carbon::now();
+                $data[UserConstant::COL_STATUS] = UserConstant::STT_ACTIVE;
                 
                 $result = $user->update($data);
                 if ($result) :
                     $this->mailService->sendMailSetupSuccessfully($user, $data);
                     auth()->loginUsingId($user->id);
+                    Log::info('login credentials');
                 endif;
             endif;
         } catch (\Throwable $th) {

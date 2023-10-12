@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import { useForm } from '@inertiajs/vue3'
+import { useForm, Link } from '@inertiajs/vue3'
 import Step2 from "./Step2.vue";
 import Step3 from "./Step3.vue";
+import Modal from "@/Components/Modal/Modal.vue";
 import StepConfirmInformation from "./StepConfirmInformation.vue";
 import LayoutNoLogin from "@/Layouts/LayoutNoLogin.vue";
 
@@ -28,8 +29,14 @@ const form = useForm({
     params: props.ziggy.query,
     confirm: false,
 })
-let step = ref(2);
 
+const step = ref(2);
+const isOpenConfirmModal = ref(props.user ? false : true);
+
+const closeConfirmModal = () => {
+    console.log('tét');
+    window.location.href = '/';
+};
 const next = (data) => {
     form.avatar_preview = data.avatar_preview;
     form.avatar = data.avatar;
@@ -54,6 +61,47 @@ const prev = () => {
 
 <template>
     <LayoutNoLogin>
+        <Modal
+            :showModal="isOpenConfirmModal"
+            @close="closeConfirmModal"
+        >
+            <div class="modal__container">
+                <div class="modal__title">
+                    <div>Failed</div>
+                    <img src="/img/icon/close.svg" alt="" @click="closeConfirmModal">
+                </div>
+                <BaseCard>
+                    <div class="modal__content-wrap">
+                        <div class="modal__content-title">
+                            Token has expired. Please try another token
+                        </div>
+                        <div>
+                            1. Your confirmation email has expired
+                        </div>
+                        <div>
+                            2. You are access this screen but wrong token parameters
+                        </div>
+                        <div>
+                            3. You can re-register to generate a new token
+                        </div>
+                    </div>
+                </BaseCard>
+                <div class="modal__btn">
+                    <Link
+                        :href="route('top')"
+                        class="modal__btn-btn modal__btn-btn-left"
+                    >
+                        Back to Top
+                    </Link>
+                    <Link
+                        :href="route('register.method')"
+                        class="modal__btn-btn modal__btn-btn-right"
+                    >
+                        Re-register
+                    </Link>
+                </div>
+            </div>
+        </Modal>
         <div class="signinStep">
             <div class="container">
                 <div class="form">
@@ -145,28 +193,6 @@ const prev = () => {
 </template>
 
 <style lang="scss">
-@import "./information.scss";
-.form {
-    padding-bottom: 50px;
-}
-.green-bar {
-    background-color: #5392f9 !important;
-}
-
-.progress__wrap .progressBar {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #b1b1b1;
-    height: 2px;
-    width: 50%;
-    transition: 0.4s ease-in;
-}
-
-.bar-1 {
-    left: 0;
-}
-.bar-2 {
-    left: 50%;
-}
+@import './information';
+@import './modal';
 </style>

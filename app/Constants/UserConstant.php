@@ -41,4 +41,8 @@ class UserConstant
     public const G_DATA_FAMILY_NAME = 'family_name';
     public const G_DATA_PICTURE     = 'picture';
     public const G_DATA_LOCALE      = 'locale';
+
+    public const STT_BANNED     = 0;
+    public const STT_INACTIVE   = 1;
+    public const STT_ACTIVE     = 2;
 }
