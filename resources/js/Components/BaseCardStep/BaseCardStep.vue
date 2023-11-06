@@ -13,7 +13,7 @@ const statusData = computed(() => {
         return {
             image: "img/icon/ApplyToTeacher/CaretRight.svg",
             title: "学歴・経歴登録",
-            buttonContent: 'fascasc',
+            buttonContent: "fascasc",
             FunctionButton: null,
         };
     } else if (props.status === null && props.step === 2) {
@@ -33,22 +33,22 @@ const statusData = computed(() => {
     } else if (props.status === 2 && props.step === 1) {
         return {
             image: "img/icon/ApplyToTeacher/Check.svg",
-            title: 'teca',
-            buttonContent: 'sdaf',
+            title: "teca",
+            buttonContent: "sdaf",
             FunctionButton: ReviewResult,
         };
     } else if (props.status === 2 && props.step === 2) {
         return {
             image: "img/icon/ApplyToTeacher/Check.svg",
             title: "振込口座設定&本人確認（完了)",
-            buttonContent: 'test',
+            buttonContent: "test",
             FunctionButton: ReviewResult,
         };
     } else if (props.status === 3) {
         return {
             image: "img/icon/ApplyToTeacher/Warning.svg",
-            title: 'test',
-            buttonContent: 'test',
+            title: "test",
+            buttonContent: "test",
             FunctionButton: "",
         };
     } else if (props.status === 0 && props.step === 2) {
@@ -62,7 +62,7 @@ const statusData = computed(() => {
     } else {
         return {
             image: "img/icon/ApplyToTeacher/CaretRight.svg",
-            title: 'test',
+            title: "test",
             buttonContent: "Apply Now",
             FunctionButton: ApplyOrReview,
         };
@@ -88,18 +88,20 @@ const contentStep = computed(() => {
     }
 });
 
-
 const form = useForm({});
 const ApplyOrReview = () => {
     if (props.step === 2) {
         form.post(route("onboarding.create.step2"), {
             onFinish: () => {
-                if (Object.keys(form.errors).length === 0 && form.errors.constructor === Object) {
+                if (
+                    Object.keys(form.errors).length === 0 &&
+                    form.errors.constructor === Object
+                ) {
                     // emits("confirm-step1", props.dataStep1);
-                    console.log('ok');
+                    console.log("ok");
                 }
             },
-            onError: console.log('error'),
+            onError: console.log("error"),
         });
     } else {
         emits("toggle");
@@ -110,17 +112,21 @@ const ReviewResult = () => {
     if (props.step === 2) {
         form.post(route("onboarding.stripe.checkdashboard"), {
             onFinish: () => {
-                if (Object.keys(form.errors).length === 0 && form.errors.constructor === Object) {
+                if (
+                    Object.keys(form.errors).length === 0 &&
+                    form.errors.constructor === Object
+                ) {
                     // emits("confirm-step1", props.dataStep1);
                 }
             },
-            onError: console.log('error'),
+            onError: console.log("error"),
         });
     } else {
         emits("showResult");
     }
 };
-</script>1
+</script>
+1
 
 <template>
     <div
@@ -184,7 +190,7 @@ const ReviewResult = () => {
                 class="button-step-share"
                 v-if="props.step === 2 && props.status === null"
             />
-			<img
+            <img
                 src="img/icon/ApplyToTeacher/ArrowSquareOut1.svg"
                 alt=""
                 class="button-step-share"
@@ -203,7 +209,7 @@ const ReviewResult = () => {
     margin: 16px 0;
     padding: 16px;
     a {
-        color: #418997;
+        color: #5392f9;
         text-decoration: underline;
         font-weight: 700;
     }
@@ -214,7 +220,7 @@ const ReviewResult = () => {
         .icon-step {
             width: 24px;
             height: 24px;
-            background-color: #418997;
+            background-color: #5392f9;
             border-radius: 100px;
         }
         .title-content {
@@ -225,7 +231,7 @@ const ReviewResult = () => {
     .button-step {
         margin-top: 8px;
         font-size: 14px;
-        background-color: #418997;
+        background-color: #5392f9;
         height: 50px;
         color: #ffffff;
         font-weight: 700;
@@ -277,7 +283,7 @@ const ReviewResult = () => {
     &[data-status="1"] {
         .button-step {
             background-color: #e3e3e3;
-            color: #418997;
+            color: #5392f9;
         }
         @media screen and (min-width: 720px) {
             .content-step {
@@ -296,14 +302,14 @@ const ReviewResult = () => {
         }
         .button-step {
             background-color: white;
-            color: #418997;
+            color: #5392f9;
             font-weight: 400;
             text-decoration: underline;
         }
         .title-step {
             .icon-step {
                 background-color: white;
-                border: 1px solid #418997;
+                border: 1px solid #5392f9;
             }
         }
         @media screen and (min-width: 720px) {

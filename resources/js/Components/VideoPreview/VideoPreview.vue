@@ -1,20 +1,20 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
 import { ref } from "vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 import Popup from "@/Components/Popup/Popup.vue";
-import UlError from "@/Components/UlError.vue";
+import UlError from "@/Components/Common/UlError.vue";
 
 const props = defineProps({
-    formLesson: Object,
+    form: Object,
     message: Object,
     title: String,
     resetContent: String,
 });
 
-const stateChild = useForm({
-    childVidPreview: props.formLesson.childVidPreview,
-    childVidName: props.formLesson.childVidName,
-    short_video_for_learner_thumbnail: props.formLesson.short_video_for_learner_thumbnail,
+const state = useForm({
+    videoPreview: props.form.videoPreview,
+    videoName: props.form.videoName,
+    shortVideoThumbnail: props.form.shortVideoThumbnail,
     uploadValidate: "",
 });
 
@@ -26,13 +26,13 @@ const snapImage = function (video, url) {
     const image = canvas.toDataURL();
     const success = image.length > 100000;
     if (success) {
-        props.formLesson.short_video_for_learner_thumbnail = image;
+        props.form.shortVideoThumbnail = image;
     }
 
     return success;
 };
 
-const handleChildVidUpload = (event) => {
+const handleUploadVideo = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -40,16 +40,16 @@ const handleChildVidUpload = (event) => {
         var allowedExtensions = /(\.avi|\.mov|\.mp4|\.webm|\.flv)$/i;
 
         if (!allowedExtensions.exec(file.name)) {
-            stateChild.uploadValidate =
+            state.uploadValidate =
                 "ファイル形式が正しくありません。MP4、AVI、MOV、WEBM、FLV形式の画像をアップロードしてください";
         } else {
-            stateChild.uploadValidate = "";
-            stateChild.childVidName = file.name;
-            props.formLesson.childVidName = file.name;
+            state.uploadValidate = "";
+            state.videoName = file.name;
+            props.form.videoName = file.name;
             const blob = new Blob([reader.result], { type: file.type });
             const url = URL.createObjectURL(blob);
-            stateChild.childVidPreview = url;
-            props.formLesson.childVidPreview = url;
+            state.videoPreview = url;
+            props.form.videoPreview = url;
 
             const video = document.createElement("video");
             const timeupdate = function () {
@@ -79,17 +79,17 @@ const isOpen = ref(false);
 
 const resetChildVid = () => {
     document.getElementById("true-file-upload-child").value = "";
-    stateChild.childVidPreview = "";
-    props.formLesson.short_video_for_learner = "";
-    props.formLesson.childVidPreview = "";
+    state.videoPreview = "";
+    props.form.shortVideo = "";
+    props.form.videoPreview = "";
 };
 </script>
 <template>
     <div
         class="file-name"
-        v-if="props.formLesson.childVidPreview"
+        v-if="props.form.videoPreview"
         :style="{
-            'background-image': `url(${props.formLesson.short_video_for_learner_thumbnail})`,
+            'background-image': `url(${props.form.shortVideoThumbnail})`,
         }"
         @click="isOpen = true"
     >
@@ -106,14 +106,14 @@ const resetChildVid = () => {
             />
         </svg>
         <span>{{
-            props.formLesson.childVidName.substring(0, 30) + "..."
+            props.form.videoName.substring(0, 30) + "..."
         }}</span>
     </div>
 
     <label
         for="true-file-upload-child"
         class="file-upload-clone"
-        v-if="props.formLesson.childVidPreview == '' || props.formLesson.childVidPreview == null"
+        v-if="props.form.videoPreview == '' || props.form.videoPreview == null"
     >
         <svg
             width="20"
@@ -127,31 +127,31 @@ const resetChildVid = () => {
                 fill="white"
             />
         </svg>
-        <span>{{ lang().label.onboarding.button.upload_video }}</span>
+        <span>Upload</span>
     </label>
     <input
         accept="video/*"
         type="file"
-        @change="handleChildVidUpload"
+        @change="handleUploadVideo"
         id="true-file-upload-child"
-        name="short_video_for_learner"
+        name="shortVideo"
         hidden
-        @input="formLesson.short_video_for_learner = $event.target.files[0]"
+        @input="form.shortVideo = $event.target.files[0]"
     />
     <UlError
         :message="props.message"
-        v-show="stateChild.uploadValidate == ''"
+        v-show="state.uploadValidate == ''"
     />
-    <UlError :message="stateChild.uploadValidate" />
+    <UlError :message="state.uploadValidate" />
     <Popup
         :isOpen="isOpen"
         @close="isOpen = false"
-        :state="stateChild"
+        :state="state"
         @resetChildVid="resetChildVid"
         :title="props.title"
         :reset-content="props.resetContent"
     />
 </template>
 <style lang="scss" scoped>
-@import "./_childVidPreview.scss";
+@import "./videopreview";
 </style>
