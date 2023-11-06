@@ -25,6 +25,7 @@ const handleSelectLanguage = (lang) => {
     router.get(route("setlang", { locale: lang }));
     isSelectLanguage.value = false;
 };
+console.log(page.props.auth);
 </script>
 
 <template>
@@ -331,29 +332,25 @@ const handleSelectLanguage = (lang) => {
                         alt=""
                     />
                 </a>
-                <a
+                <Link
                     v-if="page.props.auth?.role == 'Lessee'"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
-                    href="/request"
+                    :href="route('lessor.register')"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <img src="/img/icon/MultiLanguage/request.svg" alt="" />
-                        <div>Request</div>
+                        <div>Lessor registration</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
                         alt=""
                     />
-                </a>
+                </Link>
                 <div
                     v-if="page.props.auth?.role == 'Lessor'"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -378,9 +375,7 @@ const handleSelectLanguage = (lang) => {
                     @click="handleSelectLanguageStep"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <img
                             src="/img/icon/MultiLanguage/earth-multilang.svg"
                         />
@@ -400,9 +395,7 @@ const handleSelectLanguage = (lang) => {
                     v-if="page.props.auth?.role != 'Lessor'"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -426,9 +419,7 @@ const handleSelectLanguage = (lang) => {
                     v-if="page.props.auth?.role != 'Lessor'"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -456,9 +447,7 @@ const handleSelectLanguage = (lang) => {
                     "
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
-                    <div
-                        class="d-flex align-items-center side-menu-content-item-left"
-                    >
+                    <div class="d-flex align-items-center side-menu-content-item-left">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
