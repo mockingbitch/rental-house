@@ -1,6 +1,6 @@
 .step-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 16px;
     font-size: 12px;
@@ -79,7 +79,7 @@
             flex: 1;
 
             .button-upload {
-                background-color: #418997;
+                background-color: #5392f9;
                 color: #ffffff;
                 height: 50px;
                 padding: 0px 16px;
@@ -170,7 +170,7 @@
         line-height: 22.4px;
         letter-spacing: -0.14px;
         white-space: nowrap;
-        color: #418997 !important;
+        color: #5392f9 !important;
     }
     .create__request-button-right {
         font-size: 14px;
@@ -315,7 +315,7 @@
         display: flex;
         justify-content: center;
         img {
-            width: 400px !important;
+            width: 800px !important;
         }
     }
 }

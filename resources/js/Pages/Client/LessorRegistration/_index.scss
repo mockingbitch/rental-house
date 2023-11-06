@@ -1,5 +1,5 @@
-@import '../../../../../public/scss/imports/core/mixins';
-@import '../../../../../public/scss/imports/core/variables';
+@import "../../../../../public/scss/imports/core/mixins";
+@import "../../../../../public/scss/imports/core/variables";
 .signin2 .form__wrap-item {
     select,
     textarea {
@@ -70,7 +70,7 @@
     }
 
     #clear-form {
-        color: #418997;
+        color: #5392f9;
         text-decoration: underline;
     }
 
@@ -149,7 +149,7 @@
 
     .full-fill {
         border: 1px solid #cacaca;
-        background: #418997;
+        background: #5392f9;
         color: white;
         padding: 16px;
         border-radius: 5px;
@@ -182,9 +182,9 @@
     }
 
     .save-draft {
-        border: 1px solid #418997;
+        border: 1px solid #5392f9;
         background: white;
-        color: #418997;
+        color: #5392f9;
         padding: 16px;
         border-radius: 5px;
         margin-bottom: 5px;
@@ -315,7 +315,6 @@
 }
 
 .videoShow {
-
     video {
         width: 100%;
     }
@@ -327,7 +326,6 @@
 }
 
 .reviewWrap {
-
     .content {
         margin-bottom: 0 !important;
         display: flex;
@@ -362,10 +360,10 @@
 }
 .listItems .item .input input,
 .listQuestions .item .input input {
-    color: #1B1B1B;
+    color: #1b1b1b;
 }
 .buttonFun .container .buttonFun__wrap .inactive {
-    background: #CACACA;
+    background: #cacaca;
     color: #989898;
     text-decoration: unset;
 

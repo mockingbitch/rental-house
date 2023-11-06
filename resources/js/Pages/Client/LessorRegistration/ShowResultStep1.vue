@@ -25,7 +25,7 @@
                 <span v-if="props.showButtonConfirm !== 2"
                     >申請内容をご確認お願いします。</span
                 >
-                <span v-else style="color: #418997"
+                <span v-else style="color: #5392F9"
                     >{{ lang().label.onboarding.label.setting_account_title }}</span
                 >
             </div>
