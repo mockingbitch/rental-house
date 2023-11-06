@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LessorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,11 @@ Route::controller(TagController::class)->group(function () {
     Route::post('tag', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_tag'])->name('tag.create');
     Route::post('edit/{id}/tag', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_tag'])->name('tag.update');
     Route::get('delete/tag', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_tag'])->name('tag.delete');
+});
+
+//LESSOR
+Route::controller(LessorController::class)->group(function () {
+    Route::prefix('lessor')->group(function () {
+        Route::get('register', 'register')->name('lessor.register');
+    });
 });
