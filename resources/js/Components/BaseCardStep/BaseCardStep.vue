@@ -158,7 +158,7 @@ const ReviewResult = () => {
                 <a href="#">{{
                     props.status === 0
                         ? "here"
-                        : "becoming an educator on Dottrees"
+                        : "becoming an educator on RentalHouse"
                 }}</a>
             </div>
             <span

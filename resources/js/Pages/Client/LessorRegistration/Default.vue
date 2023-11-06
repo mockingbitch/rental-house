@@ -45,7 +45,7 @@ const showResultStep3 = () => {
         </div>
         <div class="step-container">
             <div class="step-container-title d-flex justify-content-center">
-                Welcome to Dottrees
+                Welcome to Rentalhouse
             </div>
             <div class="d-flex flex-column align-items-center">
                 <span>
