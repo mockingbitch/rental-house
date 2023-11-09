@@ -17,7 +17,6 @@ const props = defineProps({
     countries: Array,
     lessorInformation: Object,
     teacherWorkHistories: Array,
-    user: Object,
     step: Number,
 });
 
@@ -65,6 +64,7 @@ const dataStep1 = ref({
     'day': page.props.auth?.user?.day,
     'country_id': page.props.auth?.user?.country_id,
     'city_id': page.props.auth?.user?.city_id,
+    'profile_image': page.props.auth?.user?.avatar,
 });
 const dataStep3 = ref(props.lessorHouse);
 const form = computed(() => {
