@@ -70,10 +70,10 @@
 </template>
 
 <script setup>
-import LayoutOnBoarding from "../../Layouts/LayoutOnBoarding.vue";
-import ButtonRequest from "@/Components/Request/ButtonRequest.vue";
-import { defineProps, defineEmits } from "vue";
-import Breadcrumb from "../Breadcrumb.vue";
+// import LayoutOnBoarding from "../../Layouts/LayoutOnBoarding.vue";
+// import ButtonRequest from "@/Components/Request/ButtonRequest.vue";
+// import { defineProps, defineEmits } from "vue";
+// import Breadcrumb from "../Breadcrumb.vue";
 import { usePage } from "@inertiajs/vue3";
 
 const props = defineProps({

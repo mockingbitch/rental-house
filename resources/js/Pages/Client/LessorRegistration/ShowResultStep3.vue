@@ -155,8 +155,8 @@
 </template>
 
 <script setup>
-import LayoutOnBoarding from "../../Layouts/LayoutOnBoarding.vue";
-import ButtonRequest from "@/Components/Request/ButtonRequest.vue";
+// import LayoutOnBoarding from "@/Layouts/LayoutOnBoarding.vue";
+// import ButtonRequest from "@/Components/Request/ButtonRequest.vue";
 import { defineProps, defineEmits } from "vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import Breadcrumb from "../Breadcrumb.vue";

@@ -81,5 +81,6 @@ Route::controller(TagController::class)->group(function () {
 Route::controller(LessorController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::get('register', 'register')->name('lessor.register');
+        Route::post('register/step1', 'registerStep1')->name('lessor.register.step1');
     });
 });

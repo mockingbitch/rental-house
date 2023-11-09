@@ -27,10 +27,7 @@ const breadcrumbItems = [
         isLink: false,
     },
 ];
-let phoneCodes = ["JP +81", "VN +84"];
-
 let isActiveSubmit = ref(false);
-let listCity = ref(props.cities);
 let arrayYears = ref([]);
 const month = ref([
     "01",
@@ -57,12 +54,10 @@ const form = useForm({
     shortVideoThumbnail:
         props.dataStep1?.shortVideoThumbnail || "",
     shortVideo: props.dataStep1?.shortVideo || "",
-    profile_image: props.dataStep1?.profile_image || "",
-    profile_image_preview: props.dataStep1?.profile_image_preview || "",
-    first_name: props.dataStep1?.first_name ?? props.user?.first_name ?? "",
-    last_name: props.dataStep1?.last_name ?? props.user?.last_name ?? "",
-    country_id: props.dataStep1?.country_id ?? props.user?.country_id ?? "",
-    city_id: props.dataStep1?.city_id ?? props.user?.city_id ?? "",
+    profileImage: props.dataStep1?.profileImage || "",
+    profileImagePreview: props.dataStep1?.profileImagePreview || "",
+    firstName: props.dataStep1?.firstName ?? props.user?.firstName ?? "",
+    lastName: props.dataStep1?.lastName ?? props.user?.lastName ?? "",
     year: props.dataStep1?.year ?? props.user?.year ?? "",
     month: props.dataStep1?.month ?? props.user?.month ?? "",
     email: props.dataStep1?.email ?? props.user?.email ?? "",
@@ -119,8 +114,8 @@ const handleOnchangeProfileImage = (e) => {
             form.uploadImageValidate =
                 "ファイル形式が正しくありません。JPEG、JPG、PNG、GIF、BMP形式の画像をアップロードしてください";
         } else {
-            form.profile_image_preview = reader.result;
-            form.profile_image = e.target.files[0];
+            form.profileImagePreview = reader.result;
+            form.profileImage = e.target.files[0];
             form.uploadImageValidate = "";
         }
     };
@@ -133,10 +128,10 @@ const handleClearForm = () => {
     form.videoPreview = "";
     form.videoName = "";
     form.shortVideoThumbnail = "";
-    form.profile_image_preview = "";
-    form.profile_image = "";
-    form.first_name = "";
-    form.last_name = "";
+    form.profileImagePreview = "";
+    form.profileImage = "";
+    form.firstName = "";
+    form.lastName = "";
     form.country_id = "";
     form.city_id = "";
     form.year = "";
@@ -150,17 +145,10 @@ const handleClearForm = () => {
 watch(
     form,
     (value) => {
-        if (form.country_id !== "") {
-            listCity.value = props.cities.filter(
-                (c) => c.country_id == form.country_id
-            );
-        }
         if (
-            form.profile_image === "" ||
-            form.first_name === "" ||
-            form.last_name === "" ||
-            form.country_id === "" ||
-            form.city_id === "" ||
+            form.profileImage === "" ||
+            form.firstName === "" ||
+            form.lastName === "" ||
             form.year === "" ||
             form.month === "" ||
             form.day === "" ||
@@ -184,16 +172,6 @@ watch(handleChangeArrDays, (value) => {
     }
 });
 
-const handleOnChangeCountry = (e) => {
-    form.country_id = e.target.value;
-    form.country_code = e.target.value;
-};
-const updateCountryId = (data) => {
-    form.country_id = data;
-};
-const updateCityId = (data) => {
-    form.city_id = data;
-};
 const updateBirthDayYear = (data) => {
     form.year = data;
 };
@@ -204,21 +182,17 @@ const updateDay = (data) => {
     form.day = data;
 };
 
-const updatePhoneCode = (data) => {
-    form.country_code = data;
-};
-
 const handleButtonClick = () => {
-    form.post(route("onboarding.create.step1"), {
+    form.post(route("lessor.register.step1"), {
         onFinish: () => {
             if (
                 Object.keys(form.errors).length === 0 &&
                 form.errors.constructor === Object
             ) {
+                console.log('tesasfa');
                 emits("back-to-default", form);
             }
         },
-        onError: console.log("error"),
     });
 };
 
@@ -274,7 +248,7 @@ const handleCancel = () => {
                 <div class="upload-image-container d-flex">
                     <div
                         v-if="
-                            !form.profile_image_preview && !form.profile_image
+                            !form.profileImagePreview && !form.profileImage
                         "
                         class="display-image"
                     >
@@ -301,11 +275,11 @@ const handleCancel = () => {
                     </div>
                     <img
                         v-if="
-                            form.profile_image_preview || form.profile_image
+                            form.profileImagePreview || form.profileImage
                         "
                         class="profile-image-preview"
                         :src="
-                            form.profile_image_preview || form.profile_image
+                            form.profileImagePreview || form.profileImage
                         "
                         alt=""
                     />
@@ -322,8 +296,8 @@ const handleCancel = () => {
                         <i
                             :class="{
                                 active:
-                                    form.profile_image_preview ||
-                                    form.profile_image,
+                                    form.profileImagePreview ||
+                                    form.profileImage,
                             }"
                             class="button-upload width-250 d-flex align-items-center justify-content-center"
                         >
@@ -337,17 +311,17 @@ const handleCancel = () => {
                                 <path
                                     d="M17.5 11.8755V16.2505C17.5 16.582 17.3683 16.9 17.1339 17.1344C16.8995 17.3688 16.5815 17.5005 16.25 17.5005H3.75C3.41848 17.5005 3.10054 17.3688 2.86612 17.1344C2.6317 16.9 2.5 16.582 2.5 16.2505V11.8755C2.5 11.7097 2.56585 11.5508 2.68306 11.4336C2.80027 11.3163 2.95924 11.2505 3.125 11.2505C3.29076 11.2505 3.44973 11.3163 3.56694 11.4336C3.68415 11.5508 3.75 11.7097 3.75 11.8755V16.2505H16.25V11.8755C16.25 11.7097 16.3158 11.5508 16.4331 11.4336C16.5503 11.3163 16.7092 11.2505 16.875 11.2505C17.0408 11.2505 17.1997 11.3163 17.3169 11.4336C17.4342 11.5508 17.5 11.7097 17.5 11.8755ZM7.31719 6.69268L9.375 4.63409V11.8755C9.375 12.0413 9.44085 12.2002 9.55806 12.3174C9.67527 12.4346 9.83424 12.5005 10 12.5005C10.1658 12.5005 10.3247 12.4346 10.4419 12.3174C10.5592 12.2002 10.625 12.0413 10.625 11.8755V4.63409L12.6828 6.69268C12.8001 6.80996 12.9591 6.87584 13.125 6.87584C13.2909 6.87584 13.4499 6.80996 13.5672 6.69268C13.6845 6.5754 13.7503 6.41634 13.7503 6.25049C13.7503 6.08464 13.6845 5.92558 13.5672 5.8083L10.4422 2.6833C10.3841 2.62519 10.3152 2.57909 10.2393 2.54764C10.1635 2.51619 10.0821 2.5 10 2.5C9.91787 2.5 9.83654 2.51619 9.76066 2.54764C9.68479 2.57909 9.61586 2.62519 9.55781 2.6833L6.43281 5.8083C6.31554 5.92558 6.24965 6.08464 6.24965 6.25049C6.24965 6.41634 6.31554 6.5754 6.43281 6.69268C6.55009 6.80996 6.70915 6.87584 6.875 6.87584C7.04085 6.87584 7.19991 6.80996 7.31719 6.69268Z"
                                     :fill="
-                                        form.profile_image_preview ||
-                                        form.profile_image
+                                        form.profileImagePreview ||
+                                        form.profileImage
                                             ? '#5392F9'
                                             : 'white'
                                     "
                                 />
                             </svg>
                             {{
-                                form.profile_image_preview || form.profile_image
-                                    ? "再アップロード"
-                                    : "Tét"
+                                form.profileImagePreview || form.profileImage
+                                    ? "Upload Profile Image"
+                                    : "Upload Profile Image"
                             }}
                         </i>
                         <UlError :message="form.uploadImageValidate" />
@@ -366,10 +340,10 @@ const handleCancel = () => {
                         <span class="required-input">*</span>
                     </label>
                     <input
-                        v-model="form.first_name"
+                        v-model="form.firstName"
                         placeholder="example"
                     />
-                    <UlError :message="form.errors.first_name" />
+                    <UlError :message="form.errors.firstName" />
                 </div>
                 <div class="form-wrap-double">
                     <label for="Title">
@@ -377,50 +351,10 @@ const handleCancel = () => {
                         <span class="required-input">*</span>
                     </label>
                     <input
-                        v-model="form.last_name"
+                        v-model="form.lastName"
                         placeholder="example"
                     />
-                    <UlError :message="form.errors.last_name" />
-                </div>
-            </div>
-
-            <!-- Country + City -->
-            <div
-                class="form__wrap-item from-select-input d-flex flex-row"
-                style="gap: 8px"
-            >
-                <div class="from-select-input-selectForm d-flex flex-column">
-                    <label for="Title">
-                        Province
-                        <span class="required-input">*</span>
-                    </label>
-                    <!-- <ArraySelect
-                        :value-selected="
-                            props.countries[form.country_id - 1]?.name_jp ||
-                            'example'
-                        "
-                        :options="props.countries"
-                        :data-display="'name_jp'"
-                        up-side-down-mobile
-                        @selectValue="updateCountryId"
-                    /> -->
-                    <UlError :message="form.errors.country_id" />
-                </div>
-                <div class="input-form">
-                    <label for="Title">
-                        District
-                        <span class="required-input">*</span>
-                    </label>
-                    <!-- <ArraySelect
-                        :value-selected="
-                            props.cities[form.city_id - 1]?.name_jp || 'example'
-                        "
-                        :options="listCity"
-                        :data-display="'name_jp'"
-                        up-side-down-mobile
-                        @selectValue="updateCityId"
-                    /> -->
-                    <UlError :message="form.errors.city_id" />
+                    <UlError :message="form.errors.lastName" />
                 </div>
             </div>
 
@@ -562,7 +496,7 @@ const handleCancel = () => {
                     />
                     <ButtonCommon
                         v-if="isActiveSubmit"
-                        :label="'申請する'"
+                        :label="'Submit'"
                         :submit-button="true"
                         class="create__request-button-right"
                         @click="handleButtonClick"
