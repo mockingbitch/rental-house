@@ -10,7 +10,6 @@ import ArraySelect from "@/Components/Select/ArraySelect.vue";
 import CustomSelect from "@/Components/Select/CustomSelect.vue";
 import Breadcrumb from "@/Components/Breadcrumb/Breadcrumb.vue";
 
-
 const emits = defineEmits();
 
 const props = defineProps({
@@ -66,6 +65,7 @@ const form = useForm({
     city_id: props.dataStep1?.city_id ?? props.user?.city_id ?? "",
     year: props.dataStep1?.year ?? props.user?.year ?? "",
     month: props.dataStep1?.month ?? props.user?.month ?? "",
+    email: props.dataStep1?.email ?? props.user?.email ?? "",
     day: props.dataStep1?.day ?? props.user?.day ?? "",
     birthday: [
         props.dataStep1?.year ?? props.user?.year ?? "",
@@ -142,7 +142,6 @@ const handleClearForm = () => {
     form.year = "";
     form.month = "";
     form.day = "";
-    form.email = "";
     form.phone = "";
     form.about = "";
     form.birthday = "";
@@ -299,17 +298,17 @@ const handleCancel = () => {
                                 fill="#91C2CB"
                             />
                         </svg>
-                        <img
-                            v-if="
-                                form.profile_image_preview || form.profile_image
-                            "
-                            class="profile-image-preview"
-                            :src="
-                                form.profile_image_preview || form.profile_image
-                            "
-                            alt=""
-                        />
                     </div>
+                    <img
+                        v-if="
+                            form.profile_image_preview || form.profile_image
+                        "
+                        class="profile-image-preview"
+                        :src="
+                            form.profile_image_preview || form.profile_image
+                        "
+                        alt=""
+                    />
                     <div
                         @click="handleUploadImage"
                         class="button-upload-image d-flex justify-content-center"
