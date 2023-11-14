@@ -1,0 +1,65 @@
+.side-menu {
+    color: #1b1b1b;
+    font-size: 14px;
+    position: fixed;
+    flex-direction: column;
+    top: 54px;
+    left: 0;
+    background-color: #fff;
+    width: 300px;
+    height: 100vh;
+    border-right: 1px solid #f4f4f4;
+    padding: 32px 16px;
+    gap: 16px;
+    
+    .side-menu-content {
+        flex-direction: column;
+        gap: 8px;
+        .side-menu-content-item {
+            cursor: pointer;
+            padding: 8px;
+            color: #1b1b1b;
+            &:hover {
+                background-color: #e3e3e3;
+                border-radius: 4px;
+            }
+        }
+
+        .isCurrentTab {
+            background-color: #e1eff2;
+            color: #418997;
+            padding: 8px;
+            font-weight: 700;
+            border-radius: 4px;
+            &:hover {
+                background-color: #e1eff2;
+            }
+        }
+        .side-menu-content-item-left {
+            gap: 18px !important;
+            a {
+                color: #1b1b1b;
+                text-decoration: none;
+            }
+        }
+    }
+    .side-menu-line {
+        height: 1px;
+        align-self: stretch;
+        background-color: #f4f4f4;
+        margin: 0px 16px;
+    }
+    .side-menu-hint {
+        color: #989898;
+        font-size: 12px;
+    }
+}
+:deep(.isCurrentTab) {
+    .side-menu-content-item-left {
+            svg {
+                path {
+                    fill: #418997 !important
+                }
+            }
+        }
+}

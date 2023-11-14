@@ -2,7 +2,13 @@
 import { ref, onMounted, onBeforeUnmount, computed, defineProps } from "vue";
 import HeaderDashboard from "@/Components/Header/HeaderDashboard.vue";
 import Footer from "@/Components/Footer/Footer.vue";
+import DashboardSideMenu from "@/Components/SideMenu/DashboardSideMenu.vue"
 
+// ẩn footer ở các màn
+const props = defineProps({
+	isHideFooterSp : Boolean,
+    isHideSp: Boolean,
+})
 const windowWidth = ref(window.innerWidth);
 const currentUrl = ref(window.location.pathname);
 const currentPath = computed(() => currentUrl.value);
@@ -16,18 +22,13 @@ const handleResize = () => {
 };
 
 const listUrlPageHideHeaderOnSP = ref([
-    'teacher/course/',
-])
+    '/teacher',
+    '/course',
+]);
 
 const isHideHeaderOnSP = computed(() => {
-    let isIncludeUrl = false;
-    listUrlPageHideHeaderOnSP.value.forEach(url => {
-        isIncludeUrl = currentPath.value.indexOf(url) !== -1;
-    })
-
-    return isIncludeUrl;
-})
-
+    return listUrlPageHideHeaderOnSP.value.every(url => currentPath.value.includes(url));
+});
 onMounted(() => {
     window.addEventListener("resize", handleResize);
 });
@@ -36,14 +37,35 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener("resize", handleResize);
 });
+
+const isShowSideMenu = ref(false);
+const handleIsShowSideMenu = (value) => {
+    isShowSideMenu.value = value
+    localStorage.setItem('isShowSideMenu', value.toString());
+}
+onMounted(() => {
+  const storedValue = localStorage.getItem('isShowSideMenu');
+  if (storedValue !== null) {
+    isShowSideMenu.value = storedValue === 'true';
+  }
+});
 </script>
 
 <template>
-    <HeaderDashboard v-if="!isHideHeaderOnSP || !isMobileScreen" />
-    <main>
+    <HeaderDashboard
+        v-if="(!isHideHeaderOnSP || !isMobileScreen) && !props.isHideSp"
+        :is-show-side-menu="isShowSideMenu"
+        @is-show-side-menu="handleIsShowSideMenu"
+    />
+    <main
+        :class="[ 'main-transition', isShowSideMenu ? 'is-have-side-menu' : 'is-leave-to', props.isHideSp || isHideHeaderOnSP ? 'isHideSp' : '' ]"
+    >
         <slot />
     </main>
-    <Footer isDashBoard />
+    <transition name="translateX">
+        <DashboardSideMenu v-if="isShowSideMenu" />
+    </transition>
+    <Footer isDashBoard v-if="!props.isHideFooterSp" />
 </template>
 
 <style lang="scss" scoped>

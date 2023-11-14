@@ -30,6 +30,7 @@
             border-radius: 100%;
         }
         .side-menu-header-title {
+            word-break: break-all;
             font-weight: 700;
         }
         .side-menu-header-subtitle {
@@ -57,33 +58,31 @@
         .side-menu-header-button-text-link {
             font-weight: 700;
             text-decoration: underline;
+            color: #418997;
         }
     }
 
     .isTeacher {
-        color: #5392f9;
-        border: 1px solid #5392f9;
+        color: #418997;
+        border: 1px solid #418997;
     }
     .isUser {
         color: #fff;
-        background-color: #5392f9;
+        background-color: #418997;
         border: none;
     }
     .noneLogin {
         color: #fff;
-        background-color: #003e49;
+        background-color: #418997;
         border: none;
     }
     .noneLoginGoogle {
         color: #343434;
         border: 1px solid #e3e3e3;
     }
-    .fw-700 {
-        font-weight: 700;
-    }
     .noneLoginDots {
         border: none;
-        color: #5392f9;
+        color: #418997;
     }
     .side-menu-content {
         flex-direction: column;
@@ -102,7 +101,7 @@
         }
     }
     .side-menu-footer {
-        padding: 32px 44px 0px;
+        padding: 32px 15px 0px;
         flex-direction: column;
         gap: 32px;
         .side-menu-footer-title {
@@ -110,8 +109,11 @@
             font-weight: 700;
             line-height: 160%;
             letter-spacing: -0.12px;
-            gap: 4px;
             padding: 16px 0px;
+            gap: 24px;
+            .side-menu-footer-title-wrap {
+                gap: 4px
+            }
             .footer-text {
                 text-decoration: underline;
             }
@@ -126,11 +128,11 @@
     color: #1b1b1b;
     gap: 16px;
     font-size: 14px;
-    .select-language-wrap {
+    .select-language-header-wrap {
         position: relative;
         .select-language-item-text {
             position: absolute;
-            color: #5392f9;
+            color: #418997;
             font-size: 16px;
             font-weight: 700;
             right: 24px;
@@ -140,6 +142,10 @@
             cursor: pointer;
         }
     }
+    .select-language-content-wrap {
+        padding: 0px 16px;
+        gap: 16px;
+    }
     .select-language-title {
         font-size: 16px;
         font-weight: 700;
@@ -148,6 +154,7 @@
     .select-language-item {
         padding: 8px 16px;
         cursor: pointer;
+        line-height: 1.6;
         .select-language-item-left {
             gap: 16px;
         }
@@ -159,5 +166,10 @@
     .isSelected {
         background-color: #f4f4f4;
         border-radius: 4px;
+    }
+}
+@media all and (max-width: 768px) {
+    .select-language-item {
+        padding: 8px !important;
     }
 }

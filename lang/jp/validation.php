@@ -43,10 +43,10 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => ':attributeが正しくありません。:attributeを正しく入力してください。',
+    'email' => ':attributeが正しくありません。:attributeを正しく入力してください',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
-    'exists' => 'この:attributeは既存していません。',
+    'exists' => '有効なメールアドレスを入力してください',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
@@ -84,17 +84,17 @@ return [
     ],
     'mac_address' => 'The :attribute must be a valid MAC address.',
     'max' => [
-        'numeric' => ':attributeは:max文字以内に入力してください。',
+        'numeric' => ':attributeは:max文字以内に入力してください',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'string' => ':attributeは:max文字以内に入力してください。',
+        'string' => ':attributeは:max文字以内に入力してください',
         'array' => 'The :attribute must not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => ':attributeは:min文字以上に入力してください。',
+        'numeric' => ':attributeは:min文字以上に入力してください',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => ':attributeは:min文字以上に入力してください。',
+        'string' => ':attributeは:min文字以上に入力してください',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
@@ -102,14 +102,14 @@ return [
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
-    'password_confirmation' => ':attribute1と:attribute2が異なっています。',
+    'password_confirmation' => ':attribute1と:attribute2が異なっています',
     'present' => 'The :attribute field must be present.',
     'prohibited' => 'The :attribute field is prohibited.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => ':attributeを入力してください。',
+    'required' => '必須項目です',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -117,7 +117,7 @@ return [
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same' => ':otherと:attributeが異なっています。', 
+    'same' => ':otherと:attributeが異なっています',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file' => 'The :attribute must be :size kilobytes.',
@@ -149,19 +149,23 @@ return [
         ],
 
         'email' => [
-            'unique' => 'このメールアドレスは既に使われています。再度ご確認ください。',
-            'max' => ':attributeは:max文字以内に入力してください。',
-            'halfwidth' => ':attributeは半角英数字に入力してください。',
+            'unique' => 'このメールアドレスは既に使われています。再度ご確認ください',
+            'max' => ':max文字以内に入力してください',
+            'halfwidth' => '有効なメールアドレスを入力してください',
+            'required' => '有効なメールアドレスを入力してください',
+            'email'     => '有効なメールアドレスを入力してください',
         ],
-        
+
         'password' => [
-            'max' => ':attributeを:max文字以内に入力してください。',
-            'min' => ':attributeは:min文字以上に入力してください。',
-            'halfwidth' => ':attributeは半角英数字に入力してください。',
+            'max' => ':max文字以内に入力してください',
+            'min' => ':min文字以上に入力してください',
+            'halfwidth' => '半角英数字、記号を組み合わせた8文字以上で入力してください',
+            'required' => '半角英数字、記号を組み合わせた8文字以上で入力してください',
         ],
 
         'password_confirmation' => [
-            'halfwidth' => ':attributeは半角英数字に入力してください。',
+            'halfwidth' => '半角英数字、記号を組み合わせた8文字以上で入力してください',
+            'required' => '半角英数字、記号を組み合わせた8文字以上で入力してください',
         ],
         'title' => [
             'required' => '100文字以内で入力ください',
@@ -170,14 +174,11 @@ return [
         'category_id' => [
             'required' => '選択してください',
         ],
-        'description' => [
+        'short_description_for_parent' => [
             'required' => '100文字以内で入力ください',
             'max' => '100文字以内で入力ください',
         ],
-        'min_learner' => [
-            'required' => '必須項目です'
-        ],
-        'max_learner' => [
+        'class_capacity' => [
             'required' => '必須項目です'
         ],
         'target_age_from' => [
@@ -186,13 +187,10 @@ return [
         'target_age_to' => [
             'required' => '必須項目です'
         ],
-        'style' => [
+        'class_detail' => [
             'required' => '選択してください'
         ],
         'number_of_meets' => [
-            'required' => '必須項目です'
-        ],
-        'total_of_meets' => [
             'required' => '必須項目です'
         ],
         'lesson_hour' => [
@@ -216,12 +214,7 @@ return [
             'mimetypes' => 'ファイル形式が正しくありません。MP4、AVI、MOV、WEBM、FLV形式の画像をアップロードしてください',
             'max' => '100MB以下のファイルをアップロードしてください',
         ],
-        'short_video_for_parent' => [
-            'required' => '必須項目です',
-            'mimetypes' => 'ファイル形式が正しくありません。MP4、AVI、MOV、WEBM、FLV形式の画像をアップロードしてください',
-            'max' => '100MB以下のファイルをアップロードしてください',
-        ],
-        'lesson_content' => [
+        'class_description' => [
             'required' => '最低500文字以上で入力ください',
             'min' => '最低500文字以上で入力ください',
         ],
@@ -324,40 +317,38 @@ return [
         ],
         'profile_image'         => [
             'required'  => '必須項目です',
-            'mimes'     => 'ファイル形式が正しくありません。JPEG、JPG、PNG、GIF、BMP形式の画像をアップロードしてください',
+            'mimes'     => 'ファイル形式 jpeg, jpg, png, gif, bmp をサポートしています',
+            'max'  => 'サイズは最大20MBまでアップロードが可能です',
         ],
         'first_name'            => [
-            'required'  => 'First Nameを入力してください',
-            'max'       => 'First Nameは100文字以内に入力してください',
+            'required'  => '必須項目です',
+            'max'       => '100文字以内に入力してください',
         ],
         'last_name'             => [
-            'required'  => 'Last Nameを入力してください',
-            'max'       => 'Last Nameは100文字以内に入力してください',
+            'required'  => '必須項目です',
+            'max'       => '100文字以内に入力してください',
         ],
-        'city_id.required'      => '選択してください',
-        'email'                 => [
-            'email'     => 'Email が正しくありません。Email を正しく入力してください',
-            'unique'    => 'このメールアドレスは既に使われています。再度ご確認ください',
-        ],
+        'city_id.required'      => '必須項目です',
         'country_code.required' => '必須項目です',
         'phone'                 => [
             'required'  => '必須項目です',
-            'min'       => 'Phone Numbersは9数字以上に入力してください',
-            'max'       => 'Phone Numbersは11数字以内に入力してください',
+            'min'       => '9数字以上に入力してください',
+            'max'       => '11数字以内に入力してください',
         ],
         'job.required'          => '選択してください',
         'salary.required'       => '選択してください',
         'headline'              => [
-            'required'  => 'Headline of teacherを入力してください',
-            'max'       => 'Headline of teacherは80文字以内に入力してください',
+            'required'  => '必須項目です',
+            'max'       => '80文字以内に入力してください',
         ],
         'about'                 => [
-            'required'  => '選択してください',
-            'max'       => 'About meは200文字以内に入力してください',
+            'required'  => '必須項目です',
+            'max'       => '200文字以内に入力してください',
         ],
         'short_video_for_learner' => [
-            'mimetypes' => 'ファイル形式が正しくありません。MP4、AVI、MOV、WEBM、FLV形式の画像をアップロードしてください',
-            'max'       => ' 100MB以下のファイルをアップロードしてください',
+            'mimetypes' => 'ファイル形式 mp4, avi, mov, webm, flv をサポートしています',
+            'max'       => ' サイズは最大 20MBまでアップロードが可能です ( 推奨 30~90秒程度)',
+            'required'  => '必須項目です',
         ],
     ],
 
@@ -376,5 +367,25 @@ return [
     'learner' => [
         'required'  => "子供の名前を入力くださいい",
         'max'       => '100文字以内に入力してください',
+    ],
+        // user info validation
+    'parent_information' => [
+        'nickname' => [
+            'max' => '100文字以内に入力してください',
+        ],
+        'first_name' => [
+            'max' => '100文字以内に入力してください',
+        ],
+        'last_name' => [
+            'max' => '100文字以内に入力してください',
+        ],
+        'first_name_kana' => [
+            'max' => '100文字以内に入力してください',
+            'not_kana' => '全角カタカナで入力してください',
+        ],
+        'last_name_kana' => [
+            'max' => '100文字以内に入力してください',
+            'not_kana' => '全角カタカナで入力してください',
+        ],
     ]
 ];

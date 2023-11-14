@@ -152,6 +152,7 @@ return [
             'unique' => 'The :attribute has already been taken.',
             'max' => 'The :attribute must not be greater than :max characters.',
             'halfwidth' => 'Please enter your email address in half-width alphanumeric characters',
+            'email'     => 'Please enter your email address in half-width alphanumeric characters',
         ],
 
         'password' => [

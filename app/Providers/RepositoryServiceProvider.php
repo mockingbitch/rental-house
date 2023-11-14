@@ -14,10 +14,11 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $repositories = [
-            'User\UserRepositoryInterface' => 'User\UserRepository',
+            'User\UserRepositoryInterface'          => 'User\UserRepository',
             'User\PasswordResetRepositoryInterface' => 'User\PasswordResetRepository',
-            'User\CategoryRepositoryInterface' => 'User\CategoryRepository',
-            'User\TagRepositoryInterface' => 'User\TagRepository',
+            'Category\CategoryRepositoryInterface'  => 'Category\CategoryRepository',
+            'Tag\TagRepositoryInterface'            => 'Tag\TagRepository',
+            'House\HouseRepositoryInterface'        => 'House\HouseRepository',
         ];
 
         foreach ($repositories as $key => $value) {

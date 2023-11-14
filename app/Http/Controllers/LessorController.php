@@ -34,4 +34,14 @@ class LessorController extends Controller
     {
         return Inertia::render('Client/LessorRegistration/Index');
     }
+
+    public function dashboard()
+    {
+        return view('lessor.dashboard');
+    }
+
+    public function getHouses()
+    {
+        return view('lessor.house.list');
+    }
 }
