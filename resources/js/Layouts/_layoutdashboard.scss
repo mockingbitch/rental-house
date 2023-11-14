@@ -1,9 +1,57 @@
 main {
-    min-height: calc(100vh - 54px - 80px);
-    padding-bottom: 52px;
-
+    width: 100%;
+    min-height: calc(100vh - 54px);
+    padding-top: 54px;
+    padding-bottom: 32px;
     @media screen and (max-width: 991px) and (min-height: 500px) {
         min-height: calc(100vh - 54px - 52px);
-        padding-bottom: 0;
+        padding-bottom: 68px !important;
+    }
+}
+.is-have-side-menu {
+    width: calc(100% - 300px);
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    margin-left: 300px;
+    :deep(.modal) {
+        left: calc(50% + 150px) !important;
+    }
+    .side-menu {
+        display: none !important;
+    }
+}
+.is-leave-to {
+    transform: translateX(-20px);
+    margin-left: 20px;
+}
+.main-transition {
+    transition: all 0.3s ease-out;
+}
+.translateX-enter-active {
+    transition: all 0.3s ease-out;
+}
+  
+.translateX-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+  
+.translateX-enter-from,
+.translateX-leave-to {
+    transform: translateX(-20px);
+    opacity: 0;
+}
+@media all and (max-width: 991px) {
+    .side-menu {
+        display: none !important;
+    }
+    .is-have-side-menu {
+        width: 100%;
+        margin-left: 0px;
+        :deep(.modal) {
+            left: 50% !important;
+        }
+    }
+    .isHideSp {
+        padding-top: 0px;
+        transition: none;
     }
 }
