@@ -259,7 +259,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'House' ? 'active' : ''}}" href="">
+                <a class="nav-link {{$breadcrumb == 'House' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -904,5 +904,7 @@ $breadcrumb = 'test';
         {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{asset('dashboard/js/soft-ui-dashboard.min.js?v=1.0.5')}}"></script>
+        <script src="{{asset('js/common.js')}}"></script>
+        @stack('scripts')
     </body>
 </html>
