@@ -43,6 +43,7 @@ class PermissionConstant
         'create_tag'        => 'Create Tag',        //24
         'update_tag'        => 'Update Tag',        //25
         'delete_tag'        => 'Delete Tag',        //26
-        'view_admin'        => 'View Admin', //27
+        'view_admin'        => 'View Admin',        //27
+        'lessor'            => 'Lessor',            //28
     ];
 }

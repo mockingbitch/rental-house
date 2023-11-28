@@ -69,7 +69,7 @@ $breadcrumb = 'test';
                 class="navbar-brand-img h-100"
                 alt="main_logo"
             />
-            <span class="ms-1 font-weight-bold"><strong>BOOKING HOTEL</strong></span>
+            <span class="ms-1 font-weight-bold"><strong>RENTALHOUSE</strong></span>
             </a>
         </div>
         <hr class="horizontal dark mt-0" />
@@ -125,12 +125,12 @@ $breadcrumb = 'test';
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
                     <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 42 42"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 42 42"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                     >
                     <title>office</title>
                     <g
@@ -140,9 +140,9 @@ $breadcrumb = 'test';
                         fill-rule="evenodd"
                     >
                         <g
-                        transform="translate(-1869.000000, -293.000000)"
-                        fill="#FFFFFF"
-                        fill-rule="nonzero"
+                            transform="translate(-1869.000000, -293.000000)"
+                            fill="#FFFFFF"
+                            fill-rule="nonzero"
                         >
                         <g transform="translate(1716.000000, 291.000000)">
                             <g
@@ -172,12 +172,12 @@ $breadcrumb = 'test';
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
                     <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 43 36"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 43 36"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                     >
                     <title>credit-card</title>
                     <g
@@ -187,9 +187,9 @@ $breadcrumb = 'test';
                         fill-rule="evenodd"
                     >
                         <g
-                        transform="translate(-2169.000000, -745.000000)"
-                        fill="#FFFFFF"
-                        fill-rule="nonzero"
+                            transform="translate(-2169.000000, -745.000000)"
+                            fill="#FFFFFF"
+                            fill-rule="nonzero"
                         >
                         <g transform="translate(1716.000000, 291.000000)">
                             <g transform="translate(453.000000, 454.000000)">
@@ -211,17 +211,17 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'User' ? 'active' : ''}}" href="">
+                <a class="nav-link {{$breadcrumb == 'User' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
                     <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 42 42"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 42 42"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                     >
                     <title>box-3d-50</title>
                     <g
@@ -259,19 +259,19 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Booking' ? 'active' : ''}}" href="">
+                <a class="nav-link {{$breadcrumb == 'House' ? 'active' : ''}}" href="">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
                     <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 40 40"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 40 40"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                     >
-                    <title>settings</title>
+                    <title>House</title>
                     <g
                         stroke="none"
                         stroke-width="1"
@@ -279,9 +279,9 @@ $breadcrumb = 'test';
                         fill-rule="evenodd"
                     >
                         <g
-                        transform="translate(-2020.000000, -442.000000)"
-                        fill="#FFFFFF"
-                        fill-rule="nonzero"
+                            transform="translate(-2020.000000, -442.000000)"
+                            fill="#FFFFFF"
+                            fill-rule="nonzero"
                         >
                         <g transform="translate(1716.000000, 291.000000)">
                             <g transform="translate(304.000000, 151.000000)">
@@ -303,7 +303,7 @@ $breadcrumb = 'test';
                     </g>
                     </svg>
                 </div>
-                <span class="nav-link-text ms-1">Bookings</span>
+                <span class="nav-link-text ms-1">House</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -536,19 +536,20 @@ $breadcrumb = 'test';
                     ><i class="fas fa-search" aria-hidden="true"></i
                     ></span>
                     <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Type here..."
+                        type="text"
+                        class="form-control"
+                        placeholder="Type here..."
                     />
                 </div>
                 </div>
                 <ul class="navbar-nav justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                     <a
-                    class="btn btn-outline-primary btn-sm mb-0 me-3"
-                    href=""
-                    >Home Page</a
+                        class="btn btn-outline-primary btn-sm mb-0 me-3"
+                        href=""
                     >
+                    Home Page
+                    </a>
                 </li>
                 <li class="nav-item d-flex align-items-center">
                     <a
@@ -581,22 +582,22 @@ $breadcrumb = 'test';
                 </li>
                 <li class="nav-item dropdown pe-2 d-flex align-items-center">
                     <a
-                    href="javascript:;"
-                    class="nav-link text-body p-0"
-                    id="dropdownMenuButton"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                        href="javascript:;"
+                        class="nav-link text-body p-0"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                     >
-                    <i class="fa fa-bell cursor-pointer"></i>
+                        <i class="fa fa-bell cursor-pointer"></i>
                     </a>
                     <ul
-                    class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-                    aria-labelledby="dropdownMenuButton"
+                        class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
+                        aria-labelledby="dropdownMenuButton"
                     >
                     <li class="mb-2">
                         <a
-                        class="dropdown-item border-radius-md"
-                        href="javascript:;"
+                            class="dropdown-item border-radius-md"
+                            href="javascript:;"
                         >
                         <div class="d-flex py-1">
                             <div class="my-auto">
@@ -737,9 +738,10 @@ $breadcrumb = 'test';
                         href=""
                         class="font-weight-bold"
                         target="_blank"
-                        >Team 4:</a
                     >
-                    Booking Hotel.
+                        Phong Trần
+                    </a>
+                        RentalHouse.
                     </div>
                 </div>
                 </div>
@@ -754,7 +756,7 @@ $breadcrumb = 'test';
         <div class="card shadow-lg">
             <div class="card-header pb-0 pt-3">
             <div class="float-start">
-                <h5 class="mt-3 mb-0">Booking Hotel Configurator</h5>
+                <h5 class="mt-3 mb-0">RentalHouse Configurator</h5>
                 <p>See our dashboard options.</p>
             </div>
             <div class="float-end mt-4">

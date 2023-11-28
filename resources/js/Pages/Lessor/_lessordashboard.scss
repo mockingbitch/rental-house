@@ -1,0 +1,76 @@
+.lessor__dashboard-container {
+    padding: 16px;
+    font-size: 14px;
+    max-width: 505px;
+    margin: 0 auto;
+    color: #1b1b1b;
+
+    .lessor__dashboard-wrap {
+        padding-bottom: 40px;
+
+        .lessor__dashboard-title {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 24px;
+
+            .lessor__dashboard-title-item {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .lessor__dashboard-title-btn {
+                text-decoration: underline;
+                cursor: pointer;
+                color: #1b1b1b;
+            }
+        }
+
+        .lessor__dashboard-lesson {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.lessor__dashboard-create {
+    display: flex;
+    justify-content: center;
+
+    .lessor__dashboard-create-btn {
+        position: fixed;
+        bottom: 16px;
+        border-radius: 100px;
+        display: flex;
+        background-color: #418997;
+        width: 250px;
+        max-height: 50px;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        gap: 10px;
+        padding: 16px;
+        font-size: 16px;
+        z-index: 100;
+        font-weight: bold;
+        line-height: 1.6;
+        letter-spacing: -0.14px;
+    }
+}
+
+@media all and (max-width: 991px) {
+    .lessor__dashboard-create-btn {
+        bottom: 60px;
+    }
+}
+@media all and (max-width: 768px) {
+    .lessor__dashboard-create-btn {
+        max-width: 145px;
+        max-height: 38px;
+        font-size: 14px;
+        padding: 8px 16px;
+        font-size: 14px;
+        gap: 6px;
+    }
+}

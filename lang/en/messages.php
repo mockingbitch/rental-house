@@ -19,6 +19,7 @@ return [
         'SM-001'    => 'Reset password successfully',
 
         'EM-001'    => 'Reset password failed',
+        'EM-002'    => 'Token expired',
     ],
     'logout' => [
         'SM-001' => 'Logout successfully',
@@ -34,21 +35,5 @@ return [
     'create_course' => [
         'SM-001' => 'Create course success!',
         'EM-001' => 'Create course failed!',
-    ],
-    'create_category' => [
-        'SM-001' => 'Create category success!',
-        'EM-001' => 'Create category failed!',
-    ],
-    'update_category' => [
-        'SM-001' => 'Update category success!',
-        'EM-001' => 'Update category failed!',
-    ],
-    'create_tag' => [
-        'SM-001' => 'Create tag success!',
-        'EM-001' => 'Create tag failed!',
-    ],
-    'update_tag' => [
-        'SM-001' => 'Update tag success!',
-        'EM-001' => 'Update tag failed!',
     ],
 ];

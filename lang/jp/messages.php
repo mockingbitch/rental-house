@@ -4,7 +4,7 @@ return [
     'login' => [
         'SM-001'    => 'Login successfully',
 
-        'EM-001'    => 'EmailまたはPasswordが正しくありません',
+        'EM-001'    => 'パスワードが正しくありません',
     ],
     'register' => [
         'SM-001'    => 'Registration successfully',
@@ -16,6 +16,7 @@ return [
         'SM-001'    => 'Reset password successfully',
 
         'EM-001'    => 'Reset password failed',
+        'EM-002'    => 'Token expired',
     ],
     'logout' => [
         'SM-001' => 'Logout successfully',

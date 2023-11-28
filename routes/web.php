@@ -82,5 +82,15 @@ Route::controller(LessorController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::get('register', 'register')->name('lessor.register');
         Route::post('register/step1', 'registerStep1')->name('lessor.register.step1');
+        Route::get('dashboard', 'dashboard')->name('lessor.dashboard');
+        Route::get('houses', 'getHouses')->name('lessor.house.index');
+    });
+});
+
+Route::controller(HouseController::class)->group(function () {
+    Route::prefix('lessor')->group(function () {
+        Route::post('house', 'create')->name('lessor.house.create');
+        Route::get('house/{id}', 'detail')->name('lessor.house.detail');
+        Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
     });
 });

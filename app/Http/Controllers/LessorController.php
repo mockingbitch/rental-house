@@ -39,4 +39,13 @@ class LessorController extends Controller
     public function registerStep1(LessorRegistrationStep1 $request)
     {
     }
+    public function dashboard()
+    {
+        return view('lessor.dashboard');
+    }
+
+    public function getHouses()
+    {
+        return view('lessor.house.list');
+    }
 }

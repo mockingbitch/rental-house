@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Constants\Constant;
 use App\Http\Requests\TagRequest;
-use App\Repositories\User\TagRepositoryInterface;
+use App\Repositories\Tag\TagRepositoryInterface;
 
 class TagController extends Controller
 {
