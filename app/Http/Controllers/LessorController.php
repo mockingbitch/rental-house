@@ -10,22 +10,21 @@ use App\Constants\UserConstant;
 use App\Constants\CommonConstant;
 use App\Http\Requests\LessorRegistrationStep1;
 use App\Repositories\User\UserRepositoryInterface;
-use App\Services\FileService;
+use App\Repositories\House\HouseRepositoryInterface;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class LessorController extends Controller
 {
     /**
-     * @param FileService $fileService
      * @param UserRepositoryInterface $userRepository
+     * @param AddressService $addressService
      */
     public function __construct(
-        public FileService $fileService,
         public UserRepositoryInterface $userRepository,
+        public HouseRepositoryInterface $houseRepository,
     )
     {
-
     }
 
     /**
@@ -46,6 +45,10 @@ class LessorController extends Controller
 
     public function getHouses()
     {
-        return view('lessor.house.list');
+        $houses = $this->houseRepository->all();
+
+        return view('lessor.house.list', [
+            'houses' => $houses,
+        ]);
     }
 }

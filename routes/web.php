@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessorController;
+use App\Http\Controllers\HouseController;
 
 /*
 |--------------------------------------------------------------------------

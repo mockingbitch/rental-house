@@ -27,4 +27,9 @@ class House extends Model
         'thumbnail',
         'status',
     ];
+
+    public function lessor()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'lessor_id');
+    }
 }
