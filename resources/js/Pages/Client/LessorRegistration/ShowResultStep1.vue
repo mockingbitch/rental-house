@@ -51,10 +51,10 @@ const confirmStep1 = () => {
                 Object.keys(form.errors).length === 0 &&
                 form.errors.constructor === Object
             ) {
+            console.log('test');
                 emits("confirm-step1", props.dataStep1);
             }
-        },
-        onError: console.log("error"),
+        }
     });
 };
 const BackToOnboarding = () => {

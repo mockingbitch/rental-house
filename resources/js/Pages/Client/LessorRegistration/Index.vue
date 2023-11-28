@@ -5,7 +5,7 @@ import Step1 from "./Step1.vue";
 // import Step2 from "./Step2.vue";
 // import Step3 from "./Step3.vue";
 import Default from "./Default.vue";
-// import ApplySuccess from "@/Components/BecomeTeacher/ApplySuccess.vue";
+import ApplySuccess from "./ApplySuccess.vue";
 import ShowResultStep1 from "./ShowResultStep1.vue";
 // import showResultStep2 from "@/Components/BecomeTeacher/showResultStep2.vue";
 // import showResultStep3 from "@/Components/BecomeTeacher/showResultStep3.vue";
@@ -77,7 +77,8 @@ const form = computed(() => {
         day: dataStep1.value?.day,
         phone: dataStep1.value?.phone,
         about: dataStep1.value?.about,
-        introduction_video: dataStep1.value?.introduction_video,
+        shortVideo: dataStep1.value?.shortVideo,
+        profileImage: dataStep1.value?.profileImage,
         // bank_name: dataStep1.value?.bank_name,
         // branch_code: dataStep1.value?.branch_code,
         // account_type: dataStep1.value?.account_type,
@@ -245,10 +246,10 @@ const saveDataStep3 = (data) => {
         @move-to-onboarding="backToOnboarding"
         :showButtonConfirm="state.status.statusStep1"
     />
-    <!-- <ApplySuccess
+    <ApplySuccess
         v-if="state.step === 5"
         @back-to-dashboard="backToOnboarding"
-    ></ApplySuccess> -->
+    ></ApplySuccess>
     <!-- <showResultStep1
         v-if="state.showResult === 1"
         :cities="props.cities"
