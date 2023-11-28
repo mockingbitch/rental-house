@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use App\Constants\UserConstant;
 use App\Constants\CommonConstant;
+use App\Http\Requests\LessorRegistrationStep1;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\FileService;
 use Inertia\Inertia;
@@ -35,6 +36,9 @@ class LessorController extends Controller
         return Inertia::render('Client/LessorRegistration/Index');
     }
 
+    public function registerStep1(LessorRegistrationStep1 $request)
+    {
+    }
     public function dashboard()
     {
         return view('lessor.dashboard');

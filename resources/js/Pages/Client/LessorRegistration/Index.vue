@@ -5,8 +5,8 @@ import Step1 from "./Step1.vue";
 // import Step2 from "./Step2.vue";
 // import Step3 from "./Step3.vue";
 import Default from "./Default.vue";
-// import ApplySuccess from "@/Components/BecomeTeacher/ApplySuccess.vue";
-// import showResultStep1 from "@/Components/BecomeTeacher/showResultStep1.vue";
+import ApplySuccess from "./ApplySuccess.vue";
+import ShowResultStep1 from "./ShowResultStep1.vue";
 // import showResultStep2 from "@/Components/BecomeTeacher/showResultStep2.vue";
 // import showResultStep3 from "@/Components/BecomeTeacher/showResultStep3.vue";
 
@@ -56,54 +56,48 @@ const state = ref({
 
 const dataStep1 = ref({
     ...props.lessorInformation, 
-    'first_name': page.props.auth?.user?.first_name,
-    'last_name': page.props.auth?.user?.last_name,
+    'firstName': page.props.auth?.user?.first_name,
+    'lastName': page.props.auth?.user?.last_name,
     'email': page.props.auth?.user?.email,
     'year': page.props.auth?.user?.year,
     'month': page.props.auth?.user?.month,
     'day': page.props.auth?.user?.day,
-    'country_id': page.props.auth?.user?.country_id,
-    'city_id': page.props.auth?.user?.city_id,
-    'profile_image': page.props.auth?.user?.avatar,
+    'profileImage': page.props.auth?.user?.avatar,
 });
 const dataStep3 = ref(props.lessorHouse);
 const form = computed(() => {
     return useForm({
         //step1
-        first_name: dataStep1.value?.first_name,
-        last_name: dataStep1.value?.last_name,
-        first_name_kana: dataStep1.value?.first_name_kana,
-        last_name_kana: dataStep1.value?.last_name_kana,
+        firstName: dataStep1.value?.firstName,
+        lastName: dataStep1.value?.lastName,
         email: dataStep1.value?.email,
         year: dataStep1.value?.year,
         month: dataStep1.value?.month,
         country: dataStep1.value?.country,
         day: dataStep1.value?.day,
-        country_code: dataStep1.value?.country_code,
         phone: dataStep1.value?.phone,
-        city_id: dataStep1.value?.city_id,
-        headline: dataStep1.value?.headline,
         about: dataStep1.value?.about,
-        introduction_video: dataStep1.value?.introduction_video,
-        bank_name: dataStep1.value?.bank_name,
-        branch_code: dataStep1.value?.branch_code,
-        account_type: dataStep1.value?.account_type,
-        account_number: dataStep1.value?.account_number,
-        account_name: dataStep1.value?.account_name,
-        profile_image: dataStep1.value?.profile_image,
-        job: dataStep1.value?.job,
-        salary: dataStep1.value?.salary,
-        school: dataStep1.value?.school,
-        major: dataStep1.value?.major,
-        major_specialize: dataStep1.value?.major_specialize,
-        admission_year: dataStep1.value?.admission_year,
-        admission_month: dataStep1.value?.admission_month,
-        admission_day: dataStep1.value?.admission_day,
-        graduation_year: dataStep1.value?.graduation_year,
-        graduation_month: dataStep1.value?.graduation_month,
-        graduation_day: dataStep1.value?.graduation_day,
-        academic_certificate: dataStep1.value?.academic_certificate,
-        work_histories: dataStep3.value,
+        shortVideo: dataStep1.value?.shortVideo,
+        profileImage: dataStep1.value?.profileImage,
+        // bank_name: dataStep1.value?.bank_name,
+        // branch_code: dataStep1.value?.branch_code,
+        // account_type: dataStep1.value?.account_type,
+        // account_number: dataStep1.value?.account_number,
+        // account_name: dataStep1.value?.account_name,
+        // profile_image: dataStep1.value?.profile_image,
+        // job: dataStep1.value?.job,
+        // salary: dataStep1.value?.salary,
+        // school: dataStep1.value?.school,
+        // major: dataStep1.value?.major,
+        // major_specialize: dataStep1.value?.major_specialize,
+        // admission_year: dataStep1.value?.admission_year,
+        // admission_month: dataStep1.value?.admission_month,
+        // admission_day: dataStep1.value?.admission_day,
+        // graduation_year: dataStep1.value?.graduation_year,
+        // graduation_month: dataStep1.value?.graduation_month,
+        // graduation_day: dataStep1.value?.graduation_day,
+        // academic_certificate: dataStep1.value?.academic_certificate,
+        // work_histories: dataStep3.value,
     });
 });
 
@@ -241,10 +235,21 @@ const saveDataStep3 = (data) => {
         @showResultStep2="showResult2"
         @showResultStep3="showResult3"
     ></Default>
-    <!-- <ApplySuccess
+    <ShowResultStep1
+        v-if="state.showResult === 1"
+        :cities="props.cities"
+        :dataStep1="dataStep1"
+        :countries="props.countries"
+        @back-to-onboarding="backToStep(1)"
+        @confirm-step1="step1Success"
+        @save-data="saveData"
+        @move-to-onboarding="backToOnboarding"
+        :showButtonConfirm="state.status.statusStep1"
+    />
+    <ApplySuccess
         v-if="state.step === 5"
         @back-to-dashboard="backToOnboarding"
-    ></ApplySuccess> -->
+    ></ApplySuccess>
     <!-- <showResultStep1
         v-if="state.showResult === 1"
         :cities="props.cities"
