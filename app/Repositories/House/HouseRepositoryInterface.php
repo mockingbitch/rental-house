@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\House;
 
 interface HouseRepositoryInterface
 {

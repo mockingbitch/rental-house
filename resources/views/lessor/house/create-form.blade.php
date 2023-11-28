@@ -10,19 +10,19 @@
                 Name
                 <span class="text-error">(*)</span>
                 <p class="text-error">
-                    {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                    {{ $errors->has('name') ? $errors->first('name') : ''}}
                 </p>
             </label>
             <input type="text" class="form-control"
-                id="nameVi" name="name_vi" value="{{old('name_vi')}}"
-                placeholder="Enter Name_vi">
+                id="nameVi" name="name" value="{{old('name')}}"
+                placeholder="House name">
         </div>
         <div class="form-group">
             <label for="inputCity">
                 Description
                 <span class="text-error">(*)</span>
                 <p class="text-error">
-                    {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                    {{ $errors->has('description') ? $errors->first('description') : ''}}
                 </p>
             </label>
             <textarea name="description" class="form-control" id="" cols="20" rows="10"></textarea>
@@ -33,7 +33,7 @@
                     Province
                     <span class="text-error">(*)</span>
                     <p class="text-error">
-                        {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                        {{ $errors->has('province_code') ? $errors->first('province_code') : ''}}
                     </p>
                 </label>
                 <select
@@ -50,7 +50,7 @@
                     District
                     <span class="text-error">(*)</span>
                     <p class="text-error">
-                        {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                        {{ $errors->has('district_code') ? $errors->first('district_code') : ''}}
                     </p>
                 </label>
                 <select
@@ -67,7 +67,7 @@
                     Ward
                     <span class="text-error">(*)</span>
                     <p class="text-error">
-                        {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                        {{ $errors->has('ward_code') ? $errors->first('ward_code') : ''}}
                     </p>
                 </label>
                 <select
@@ -85,32 +85,31 @@
                 Address
                 <span class="text-error">(*)</span>
                 <p class="text-error">
-                    {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                    {{ $errors->has('address') ? $errors->first('address') : ''}}
                 </p>
             </label>
             <input type="text" class="form-control"
-                name="description_en" id="descriptionEn"
-                placeholder="Enter Description_en">
+                name="address" id="address"
+                placeholder="Enter your specific address">
         </div>
         <div class="form-group row">
             <label for="inputCity">
                 Thumbnail
                 <span class="text-error">(*)</span>
                 <p class="text-error">
-                    {{ $errors->has('name_en') ? $errors->first('name_en') : ''}}
+                    {{ $errors->has('thumbnail') ? $errors->first('thumbnail') : ''}}
                 </p>
             </label>
+            <input type="file" name="thumbnail" id="thumbnail" hidden accept="image/*" />
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card h-100 card-plain border">
-                    <div class="card-body d-flex flex-column justify-content-center text-center">
-                    <a href="javascript:;">
+                    <div class="card-body d-flex flex-column justify-content-center text-center add-thumbnail">
                         <i class="fa fa-plus text-secondary mb-3"></i>
-                        <h5 class=" text-secondary"> Thumbnail </h5>
-                    </a>
+                        <h5 class="text-secondary"> Thumbnail </h5>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>

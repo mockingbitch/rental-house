@@ -16,10 +16,14 @@ class AddressController extends Controller
     {
     }
 
-    public function list()
+    public function list(Request $request)
     {
+        $data = $request->data;
+
+        $address = $this->addressService->getAddressMst($data);
+
         return response()->json([
-            'address' => $this->addressService->getAddressMst(),
+            'address' => $address,
         ], 200);
     }
 }

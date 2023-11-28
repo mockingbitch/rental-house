@@ -66,25 +66,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function country()
-    // {
-    //     return $this->belongsTo(Country::class, 'country_id',  'id');
-    // }
-
-    // public function city()
-    // {
-    //     return $this->belongsTo(City::class, 'city_id', 'id');
-    // }
-
-    // public function kids()
-    // {
-    //     return $this->hasMany(Kid::class, 'parent_id', 'id');
-    // }
-
-    // public function user_schedules()
-    // {
-    //     return $this->hasMany(UserSchedule::class, 'user_id', 'id');
-    // }
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     // /**
     //  * The channels the user receives notification broadcasts on.
