@@ -1,6 +1,3 @@
-@php
-$breadcrumb = 'test';
-@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -76,17 +73,17 @@ $breadcrumb = 'test';
         <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Dashboard' ? 'active' : ''}}" href="">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'Dashboard' ? 'active' : ''}}" href="">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
                     <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 45 40"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 45 40"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                     >
                     <title>shop</title>
                     <g
@@ -120,7 +117,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Hotel' ? 'active' : ''}}" href="{{route('category.get')}}">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'Category' ? 'active' : ''}}" href="{{route('category.get')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -167,7 +164,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'Room' ? 'active' : ''}}" href="{{route('tag.get')}}">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'Tag' ? 'active' : ''}}" href="{{route('tag.get')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -211,7 +208,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'User' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'User' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -259,7 +256,7 @@ $breadcrumb = 'test';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{$breadcrumb == 'House' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'House' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -521,10 +518,10 @@ $breadcrumb = 'test';
                     class="breadcrumb-item text-sm text-dark active"
                     aria-current="page"
                 >
-                    {{$breadcrumb ? $breadcrumb : ''}}
+                    {{isset($breadcrumb) ? $breadcrumb : ''}}
                 </li>
                 </ol>
-                <h6 class="font-weight-bolder mb-0">{{$breadcrumb ? $breadcrumb : ''}}</h6>
+                <h6 class="font-weight-bolder mb-0">{{isset($breadcrumb) ? $breadcrumb : ''}}</h6>
             </nav>
             <div
                 class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"

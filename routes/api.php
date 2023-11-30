@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\HouseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,13 @@ Route::prefix('v1')->group(function () {
         Route::prefix('address')->group(function () {
             Route::get('list', 'list')->name('address.list');
             Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
+        });
+    });
+
+    Route::controller(HouseController::class)->group(function () {
+        Route::prefix('house')->group(function () {
+            Route::get('house/detail', 'detail')->name('lessor.house.detail');
+            Route::post('status', 'updateStatus')->name('house.update.status');
         });
     });
 });

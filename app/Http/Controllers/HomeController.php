@@ -33,7 +33,9 @@ class HomeController extends Controller
             'max_capacity' => 5,
         ];
         $objHouse = (object) $house;
-        $listHouse[] = $objHouse;
+        for ($i=0; $i < 20; $i++) { 
+            $listHouse[] = $objHouse;
+        }
 
         return Inertia::render('Client/Top', [
             'houses' => $listHouse,

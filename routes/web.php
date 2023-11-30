@@ -91,7 +91,7 @@ Route::controller(LessorController::class)->group(function () {
 Route::controller(HouseController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::post('house', 'create')->name('lessor.house.create');
-        Route::get('house/{id}', 'detail')->name('lessor.house.detail');
+        Route::post('house/{id}', 'update')->name('lessor.house.update');
         Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
     });
 });

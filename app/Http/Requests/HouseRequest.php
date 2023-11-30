@@ -21,6 +21,7 @@ class HouseRequest extends BaseRequest
             'ward_code'     => 'required',
             'address'       => 'required',
             'thumbnail'     => 'required',
+            'category_id'   => 'required',
         ];
     }
 
@@ -39,6 +40,7 @@ class HouseRequest extends BaseRequest
             'ward_code'     => __('label.house.field.ward_code'),
             'address'       => __('label.house.field.address'),
             'thumbnail'     => __('label.house.field.thumbnail'),
+            'category_id'   => __('label.house.field.category_id'),
         ];
     }
 }
