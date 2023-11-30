@@ -58,7 +58,7 @@ input:checked + .slider:before {
 }
 
 .slider.round:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 </style>
     <div class="create-btn mx-3 my-3">
@@ -68,7 +68,8 @@ input:checked + .slider:before {
         </button>
     </div>
     <span style="font-size:20px; color: green"></span>
-    @include('lessor.house.create-form')
+    @include('lessor.house.create-form', ['category' => $category])
+    @include('lessor.house.update')
     <div class="card mb-4">
         @if (isset($houses) && count($houses) >= 1)
         <div class="card-header pb-0">
@@ -83,6 +84,7 @@ input:checked + .slider:before {
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Verified at</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Thumbnail</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                             <th class="text-secondary opacity-7"></th>
@@ -108,6 +110,9 @@ input:checked + .slider:before {
                                 <p class="text-xs text-secondary mb-0">{{$house->verified_at ?? 'Not verify yet'}}</p>
                             </td>
                             <td>
+                                <p class="text-xs text-secondary mb-0">{{$house->category->name_vi}}</p>
+                            </td>
+                            <td>
                                 <div class="text-xs text-secondary mb-0 col-image">
                                     <img
                                         style="width: 100px; border-radius: 15px;"
@@ -119,7 +124,12 @@ input:checked + .slider:before {
                             <td>
                                 <p class="text-xs text-secondary mb-0">
                                     <label class="switch">
-                                        <input type="checkbox" id="status_{{$house->id}}" {{ $house->status == 1 ? 'checked' : '' }}>
+                                        <input
+                                            type="checkbox"
+                                            onclick="updateStatus({{$house->id}}, {{$house->status}})"
+                                            id="status_{{$house->id}}"
+                                            {{ $house->status == 1 ? 'checked' : '' }}
+                                        >
                                         <span class="slider round"></span>
                                     </label>
                                 </p>
@@ -128,12 +138,12 @@ input:checked + .slider:before {
                                 <span class="badge badge-sm bg-gradient-success"></span>
                             </td>
                             <td class="align-middle" style="font-size:20px">
-                                <a class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip"
-                                    data-original-title="Edit house" href="{{route('lessor.house.detail', ['id' => $house->id])}}">
-                                    <i style="font-size:20px" class="fa-solid fa-pen-to-square"></i>
-                                </a>
+                                <span class="text-secondary mx-1 font-weight-bold cursor-pointer text-xs" data-toggle="tooltip"
+                                    data-original-title="Edit house" onclick="handleViewDetail({{$house->id}})">
+                                    <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>
+                                </span>
                                 <a onclick="return confirm('Are you sure you want to delete this?')"
-                                    href="{{route('lessor.house.delete', ['id'=>$house->id])}}"
+                                    href="{{route('lessor.house.delete', ['id' => $house->id])}}"
                                     class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">
                                     <i style="font-size:20px" class="fa-solid fa-trash"></i>
                                 </a>
@@ -158,19 +168,11 @@ input:checked + .slider:before {
             swal({title: "Something went wrong", text: "{{Session::get('errMsg')}}", icon: "warning", button: "{{__('close')}}"})
         </script>
     @endif
-    <script>
-        function create() {
-            var x = document.getElementById("create-form");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>
     @push('scripts')
         <script>
-            let API_GET_ADDRESS = '{{route('address.list')}}';
+            let API_GET_ADDRESS     = '{{route('address.list')}}';
+            let API_UPDATE_STATUS   = '{{route('house.update.status')}}';
+            let API_HOUSE_DETAIL    = '{{route('lessor.house.detail')}}';
         </script>
         <script src="{{ asset('js/house.js') }}"></script>
         <script src="{{ asset('js/address.js') }}"></script>

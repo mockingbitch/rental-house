@@ -11,6 +11,7 @@ use App\Constants\CommonConstant;
 use App\Http\Requests\LessorRegistrationStep1;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\House\HouseRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,11 +19,13 @@ class LessorController extends Controller
 {
     /**
      * @param UserRepositoryInterface $userRepository
-     * @param AddressService $addressService
+     * @param HouseRepositoryInterface $houseRepository
+     * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
         public UserRepositoryInterface $userRepository,
         public HouseRepositoryInterface $houseRepository,
+        public CategoryRepositoryInterface $categoryRepository,
     )
     {
     }
@@ -46,9 +49,12 @@ class LessorController extends Controller
     public function getHouses()
     {
         $houses = $this->houseRepository->all();
+        $category = $this->categoryRepository->all();
 
         return view('lessor.house.list', [
-            'houses' => $houses,
+            'houses'        => $houses,
+            'category'      => $category,
+            'breadcrumb'    => 'House',
         ]);
     }
 }

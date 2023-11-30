@@ -38,7 +38,19 @@ class HouseController extends Controller
         }
     }
 
-    public function detail()
+    public function detail(Request $request)
+    {   
+        $data = $request->all()['data'];
+        $house = $this->houseRepository->find($data['id']);
+
+        return response()->json([
+            'house'     => $house,
+            'errCode'   => 0,
+            'message'   => 'Successfully',
+        ], 200);
+    }
+
+    public function update()
     {
 
     }
@@ -46,5 +58,27 @@ class HouseController extends Controller
     public function delete()
     {
         
+    }
+
+    public function updateStatus(Request $request)
+    {
+        try {
+            $house = $this->houseRepository
+                ->update(
+                    $request->id, [
+                        'status' => $request->status ? '0' : '1'
+                    ]);
+            
+            return response()->json([
+                'house'     => $house,
+                'errCode'   => 0,
+                'message'   => 'Update status successfully'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'errCode' => 1,
+                'message' => 'Something went wrong'
+            ], 200);
+        }
     }
 }

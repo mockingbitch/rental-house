@@ -26,10 +26,16 @@ class House extends Model
         'verified_at',
         'thumbnail',
         'status',
+        'category_id',
     ];
 
     public function lessor()
     {
         return $this->belongsTo(\App\Models\User::class, 'lessor_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id');
     }
 }
