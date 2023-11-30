@@ -22,6 +22,7 @@ $('.cancel-update-btn').on('click', function() {
 $('.house-update').on('click', function () {
     let api = API_HOUSE_UPDATE;
     let data = {
+        id: $('#house-id').val(),
         name: $('#name-update').val() ?? '',
         description: $('#description-update').val() ?? '',
         province_code: $('#province_code-update').val() ?? '',
@@ -30,6 +31,7 @@ $('.house-update').on('click', function () {
         address: $('#address-update').val() ?? '',
         category_id: $('#category-update').val() ?? '',
         thumbnail: $('#thumbnail-update').val() ?? '',
+        type: 'update'
     };
     createOrUpdate(api, data, nextUpdateHouse);
 });
@@ -80,7 +82,7 @@ const nextGetHouseDetail = (data) => {
             $(`#${key}-${type}`).val(item[key])
         }
     }
-    console.log(item);
+    $('#house-id').val(item.id);
     $(`#province_code-update option[value=${item.province_code}]`).attr('selected','selected');
     $(`#district_code-update option[value=${item.district_code}]`).attr('selected','selected');
     $(`#ward_code-update option[value=${item.ward_code}]`).attr('selected','selected');
@@ -116,5 +118,5 @@ const appendAddressUpdate = (data) => {
 }
 
 const nextUpdateHouse = (data) => {
-
+    console.log(data);
 }

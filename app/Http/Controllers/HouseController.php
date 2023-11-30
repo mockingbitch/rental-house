@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HouseRequest;
 use App\Repositories\House\HouseRepositoryInterface;
 use App\Services\FileService;
+use PHPUnit\Exception;
 
 class HouseController extends Controller
 {
@@ -63,7 +64,32 @@ class HouseController extends Controller
 
     public function update(HouseRequest $request)
     {
-        dd($request);
+        $data = $request->all();
+        try {
+            if (!$house = $this->houseRepository->find($data['id'])) :
+                return response()->json([
+                    'errCode' => 1,
+                    'message' => 'House not found!',
+                ]);
+            endif;
+            if (isset($data['thumbnail'])) :
+                $data['thumbnail'] = $this->fileService
+                    ->storeFile($data['thumbnail'], 'public/house');
+            endif;
+
+            $house = $this->houseRepository->update($data['id'], $data);
+
+            return response()->json([
+                'house' => $house,
+                'errCode' => 0,
+                'message' => 'Update successfully!',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'errCode' => 1,
+                'message' => 'Something went wrong!',
+            ], 200);
+        }
     }
 
     public function delete()
