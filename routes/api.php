@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function () {
     Route::controller(HouseController::class)->group(function () {
         Route::prefix('house')->group(function () {
             Route::get('house/detail', 'detail')->name('lessor.house.detail');
+            Route::post('house/update', 'update')->name('lessor.house.update');
             Route::post('status', 'updateStatus')->name('house.update.status');
         });
     });

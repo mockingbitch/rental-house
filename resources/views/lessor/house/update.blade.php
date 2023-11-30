@@ -1,8 +1,5 @@
 <div id="update-form" style="{{($errors->isEmpty()) ? 'display: none' : 'display: block'}}" class="card mb-4">
-    <form class="mx-4 pt-4"
-        method="post"
-        enctype="multipart/form-data"
-    >
+    <form class="mx-4 pt-4" onSubmit="document.getElementById('submit').disabled=true;">
         @csrf
         <div class="form-group mt-4">
             <label for="inputName">
@@ -104,6 +101,9 @@
                 class="select form-control mb-3"
                 aria-label=".form-select-lg example"
             >
+                @foreach ($category as $item)
+                    <option value="{{$item->id}}">{{$item->name_vi}}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group row">
@@ -117,14 +117,14 @@
             <input type="file" name="thumbnail" id="thumbnail-update" hidden accept="image/*" />
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card h-100 card-plain border">
-                    <div class="card-body d-flex flex-column justify-content-center text-center add-thumbnail">
+                    <div class="card-body d-flex flex-column justify-content-center text-center update-thumbnail">
                         <i class="fa fa-plus text-secondary mb-3"></i>
                         <h5 class="text-secondary"> Thumbnail </h5>
                     </div>
                 </div>
             </div>
         </div>
-        <span class="btn btn-secondary cancel-btn">Close</span>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <span class="btn btn-secondary cancel-update-btn">Close</span>
+        <button type="submit" id="submit" class="btn btn-primary house-update">Update</button>
     </form>
 </div>

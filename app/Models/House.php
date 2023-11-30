@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class House extends Model
@@ -21,7 +22,9 @@ class House extends Model
         'lessor_id',
         'name',
         'description',
-        'ward_id',
+        'province_code',
+        'district_code',
+        'ward_code',
         'address',
         'verified_at',
         'thumbnail',
@@ -29,12 +32,18 @@ class House extends Model
         'category_id',
     ];
 
-    public function lessor()
+    /**
+     * @return BelongsTo
+     */
+    public function lessor(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class, 'lessor_id');
     }
 
-    public function category()
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id');
     }

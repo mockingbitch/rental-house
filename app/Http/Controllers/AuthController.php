@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use App\Constants\Constant;
 use App\Constants\UserConstant;
-use App\Constants\NotificationConstants;
+//use App\Constants\NotificationConstants;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\AccountInfoRequest;
+//use App\Http\Requests\AccountInfoRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\User\PasswordResetRepositoryInterface;
 use App\Services\MailService;
 use App\Services\NotificationService;
+use Carbon\Carbon;
 use Inertia\Inertia;
 use Inertia\Response;
 use Laravel\Socialite\Facades\Socialite;
-use Carbon\Carbon;
-use DB;
 
 class AuthController extends Controller
 {
@@ -41,14 +41,12 @@ class AuthController extends Controller
         public PasswordResetRepositoryInterface $passwordResetRepository,
         )
     {
-
     }
 
     /**
-     * @Route post("/login")
      * @param LoginRequest $request
      * @return RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function login(LoginRequest $request): RedirectResponse
     {
@@ -149,6 +147,7 @@ class AuthController extends Controller
      * @Route post("/register")
      * @param RegisterRequest $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function register(RegisterRequest $request): RedirectResponse
     {

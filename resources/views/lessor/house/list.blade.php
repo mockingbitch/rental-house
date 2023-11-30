@@ -8,7 +8,7 @@
     height: 34px;
 }
 
-.switch input { 
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -173,8 +173,9 @@ input:checked + .slider:before {
             let API_GET_ADDRESS     = '{{route('address.list')}}';
             let API_UPDATE_STATUS   = '{{route('house.update.status')}}';
             let API_HOUSE_DETAIL    = '{{route('lessor.house.detail')}}';
+            let API_HOUSE_UPDATE    = '{{route('lessor.house.update')}}';
         </script>
-        <script src="{{ asset('js/house.js') }}"></script>
         <script src="{{ asset('js/address.js') }}"></script>
+        <script src="{{ asset('js/house.js') }}"></script>
     @endpush
 @endsection
