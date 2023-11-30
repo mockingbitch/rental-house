@@ -13,6 +13,18 @@ class HouseRequest extends BaseRequest
      */
     public function rules()
     {
+        if ($this->type && $this->type = 'update') :
+            return [
+                'name'          => 'required|max:100',
+                'description'   => 'required|max:1000',
+                'province_code' => 'required',
+                'district_code' => 'required',
+                'ward_code'     => 'required',
+                'address'       => 'required',
+                'thumbnail'     => 'required',
+                'category_id'   => 'required',
+            ];
+        endif;
         return [
             'name'          => 'required|max:100',
             'description'   => 'required|max:1000',

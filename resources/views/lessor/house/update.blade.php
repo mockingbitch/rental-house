@@ -1,6 +1,7 @@
 <div id="update-form" style="{{($errors->isEmpty()) ? 'display: none' : 'display: block'}}" class="card mb-4">
-    <form class="mx-4 pt-4" onSubmit="document.getElementById('submit').disabled=true;">
+    <form class="mx-4 pt-4">
         @csrf
+        <input type="hidden" id="house-id" />
         <div class="form-group mt-4">
             <label for="inputName">
                 Name
@@ -125,6 +126,6 @@
             </div>
         </div>
         <span class="btn btn-secondary cancel-update-btn">Close</span>
-        <button type="submit" id="submit" class="btn btn-primary house-update">Update</button>
+        <button type="button" class="btn btn-primary house-update">Update</button>
     </form>
 </div>
