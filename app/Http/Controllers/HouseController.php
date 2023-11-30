@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\HouseRequest;
 use App\Repositories\House\HouseRepositoryInterface;
@@ -11,6 +13,7 @@ class HouseController extends Controller
 {
     /**
      * @param HouseRepositoryInterface $houseRepository
+     * @param FileService $fileService
      */
     public function __construct(
         public HouseRepositoryInterface $houseRepository,
@@ -19,7 +22,11 @@ class HouseController extends Controller
     {
     }
 
-    public function create(HouseRequest $request)
+    /**
+     * @param HouseRequest $request
+     * @return RedirectResponse
+     */
+    public function create(HouseRequest $request): RedirectResponse
     {
         $data = $request->all();
         try {
@@ -38,8 +45,12 @@ class HouseController extends Controller
         }
     }
 
-    public function detail(Request $request)
-    {   
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function detail(Request $request): JsonResponse
+    {
         $data = $request->all()['data'];
         $house = $this->houseRepository->find($data['id']);
 
@@ -50,14 +61,14 @@ class HouseController extends Controller
         ], 200);
     }
 
-    public function update()
+    public function update(HouseRequest $request)
     {
-
+        dd($request);
     }
 
     public function delete()
     {
-        
+
     }
 
     public function updateStatus(Request $request)
@@ -68,7 +79,7 @@ class HouseController extends Controller
                     $request->id, [
                         'status' => $request->status ? '0' : '1'
                     ]);
-            
+
             return response()->json([
                 'house'     => $house,
                 'errCode'   => 0,

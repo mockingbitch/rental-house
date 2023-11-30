@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use App\Constants\UserConstant;
-use App\Constants\CommonConstant;
+//use App\Constants\CommonConstant;
 use App\Http\Requests\LessorRegistrationStep1;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\House\HouseRepositoryInterface;
@@ -41,12 +42,19 @@ class LessorController extends Controller
     public function registerStep1(LessorRegistrationStep1 $request)
     {
     }
-    public function dashboard()
+
+    /**
+     * @return View
+     */
+    public function dashboard(): View
     {
         return view('lessor.dashboard');
     }
 
-    public function getHouses()
+    /**
+     * @return View
+     */
+    public function getHouses(): View
     {
         $houses = $this->houseRepository->all();
         $category = $this->categoryRepository->all();

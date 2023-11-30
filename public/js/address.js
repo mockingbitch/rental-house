@@ -16,6 +16,21 @@ $('#district_code-add').on('change', () => {
         nextSelectDistrict
         );
 });
+$('#province_code-update').on('change', () => {
+    $('#ward_code-update').html('');
+    getData(
+        API_GET_ADDRESS,
+        { province: $('#province_code-update').val() },
+        nextSelectProvince
+    );
+});
+$('#district_code-update').on('change', () => {
+    getData(
+        API_GET_ADDRESS,
+        { district: $('#district_code-update').val() },
+        nextSelectDistrict
+    );
+});
 
 const getAddress = (
     province = '',
@@ -38,6 +53,7 @@ const nextGetAddress = (data) => {
             `
         );
     $('#province_code-add').html(optProvince);
+    $('#province_code-update').html(optProvince);
 };
 const nextSelectProvince = (data) => {
     let optDistrict = '';
@@ -47,6 +63,7 @@ const nextSelectProvince = (data) => {
             `
         );
     $('#district_code-add').html(optDistrict);
+    $('#district_code-update').html(optDistrict);
 };
 const nextSelectDistrict = (data) => {
     let optWard = '';
@@ -56,4 +73,7 @@ const nextSelectDistrict = (data) => {
             `
         );
     $('#ward_code-add').html(optWard);
+    $('#ward_code-add').val(data[0]);
+    $('#ward_code-update').html(optWard);
+    $('#ward_code-update').val(data[0]);
 };
