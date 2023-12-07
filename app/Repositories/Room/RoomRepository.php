@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Room;
 
 use App\Models\Room;
 use App\Repositories\BaseRepository;

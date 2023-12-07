@@ -62,7 +62,11 @@ class HouseController extends Controller
         ], 200);
     }
 
-    public function update(HouseRequest $request)
+    /**
+     * @param HouseRequest $request
+     * @return JsonResponse
+     */
+    public function update(HouseRequest $request): JsonResponse
     {
         $data = $request->all();
         try {
@@ -92,12 +96,33 @@ class HouseController extends Controller
         }
     }
 
-    public function delete()
+    /**
+     * @param int|null $id
+     * @return RedirectResponse
+     */
+    public function delete(?int $id): RedirectResponse
     {
-
+        try {
+            $house = $this->houseRepository->delete($id);
+            return redirect()->route('lessor.house.index')
+                ->with([
+                    'errCode' => 0,
+                    'message' => 'Delete house successfully',
+                ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('lessor.house.index')
+                ->with([
+                    'errCode' => 1,
+                    'message' => 'Something went wrong',
+                ]);
+        }
     }
 
-    public function updateStatus(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateStatus(Request $request): JsonResponse
     {
         try {
             $house = $this->houseRepository

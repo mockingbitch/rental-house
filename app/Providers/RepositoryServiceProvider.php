@@ -11,7 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $repositories = [
             'User\UserRepositoryInterface'          => 'User\UserRepository',
@@ -19,6 +19,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'Category\CategoryRepositoryInterface'  => 'Category\CategoryRepository',
             'Tag\TagRepositoryInterface'            => 'Tag\TagRepository',
             'House\HouseRepositoryInterface'        => 'House\HouseRepository',
+            'Room\RoomRepositoryInterface'          => 'Room\RoomRepository',
         ];
 
         foreach ($repositories as $key => $value) {

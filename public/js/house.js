@@ -3,12 +3,22 @@ $(document).ready(function () {
 $('.add-thumbnail').on('click', function() {
     $('#thumbnail').click();
 });
+$('.update-thumbnail').on('click', function () {
+    $('#thumbnail-update').click();
+})
 $('#thumbnail').on('change', function (event) {
     let src = URL.createObjectURL(event.target.files[0]);
     $('.add-thumbnail').css('background-repeat', 'no-repeat');
     $('.add-thumbnail').css('border-radius', '15px');
     $('.add-thumbnail').css('background-size', '360px 120px');
     $('.add-thumbnail').css('background-image', 'url(' + src + ')');
+});
+$('#thumbnail-update').on('change', function (event) {
+    let src = URL.createObjectURL(event.target.files[0]);
+    $('.update-thumbnail').css('background-repeat', 'no-repeat');
+    $('.update-thumbnail').css('border-radius', '15px');
+    $('.update-thumbnail').css('background-size', '360px 120px');
+    $('.update-thumbnail').css('background-image', 'url(' + src + ')');
 });
 $('.cancel-btn').on('click', function () {
     var x = document.getElementById("create-form");
@@ -30,7 +40,7 @@ $('.house-update').on('click', function () {
         ward_code: $('#ward_code-update').val() ?? '',
         address: $('#address-update').val() ?? '',
         category_id: $('#category-update').val() ?? '',
-        thumbnail: $('#thumbnail-update').val() ?? '',
+        // thumbnail: $('#thumbnail-update').prop('files')[0] ?? '',
         type: 'update'
     };
     createOrUpdate(api, data, nextUpdateHouse);

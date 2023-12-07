@@ -73,11 +73,11 @@ class AuthController extends Controller
             return redirect()
                     ->route('top')
                     ->with(Constant::MSG, __('messages.login.SM-001'));
-        else:
-            throw ValidationException::withMessages([
-                Constant::ERR_MSG => trans('messages.login.EM-001'),
-            ]);
         endif;
+
+        throw ValidationException::withMessages([
+            Constant::ERR_MSG => trans('messages.login.EM-001'),
+        ]);
     }
 
     /**

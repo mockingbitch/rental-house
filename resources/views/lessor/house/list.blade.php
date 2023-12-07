@@ -101,7 +101,7 @@ input:checked + .slider:before {
                                 </div>
                             </td> --}}
                             <td>
-                                <p class="text-xs text-secondary mb-0">{{$house->name}}</p>
+                                <h6 class="mb-0 text-sm">{{$house->name}}</h6>
                             </td>
                             <td>
                                 <p class="text-xs text-secondary mb-0">{{$house->address}}</p>
@@ -138,6 +138,11 @@ input:checked + .slider:before {
                                 <span class="badge badge-sm bg-gradient-success"></span>
                             </td>
                             <td class="align-middle" style="font-size:20px">
+                                <a
+                                   href="{{route('lessor.house.room-list', ['id' => $house->id])}}"
+                                   class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">
+                                    <i style="font-size:20px" class="fa-solid fa-eye"></i>
+                                </a>
                                 <span class="text-secondary mx-1 font-weight-bold cursor-pointer text-xs" data-toggle="tooltip"
                                     data-original-title="Edit house" onclick="handleViewDetail({{$house->id}})">
                                     <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>
@@ -158,12 +163,12 @@ input:checked + .slider:before {
     @else
     <h2 class="my-4 mx-4">No house found</h2>
     @endif
-    @if(Session::has('errCode') && Session::get('errCode') ==  1)
+    @if(Session::has('errCode') && Session::get('errCode') == 0)
         <script>
             swal({title: "Successfully", text: "{{Session::get('msg')}}", icon: "success", button: "{{__('close')}}"})
         </script>
     @endif
-    @if(Session::has('errCode') && Session::get('errCode') == 0)
+    @if(Session::has('errCode') && Session::get('errCode') == 1)
         <script>
             swal({title: "Something went wrong", text: "{{Session::get('errMsg')}}", icon: "warning", button: "{{__('close')}}"})
         </script>

@@ -10,7 +10,9 @@ use Illuminate\Validation\ValidationException;
 use App\Constants\UserConstant;
 //use App\Constants\CommonConstant;
 use App\Http\Requests\LessorRegistrationStep1;
+use App\Repositories\Tag\TagRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\House\HouseRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use Inertia\Inertia;
@@ -19,12 +21,16 @@ use Inertia\Response;
 class LessorController extends Controller
 {
     /**
+     * @param TagRepositoryInterface $tagRepository
      * @param UserRepositoryInterface $userRepository
+     * @param RoomRepositoryInterface $roomRepository
      * @param HouseRepositoryInterface $houseRepository
      * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
+        public TagRepositoryInterface $tagRepository,
         public UserRepositoryInterface $userRepository,
+        public RoomRepositoryInterface $roomRepository,
         public HouseRepositoryInterface $houseRepository,
         public CategoryRepositoryInterface $categoryRepository,
     )
@@ -63,6 +69,24 @@ class LessorController extends Controller
             'houses'        => $houses,
             'category'      => $category,
             'breadcrumb'    => 'House',
+        ]);
+    }
+
+    /**
+     * @param int|null $id
+     * @return View
+     */
+    public function listRoom(?int $id): View
+    {
+        $rooms = $this->roomRepository->findBy([
+            'house_id' => $id
+        ]);
+        $tags = $this->tagRepository->all();
+
+        return view('lessor.room.list', [
+            'rooms'         => $rooms,
+            'tags'          => $tags,
+            'breadcrumb'    => 'House/Room',
         ]);
     }
 }

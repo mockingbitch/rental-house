@@ -85,6 +85,7 @@ Route::controller(LessorController::class)->group(function () {
         Route::post('register/step1', 'registerStep1')->name('lessor.register.step1');
         Route::get('dashboard', 'dashboard')->name('lessor.dashboard');
         Route::get('houses', 'getHouses')->name('lessor.house.index');
+        Route::get('house/{id}/room-list', 'listRoom')->name('lessor.house.room-list');
     });
 });
 
@@ -92,5 +93,11 @@ Route::controller(HouseController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::post('house', 'create')->name('lessor.house.create');
         Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
+    });
+});
+
+Route::controller(\App\Http\Controllers\RoomController::class)->group(function () {
+    Route::prefix('lessor')->group(function () {
+        Route::post('room', 'create')->name('lessor.room.create');
     });
 });

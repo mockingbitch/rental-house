@@ -97,7 +97,7 @@
                                     <i style="font-size:20px" class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <a onclick="return confirm('Are you sure you want to delete this?')"
-                                    href="{{route('category.delete',['id'=>$category->id])}}"
+                                    href="{{route('category.delete', ['id'=>$category->id])}}"
                                     class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">
                                     <i style="font-size:20px" class="fa-solid fa-trash"></i>
                                 </a>

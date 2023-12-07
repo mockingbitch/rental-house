@@ -11,7 +11,7 @@ class HouseRequest extends BaseRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         if ($this->type && $this->type = 'update') :
             return [
@@ -21,7 +21,7 @@ class HouseRequest extends BaseRequest
                 'district_code' => 'required',
                 'ward_code'     => 'required',
                 'address'       => 'required',
-                'thumbnail'     => 'required',
+//                'thumbnail'     => 'required',
                 'category_id'   => 'required',
             ];
         endif;
