@@ -16,3 +16,4 @@ yarn-error.log
 /.scannerwork
 sonar-project.properties
 .DS_Store
+.vite/
