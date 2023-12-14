@@ -1,0 +1,27 @@
+.with-tooltip {
+    position: relative;
+  }
+  
+  .with-tooltip::after {
+    content: attr(data-tooltip-content);
+    padding: 4px 16px;
+    border-radius: 4px;
+    position: absolute;
+    color: white;
+    bottom: 115%;
+    right: 50%;
+    left: 50%;
+    width: max-content;
+    background: $tl-cl;
+    opacity: 0;
+    font-size: $fz-text-m;
+    visibility: hidden;
+    transform: translate(-50%, 18px) scale(0.8);
+    transition: visibility, opacity, transform 200ms;
+  }
+  
+  .with-tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }

@@ -1,0 +1,243 @@
+.title{
+    font-weight: bold;
+    font-size: $fz-text-xxxl;
+    &.green-cl{
+        color: $text-green-cl
+    }
+    @include tablet {
+        font-size: $fz-text-l;
+    }
+}
+
+.buttonTitle{
+    width: 100%;
+    max-width: 345px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    .mainButton{
+        margin-top: 5px;
+        background-color: $green-bg-cl;
+        color: $text-white-cl;
+    }
+    @include tablet{
+        font-size: $fz-text-ml;
+    }
+}
+
+.mainButton{
+    width: 100%;
+    max-width: 345px;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid $gray-border-cl;
+    color: $text-light-cl;
+    position: relative;
+    font-size: $fz-text-xl;
+    border-radius: 5px;
+    cursor: pointer;
+    p{
+        i{
+            margin-right: 5px;
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.bg-green{
+        background-color: $text-green-cl;
+        color: $text-white-cl;
+    }
+    &.bg-gray{
+        background-color: $gray-bg-cl;
+        border: none;
+        font-weight: bold;
+    }
+    i{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 15px;
+        @include midflex();
+        &.after {
+            left: initial;
+            right: 15px;
+        }
+    }
+    @include tablet{
+        font-size: $fz-text-ml;
+    }
+}
+
+.line{
+    height: 1px;
+    width: 100%;
+    max-width: 345px;
+    border: 1px solid $line-cl;
+    margin-top: 15px;
+}
+
+.textLink{
+    width: 100%;
+    max-width: 345px;
+    padding: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    @include text($fz-text-xl,Noto Sans JP, $lh-text-xl, $text-green-cl, none);
+    a{
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    @include tablet{
+        @include text($fz-text-ml,Noto Sans JP, $lh-text-m, $text-green-cl, none);
+    }
+}
+
+.show-tablet{
+    display: none;
+    @include tablet{
+        display: flex;
+    }
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    &__wrap{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        max-width: 800px;
+        box-shadow: 0px 0px 12px 0px #00000033;
+        border: 1.5px solid $gray-border-cl;
+        padding: 40px 50px 80px 50px;
+        font-size: $fz-text-ml;
+        line-height: $lh-text-ml;
+        .bg-gray{
+            background-color: $gray-bg-cl;
+            padding: 16px;
+            border-radius: 8px;
+            padding-bottom: 0;
+        }
+        &-item{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 36px;
+            color: $text-gray-cl;
+            &.error{
+                color: red;
+                label{
+                    color: red;
+                }
+                input {
+                    border-color: red;
+                }
+                .note {
+                    color: $text-gray-cl;
+                }
+                @include error-placeholder;
+            }
+            label{
+                display: flex;
+                padding-bottom: 10px;
+                color: $text-black-cl;
+                i{
+                    display: flex;
+                    align-items: center;
+                    font-size: $fz-text-m;
+                    color: $text-gray-cl;
+                    padding: 2px;
+                }
+            }
+            .inputWrap{
+                position: relative;
+                i{
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                }
+            }
+            input{
+                border: 1px solid $gray-border-cl;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                width: 100%;
+            }
+            .errorMsg, .note{
+                font-size: $fz-text-m;
+            }
+            .note{
+                margin-top: 5px;
+            }
+            &.twoItem{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 15px;
+            }
+            .intersest-items{
+                display: flex;
+                flex-wrap: wrap;
+                li{
+                    padding: 10px;
+                    background-color: $blue-bg-cl;
+                    border-radius: 100px;
+                    color: $text-green-light-cl2;
+                    margin-bottom: 8px;
+                    margin: 0 1px;
+                    margin-bottom: 8px;
+                    &.active{
+                        background-color: $text-green-cl;
+                        color: $text-white-cl;
+                        font-weight: bold;
+                        i{
+                            margin-right: 6px;
+                        }
+                    }
+                }
+            }
+        }
+        .errorMsg2{
+            color: red;
+            background-color: $red-bg-cl;
+            font-size: $fz-text-ml;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button{
+            max-width: 505px;
+        }
+        .policy{
+            margin-top: 10px;
+            color: $text-gray-cl;
+            a{
+                color: $text-gray-cl;
+                font-weight: bold;                    
+                text-decoration: underline;
+            }
+        }
+    }
+    @include tablet {
+        margin-top: 16px;
+        &__wrap{
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            &-item{
+                padding-bottom: 16px;
+            }
+        }
+    }
+}
+
+
+
+
+

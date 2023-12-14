@@ -1,0 +1,105 @@
+@import "../../../../public/scss/imports/core/mixins";
+@import "../../../../public/scss/imports/core/variables";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.image-preview {
+    width: 100%;
+}
+
+.file-name:hover {
+    cursor: pointer;
+}
+
+.file-name {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    background: #003e49;
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.file-name span {
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.file-upload-clone:hover {
+    cursor: pointer;
+}
+
+.file-upload-clone {
+    padding: 15px 16px !important;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    background: #5392f9;
+    display: flex;
+    color: white !important;
+    span {
+        margin-left: auto;
+        position: relative;
+        margin-right: auto;
+        font-size: 14px;
+        font-weight: 700;
+        font-style: normal;
+        max-width: 70% !important;
+    }
+    svg {
+        position: absolute;
+    }
+}
+// Change file pop up style
+
+.pop-up {
+    width: 400px;
+    height: fit-content;
+    border: 1px solid #5392f9;
+    background: white;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 10px;
+    text-align: center;
+    @include mobile {
+        width: 300px !important;
+    }
+}
+.pop-up h1 {
+    font-weight: 700;
+    font-size: 18px;
+    padding: 24px 0px 20px 0;
+}
+.pop-up img {
+    width: 90%;
+}
+.pop-up p {
+    font-weight: bold;
+    text-decoration: underline;
+}
+#form-wrap-double .file-change {
+    border: 1px solid #5392f9;
+    background: white;
+    color: #5392f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 90%;
+}
+.form__wrap-item .close-pop-up {
+    border: 1px solid #5392f9;
+    background: #5392f9;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 30px 0;
+    width: 90%;
+}

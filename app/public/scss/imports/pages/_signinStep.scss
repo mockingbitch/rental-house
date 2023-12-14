@@ -1,0 +1,21 @@
+.signinStep{
+    .skip{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 16px;
+        a{
+            font-size: $fz-text-m;
+            color: $text-green-cl;
+            display: flex;
+            align-items: center;
+            i{
+                height: 20px;
+            }
+        }
+    }
+    .progress{
+        padding-bottom: 40px;
+    }
+}

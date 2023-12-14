@@ -1,0 +1,18 @@
+footer{
+    padding-top: 280px;
+    .top{
+        height: 495px;
+        background: #5392F9 14;
+    }
+    .bottom{
+        height: 50px;
+        background-color: #5392F9 ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $text-white-cl;
+    }
+    @include tablet{
+        display: none;
+    }
+}
