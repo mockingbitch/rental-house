@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onBeforeUnmount } from "vue";
+import { ref, watch, onBeforeUnmount } from "vue";
 import { Link, usePage } from "@inertiajs/vue3";
 import SideMenu from "@/Components/Hamburger/SideMenu.vue";
 
@@ -14,7 +14,6 @@ const page = usePage();
 
 const navOpen = ref(false);
 const isLargeScreen = ref(window.innerWidth > 991);
-const userInfo = ref(page.props.auth?.user);
 
 const checkScreenSize = () => {
     isLargeScreen.value = window.innerWidth > 991;
@@ -33,8 +32,8 @@ watch(() => {
 </script>
 <template>
     <Link
-        v-if="page.props.auth?.role == 'Lessor' && !isLargeScreen"
-        :href="route('user.menu')"
+        v-if="page.props.auth?.role === 'Lessor' && !isLargeScreen"
+        href="#"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +48,9 @@ watch(() => {
             />
         </svg>
     </Link>
-    <div v-if="isLargeScreen" @click="handleOpenNav" id="sidemenu">
+    <div v-if="isLargeScreen" id="sidemenu" @click="handleOpenNav">
         <button
-            v-if="page.props.auth?.role != 'Lessor'"
+            v-if="page.props.auth?.role !== 'Lessor'"
             class="sidemenu__btn"
             :class="{ active: navOpen }"
         >
@@ -60,15 +59,15 @@ watch(() => {
             <span class="bottom" :class="props.hamburgerColor"></span>
         </button>
         <img
-            v-if="page.props.auth?.role == 'Lessor'"
+            v-if="page.props.auth?.role === 'Lessor'"
             src="/img/icon/account-menu.svg"
             alt=""
         />
         <transition name="fade" appear>
             <div
                 v-if="navOpen"
-                @click="navOpen = !navOpen"
                 class="modal-overlay"
+                @click="navOpen = !navOpen"
             ></div>
         </transition>
         <transition name="translateX" appear>

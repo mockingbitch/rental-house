@@ -32,6 +32,7 @@ class CategoryController extends Controller
 
         return view('categories.list', [
             'categories' => $categories,
+            'breadcrumb' => 'Category'
         ]);
     }
 
@@ -100,7 +101,7 @@ class CategoryController extends Controller
     public function detail(?int $id): View
     {
         $category = $this->categoryRepository->find($id);
-        
+
         return view('categories.detail', [
             'category' => $category,
         ]);

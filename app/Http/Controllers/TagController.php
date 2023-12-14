@@ -31,7 +31,8 @@ class TagController extends Controller
         $tags = $this->tagRepository->all();
 
         return view('tags.list', [
-            'tags' => $tags,
+            'tags'          => $tags,
+            'breadcrumb'    => 'Tag'
         ]);
     }
 
@@ -100,7 +101,7 @@ class TagController extends Controller
     public function detail(?int $id): View
     {
         $tag = $this->tagRepository->find($id);
-        
+
         return view('tags.detail', [
             'tag' => $tag,
         ]);

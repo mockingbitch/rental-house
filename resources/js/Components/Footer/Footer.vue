@@ -5,7 +5,6 @@ import { computed, ref, defineProps } from "vue";
 const page = usePage();
 const isLogin = computed(() => page.props.auth.user);
 const user = computed(() => page.props.auth.user);
-const verifyTeacher = computed(() => page.props.verify_teacher);
 const userRole = computed(() => page.props.user_role);
 
 const navOpen = ref(false);
@@ -99,46 +98,30 @@ const isRouteActive = (routeName) => {
                                         <ul class="sidemenu__list">
                                             <div v-if="user">
                                                 <li
-                                                    v-if="
-                                                        user.verify_teacher !=
-                                                        verifyTeacher?.request_verified
-                                                    "
                                                     class="sidemenu__item"
                                                 >
                                                     <Link
                                                         :href="route('top')"
                                                     >
-                                                        {{ lang().label?.humbeger?.become_teacher }}
+                                                        teeasf
                                                     </Link>
                                                 </li>
                                                 <li
-                                                    v-if="
-                                                        user.verify_teacher ==
-                                                            verifyTeacher?.request_verified &&
-                                                        user.role ==
-                                                            userRole?.parent
-                                                    "
                                                     class="sidemenu__item"
                                                 >
                                                     <Link
                                                         :href="route('top')"
                                                     >
-                                                        {{ lang().label.humbeger.switch_to_teacher }}
+                                                        test
                                                     </Link>
                                                 </li>
                                                 <li
-                                                    v-if="
-                                                        user?.verify_teacher
-                                                        == verifyTeacher?.request_verified
-                                                        && user?.role
-                                                        == userRole?.teacher
-                                                    "
                                                     class="sidemenu__item"
                                                 >
                                                     <Link
                                                         :href="route('top')"
                                                     >
-                                                        {{ lang().label?.humbeger?.switch_to_user }}
+                                                        test
                                                     </Link>
                                                 </li>
                                             </div>
@@ -165,7 +148,7 @@ const isRouteActive = (routeName) => {
                                     alt=""
                                 />
                             </i>
-                            <p class="active">ダッシュボード</p>
+                            <p class="active">Hold</p>
                         </li>
                     </Link>
                     <Link :href="route('top')">

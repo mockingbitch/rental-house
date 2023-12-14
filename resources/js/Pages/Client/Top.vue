@@ -46,7 +46,7 @@ const imageUrlAlt = (event) => {
                     >
                         <div class="image">
                             <img
-                                :src="house.cover_image"
+                                :src="house.thumbnail"
                                 @error="imageUrlAlt"
                                 alt="house"
                             />
@@ -59,14 +59,14 @@ const imageUrlAlt = (event) => {
                         </div>
                         <div class="title">
                             <h2>
-                                {{ house.title }}
+                                {{ house.name }}
                             </h2>
                         </div>
                         <div class="description d-flex">
                             <div class="lessor_avatar">
                                 <img
                                     :src="
-                                        house.lessor?.lessor_information?.profile_image
+                                        house.lessor?.avatar
                                         || '/img/icon/iconAvatarDefault.svg'
                                     "
                                     @error="imageUrlAlt"
@@ -82,11 +82,11 @@ const imageUrlAlt = (event) => {
                             </p>
                         </div>
                         <div class="price">
-                            {{ house.price }} VND
+                            {{ house.rooms[0]?.price }} VND
                         </div>
                         <div class="age">
                             <p>
-                                Capacity {{ house.min_capacity }}-{{ house.max_capacity }}
+                                Capacity: {{ house.rooms[0]?.capacity }}
                             </p>
                         </div>
                     </Link>
