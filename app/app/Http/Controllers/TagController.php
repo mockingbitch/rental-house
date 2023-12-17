@@ -37,6 +37,19 @@ class TagController extends Controller
     }
 
     /**
+     * get list tags for api
+     * @return View
+     */
+    public function apiList()
+    {
+        $tags = $this->tagRepository->all();
+
+        return response()->json([
+            'address' => $tags,
+        ], 200);
+    }
+
+    /**
      * @Route post("/tag" name="tag.create")
      * @param TagRequest $request
      * @return RedirectResponse

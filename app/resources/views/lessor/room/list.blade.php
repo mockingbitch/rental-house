@@ -71,7 +71,7 @@
         </button>
     </div>
     <span style="font-size:20px; color: green"></span>
-    @include('lessor.room.create-form', ['tags' => $tags])
+    @include('lessor.room.create-form', ['tags' => $tags, 'house_id'   => $house_id])
     @include('lessor.room.update')
     <div class="card mb-4">
         @if (isset($rooms) && count($rooms) >= 1)
@@ -119,7 +119,7 @@
                                     <div class="text-xs text-secondary mb-0 col-image">
                                         <img
                                             style="width: 100px; border-radius: 15px;"
-                                            src="{{$room->images}}"
+                                            src="{{$room->first_image}}"
                                             alt=""
                                         >
                                     </div>
@@ -141,17 +141,17 @@
                                     <span class="badge badge-sm bg-gradient-success"></span>
                                 </td>
                                 <td class="align-middle" style="font-size:20px">
-                                    <a
+                                    {{-- <a
                                         href="{{route('lessor.house.room-list', ['id' => $room->id])}}"
                                         class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">
                                         <i style="font-size:20px" class="fa-solid fa-eye"></i>
-                                    </a>
+                                    </a> --}}
                                     <span class="text-secondary mx-1 font-weight-bold cursor-pointer text-xs" data-toggle="tooltip"
-                                          data-original-title="Edit house" onclick="handleViewDetail({{$room->id}})">
-                                    <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>
-                                </span>
+                                          data-original-title="Edit room" onclick="handleViewDetail({{$room->id}})">
+                                        <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>
+                                    </span>
                                     <a onclick="return confirm('Are you sure you want to delete this?')"
-                                       href="{{route('lessor.house.delete', ['id' => $room->id])}}"
+                                       href="{{route('lessor.room.delete', ['id' => $room->id])}}"
                                        class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">
                                         <i style="font-size:20px" class="fa-solid fa-trash"></i>
                                     </a>
@@ -179,9 +179,9 @@
     @push('scripts')
         <script>
             let API_GET_ADDRESS     = '{{route('address.list')}}';
-            let API_UPDATE_STATUS   = '{{route('house.update.status')}}';
-            let API_HOUSE_DETAIL    = '{{route('lessor.house.detail')}}';
-            let API_HOUSE_UPDATE    = '{{route('lessor.house.update')}}';
+            let API_UPDATE_STATUS   = '{{route('room.update.status')}}';
+            let API_ROOM_DETAIL    = '{{route('lessor.room.detail')}}';
+            let API_ROOM_UPDATE    = '{{route('lessor.room.update')}}';
         </script>
         <script src="{{ asset('js/address.js') }}"></script>
         <script src="{{ asset('js/room.js') }}"></script>

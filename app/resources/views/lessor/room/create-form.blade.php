@@ -36,7 +36,7 @@
                 </p>
             </label>
             <input type="number" class="form-control"
-                   name="address" id="address"
+                   name="floor" id="address"
                    placeholder="Floor of the room">
         </div>
         <div class="form-group">
@@ -83,6 +83,14 @@
 {{--                    <option value="{{$item->id}}">{{$item->name_vi}}</option>--}}
 {{--                @endforeach--}}
 {{--            </select>--}}
+
+            {{-- house id --}}
+            <input type="text" class="form-control"
+                name="house_id"
+                placeholder="Floor of the room"
+                value="{{ $house_id }}"
+                hidden
+            >
             <multi-input>
                 <input list="tags" name="tags" id="tags-add" class="form-control">
                 <datalist id="tags">
