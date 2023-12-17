@@ -1,14 +1,14 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import { ref, defineEmits, watch, computed } from "vue";
-import Modal from "./Modal/Modal.vue";
-import Dialog from "./Dialog/Dialog.vue";
-import DatePicker from "./DatePicker.vue";
-import DoubleSelect from "@/Components/Request/Common/DoubleSelect.vue";
 import "@vuepic/vue-datepicker/dist/main.css";
 import moment from "moment";
-import CustomSelect from "./Request/Common/CustomSelect.vue";
-import SubHeader from "./Common/SubHeader.vue";
+import Modal from "@/Components/Modal/Modal.vue";
+// import Dialog from "./Dialog/Dialog.vue";
+import DatePicker from "@/Components/DatePicker/DatePicker.vue";
+import DoubleSelect from "@/Components/DoubleSelect/DoubleSelect.vue";
+import CustomSelect from "@/Components/CustomSelect/CustomSelect.vue";
+import SubHeader from "@/Components/SubHeader/SubHeader.vue";
 
 const emits = defineEmits();
 
@@ -31,8 +31,8 @@ const formSearch = useForm({
     finish_draft_price: params.get("finish_draft_price") ?? null,
     date: params.get("date") ?? null,
     day: selectedDays ?? [],
-    start_time: params.get("start_time") ?? null,
-    end_time: params.get("end_time") ?? null,
+    start_date_time: params.get("start_date_time") ?? null,
+    end_date_time: params.get("end_date_time") ?? null,
 });
 
 let isOpenSelectPrice = ref(false);
@@ -40,7 +40,7 @@ let isOpenSelectDate = ref(false);
 const selectedStartDate = ref(true);
 const selectedEndDate = ref(false);
 let ageRange = ref([
-    9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+    9, 10, 11, 12, 13, 14, 15
 ]);
 
 const minAgeRange = computed(() => {
@@ -62,7 +62,19 @@ const maxAgeRange = computed(() => {
     return ageRange.value;
 });
 
-const priceRange = ref(['0', '1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '9000', '100000']);
+const priceRange = ref([
+    "0",
+    "1000",
+    "2000",
+    "3000",
+    "4000",
+    "5000",
+    "6000",
+    "7000",
+    "8000",
+    "9000",
+    "100000",
+]);
 
 const minPriceRange = computed(() => {
     if (formSearch.finish_draft_price) {
@@ -86,36 +98,37 @@ const maxPriceRange = computed(() => {
 let dayRange = ref([
     {
         key: 2,
-        value: usePage().props.language.original.label.week_day.Mon,
+        value: 'Monday',
     },
     {
         key: 3,
-        value: usePage().props.language.original.label.week_day.Tue,
+        value: 'Tue',
     },
     {
         key: 4,
-        value: usePage().props.language.original.label.week_day.Wed,
+        value: 'Wed',
     },
     {
         key: 5,
-        value: usePage().props.language.original.label.week_day.Thu,
+        value: 'Thu',
     },
     {
         key: 6,
-        value: usePage().props.language.original.label.week_day.Fri,
+        value: 'Fri',
     },
     {
         key: 7,
-        value: usePage().props.language.original.label.week_day.Sat,
+        value: 'Sat',
     },
     {
         key: 8,
-        value: usePage().props.language.original.label.week_day.Sun,
+        value: 'Sun',
     },
 ]);
 let hours = ref([
     "6:00",
     "7:00",
+    "8:00",
     "9:00",
     "10:00",
     "11:00",
@@ -136,22 +149,22 @@ let startHours = ref([...hours.value?.slice(0, hours.value.length - 1)]);
 let endHours = ref([...hours.value?.slice(1)]);
 
 const updateStartTimeOptions = (value) => {
-    formSearch.end_time = value;
-    if (formSearch.end_time) {
+    formSearch.end_date_time = value;
+    if (formSearch.end_date_time) {
         startHours.value = hours.value?.filter((hour) =>
             moment(hour, "HH:mm")?.isBefore(
-                moment(formSearch.end_time, "HH:mm")
+                moment(formSearch.end_date_time, "HH:mm")
             )
         );
     }
 };
 
 const updateEndTimeOptions = (value) => {
-    formSearch.start_time = value;
-    if (formSearch.start_time) {
+    formSearch.start_date_time = value;
+    if (formSearch.start_date_time) {
         endHours.value = hours.value?.filter((hour) =>
             moment(hour, "HH:mm")?.isAfter(
-                moment(formSearch.start_time, "HH:mm")
+                moment(formSearch.start_date_time, "HH:mm")
             )
         );
     }
@@ -194,8 +207,12 @@ const handleSelectedEndDate = () => {
 const handleDateChange = (selectedDate) => {
     if (selectedStartDate.value) {
         formSearch.start_date_draft = selectedDate;
-    } else {
+        handleSelectedEndDate();
+    } else if (selectedEndDate.value) {
         formSearch.end_date_draft = selectedDate;
+        if (formSearch.start_date_draft === "") {
+            handleSelectedStartDate();
+        }
     }
 };
 
@@ -254,63 +271,73 @@ const handleResetForm = () => {
     formSearch.finish_draft_price = null;
     formSearch.date = null;
     formSearch.day = [];
-    formSearch.start_time = null;
-    formSearch.end_time = null;
+    formSearch.start_date_time = null;
+    formSearch.end_date_time = null;
     selectedDays.value = [];
 };
 
 const handleClose = () => {
     emits("toggleSearch");
-}
+};
 </script>
 
 <template>
     <form class="form form-search" @submit.prevent="submit">
         <div class="form__wrap filter__form-wrapper">
-            <SubHeader :label="lang().label.search.title" is-close @close="handleClose" />
+            <SubHeader
+                :label="title"
+                is-close
+                @close="handleClose"
+            />
             <div class="form__wrap-item" style="margin-top: 14.5px">
                 <label for="Title">
-                    <span class="title-text">{{ lang().label.search.field.lesson_title }}</span>
+                    <span class="title-text">Title</span>
                 </label>
                 <input
                     v-model="formSearch.keyword"
                     :class="`form__input ${formSearch.keyword && 'fillInput'}`"
                     type="text"
                     name="text-search"
-                    :placeholder="lang().label.search.field.lesson_title_placeholder"
+                    :placeholder="
+                        placeholder
+                    "
                 />
             </div>
             <DoubleSelect
                 v-model:selected1="formSearch.min_age"
                 v-model:selected2="formSearch.max_age"
-                :label1="lang().label.search.field.min_age_title"
-                :label2="lang().label.search.field.max_age_title"
+                :label1="minAgeRange"
+                :label2="max_age_title"
                 :options1="minAgeRange"
                 :options2="maxAgeRange"
+                :textTo="text_to"
                 icon="/img/icon/birthdayCake.svg"
                 unit="歳"
                 :fill-input-condition1="formSearch.min_age"
                 :fill-input-condition2="formSearch.max_age"
-				:placeholder1="lang().label.search.field.min_age_placeholder"
-				:placeholder2="lang().label.search.field.max_age_placeholder"
+                :placeholder1="'min_age_placeholder'"
+                :placeholder2="'max_age_placeholder'"
             />
             <DoubleSelect
                 v-model:selected1="formSearch.start_draft_price"
                 v-model:selected2="formSearch.finish_draft_price"
-                :label1="lang().label.search.field.min_price_title"
-                :label2="lang().label.search.field.max_price_title"
+                :label1="'min_price_title'"
+                :label2="'max_price_title'"
                 :options1="minPriceRange"
                 :options2="maxPriceRange"
+                :textTo="'text_to'"
                 icon="/img/icon/Walet.svg"
                 unit="円"
                 :fill-input-condition1="formSearch.start_draft_price"
                 :fill-input-condition2="formSearch.finish_draft_price"
-				:placeholder1="lang().label.search.field.min_price_placeholder"
-				:placeholder2="lang().label.search.field.max_price_placeholder"
+                :placeholder1="'min_price_placeholder'"
+                :placeholder2="'max_price_placeholder'"
             />
             <div class="form__wrap-item">
                 <label for="Title">
-                    <span class="title-text">{{ lang().label.search.field.select_date_title }}</span>
+                    <span class="title-text">
+                        select_date_title
+                    </span>
                 </label>
                 <div
                     class="select-btn"
@@ -334,29 +361,33 @@ const handleClose = () => {
                             />
                         </svg>
                     </span>
-                    <span class="btn-text">{{ lang().label.search.field.select_date_placeholder }}</span>
+                    <span class="btn-text">
+                        select_date_placeholder
+                    </span>
                     <span class="content-drop-down">
                         {{
                             formSearch.start_date || formSearch.end_date
                                 ? formSearch.start_date +
-                                  (!formSearch.start_date && formSearch.end_date
-                                      ? " <- "
-                                      : "") +
-                                  (formSearch.start_date && !formSearch.end_date
-                                      ? " -> "
-                                      : "") +
-                                  (formSearch.start_date && formSearch.end_date
-                                      ? "-"
-                                      : "") +
-                                  formSearch.end_date
-                                : lang().label.search.field.select_date_default
+                                (!formSearch.start_date && formSearch.end_date
+                                    ? " <- "
+                                    : "") +
+                                (formSearch.start_date && !formSearch.end_date
+                                    ? " -> "
+                                    : "") +
+                                (formSearch.start_date && formSearch.end_date
+                                    ? "-"
+                                    : "") +
+                                formSearch.end_date
+                                : 'select_date_default'
                         }}
                     </span>
                 </div>
             </div>
             <div class="form__wrap-item">
                 <label for="Title">
-                    <span class="title-text">{{ lang().label.search.field.week_day_title }}</span>
+                    <span class="title-text">
+                        week_day_title
+                    </span>
                 </label>
                 <ul class="list-days">
                     <li
@@ -379,33 +410,32 @@ const handleClose = () => {
                 </ul>
             </div>
             <div class="form__wrap-item">
+                <label for="start_date_time">
+                    <span class="title-text">
+                        field.start_time_title
+                    </span>
+                </label>
                 <div id="form-wrap-double">
                     <div
                         :class="`select ${
-                            formSearch.start_time && 'fillInput'
+                            formSearch.start_date_time && 'fillInput'
                         }`"
                         style="flex: 1"
                     >
-                        <label for="start_time">
-                            <span class="title-text">start time</span>
-                        </label>
                         <CustomSelect
-                            :value-selected="formSearch.start_time"
+                            :value-selected="formSearch.start_date_time"
                             :options="startHours"
                             up-side-down-mobile
                             @selectValue="updateEndTimeOptions"
                         />
                     </div>
-                    <p class="to-text">to</p>
+                    <p class="to-text">text_to</p>
                     <div
-                        :class="`select ${formSearch.end_time && 'fillInput'}`"
+                        :class="`select ${formSearch.end_date_time && 'fillInput'}`"
                         style="flex: 1"
                     >
-                        <label for="end_time">
-                            <span class="title-text">end time</span>
-                        </label>
                         <CustomSelect
-                            :value-selected="formSearch.end_time"
+                            :value-selected="formSearch.end_date_time"
                             :options="endHours"
                             up-side-down-mobile
                             @selectValue="updateStartTimeOptions"
@@ -415,7 +445,9 @@ const handleClose = () => {
             </div>
             <div class="space"></div>
             <div class="search-button">
-                <a href="#" @click="handleResetForm">{{ lang().label.search.field.button_clear_form }}</a>
+                <a href="#" @click="handleResetForm">
+                    button_clear_form
+                </a>
                 <button type="submit" class="mainButton">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -429,7 +461,7 @@ const handleClose = () => {
                             fill="#FFF"
                         />
                     </svg>
-                    <p>{{ lang().label.search.field.button_submit_form }}</p>
+                    <p>button_submit_form</p>
                 </button>
             </div>
             <Modal :show-modal="isOpenSelectPrice" @close="closeSelectPrice">
@@ -444,7 +476,7 @@ const handleClose = () => {
                             </label>
                             <div
                                 id="half_width"
-                                name="start_time"
+                                name="start_date_time"
                                 @click="
                                     showModalSelectStartRangePrice =
                                         !showModalSelectStartRangePrice
@@ -471,7 +503,7 @@ const handleClose = () => {
                             </label>
                             <div
                                 id="half_width"
-                                name="end_time"
+                                name="end_date_time"
                                 @click="
                                     showModalSelectFinishRangePrice =
                                         !showModalSelectFinishRangePrice
@@ -518,21 +550,16 @@ const handleClose = () => {
                     </div>
                     <div id="form-wrap-double" class="input__date-wrapper">
                         <div class="select">
-                            <label for="Title">
-                                <span class="select__title-text"
-                                    >{{ lang().label.search.field.start_date_title }}</span
-                                >
-                            </label>
                             <div
                                 id="half_width"
-                                name="start_time"
+                                name="start_date_time"
                                 :class="{ active: selectedStartDate }"
                                 @click="handleSelectedStartDate"
                             >
                                 <span
                                     v-if="!formSearch.start_date_draft"
                                     value=""
-                                    style="font-size: 16px; font-weight: 400;"
+                                    style="font-size: 12px; font-weight: 400"
                                 >
                                     本日
                                 </span>
@@ -540,25 +567,23 @@ const handleClose = () => {
                                     v-else
                                     :value="formSearch.start_date_draft"
                                     selected
+                                    style="font-size: 12px; font-weight: 400"
                                 >
                                     {{ formSearch.start_date_draft }}
                                 </span>
                             </div>
                         </div>
                         <div class="select" style="margin-left: 8px">
-                            <label for="Title">
-                                <span class="select__title-text">{{ lang().label.search.field.end_date_title }}</span>
-                            </label>
                             <div
                                 id="half_width"
-                                name="end_time"
+                                name="end_date_time"
                                 :class="{ active: selectedEndDate }"
                                 @click="handleSelectedEndDate"
                             >
                                 <span
                                     v-if="!formSearch.end_date_draft"
                                     value=""
-                                    style="font-size: 16px; font-weight: 400;"
+                                    style="font-size: 12px; font-weight: 400; opacity: 0"
                                 >
                                     上限なし
                                 </span>
@@ -566,6 +591,7 @@ const handleClose = () => {
                                     v-else
                                     :value="formSearch.end_date_draft"
                                     selected
+                                    style="font-size: 12px; font-weight: 400"
                                 >
                                     {{ formSearch.end_date_draft }}
                                 </span>
@@ -577,7 +603,9 @@ const handleClose = () => {
                         :isSelectEndDate="selectedEndDate"
                         :selectedStartDate="formSearch.start_date_draft"
                         :selectedEndDate="formSearch.end_date_draft"
-						:clear-select-date="lang().label.search.field.select_date_clear"
+                        :clear-select-date="
+                            select_date_clear
+                        "
                         @update:modelValue="handleDateChange"
                         @reset-date-picker="ResetDatePicker"
                     />
@@ -598,7 +626,9 @@ const handleClose = () => {
                         "
                     >
                         <div>
-                            <p>{{ lang().label.search.field.select_date_confirm }}</p>
+                            <p>
+                               select_date_confirm
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -608,6 +638,6 @@ const handleClose = () => {
 </template>
 
 <style lang="scss" scoped>
-@import '../Header/header';
-@import './search';
+@import "../common";
+@import "./search";
 </style>
