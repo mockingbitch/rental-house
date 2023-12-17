@@ -2,14 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Constants\UserConstants;
+use App\Enum\UserEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
-use App\Models\City;
-use App\Models\Country;
-use App\Models\Category;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -25,7 +22,7 @@ class HandleInertiaRequests extends Middleware
      * Determines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return string|null
      */
     public function version(Request $request): ?string
@@ -37,7 +34,7 @@ class HandleInertiaRequests extends Middleware
      * Defines the props that are shared by default.
      *
      * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function share(Request $request): array
@@ -52,7 +49,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
                 'role' => $request->user()
-                    ? $request->user()->getRoleNames()[0]
+                    ? $request->user()->role
                     : '',
             ],
             'app' => [
@@ -88,12 +85,12 @@ class HandleInertiaRequests extends Middleware
             },
             'provinces' => \App\Models\Address\Province::all(),
             'districts' => \App\Models\Address\District::all(),
-            'wards' => \App\Models\Address\Ward::all(),
-            // 'user_role' => [
-            //     'admin' => UserConstants::ROLE_ADMIN,
-            //     'teacher' => UserConstants::ROLE_TEACHER,
-            //     'parent' => UserConstants::ROLE_PARENT,
-            // ],
+            'wards'     => \App\Models\Address\Ward::all(),
+            'user_role' => [
+                 'admin'    => UserEnum::ROLE_ADMIN,
+                 'lessor'   => UserEnum::ROLE_LESSOR,
+                 'lessee'   => UserEnum::ROLE_LESSEE,
+            ],
             // 'user_notifications' => fn () => auth()->user() ? $notifications = auth()->user()
             //         ->notifications
             //         ->sortBy('created_at')

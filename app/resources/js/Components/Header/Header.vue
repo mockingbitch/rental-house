@@ -14,7 +14,7 @@ const props = defineProps({
 });
 const page = usePage();
 const notifications = computed(() =>
-    page.props?.auth?.user?.role == "Lessor"
+    page.props?.auth?.user?.role === "LESSOR"
         ? page.props?.teacher_notifications
         : page.props?.user_notifications
 );
@@ -38,11 +38,12 @@ const isSearchPage = computed(() => {
                 <div class="navPc__left">
                     <Link :href="route('top')">
                         <div class="logo">
-                            <i
-                                ><img
+                            <i>
+                                <img
                                     src="/img/logo/RentalHouse.svg"
                                     alt="RentalHouses"
-                            /></i>
+                                />
+                            </i>
                         </div>
                         <h1>RentalHouses</h1>
                     </Link>
