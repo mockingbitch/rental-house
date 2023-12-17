@@ -1,6 +1,6 @@
 <script setup>
 import { Link, router } from "@inertiajs/vue3";
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, defineEmits } from "vue";
 import { languages } from "@/Helper/MultiLanguage.js";
 import SubHeader from "@/Components/Header/SubHeader.vue";
 
@@ -184,6 +184,7 @@ onMounted(() => {
 
             <!-- Header loggined-->
             <div
+                v-if="props.userInfo"
                 class="d-flex justify-content-between align-items-center"
             >
                 <div class="d-flex align-items-center side-menu-header">
@@ -366,7 +367,8 @@ onMounted(() => {
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
                         alt=""
-                /></a>
+                    />
+                </a>
                 <div
                     v-if="props.userInfo?.role == 'ADMIN'"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
@@ -443,7 +445,7 @@ onMounted(() => {
                     />
                 </div>
                 <div
-                    v-if="props.userInfo?.role != 'ADMIN'"
+                    v-if="props.userInfo?.role !== 'ADMIN' && props.userInfo?.role"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
                     <div
@@ -470,6 +472,7 @@ onMounted(() => {
                 </div>
                 <div class="side-menu-line"></div>
                 <div
+                    v-if="props.userInfo?.role"
                     class="d-flex align-items-center justify-content-between side-menu-content-item"
                 >
                     <div

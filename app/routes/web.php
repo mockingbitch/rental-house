@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Constants\PermissionConstant;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
@@ -9,6 +8,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\HouseController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +53,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('reset-password-success', 'resetPasswordSuccess')->name('reset.password.success');
 });
 
-Route::get('/notification/detail', [NotificationController::class, 'notificationDetail'])->name('notification.detail');
+//Route::get('/notification/detail', [NotificationController::class, 'notificationDetail'])->name('notification.detail');
 Route::post('/url-intended', [AuthController::class, 'urlIntended'])->name('url.intended.create');
 
 Route::controller(UserController::class)->group(function () {
@@ -66,16 +66,16 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
     Route::get('category', 'get')->name('category.get');
     Route::get('detail/{id}/category', 'detail')->name('category.detail');
-    Route::post('category', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_category'])->name('category.create');
-    Route::post('edit/{id}/category', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_category'])->name('category.update');
-    Route::get('delete/category', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_category'])->name('category.delete');
+    Route::post('category', 'create');
+    Route::post('edit/{id}/category', 'update');
+    Route::get('delete/category', 'delete');
 });
 Route::controller(TagController::class)->group(function () {
     Route::get('tag', 'get')->name('tag.get');
     Route::get('detail/{id}/tag', 'detail')->name('tag.detail');
-    Route::post('tag', 'create')->middleware('permission:'. PermissionConstant::PERMISSIONS['create_tag'])->name('tag.create');
-    Route::post('edit/{id}/tag', 'update')->middleware('permission:'. PermissionConstant::PERMISSIONS['update_tag'])->name('tag.update');
-    Route::get('delete/tag', 'delete')->middleware('permission:'. PermissionConstant::PERMISSIONS['delete_tag'])->name('tag.delete');
+    Route::post('tag', 'create');
+    Route::post('edit/{id}/tag', 'update');
+    Route::get('delete/tag', 'delete');
 });
 
 //LESSOR
@@ -94,9 +94,10 @@ Route::controller(HouseController::class)->group(function () {
         Route::post('house', 'create')->name('lessor.house.create');
         Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
     });
+    Route::get('house/{id}/detail', 'detailHome')->name('house.detail');
 });
 
-Route::controller(\App\Http\Controllers\RoomController::class)->group(function () {
+Route::controller(RoomController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::post('room', 'create')->name('lessor.room.create');
         Route::get('room/{id}/delete', 'delete')->name('lessor.room.delete');

@@ -39,28 +39,6 @@ let isOpenSelectPrice = ref(false);
 let isOpenSelectDate = ref(false);
 const selectedStartDate = ref(true);
 const selectedEndDate = ref(false);
-let ageRange = ref([
-    9, 10, 11, 12, 13, 14, 15
-]);
-
-const minAgeRange = computed(() => {
-    if (formSearch.max_age) {
-        const newAgeRange = ageRange.value.filter(
-            (age) => age < formSearch.max_age
-        );
-        return newAgeRange;
-    }
-    return ageRange.value;
-});
-const maxAgeRange = computed(() => {
-    if (formSearch.min_age) {
-        const newAgeRange = ageRange.value.filter(
-            (age) => age > formSearch.min_age
-        );
-        return newAgeRange;
-    }
-    return ageRange.value;
-});
 
 const priceRange = ref([
     "0",
@@ -94,59 +72,6 @@ const maxPriceRange = computed(() => {
     }
     return priceRange.value;
 });
-
-let dayRange = ref([
-    {
-        key: 2,
-        value: 'Monday',
-    },
-    {
-        key: 3,
-        value: 'Tue',
-    },
-    {
-        key: 4,
-        value: 'Wed',
-    },
-    {
-        key: 5,
-        value: 'Thu',
-    },
-    {
-        key: 6,
-        value: 'Fri',
-    },
-    {
-        key: 7,
-        value: 'Sat',
-    },
-    {
-        key: 8,
-        value: 'Sun',
-    },
-]);
-let hours = ref([
-    "6:00",
-    "7:00",
-    "8:00",
-    "9:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-]);
-
-let startHours = ref([...hours.value?.slice(0, hours.value.length - 1)]);
-let endHours = ref([...hours.value?.slice(1)]);
 
 const updateStartTimeOptions = (value) => {
     formSearch.end_date_time = value;
@@ -184,7 +109,7 @@ const toggleDaySelection = (day) => {
 const handleSelectPriceRange = (start, end) => {
     formSearch.start_price_range = start;
     formSearch.finish_price_range = end;
-    isOpenSelectPrice.value = !isOpenSelectPrice;
+    isOpenSelectPrice.value = !isOpenSelectPrice.value;
     ResetRangePrice();
 };
 
@@ -285,58 +210,41 @@ const handleClose = () => {
     <form class="form form-search" @submit.prevent="submit">
         <div class="form__wrap filter__form-wrapper">
             <SubHeader
-                :label="title"
+                :label="'Search'"
                 is-close
                 @close="handleClose"
             />
             <div class="form__wrap-item" style="margin-top: 14.5px">
                 <label for="Title">
-                    <span class="title-text">Title</span>
+                    <span class="title-text">Keyword</span>
                 </label>
                 <input
                     v-model="formSearch.keyword"
                     :class="`form__input ${formSearch.keyword && 'fillInput'}`"
                     type="text"
                     name="text-search"
-                    :placeholder="
-                        placeholder
-                    "
+                    :placeholder="'Keyword search'"
                 />
             </div>
             <DoubleSelect
-                v-model:selected1="formSearch.min_age"
-                v-model:selected2="formSearch.max_age"
-                :label1="minAgeRange"
-                :label2="max_age_title"
-                :options1="minAgeRange"
-                :options2="maxAgeRange"
-                :textTo="text_to"
-                icon="/img/icon/birthdayCake.svg"
-                unit="歳"
-                :fill-input-condition1="formSearch.min_age"
-                :fill-input-condition2="formSearch.max_age"
-                :placeholder1="'min_age_placeholder'"
-                :placeholder2="'max_age_placeholder'"
-            />
-            <DoubleSelect
                 v-model:selected1="formSearch.start_draft_price"
                 v-model:selected2="formSearch.finish_draft_price"
-                :label1="'min_price_title'"
-                :label2="'max_price_title'"
+                :label1="'Min price'"
+                :label2="'Max price'"
                 :options1="minPriceRange"
                 :options2="maxPriceRange"
-                :textTo="'text_to'"
+                :textTo="'to'"
                 icon="/img/icon/Walet.svg"
                 unit="円"
                 :fill-input-condition1="formSearch.start_draft_price"
                 :fill-input-condition2="formSearch.finish_draft_price"
-                :placeholder1="'min_price_placeholder'"
-                :placeholder2="'max_price_placeholder'"
+                :placeholder1="'Enter min price'"
+                :placeholder2="'Enter max price'"
             />
             <div class="form__wrap-item">
                 <label for="Title">
                     <span class="title-text">
-                        select_date_title
+                        Select date
                     </span>
                 </label>
                 <div
@@ -362,7 +270,7 @@ const handleClose = () => {
                         </svg>
                     </span>
                     <span class="btn-text">
-                        select_date_placeholder
+                        Select date
                     </span>
                     <span class="content-drop-down">
                         {{
@@ -383,70 +291,10 @@ const handleClose = () => {
                     </span>
                 </div>
             </div>
-            <div class="form__wrap-item">
-                <label for="Title">
-                    <span class="title-text">
-                        week_day_title
-                    </span>
-                </label>
-                <ul class="list-days">
-                    <li
-                        class="item"
-                        v-for="day in dayRange"
-                        :key="day.key"
-                        :class="{ checked: selectedDays.includes(day.key) }"
-                        @click="toggleDaySelection(day.key)"
-                    >
-                        <div class="listday__checkbox-wrapper">
-                            <span class="listday__checkbox">
-                                <i
-                                    class="fa-solid fa-check check-icon"
-                                    v-if="selectedDays.includes(day.key)"
-                                ></i>
-                            </span>
-                        </div>
-                        <span class="listday__text">{{ day.value }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="form__wrap-item">
-                <label for="start_date_time">
-                    <span class="title-text">
-                        field.start_time_title
-                    </span>
-                </label>
-                <div id="form-wrap-double">
-                    <div
-                        :class="`select ${
-                            formSearch.start_date_time && 'fillInput'
-                        }`"
-                        style="flex: 1"
-                    >
-                        <CustomSelect
-                            :value-selected="formSearch.start_date_time"
-                            :options="startHours"
-                            up-side-down-mobile
-                            @selectValue="updateEndTimeOptions"
-                        />
-                    </div>
-                    <p class="to-text">text_to</p>
-                    <div
-                        :class="`select ${formSearch.end_date_time && 'fillInput'}`"
-                        style="flex: 1"
-                    >
-                        <CustomSelect
-                            :value-selected="formSearch.end_date_time"
-                            :options="endHours"
-                            up-side-down-mobile
-                            @selectValue="updateStartTimeOptions"
-                        />
-                    </div>
-                </div>
-            </div>
             <div class="space"></div>
             <div class="search-button">
                 <a href="#" @click="handleResetForm">
-                    button_clear_form
+                    Clear
                 </a>
                 <button type="submit" class="mainButton">
                     <svg
@@ -461,7 +309,7 @@ const handleClose = () => {
                             fill="#FFF"
                         />
                     </svg>
-                    <p>button_submit_form</p>
+                    <p>Submit</p>
                 </button>
             </div>
             <Modal :show-modal="isOpenSelectPrice" @close="closeSelectPrice">

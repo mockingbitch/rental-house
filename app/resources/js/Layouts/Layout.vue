@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
     <main>
         <Search v-if="isSearchVisible" @toggleSearch="toggleSearch" />
         <slot v-else />
-        <slot />
+<!--        <slot />-->
     </main>
     <Footer v-if="!isSearchVisible" />
 </template>

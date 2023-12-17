@@ -7,6 +7,8 @@ import Banner from "@/Components/Banner/Banner.vue";
 import Stars from "@/Components/Rating/Stars.vue";
 // import Modal from "@/Components/Modal/Modal.vue";
 import { houseRating } from "@/Helper/HouseRating";
+import { priceFormat } from "@/Helper/CurrencyHelper";
+import { sortArrayByPrice, sortArrayByCapacity } from "@/Helper/SortHelper";
 
 const props = defineProps({
     houses: Array,
@@ -40,15 +42,15 @@ const imageUrlAlt = (event) => {
             <div class="container">
                 <div class="topScreen__wrap">
                     <Link
-                        class="item"
                         v-for="(house, index) in listHouse"
                         :key="index"
+                        class="item"
                     >
                         <div class="image">
                             <img
                                 :src="house.thumbnail"
-                                @error="imageUrlAlt"
                                 alt="house"
+                                @error="imageUrlAlt"
                             />
                         </div>
                         <div class="rating">
@@ -82,11 +84,18 @@ const imageUrlAlt = (event) => {
                             </p>
                         </div>
                         <div class="price">
-                            {{ house.rooms[0]?.price }} VND
+<!--                            {{ priceFormat(house.rooms[0]?.price) }} - {{ priceFormat(house.rooms[house]?.price) }} VND-->
+                            {{ priceFormat(sortArrayByPrice(house.rooms)[0]?.price) }}
+                            -
+                            {{ priceFormat(sortArrayByPrice(house.rooms)[house.rooms.length - 1]?.price) }}
+                            VND
                         </div>
                         <div class="age">
                             <p>
-                                Capacity: {{ house.rooms[0]?.capacity }}
+                                Capacity:
+                                {{ sortArrayByCapacity(house.rooms)[0]?.capacity }}
+                                -
+                                {{ sortArrayByCapacity(house.rooms)[house.rooms.length - 1]?.capacity }}
                             </p>
                         </div>
                     </Link>

@@ -1,0 +1,212 @@
+
+.detailLesson {
+    color: #1b1b1b;
+
+    .form__wrap {
+        .news {
+            .description {
+                word-break: break-word;
+                white-space: pre-line;
+            }
+        }
+
+        .note {
+            .description {
+                word-break: break-word;
+                white-space: pre-line;
+            }
+        }
+    }
+
+    .share-social-popup {
+        position: relative;
+
+        :deep(.dialog) {
+            top: 30px;
+            right: 0px;
+            max-height: none;
+        }
+
+        .share-social-select {
+            padding: 24px 20px;
+            gap: 8px;
+            font-weight: 700;
+
+            .share-social-select-title {
+                text-align: center;
+                font-size: 16px;
+                line-height: 160%;
+                letter-spacing: -0.16px;
+                margin-bottom: 24px;
+            }
+        }
+    }
+
+    .footer-share-social {
+        width: 100%;
+        padding: 10px 16px;
+        border-top: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
+        gap: 16px;
+    }
+
+    .category-wrap {
+        gap: 4px;
+
+        .category-info {
+            padding: 8px;
+            height: 70px;
+
+            .category-info-title {
+                color: #418997;
+                text-align: center;
+                font-weight: 700;
+                line-height: 160%;
+                letter-spacing: -0.14px;
+            }
+
+            .category-info-content {
+                color: #989898;
+                font-size: 12px;
+                line-height: 160%;
+                letter-spacing: -0.12px;
+            }
+        }
+    }
+    .show-more-button {
+        margin: 0 auto;
+        max-width: 343px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.schedule {
+    .item {
+        .item__left {
+            .top {
+                .show-button {
+                    cursor: pointer;
+                }
+            }
+
+            .time {
+                gap: 4px;
+            }
+        }
+    }
+}
+
+.lesson__detail-delete-modal-wrap {
+    width: 100%;
+    min-width: 368px;
+}
+
+@media all and (max-width: 768px) {
+    .lesson__detail-delete-modal-wrap {
+        min-width: 311px;
+    }
+
+    .item__right {
+        font-size: 13px !important;
+        padding: 4px 12px !important;
+    }
+}
+
+.lesson__detail-button-wrap {
+    width: 100% !important;
+    gap: 10px;
+
+    button {
+        width: 100%;
+    }
+    .lesson__detail-button-edit {
+        background-color: #e71a41;
+        color: #fff;
+        padding: 12px;
+        margin: 16px 0px;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        height: 44px;
+    }
+    .lesson__detail-button-red {
+        color: #e71a41;
+        padding: 12px;
+        margin: 16px 0px;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border: 1px solid #e71a41;
+        border-radius: 4px;
+        width: 100%;
+        height: 44px;
+    }
+
+    .no-outline {
+        border: none;
+    }
+}
+
+.item__right {
+    color: white;
+}
+
+.item__full {
+    background-color: #e1eff2 !important;
+    color: #7f7f7f !important;
+}
+
+.lesson__detail-delete-modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.lesson__detail-delete-modal-subtitle {
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+    color: #e71a41;
+    max-width: 368px;
+}
+
+.lesson__detail-delete-modal-btn {
+    gap: 10px;
+
+    a {
+        width: 100%;
+    }
+}
+
+.lesson__detail-schedule {
+    .lesson__detail-schedule-day {
+        width: 90px;
+    }
+
+    .lesson__detail-schedule-time {
+        margin-right: 2px;
+    }
+
+    img {
+        margin-right: 4px;
+    }
+
+    .lesson__detail-schedule-no-check {
+        width: 24px;
+        height: 20px;
+    }
+}
+.teacher__dashboard-card-container {
+    border-radius: 4px !important;
+}
+.pointer {
+    cursor: pointer;
+}

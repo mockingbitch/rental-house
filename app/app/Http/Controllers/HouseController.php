@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HouseRequest;
 use App\Repositories\House\HouseRepositoryInterface;
 use App\Services\FileService;
+use Inertia\Inertia;
 use PHPUnit\Exception;
 
 class HouseController extends Controller
@@ -142,5 +143,16 @@ class HouseController extends Controller
                 'message' => 'Something went wrong'
             ], 200);
         }
+    }
+
+    public function detailHome(?string $id)
+    {
+        $house = $this->houseRepository
+            ->findByWithRelationship(['rooms'], ['id' => $id]);
+
+        return Inertia::render('Client/HouseDetail/HouseDetail', [
+            'house' => $house,
+            'rooms' => $house->rooms,
+        ]);
     }
 }
