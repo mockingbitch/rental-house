@@ -17,5 +17,21 @@ class TagRepository extends BaseRepository implements TagRepositoryInterface
     {
         return Tag::class;
     }
+
+    public function findTagByName(string $tag_name)
+    {
+        return $this->model
+            ->where('name_vi', 'like', $tag_name)
+            ->orWhere('name_en', 'like', $tag_name)
+            ->get()
+            ->first();
+    }
+
+    public function findTagsByIDString(string $listID)
+    {
+        return $this->model
+            ->whereRaw('id IN (' . $listID . ')')
+            ->get();
+    }
 }
 ?>

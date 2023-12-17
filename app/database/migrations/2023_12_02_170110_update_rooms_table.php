@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->text('tags');
+            $table->dropColumn('tags');
         });
     }
 };

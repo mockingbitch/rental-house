@@ -99,5 +99,7 @@ Route::controller(HouseController::class)->group(function () {
 Route::controller(\App\Http\Controllers\RoomController::class)->group(function () {
     Route::prefix('lessor')->group(function () {
         Route::post('room', 'create')->name('lessor.room.create');
+        Route::get('room/{id}/delete', 'delete')->name('lessor.room.delete');
+        // Route::post('room', 'create')->name('lessor.room.create');
     });
 });

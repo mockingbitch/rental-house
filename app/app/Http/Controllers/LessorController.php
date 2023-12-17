@@ -81,9 +81,17 @@ class LessorController extends Controller
         $rooms = $this->roomRepository->findBy([
             'house_id' => $id
         ]);
+
+        // only get first image of room
+        foreach ($rooms as &$room):
+            $imageURLs = explode(',', $room->images);
+            $room->first_image = reset($imageURLs);
+        endforeach;
+
         $tags = $this->tagRepository->all();
 
         return view('lessor.room.list', [
+            'house_id'      => $id,
             'rooms'         => $rooms,
             'tags'          => $tags,
             'breadcrumb'    => 'House/Room',
