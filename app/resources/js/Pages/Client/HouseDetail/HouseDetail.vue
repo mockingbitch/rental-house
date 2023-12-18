@@ -1,9 +1,8 @@
 <script setup>
-import { ref, onBeforeMount } from "vue";
+import { ref } from "vue";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
 import moment from "moment";
-import { lessonRating } from "@/Helper/lessonRating";
-import { reviewRating } from "@/Helper/reviewRating";
+import { houseRating } from "@/Helper/Rating";
 import Layout from "@/Layouts/Layout.vue";
 import LayoutDashBoard from "@/Layouts/LayoutDashboard.vue";
 import Modal from "@/Components/Modal/Modal.vue";
@@ -42,7 +41,7 @@ const formUrlIntended = useForm({
     url: "",
 });
 
-const rating = lessonRating(props.house);
+const rating = houseRating(props.house);
 const openDialogSuspendLesson = ref(false);
 const showTime = ref([]);
 const openDialogDeleteLesson = ref(false);
@@ -352,7 +351,8 @@ const levelLesson = (type) => {
                                     {{ props.lessons.title }}
                                 </div>
                                 <div class="author">
-                                    <a style="color:black" :href="route('teacher.profile', props.teacher
+                                    <a
+style="color:black" :href="route('teacher.profile', props.teacher
                                                             .teacher_information?.teacher_id)">
                                         <div class="author__left">
                                             <div class="avatar">
@@ -382,17 +382,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.class_description }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreContent == false && props.lessons.class_description?.length >= 50"
                                     class="showMore"
                                     @click="detailForm.moreContent = true"
-                                    v-show="detailForm.moreContent == false && props.lessons.class_description?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreContent"
                                     class="showMore"
                                     @click="detailForm.moreContent = false"
-                                    v-show="detailForm.moreContent"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -457,7 +457,7 @@ const levelLesson = (type) => {
                                     </p>
                                 </li> -->
                                     <li>
-                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">{{ classDetail(props.lessons.class_detail)}}</span>
+                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">{{ classDetail(props.lessons.class_detail) }}</span>
                                         <!-- <span>{{ totalApplied(props.lessons) }}/{{ props.lessons.class_capacity }}名</span> -->
                                         <p>
                                             {{
@@ -799,9 +799,11 @@ const levelLesson = (type) => {
                                                     lesson_course.id
                                                 )
                                             "
-                                        >{{
+                                        >
+{{
                                                 lang().label.lesson_detail.apply
-                                            }}</Link
+                                            }}
+</Link
                                         >
                                         <div
                                             v-if="
@@ -842,13 +844,13 @@ const levelLesson = (type) => {
                                     </div>
                                 </div>
                                 <span
-                                    class="showMore show-more-button"
-                                    @click="showMoreSchedule"
                                     v-show="
                                         detailForm.scheduleShow <
                                         validCourses(props.lesson_courses)
                                             .length
                                     "
+                                    class="showMore show-more-button"
+                                    @click="showMoreSchedule"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
@@ -873,17 +875,17 @@ const levelLesson = (type) => {
                                     }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreDescription == false && props.lessons.short_description_for_parent?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreDescription = true"
-                                    v-show="detailForm.moreDescription == false && props.lessons.short_description_for_parent?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreDescription"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreDescription = false"
-                                    v-show="detailForm.moreDescription"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -905,17 +907,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.teacher_experience }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreExperience == false && props.lessons.teacher_experience?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = true"
-                                    v-show="detailForm.moreExperience == false && props.lessons.teacher_experience?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreExperience"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = false"
-                                    v-show="detailForm.moreExperience"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -923,33 +925,28 @@ const levelLesson = (type) => {
                             </div>
                             <div class="note noTitle">
                                 <p class="subTitle">
-                                    {{
-                                        lang().label.lesson_detail
-                                            .additional_note
-                                    }}
+                                    addition note
                                 </p>
                                 <p
                                     class="description"
                                     :class="{ fullText: detailForm.moreNote }"
                                 >
-                                    {{ props.lessons.preparation }}
+                                    prepare
                                 </p>
                                 <span
+                                    v-show="detailForm.moreNote === false && props.lessons.preparation?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreNote = true"
-                                    v-show="detailForm.moreNote == false && props.lessons.preparation?.length >= 50"
-                                >{{
-                                        lang().label.lesson_detail.show_more
-                                    }}</span
                                 >
+                                    show more
+                                </span>
                                 <span
+                                    v-show="detailForm.moreNote"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreNote = false"
-                                    v-show="detailForm.moreNote"
-                                >{{
-                                        lang().label.lesson_detail.show_less
-                                    }}</span
                                 >
+                                    Show less
+                                </span>
                             </div>
                             <div class="reviewWrap">
                                 <p class="subTitle">
@@ -984,7 +981,7 @@ const levelLesson = (type) => {
                                         <div class="author__right">
                                             <Stars
                                                 :stars="
-                                                    reviewRating(
+                                                    houseRating(
                                                         review
                                                     ).toFixed(1)
                                                 "
@@ -999,7 +996,7 @@ const levelLesson = (type) => {
                                                 "
                                             >
                                                 {{
-                                                    reviewRating(
+                                                    houseRating(
                                                         review
                                                     ).toFixed(1)
                                                 }}
@@ -1008,15 +1005,15 @@ const levelLesson = (type) => {
                                     </div>
                                     <div class="content">
                                         <p
-                                            class="description"
                                             :id="'reviewNumber' + review.id"
+                                            class="description"
                                         >
                                             {{ review.review }}
                                         </p>
                                         <span
+                                            :id="'showMoreNumber' + review.id"
                                             class="showMore show-more-button"
                                             @click="showFullReview(review.id)"
-                                            :id="'showMoreNumber' + review.id"
                                         >{{
                                                 lang().label.lesson_detail
                                                     .show_more
@@ -1026,12 +1023,12 @@ const levelLesson = (type) => {
                                 </div>
                             </div>
                             <span
-                                class="showMore show-more-button"
-                                @click="showMoreReview"
                                 v-show="
                                     detailForm.reviewShow <=
                                     props.reviews.length
                                 "
+                                class="showMore show-more-button"
+                                @click="showMoreReview"
                             >{{
                                     lang().label.lesson_detail.show_more
                                 }}</span
@@ -1060,11 +1057,11 @@ const levelLesson = (type) => {
                 </div>
             </main>
             <ModalSignup
-                :isOpen="isOpenPopupLogin"
+                :is-open="isOpenPopupLogin"
                 @toggle="handleTogglePopupSignin"
             />
             <Modal
-                :showModal="formVideo.isOpen"
+                :show-modal="formVideo.isOpen"
                 @close="formVideo.isOpen = false"
             >
                 <div class="videoShow">
@@ -1074,10 +1071,10 @@ const levelLesson = (type) => {
                     v-if="formVideo.role == 'parent'"
                 ></video> -->
                     <video
+                        v-if="formVideo.role == 'child'"
                         :src="props.lessons.short_video_for_learner"
                         controls
                         autoplay
-                        v-if="formVideo.role == 'child'"
                     ></video>
                 </div>
             </Modal>
@@ -1210,7 +1207,8 @@ const levelLesson = (type) => {
                                     {{ props.lessons.title }}
                                 </div>
                                 <div class="author">
-                                    <a style="color:black" :href="route('teacher.profile', props.teacher
+                                    <a
+style="color:black" :href="route('teacher.profile', props.teacher
                                                             .teacher_information?.teacher_id)">
                                         <div class="author__left">
                                             <div class="avatar">
@@ -1240,17 +1238,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.class_description }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreContent == false && props.lessons.class_description?.length >= 50"
                                     class="showMore"
                                     @click="detailForm.moreContent = true"
-                                    v-show="detailForm.moreContent == false && props.lessons.class_description?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreContent"
                                     class="showMore"
                                     @click="detailForm.moreContent = false"
-                                    v-show="detailForm.moreContent"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -1315,7 +1313,7 @@ const levelLesson = (type) => {
                                     </p>
                                 </li> -->
                                     <li>
-                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">{{ classDetail(props.lessons.class_detail)}}</span>
+                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">{{ classDetail(props.lessons.class_detail) }}</span>
                                         <!-- <span>{{ totalApplied(props.lessons) }}/ {{ props.lessons.class_capacity }}名</span> -->
                                         <p>
                                             {{
@@ -1570,7 +1568,7 @@ const levelLesson = (type) => {
                                                                 schedule.end_date_time
                                                             )
                                                         "
-                                                        src="../../../../public/img/icon/check.svg"
+                                                        src="/img/icon/check.svg"
                                                         alt=""
                                                         width="20"
                                                         height="20"
@@ -1678,13 +1676,13 @@ const levelLesson = (type) => {
                                     </div>
                                 </div>
                                 <span
-                                    class="showMore show-more-button"
-                                    @click="showMoreSchedule"
                                     v-show="
                                         detailForm.scheduleShow <
                                         validCourses(props.lesson_courses)
                                             .length
                                     "
+                                    class="showMore show-more-button"
+                                    @click="showMoreSchedule"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
@@ -1706,17 +1704,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.description }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreDescription == false && props.lessons.description?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreDescription = true"
-                                    v-show="detailForm.moreDescription == false && props.lessons.description?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreDescription"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreDescription = false"
-                                    v-show="detailForm.moreDescription"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -1738,17 +1736,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.teacher_experience }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreExperience == false && props.lessons.teacher_experience?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = true"
-                                    v-show="detailForm.moreExperience == false && props.lessons.teacher_experience?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreExperience"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = false"
-                                    v-show="detailForm.moreExperience"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -1769,17 +1767,17 @@ const levelLesson = (type) => {
                                     drawing they will be proud of. abcdefg12...
                                 </p>
                                 <span
+                                    v-show="detailForm.morePreparation == false"
                                     class="showMore show-more-button"
                                     @click="detailForm.morePreparation = true"
-                                    v-show="detailForm.morePreparation == false"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.morePreparation"
                                     class="showMore show-more-button"
                                     @click="detailForm.morePreparation = false"
-                                    v-show="detailForm.morePreparation"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -1799,17 +1797,17 @@ const levelLesson = (type) => {
                                     {{ props.lessons.note }}
                                 </p>
                                 <span
+                                    v-show="detailForm.moreNote == false && props.lessons.note?.length >= 50"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreNote = true"
-                                    v-show="detailForm.moreNote == false && props.lessons.note?.length >= 50"
                                 >{{
                                         lang().label.lesson_detail.show_more
                                     }}</span
                                 >
                                 <span
+                                    v-show="detailForm.moreNote"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreNote = false"
-                                    v-show="detailForm.moreNote"
                                 >{{
                                         lang().label.lesson_detail.show_less
                                     }}</span
@@ -1820,11 +1818,11 @@ const levelLesson = (type) => {
                                     {{ lang().label.lesson_detail.reviews }}
                                 </p>
                                 <div
-                                    class="item"
                                     v-for="review in props.reviews.slice(
                                         0,
                                         detailForm.reviewShow
                                     )"
+                                    class="item"
                                 >
                                     <div class="time">
                                         {{ review.created_at }}
@@ -1848,7 +1846,7 @@ const levelLesson = (type) => {
                                         <div class="author__right">
                                             <Stars
                                                 :stars="
-                                                    reviewRating(
+                                                    houseRating(
                                                         review
                                                     ).toFixed(1)
                                                 "
@@ -1872,15 +1870,15 @@ const levelLesson = (type) => {
                                     </div>
                                     <div class="content">
                                         <p
-                                            class="description"
                                             :id="'reviewNumber' + review.id"
+                                            class="description"
                                         >
                                             {{ review.review }}
                                         </p>
                                         <span
+                                            :id="'showMoreNumber' + review.id"
                                             class="showMore show-more-button"
                                             @click="showFullReview(review.id)"
-                                            :id="'showMoreNumber' + review.id"
                                         >{{
                                                 lang().label.lesson_detail
                                                     .show_more
@@ -1890,12 +1888,12 @@ const levelLesson = (type) => {
                                 </div>
                             </div>
                             <span
-                                class="showMore show-more-button"
-                                @click="showMoreReview"
                                 v-show="
                                     detailForm.reviewShow <=
                                     props.reviews.length
                                 "
+                                class="showMore show-more-button"
+                                @click="showMoreReview"
                             >{{
                                     lang().label.lesson_detail.show_more
                                 }}</span
@@ -1917,11 +1915,11 @@ const levelLesson = (type) => {
                                 <ShareSocial :url-copy="currentUrl" />
                             </div>
                             <div
-                                class="lesson__detail-button-wrap"
                                 v-if="
                                     usePage().props.auth.user?.id ==
                                     props.teacher?.id
                                 "
+                                class="lesson__detail-button-wrap"
                             >
                                 <Link :href="route('edit.draft.lesson', {id: props.lessons?.id, draft: 'listLesson'})">
                                     <div class="lesson__detail-button-edit">編集する</div>
@@ -1944,11 +1942,11 @@ const levelLesson = (type) => {
                 </div>
             </main>
             <ModalSignup
-                :isOpen="isOpenPopupLogin"
+                :is-open="isOpenPopupLogin"
                 @toggle="handleTogglePopupSignin"
             />
             <Modal
-                :showModal="formVideo.isOpen"
+                :show-modal="formVideo.isOpen"
                 @close="formVideo.isOpen = false"
             >
                 <div class="videoShow">
@@ -1958,19 +1956,18 @@ const levelLesson = (type) => {
                     v-if="formVideo.role == 'parent'"
                 ></video> -->
                     <video
+                        v-if="formVideo.role == 'child'"
                         :src="props.lessons.short_video_for_learner"
                         controls
-                        v-if="formVideo.role == 'child'"
                     ></video>
                 </div>
             </Modal>
             <Modal
+                v-if="usePage().props.auth.user?.id == props.teacher?.id"
                 :show-modal="openDialogDeleteLesson"
                 @close="openDialogDeleteLesson = false"
-                v-if="usePage().props.auth.user?.id == props.teacher?.id"
             >
-
-                <div class="lesson__detail-delete-modal-wrap">
+<div class="lesson__detail-delete-modal-wrap">
                     <div class="lesson__detail-delete-modal-title">
                         {{ lang().label.lesson_detail.messenger_confirm }}
                     </div>
@@ -1980,7 +1977,7 @@ const levelLesson = (type) => {
                     <div class="lesson__detail-delete-modal-subtitle">
                         {{ lang().label.lesson_detail.messenger_confirm2 }}
                     </div>
-                    <textarea cols="50" rows="6" v-model="formReason.reason" class="mt-4 w-full "></textarea>
+                    <textarea v-model="formReason.reason" cols="50" rows="6" class="mt-4 w-full "></textarea>
                     <div class="d-flex lesson__detail-delete-modal-btn">
                         <ButtonDeleteRequest
                             :label="'キャンセル'"
@@ -2001,9 +1998,9 @@ const levelLesson = (type) => {
                 </div>
             </Modal>
             <Modal
+                v-if="usePage().props.auth.user?.id == props.teacher?.id"
                 :show-modal="openDialogSuspendLesson"
                 @close="openDialogSuspendLesson = false"
-                v-if="usePage().props.auth.user?.id == props.teacher?.id"
             >
                 <div class="lesson__detail-delete-modal-wrap">
                     <div class="lesson__detail-delete-modal-title">

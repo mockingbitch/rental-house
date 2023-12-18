@@ -13,7 +13,10 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "*",
         "laravel/tinker": "^2.8",
+        "spiral/roadrunner-cli": "^2.5.0",
+        "spiral/roadrunner-http": "^3.0.1",
         "swooletw/laravel-swoole": "^2.13",
+        "swoolex/swoolex": "^2.5",
         "tightenco/ziggy": "^1.8"
     },
     "require-dev": {

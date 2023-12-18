@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\RoomController;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::get('/setlang/{locale}', function ($locale) {
 })->name('setlang');
 Route::controller(HomeController::class)->group(function() {
     Route::get('/', 'index')->name('top');
+    Route::get('/search', 'search')->name('search');
     // Route::get('/admin', 'adminDashboard')->name('admin.dashboard')->middleware('permission:view_admin');
     Route::get('/admin', 'adminDashboard')->name('admin.dashboard');
 });

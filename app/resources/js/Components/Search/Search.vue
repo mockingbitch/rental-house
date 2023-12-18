@@ -1,15 +1,14 @@
 <script setup>
-import { useForm, usePage } from "@inertiajs/vue3";
-import { ref, defineEmits, watch, computed } from "vue";
+import {useForm} from "@inertiajs/vue3";
+import {computed, defineEmits, ref} from "vue";
 import "@vuepic/vue-datepicker/dist/main.css";
-import moment from "moment";
 import Modal from "@/Components/Modal/Modal.vue";
 // import Dialog from "./Dialog/Dialog.vue";
 import DatePicker from "@/Components/DatePicker/DatePicker.vue";
 import DoubleSelect from "@/Components/DoubleSelect/DoubleSelect.vue";
-import CustomSelect from "@/Components/CustomSelect/CustomSelect.vue";
 import SubHeader from "@/Components/SubHeader/SubHeader.vue";
 
+// eslint-disable-next-line vue/valid-define-emits
 const emits = defineEmits();
 
 let uri = window.location.search.substring(1);
@@ -19,18 +18,9 @@ const selectedDays = ref(dayParams ?? []);
 
 const formSearch = useForm({
     keyword: params.get("keyword") ?? "",
-    min_age: params.get("min_age") ?? null,
-    max_age: params.get("max_age") ?? null,
-    start_date: params.get("start_date") ?? "",
-    end_date: params.get("end_date") ?? "",
-    start_date_draft: params.get("start_date_draft") ?? "",
-    end_date_draft: params.get("end_date_draft") ?? "",
     start_price_range: params.get("start_price_range") ?? null,
     finish_price_range: params.get("finish_price_range") ?? null,
-    start_draft_price: params.get("start_draft_price") ?? null,
-    finish_draft_price: params.get("finish_draft_price") ?? null,
     date: params.get("date") ?? null,
-    day: selectedDays ?? [],
     start_date_time: params.get("start_date_time") ?? null,
     end_date_time: params.get("end_date_time") ?? null,
 });
@@ -56,55 +46,20 @@ const priceRange = ref([
 
 const minPriceRange = computed(() => {
     if (formSearch.finish_draft_price) {
-        const newPriceRange = priceRange.value.filter(
+        return priceRange.value.filter(
             (price) => Number(price) < Number(formSearch.finish_draft_price)
         );
-        return newPriceRange;
     }
     return priceRange.value;
 });
 const maxPriceRange = computed(() => {
     if (formSearch.start_draft_price) {
-        const newPriceRange = priceRange.value.filter(
+        return priceRange.value.filter(
             (price) => Number(price) > Number(formSearch.start_draft_price)
         );
-        return newPriceRange;
     }
     return priceRange.value;
 });
-
-const updateStartTimeOptions = (value) => {
-    formSearch.end_date_time = value;
-    if (formSearch.end_date_time) {
-        startHours.value = hours.value?.filter((hour) =>
-            moment(hour, "HH:mm")?.isBefore(
-                moment(formSearch.end_date_time, "HH:mm")
-            )
-        );
-    }
-};
-
-const updateEndTimeOptions = (value) => {
-    formSearch.start_date_time = value;
-    if (formSearch.start_date_time) {
-        endHours.value = hours.value?.filter((hour) =>
-            moment(hour, "HH:mm")?.isAfter(
-                moment(formSearch.start_date_time, "HH:mm")
-            )
-        );
-    }
-};
-
-const toggleDaySelection = (day) => {
-    if (selectedDays.value.includes(day)) {
-        selectedDays.value = selectedDays.value.filter(
-            (selectedDay) => selectedDay !== day
-        );
-    } else {
-        selectedDays.value.push(day);
-    }
-    formSearch.day = selectedDays.value;
-};
 
 const handleSelectPriceRange = (start, end) => {
     formSearch.start_price_range = start;
@@ -153,7 +108,7 @@ const closeDialog = () => {
     showModalSelectFinishRangePrice.value = false;
 };
 
-const submit = () => {
+const handleSearch = () => {
     formSearch.get(route("search"));
 };
 let showModalSelectRangeAge = ref(false);
@@ -296,7 +251,7 @@ const handleClose = () => {
                 <a href="#" @click="handleResetForm">
                     Clear
                 </a>
-                <button type="submit" class="mainButton">
+                <button type="submit" class="mainButton" @click="handleSearch">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="21"

@@ -152,7 +152,7 @@ class HouseController extends Controller
 
         return Inertia::render('Client/HouseDetail/HouseDetail', [
             'house' => $house,
-            'rooms' => $house->rooms,
+            'rooms' => $house ? $house[0]->rooms : [],
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use App\Constants\CommonConstants;
@@ -183,15 +184,26 @@ abstract class BaseRepository
         return $this->model->where($data)->orderBy($orderBy, $sortBy)->get();
     }
 
+    /**
+     * @param array $relations
+     * @param array $data
+     * @param string $columns
+     * @param string $orderBy
+     * @param string $sortBy
+     * @return Collection|array
+     */
     public function findByWithRelationship(
         array $relations,
         array $data,
-              $columns,
-              $orderBy,
-              $sortBy
-    )
+        string $columns = '*',
+        string $orderBy = 'id',
+        string $sortBy = 'desc'
+    ): Collection|array
     {
-        return $this->model->with($relations)->where($data)->orderBy($orderBy, $sortBy)->get($columns);
+        return $this->model->with($relations)
+            ->where($data)
+            ->orderBy($orderBy, $sortBy)
+            ->get($columns);
     }
 
     public function whereIn($column, array $data, $relations)

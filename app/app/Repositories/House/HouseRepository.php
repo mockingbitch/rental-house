@@ -17,5 +17,24 @@ class HouseRepository extends BaseRepository implements HouseRepositoryInterface
     {
         return House::class;
     }
+
+    public function search(array $data = [])
+    {
+        $query = $this->model->with(['lessor', 'rooms']);
+        if (isset($data['keyword'])) :
+            $query = $query->where(
+                'name',
+                'like',
+                '%' . $data['keyword'] . '%'
+            );
+        endif;
+
+        return $query->get();
+    }
+
+    public function getListSuggest(array $data = [])
+    {
+
+    }
 }
 

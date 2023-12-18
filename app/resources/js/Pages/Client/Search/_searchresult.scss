@@ -1,0 +1,333 @@
+.keyword {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &__wrap {
+        // width: 520px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        p {
+            font-size: $fz-text-m;
+        }
+        .swiper {
+            width: 100%;
+        }
+        .swiper-slide {
+            width: auto !important;
+        }
+        .slide {
+            display: flex;
+            border: 1px solid #b1b1b1;
+            border-radius: 100px;
+            padding: 7.5px 10px 7.5px 12px;
+            height: 34px;
+            align-items: center;
+            box-sizing: border-box;
+
+            i {
+                margin-right: 6px;
+            }
+
+            .header-category_item_title {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19px;
+                letter-spacing: -0.01em;
+                color: #4d4d4d;
+            }
+
+            & + & {
+                margin-top: 10px;
+            }
+        }
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    @include mobile {
+        margin-right: -16px;
+    }
+}
+.result {
+    padding-top: 24px !important;
+
+    @include mobile {
+        padding-top: 16px !important;
+    }
+    .item {
+        display: block;
+        cursor: pointer;
+        position: relative;
+    }
+}
+.item__top {
+    h2 {
+        @include mobile {
+            padding-top: 11px !important;
+        }
+    }
+}
+.search__result-lesson-info {
+    width: 100%;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.filter__icon {
+    display: flex;
+    align-items: center;
+}
+.keyword__text-wrapper {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    white-space: nowrap;
+}
+.keyword-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #4d4d4d;
+}
+.day-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+
+    & + & {
+        margin-left: 6px;
+    }
+}
+
+.line__wrapper {
+    position: relative;
+}
+
+.result__description-wrapper {
+    height: calc(19px * 4);
+}
+.result__description {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #989898;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* Số dòng tối đa hiển thị */
+    overflow: hidden;
+
+    @include mobile {
+        margin-bottom: unset;
+    }
+}
+
+.description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* Số dòng tối đa hiển thị */
+    overflow: hidden;
+}
+
+.noData__img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 194px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+
+    @include mobile {
+        margin-top: 16px;
+    }
+}
+
+.noData__title-wrapper {
+    display: flex;
+    align-items: center;
+    height: 26px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
+.noData__desc-text {
+    margin-bottom: 32px;
+}
+
+.suggest__title-text {
+    @include mobile {
+        padding-top: 32px !important;
+    }
+}
+
+.result__title-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+
+    .result__title-text {
+        padding: unset !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        @include mobile {
+            -webkit-line-clamp: 4;
+        }
+    }
+}
+
+.result__info-box {
+    padding-bottom: 5.5px;
+    align-items: end !important;
+
+    .result__info-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 38px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: -0.01em;
+        color: #418997;
+    }
+}
+
+.result__rating-text {
+    display: flex;
+    align-items: center;
+
+    .quantity-vote {
+        margin-left: 3px;
+        font-weight: 400 !important;
+        color: #000;
+    }
+}
+
+.result-quantity {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    span {
+        color: #4d4d4d;
+        font-family: Noto Sans JP;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%; /* 19.2px */
+        letter-spacing: -0.12px;
+        white-space: nowrap; /* Ngăn text xuống dòng */
+        max-width: 100%;
+    }
+}
+
+.flickity-enabled {
+    position: relative;
+}
+
+.flickity-enabled:focus {
+    outline: none;
+}
+
+:deep(.flickity-viewport) {
+    position: relative;
+    touch-action: pan-y;
+    overflow: hidden;
+    height: 54px !important;
+    display: flex;
+    align-items: center;
+}
+
+:deep(.flickity-slider) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.flickity-rtl .flickity-slider {
+    left: unset;
+    right: 0;
+}
+
+.flickity-enabled.is-draggable {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+    cursor: move;
+    cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+    cursor: grabbing;
+}
+
+/* ---- flickity-cell ---- */
+
+.flickity-cell {
+    left: 0;
+    margin-right: 14px;
+    width: fit-content;
+    transform: none !important;
+}
+
+.flickity-rtl .flickity-cell {
+    left: unset;
+    right: 0;
+}
+
+:deep(.flickity-page-dots) {
+    display: none;
+}
+
+@media screen and (min-width: 1200px) {
+    .keyword {
+        &__wrap {
+            justify-content: center;
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    .flickity-enabled.is-draggable {
+        width: 100%;
+    }
+}
+.carousel-cell {
+    cursor: pointer;
+}
+.rating-section {
+    padding-left: 10px;
+    .rating-wrap {
+        margin-left: 2px;
+        font-size: 12px;
+        font-weight: 700;
+        .rating-star {
+            color: #418997;
+        }
+        .rating-count {
+            color: #1B1B1B;
+        }
+    }
+}

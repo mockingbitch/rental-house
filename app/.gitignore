@@ -17,3 +17,5 @@ yarn-error.log
 sonar-project.properties
 .DS_Store
 .vite/
+rr
+.rr.yaml

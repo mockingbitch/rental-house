@@ -35,4 +35,15 @@ class HomeController extends Controller
             'houses' => $listHouse,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $houses         = $this->houseRepository->search($request->all());
+//        $listSuggest    = $this->houseRepository->getListSuggest($request->all());
+
+        return Inertia::render('Client/Search/SearchResult', [
+            'houses'        => $houses,
+            'listSuggest'   => []
+        ]);
+    }
 }
