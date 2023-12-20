@@ -111,11 +111,11 @@ abstract class BaseRepository
      * @param array $relations
      * @return mixed
      */
-    public function findOneByWithRelationships(array $data, array $relations = [] )
+    public function findOneByWithRelationships(array $data, array $relations = [])
     {
-        if (empty($relations)):
+        if (empty($relations)) :
             return $this->model->where($data)->first();
-        else:
+        else :
             return $this->model->with($relations)->where($data)->first();
         endif;
     }
@@ -174,8 +174,7 @@ abstract class BaseRepository
         $columns = ['*'],
         $orderBy = 'id',
         $sortBy = 'asc'
-    )
-    {
+    ) {
         return $this->model->with($relations)->orderBy($orderBy, $sortBy)->get($columns);
     }
 
@@ -200,8 +199,7 @@ abstract class BaseRepository
         string $columns = '*',
         string $orderBy = 'id',
         string $sortBy = 'desc'
-    ): Model|Collection|Builder|array|null
-    {
+    ): Model|Collection|Builder|array|null {
         if ($isFindOne) :
             return $this->model->with($relations)
                 ->where($data)

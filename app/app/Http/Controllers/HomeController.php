@@ -11,9 +11,7 @@ class HomeController extends Controller
 {
     public function __construct(
         public HouseRepositoryInterface $houseRepository,
-    )
-    {
-
+    ) {
     }
 
     public function adminDashboard()

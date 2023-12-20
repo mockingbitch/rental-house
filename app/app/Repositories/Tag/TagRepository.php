@@ -34,4 +34,3 @@ class TagRepository extends BaseRepository implements TagRepositoryInterface
             ->get();
     }
 }
-?>

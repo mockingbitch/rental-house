@@ -21,8 +21,7 @@ class HouseController extends Controller
     public function __construct(
         public HouseRepositoryInterface $houseRepository,
         public FileService $fileService,
-    )
-    {
+    ) {
     }
 
     /**
@@ -129,9 +128,11 @@ class HouseController extends Controller
         try {
             $house = $this->houseRepository
                 ->update(
-                    $request->id, [
+                    $request->id,
+                    [
                         'status' => $request->status ? '0' : '1'
-                    ]);
+                    ]
+                );
 
             return response()->json([
                 'house'     => $house,

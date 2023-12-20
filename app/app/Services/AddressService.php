@@ -16,18 +16,19 @@ class AddressService
         if (isset($data['province'])) :
             return [
                 'districts' => District::where(
-                        'province_code',
-                        $data['province']
-                    )->get()
+                    'province_code',
+                    $data['province']
+                )->get()
             ];
         endif;
         if (isset($data['district'])) :
             return [
                 'wards' => Ward::where(
-                        'district_code',
-                        $data['district']
-                    )->get()
-            ];;
+                    'district_code',
+                    $data['district']
+                )->get()
+            ];
+            ;
         endif;
 
         return [

@@ -12,8 +12,7 @@ class AddressController extends Controller
      */
     public function __construct(
         public AddressService $addressService
-    )
-    {
+    ) {
     }
 
     public function list(Request $request)

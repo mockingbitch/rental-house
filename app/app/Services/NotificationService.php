@@ -10,7 +10,7 @@ use Pusher\Pusher;
 class NotificationService
 {
     /**
-     * @param object|null $object 
+     * @param object|null $object
      * @param array $data
      * @param string $target
      * @return void
@@ -28,16 +28,15 @@ class NotificationService
                 'cluster' => 'ap1',
                 'encrypted' => true
             );
-    
+
             $pusher = new Pusher(
                 config('app.pusher_app_key'),
                 config('app.pusher_app_secret'),
                 config('app.pusher_app_id'),
                 $options
             );
-    
+
             $pusher->trigger('NotificationEvent', $target, $data);
         }
-        
     }
 }

@@ -25,9 +25,7 @@ class UserController extends Controller
         public UserRepositoryInterface $userRepository,
         public FileService $fileService,
         public MailService $mailService
-        )
-    {
-
+    ) {
     }
 
     /**
@@ -73,7 +71,7 @@ class UserController extends Controller
                 endif;
                 $data[UserConstant::COL_EMAIL_VERIFIED_AT] = Carbon::now();
                 $data[UserConstant::COL_STATUS] = UserConstant::STT_ACTIVE;
-                
+
                 $result = $user->update($data);
                 if ($result) :
                     $this->mailService->sendMailSetupSuccessfully($user, $data);

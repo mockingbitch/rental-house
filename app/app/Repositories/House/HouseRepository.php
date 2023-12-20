@@ -37,7 +37,7 @@ class HouseRepository extends BaseRepository implements HouseRepositoryInterface
         endif;
         if (isset($data['ward_code'])) :
             $query = $query->where('ward_code', $data['ward_code']);
-        elseif(isset($data['district_code'])) :
+        elseif (isset($data['district_code'])) :
             $query = $query->where('district_code', $data['district_code']);
         elseif (isset($data['province_code'])) :
             $query = $query->where('province_code', $data['province_code']);
@@ -74,4 +74,3 @@ class HouseRepository extends BaseRepository implements HouseRepositoryInterface
             ->get();
     }
 }
-
