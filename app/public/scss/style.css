@@ -4003,8 +4003,8 @@ footer .bottom {
 }
 /* line 23, scss/imports/pages/_detailLesson.scss */
 .detailLesson .author__left .avatar {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     padding-right: 4px;
@@ -4015,8 +4015,8 @@ footer .bottom {
 }
 /* line 35, scss/imports/pages/_detailLesson.scss */
 .detailLesson .author__left .avatar {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     padding-right: 4px;
@@ -4522,8 +4522,8 @@ footer .bottom {
 }
 /* line 281, scss/imports/core/_elements.scss */
 .author__left .avatar {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     padding-right: 4px;
@@ -4538,8 +4538,8 @@ footer .bottom {
 }
 /* line 296, scss/imports/core/_elements.scss */
 .author__left .avatar {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     padding-right: 4px;

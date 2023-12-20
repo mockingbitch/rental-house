@@ -1,16 +1,15 @@
-<script></script>
 <template>
     <div class="category">
         <swiper
             class="swiper"
             :modules="modules"
-            :space-between="0"
+            :space-between="50"
             :slides-per-view="numberOfCategories"
             :free-mode="true"
         >
             <swiper-slide
-                class="slide"
                 v-for="category in $page.props.categories"
+                class="slide"
                 @click="handleSelectCategory(category)"
             >
                 <div
@@ -39,15 +38,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 
-const windowWidth = ref(window.innerWidth).value;
-
 export default defineComponent({
-    name: "swiper-example-free-mode",
+    name: "SwiperExampleFreeMode",
     title: "Free mode / no fixed positions",
     //   url: import.meta.url,
     components: {
         Swiper,
         SwiperSlide,
+    },
+    setup() {
+        return {
+            modules: [Pagination, FreeMode],
+        };
     },
     data() {
         return {
@@ -62,28 +64,20 @@ export default defineComponent({
     destroyed() {
         window.removeEventListener("resize", this.myEventHandler);
     },
-    setup() {
-        return {
-            modules: [Pagination, FreeMode],
-        };
-    },
     methods: {
         myEventHandler(e) {
             switch (true) {
                 case window.innerWidth <= 400:
                     this.numberOfCategories = 3;
                     break;
-
                 case window.innerWidth > 400 && window.innerWidth <= 770:
                     this.numberOfCategories = 5;
                     break;
-
                 case window.innerWidth > 770 && window.innerWidth <= 990:
-                    this.numberOfCategories = 10;
+                    this.numberOfCategories = 8;
                     break;
-
                 default:
-                    this.numberOfCategories = 13;
+                    this.numberOfCategories = 8;
             }
         },
 
@@ -110,8 +104,8 @@ export default defineComponent({
     .title {
         display: flex;
         justify-content: center;
-        line-height: 160%; /* 19.2px */
-        letter-spacing: -0.12px;
+        line-height: 200%; /* 19.2px */
+        letter-spacing: -0.3px;
         font-weight: 400;
     }
 

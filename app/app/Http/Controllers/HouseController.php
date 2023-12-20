@@ -9,6 +9,7 @@ use App\Http\Requests\HouseRequest;
 use App\Repositories\House\HouseRepositoryInterface;
 use App\Services\FileService;
 use Inertia\Inertia;
+use Inertia\Response;
 use PHPUnit\Exception;
 
 class HouseController extends Controller
@@ -145,14 +146,22 @@ class HouseController extends Controller
         }
     }
 
-    public function detailHome(?string $id)
+    /**
+     * @param string|null $id
+     * @return Response
+     */
+    public function detailHome(?string $id): \Inertia\Response
     {
         $house = $this->houseRepository
-            ->findByWithRelationship(['rooms'], ['id' => $id]);
+            ->findByWithRelationship(
+                ['rooms', 'lessor'],
+                ['id' => $id],
+                true
+            );
 
         return Inertia::render('Client/HouseDetail/HouseDetail', [
             'house' => $house,
-            'rooms' => $house ? $house[0]->rooms : [],
+            'rooms' => $house ? $house->rooms : [],
         ]);
     }
 }

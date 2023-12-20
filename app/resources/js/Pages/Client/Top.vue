@@ -83,14 +83,13 @@ const imageUrlAlt = (event) => {
                                 }}
                             </p>
                         </div>
-                        <div class="price">
-<!--                            {{ priceFormat(house.rooms[0]?.price) }} - {{ priceFormat(house.rooms[house]?.price) }} VND-->
+                        <div v-if="house.rooms[0]" class="price">
                             {{ priceFormat(sortArrayByPrice(house.rooms)[0]?.price) }}
                             -
                             {{ priceFormat(sortArrayByPrice(house.rooms)[house.rooms.length - 1]?.price) }}
                             VND
                         </div>
-                        <div class="age">
+                        <div v-if="house.rooms[0]" class="age">
                             <p>
                                 Capacity:
                                 {{ sortArrayByCapacity(house.rooms)[0]?.capacity }}

@@ -9,10 +9,14 @@ import { priceFormat } from "@/Helper/CurrencyHelper";
 import { sortArrayByPrice, sortArrayByCapacity } from "@/Helper/SortHelper";
 
 const props = defineProps({
+    // eslint-disable-next-line vue/require-default-prop
     houses: Array,
+    // eslint-disable-next-line vue/require-default-prop
     listSuggest: Array,
+    // eslint-disable-next-line vue/require-default-prop
     dataSearch: Array,
 });
+console.log(props.houses)
 // eslint-disable-next-line vue/valid-define-emits
 const emits = defineEmits();
 const isSearchVisible = ref(false);
@@ -124,7 +128,7 @@ export default defineComponent({
                             <img src="/img//icon/Category.svg" alt="" />
                         </button> -->
                         <button class="buttonImage">
-                            <img src="/img//icon/Category.svg" alt="" />
+                            <img src="/img/icon/Category.svg" alt="" />
                         </button>
                     </div>
                     <div class="lineFull"></div>
@@ -134,7 +138,9 @@ export default defineComponent({
                     <div class="keyword__wrap">
                         <div v-if="houses.length > 0" class="result-quantity">
                             <span>
-                                {{ houses.length }} houses found
+                                {{ houses.length }}
+                                {{ houses.length > 1 ? 'houses' : 'house' }}
+                                found
                             </span>
                         </div>
                         <div
@@ -143,67 +149,44 @@ export default defineComponent({
                             touch-action="pan-y"
                         >
                             <div
+                                v-if="dataSearch['keyword']"
                                 class="slide filter__wrapper user carousel-cell"
                                 @click="toggleSearch"
                             >
                                 <i class="filter__icon">
-                                    <img src="/img/icon/userGray.svg" alt="" />
+                                    <img src="/img/icon/keyword.svg" alt="" />
                                 </i>
                                 <div class="header-category_item_title">
-                                    1-2
+                                    {{ dataSearch['keyword'] }}
                                 </div>
                             </div>
                             <div
+                                v-if="dataSearch['start_draft_price'] || dataSearch['finish_draft_price']"
                                 class="slide filter__wrapper price carousel-cell"
                                 @click="toggleSearch"
                             >
                                 <i class="filter__icon">
-                                    <img src="/img/icon/Walet.svg" alt="" />
+                                    <img src="/img/icon/Wallet.svg" alt="" />
                                 </i>
                                 <div class="header-category_item_title">
-                                    {{ startPrice }}
+                                    {{ dataSearch['start_draft_price'] }}
                                     ~
-                                    {{ finishPrice }}
+                                    {{ dataSearch['finish_draft_price'] }}
                                     VND
                                 </div>
                             </div>
                             <div
-                                class="slide filter__wrapper date carousel-cell"
-                                @click="toggleSearch"
-                            >
-                                <i class="filter__icon">
-                                    <img src="/img/icon/Calender.svg" alt="" />
-                                </i>
-                                <div class="header-category_item_title">
-                                    5
-                                    ~
-                                    10
-                                </div>
-                            </div>
-                            <div
+                                v-if="dataSearch['category']"
                                 class="slide filter__wrapper carousel-cell"
                                 @click="toggleSearch"
                             >
                                 <i class="filter__icon">
-                                    <img src="/img/icon/Calender.svg" alt="">
+                                    <img src="/img/icon/category-icon.svg" alt="">
                                 </i>
                                 <div class="header-category_item_title">
                                     <span class="day-text">
-                                        test
+                                        {{ dataSearch['category'] }}
                                     </span>
-                                </div>
-                            </div>
-                            <div
-                                class="slide filter__wrapper carousel-cell"
-                                @click="toggleSearch"
-                            >
-                                <i class="filter__icon">
-                                    <img src="/img/icon/Clock.svg" alt="" />
-                                </i>
-                                <div class="header-category_item_title">
-                                    g
-                                    ~
-                                    b
                                 </div>
                             </div>
                         </div>
@@ -229,15 +212,17 @@ export default defineComponent({
                             <div class="">
                                 <div class="d-flex align-items-center rating-section">
                                     <img
-                                        src="/img//icon/star.svg"
+                                        src="/img/icon/star.svg"
                                         alt=""
                                     />
                                     <div class="rating-wrap">
                                         <span class="rating-star">
-                                            {{ rating[index].toFixed(1) }}
+<!--                                            {{ rating[index].toFixed(1) }}-->
+                                            5.0
                                         </span>
                                         <span class="rating-count">
-                                            ({{ house?.review?.length }})
+<!--                                            ({{ house?.review?.length }})-->
+                                            (100)
                                         </span>
                                     </div>
                                 </div>
@@ -277,9 +262,9 @@ export default defineComponent({
                                         <div class="result__info-top">
                                             <p>
                                                 <span>
-                                                    {{ priceFormat(sortArrayByPrice(house.rooms)[0]?.price) }}
+                                                    {{ priceFormat(sortArrayByPrice(house?.rooms)[0]?.price) }}
                                                     -
-                                                    {{ priceFormat(sortArrayByPrice(house.rooms)[house.rooms.length - 1]?.price) }}
+                                                    {{ priceFormat(sortArrayByPrice(house?.rooms)[house?.rooms?.length - 1]?.price) }}
                                                     VND
                                                 </span>
                                             </p>
@@ -292,9 +277,9 @@ export default defineComponent({
                                         <div class="result__info-top">
                                             <p>
                                                 <span>
-                                                    {{ sortArrayByCapacity(house.rooms)[0]?.capacity }}
+                                                    {{ sortArrayByCapacity(house?.rooms)[0]?.capacity }}
                                                     -
-                                                    {{ sortArrayByCapacity(house.rooms)[house.rooms.length - 1]?.capacity }} Person
+                                                    {{ sortArrayByCapacity(house?.rooms)[house?.rooms?.length - 1]?.capacity }} Person
                                                 </span>
                                             </p>
                                         </div>
@@ -306,7 +291,7 @@ export default defineComponent({
                                         <div class="result__info-top">
                                             <p style="display: flex; text-align: center;">
                                                 <span>
-                                                    category
+                                                    {{ house?.category?.name_en }}
                                                 </span>
                                             </p>
                                         </div>
@@ -323,12 +308,10 @@ export default defineComponent({
                 >
                     <div class="top">
                         <div class="noData__img-wrapper">
-                            <img src="img/icon/tree.svg" alt="" />
+                            <img src="/img/icon/house.svg" alt="" />
                         </div>
                         <p class="noData__desc-text">
                             No result found
-                            <br>
-                            No result
                         </p>
                     </div>
                     <div class="bottom">
@@ -351,18 +334,26 @@ export default defineComponent({
                                         />
                                     </div>
                                     <div class="rating">
-                                        <Stars :stars="ratingSuggest[index]" />
-                                        <span class="count">{{ ratingSuggest[index].toFixed(1) }} (1)</span>
+                                        <Stars :stars="5" />
+                                        <span class="count">
+<!--                                            {{ ratingSuggest[index].toFixed(1) }} (1)-->
+                                                5.0 (100)
+                                        </span>
                                     </div>
                                     <div class="title">
                                         <h2>
-                                            {{ house?.title }}
+                                            {{ house?.name }}
                                         </h2>
                                     </div>
                                     <div class="description">
                                         <p>{{ house?.decription }}</p>
                                     </div>
-                                    <div class="price">{{ house?.price }}VND</div>
+                                    <div v-if="house.rooms[0]" class="price">
+                                        {{ priceFormat(sortArrayByPrice(house?.rooms)[0]?.price) }}
+                                        -
+                                        {{ priceFormat(sortArrayByPrice(house?.rooms)[house?.rooms?.length - 1]?.price) }}
+                                        VND
+                                    </div>
                                 </Link>
                             </div>
                         </div>

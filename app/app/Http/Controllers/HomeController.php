@@ -36,14 +36,23 @@ class HomeController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function search(Request $request): Response
     {
-        $houses         = $this->houseRepository->search($request->all());
-//        $listSuggest    = $this->houseRepository->getListSuggest($request->all());
+        $listSuggest = [];
+        $houses = $this->houseRepository->search($request->all());
+        if (count($houses) < 1) :
+            $listSuggest = $this->houseRepository
+                ->getAllWithRelationship(['rooms', 'lessor']);
+        endif;
 
         return Inertia::render('Client/Search/SearchResult', [
             'houses'        => $houses,
-            'listSuggest'   => []
+            'listSuggest'   => $listSuggest,
+            'dataSearch'    => $request->all(),
         ]);
     }
 }
