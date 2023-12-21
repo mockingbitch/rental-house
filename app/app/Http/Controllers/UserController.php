@@ -13,6 +13,8 @@ use App\Services\MailService;
 use Carbon\Carbon;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Enum\UserEnum;
+use App\Repositories\Ward\WardRepositoryInterface;
 
 class UserController extends Controller
 {
@@ -23,6 +25,7 @@ class UserController extends Controller
      */
     public function __construct(
         public UserRepositoryInterface $userRepository,
+        public WardRepositoryInterface $wardRepository,
         public FileService $fileService,
         public MailService $mailService
         )
@@ -97,4 +100,30 @@ class UserController extends Controller
     {
         return Inertia::render('Auth/AccountInformation/SetupSuccessfully');
     }
+
+    /**
+     * @Route get("/admin/user-index" name="admin.user.index")
+     *
+     * @return View
+     */
+    public function userIndex()
+    {
+        if (auth()->user()->role != UserEnum::ROLE_ADMIN->value):
+            return redirect()->back();
+        endif;
+
+        $users = $this->userRepository->all();
+        foreach($users as &$user):
+            $user->ward_name = $user->ward?->name_en;
+        endforeach;
+
+        $wards = $this->wardRepository->all();
+        
+        return view('user.list', [
+            'users' => $users,
+            'wards' => $wards,
+        ]);
+    }
+
+
 }
