@@ -62,6 +62,11 @@ Route::controller(UserController::class)->group(function () {
     Route::get('user-information', 'userInformation')->name('user.information');
     Route::post('user-information', 'updateUserInformation')->name('account.info');
     Route::get('setup-successfully', 'setupUserSuccessfully')->name('user.setup.success');
+
+    Route::prefix('admin')->group(function () {
+        Route::get('user-index', 'userIndex')->name('admin.user.index');
+        // Route::get('house/{id}/delete', 'delete')->name('lessor.house.delete');
+    });
 });
 
 //ADMIN

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Enum\UserEnum;
+use App\Http\Requests\UserUpdateByAdminRequest;
 use App\Repositories\Ward\WardRepositoryInterface;
 
 class UserController extends Controller
@@ -106,7 +107,11 @@ class UserController extends Controller
      */
     public function userIndex()
     {
-        if (auth()->user()->role != UserEnum::ROLE_ADMIN->value):
+        $user = auth()->user();
+        if (! $user):
+            return redirect()->route('login.method');
+        endif;
+        if ($user->role != UserEnum::ROLE_ADMIN->value):
             return redirect()->back();
         endif;
 
@@ -123,5 +128,45 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @Route post("/admin/user/update" name="admin.user.update")
+     */
+    public function updateUserInfoByAdmin(UserUpdateByAdminRequest $request)
+    {
+        $data = $request->all();
+        try {
+            if (array_key_exists(UserConstant::COL_AVATAR, $data) && gettype($data[UserConstant::COL_AVATAR]) == 'object') :
+                $data[UserConstant::COL_AVATAR] = $this->fileService->storeFile(
+                    $request->avatar,
+                    UserConstant::STORAGE_LINK_AVATAR
+                );
+            endif;
 
+            if (array_key_exists(UserConstant::COL_EMAIL, $data)):
+                unset($data[UserConstant::COL_EMAIL]);
+            endif;
+
+            $user = $this->userRepository->update(
+                $data[UserConstant::COL_ID],
+                $data
+            );
+            
+            if ($user):
+                return response()->json([
+                    'user' => $user,
+                    'errCode' => 0,
+                    'message' => 'Update successfully!',
+                ], 200); 
+            else:
+                return response()->json([
+                    'errCode' => 1,
+                    'message' => 'Something went wrong!',
+                ], 200);
+            endif;
+        } catch (\Throwable $th) {
+            throw ValidationException::withMessages([
+                'error' => 'Failed to update',
+            ]);
+        }
+    }
 }

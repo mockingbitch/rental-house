@@ -61,26 +61,42 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-.badge {
+/* .badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
 
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: rgb(25, 135, 84);
+} */
+
+.input-group-text.text-body {
+    z-index: 1;
+}
+
+.modal-sm {
+    max-width: 600px;
+}
+
+label {
+    margin: 0;
+}
+
+li > span {
+    font-size: 14px;
 }
 </style>
     <?php
         use App\Enum\UserEnum;
     ?>
-{{UserEnum::ROLE_ADMIN}}
-    @if (isset($user) && $user->role == UserEnum::ROLE_ADMIN)
-        <div class="create-btn mx-3 my-3">
-            <button onclick="create()"
-                class="btn btn-primary "style="all: unset; cursor: pointer; font-size:20px; color: green; z-index: 1999">
-                <i class="fa-solid fa-circle-plus">Add</i>
-            </button>
-        </div>
-        <span style="font-size:20px; color: green"></span>
-{{--        @include('lessor.house.create-form', ['category' => $category])--}}
-    @endif
-{{--    @include('lessor.house.update')--}}
-    <div class="card mb-4">
+    @include('user.update')
+    <div class="card mb-4" id="user-table">
         @if (isset($users) && count($users) >= 1)
             <div class="card-header pb-0">
                 <h6>User table</h6>
@@ -111,20 +127,22 @@ input:checked + .slider:before {
                                 </div>
                             </td> --}}
                                 <td>
-                                    <div class="text-xs text-secondary mb-0 col-image">
-                                        <img
-                                            style="width: 50px; border-radius: 15px;"
-                                            src="{{$user->avatar}}"
-                                            alt=""
-                                        >
+                                    <div style="display: flex; align-items: center; gap: 5px">
+                                        <div class="text-xs text-secondary mb-0 col-image">
+                                            <img
+                                                class="avatar avatar-lg me-3"
+                                                src="{{$user->avatar}}"
+                                                alt=""
+                                            >
+                                        </div>
+                                        <h6 class="mb-0 text-sm">{{$user->first_name . " " . $user->last_name}}</h6>
                                     </div>
-                                    <h6 class="mb-0 text-sm">{{$user->first_name . " " . $user->last_name}}</h6>
                                 </td>
                                 <td>
                                     <p class="text-xs text-secondary mb-0">{{$user->email}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs text-secondary mb-0">{{$user->description}}</p>
+                                    <p class="text-xs text-secondary mb-0" style="max-width: 150px; overflow:hidden;">{{$user->description}}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs text-secondary mb-0">{{$user->birthday}}</p>
@@ -132,19 +150,19 @@ input:checked + .slider:before {
                                 <td>
                                     @switch($user->role)
                                         @case(UserEnum::ROLE_ADMIN->value)
-                                            <span class="badge badge-primary">Admin</span>
+                                            <span class="badge bg-gradient-primary">Admin</span>
                                             @break
-                                        @case(UserEnum::ROLE_LESSOR)
-                                            <span class="badge badge-primary">Lessor</span>
+                                        @case(UserEnum::ROLE_LESSOR->value)
+                                            <span class="badge bg-gradient-info">Lessor</span>
                                             @break
-                                        @case(UserEnum::ROLE_LESSEE)
-                                            <span class="badge badge-primary">Lessee</span>
+                                        @case(UserEnum::ROLE_LESSEE->value)
+                                            <span class="badge bg-gradient-secondary">Lessee</span>
                                             @break
                                     @endswitch
                                 </td>
-                                <td>
-                                    <p class="text-xs text-secondary mb-0">
-                                        <label class="switch">
+                                <td class="align-middle">
+                                    <p class="text-xs text-secondary mb-0 align-middle">
+                                        <label class="switch" style="margin: 0">
                                             <input
                                                 type="checkbox"
                                                 onclick="updateStatus({{ $user->id }}, {{ $user->status }})"
@@ -155,19 +173,18 @@ input:checked + .slider:before {
                                         </label>
                                     </p>
                                 </td>
-{{--                                <td class="align-middle text-center text-sm">--}}
-{{--                                    <span class="badge badge-sm bg-gradient-success"></span>--}}
-{{--                                </td>--}}
                                 <td class="align-middle" style="font-size:20px">
-{{--                                    <a--}}
-{{--                                       href="{{route('lessor.house.room-list', ['id' => $house->id])}}"--}}
-{{--                                       class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">--}}
-{{--                                        <i style="font-size:20px" class="fa-solid fa-eye"></i>--}}
-{{--                                    </a>--}}
-{{--                                    <span class="text-secondary mx-1 font-weight-bold cursor-pointer text-xs" data-toggle="tooltip"--}}
-{{--                                        data-original-title="Edit house" onclick="handleViewDetail({{$house->id}})">--}}
-{{--                                        <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>--}}
-{{--                                    </span>--}}
+                                    <!-- trigger modal -->
+                                    <span class="text-secondary mx-1 font-weight-bold text-xs cursor-pointer" data-toggle="tooltip"
+                                        data-bs-toggle="modal" data-bs-target="#userDetail"
+                                        data-original-title="User detail" onclick="handleViewDetail({{ $user }})">
+                                        <i style="font-size:20px" class="fa-solid fa-eye"></i>
+                                    </span>
+                                    <!-- show edit form -->
+                                    <span class="text-secondary mx-1 font-weight-bold cursor-pointer text-xs" data-toggle="tooltip"
+                                        data-original-title="Edit house" onclick="handleEditForm({{ $user }})">
+                                        <i style="font-size: 20px; color: #2196F3" class="fa-solid fa-pen-to-square"></i>
+                                    </span>
 {{--                                    <a onclick="return confirm('Are you sure you want to delete this?')"--}}
 {{--                                        href="{{route('lessor.house.delete', ['id' => $house->id])}}"--}}
 {{--                                        class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip">--}}
@@ -181,8 +198,88 @@ input:checked + .slider:before {
             </div>
         </div>
     </div>
+
+    {{--MODAL USER DETAIL--}}
+    <div class="col-md-4">
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn bg-gradient-info btn-block" data-bs-toggle="modal" data-bs-target="#userDetail">
+        SignUp Modal
+        </button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="userDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <div class="row" style="margin-left: 0; margin-right:0;">
+                            <!-- User image -->
+                            <div class="col-3" style="padding-top: 1.5rem; display:flex; justify-content:center;">
+                                <img
+                                    id="modal-img"
+                                    class="avatar avatar-xxl me-3"
+                                    src=""
+                                    alt=""
+                                    style="margin-right: 0 !important;"
+                                >
+                            </div>
+                            <div class="col-9">
+                                <div class="card card-plain">
+                                    <div class="card-header pb-0 text-left">
+                                        <h3 class="font-weight-bolder text-primary text-gradient">User Detail</h3>
+                                        <!-- <p class="mb-0">Enter your email and password to register</p> -->
+                                    </div>
+                                    <div class="card-body pb-3" style="padding-top: 0; padding-bottom: 1.5rem !important">
+                                        <ul class="list-group">
+                                            <li class="list-group-item vstack">
+                                                <label>Name</label>
+                                                <span id="modal-name"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Email</label>
+                                                <span id="modal-email"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Region</label>
+                                                <span id="modal-region"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Ward</label>
+                                                <span id="modal-ward"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Birthday</label>
+                                                <span id="modal-birthday"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Status</label>
+                                                <span id="modal-status" class="badge" style="width:fit-content;"></span>
+                                            </li>
+                                            <li class="list-group-item vstack">
+                                                <label>Description</label>
+                                                <span id="modal-description"></span>
+                                            </li>
+                                            
+                                        </ul>
+                                        
+                                    </div>
+                                    <!-- <div class="card-footer text-center pt-0 px-sm-4 px-1">
+                                        <p class="mb-4 mx-auto">
+                                            Already have an account?
+                                            <a href="javascrpt:;" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                                        </p>
+                                    </div> -->
+                                </div>
+    
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @else
-    <h2 class="my-4 mx-4">No house found</h2>
+        <h2 class="my-4 mx-4">No house found</h2>
     @endif
     @if(Session::has('errCode') && Session::get('errCode') == 0)
         <script>
@@ -196,12 +293,13 @@ input:checked + .slider:before {
     @endif
     @push('scripts')
         <script>
-            let API_GET_ADDRESS     = "{{ route('address.list') }}";
-            let API_UPDATE_STATUS   = "{{route('house.update.status')}}";
-            let API_HOUSE_DETAIL    = "{{route('lessor.house.detail')}}";
-            let API_HOUSE_UPDATE    = "{{route('lessor.house.update')}}";
+            // let API_GET_ADDRESS     = "{{ route('address.list') }}";
+            // let API_UPDATE_STATUS   = "{{route('house.update.status')}}";
+            // let API_HOUSE_DETAIL    = "{{route('lessor.house.detail')}}";
+            let API_USER_UPDATE     = "{{route('admin.user.update')}}";
+            let API_USERS_INDEX     = "{{route('admin.user.index')}}";
         </script>
-        <script src="{{ asset('js/address.js') }}"></script>
-        <script src="{{ asset('js/house.js') }}"></script>
+        <!-- <script src="{{ asset('js/address.js') }}"></script> -->
+        <script src="{{ asset('js/user.js') }}"></script>
     @endpush
 @endsection

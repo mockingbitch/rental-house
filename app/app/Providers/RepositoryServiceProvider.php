@@ -20,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'Tag\TagRepositoryInterface'            => 'Tag\TagRepository',
             'House\HouseRepositoryInterface'        => 'House\HouseRepository',
             'Room\RoomRepositoryInterface'          => 'Room\RoomRepository',
+            'Ward\WardRepositoryInterface'          => 'Ward\WardRepository',
         ];
 
         foreach ($repositories as $key => $value) {

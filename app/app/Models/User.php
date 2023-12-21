@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Address\Ward;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,7 @@ class User extends Authenticatable
         'description',
         'avatar',
         'ward_id',
+        'ward_code',
         'status',
         'country_id',
         'city_id',
@@ -80,4 +82,9 @@ class User extends Authenticatable
 
     //     return 'User.'.$this->id;
     // }
+
+    public function ward() 
+    {
+        return $this->belongsTo(Ward::class, 'ward_code', 'code');
+    }
 }
