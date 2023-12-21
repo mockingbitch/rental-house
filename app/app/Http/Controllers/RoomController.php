@@ -22,8 +22,7 @@ class RoomController extends Controller
         public FileService $fileService,
         public RoomRepositoryInterface $roomRepository,
         public TagRepositoryInterface $tagRepository,
-    )
-    {
+    ) {
     }
 
 
@@ -38,9 +37,9 @@ class RoomController extends Controller
             // get id tags
             $tag_ids = [];
             $tag_names = explode(',', $data['tags']);
-            foreach ($tag_names as $tag_name):
+            foreach ($tag_names as $tag_name) :
                 $tag = $this->tagRepository->findTagByName($tag_name);
-                if ($tag):
+                if ($tag) :
                     $tag_ids[] = $tag->id;
                 endif;
             endforeach;
@@ -48,7 +47,7 @@ class RoomController extends Controller
 
             // get image urls
             $image_list = [];
-            foreach ($data['images'] as $image):
+            foreach ($data['images'] as $image) :
                 $image_list[] = $this->fileService->storeFile($image, 'public/room');
             endforeach;
             $data['images'] = implode(",", $image_list);
@@ -75,9 +74,11 @@ class RoomController extends Controller
         try {
             $house = $this->roomRepository
                 ->update(
-                    $request->id, [
+                    $request->id,
+                    [
                         'status' => $request->status ? '0' : '1'
-                    ]);
+                    ]
+                );
 
             return response()->json([
                 'house'     => $house,
@@ -101,7 +102,7 @@ class RoomController extends Controller
         $data = $request->all()['data'];
         $room = $this->roomRepository->find($data['id']);
 
-        if (! $room):
+        if (! $room) :
             return response()->json([
                 'room'     => null,
                 'errCode'   => 1,
@@ -142,12 +143,12 @@ class RoomController extends Controller
 
             // get image list
             $image_list = [];
-            for ($i = 0; $i < 6; $i++):
-                if (isset($data['image_' . $i])):
+            for ($i = 0; $i < 6; $i++) :
+                if (isset($data['image_' . $i])) :
                     $image = $data['image_' . $i];
-                    if (gettype($image) == 'string'):
+                    if (gettype($image) == 'string') :
                         $image_list[] = $image;
-                    else:
+                    else :
                         $image_list[] = $this->fileService
                             ->storeFile($image, 'public/room');
                     endif;
@@ -160,9 +161,9 @@ class RoomController extends Controller
             // convert tag name to tag id
             $tag_ids = [];
             $tag_names = explode(',', $data['tags']);
-            foreach ($tag_names as $tag_name):
+            foreach ($tag_names as $tag_name) :
                 $tag = $this->tagRepository->findTagByName($tag_name);
-                if ($tag):
+                if ($tag) :
                     $tag_ids[] = $tag->id;
                 endif;
             endforeach;
@@ -192,7 +193,7 @@ class RoomController extends Controller
         try {
             $room = $this->roomRepository->find($id);
 
-            if (!$room):
+            if (!$room) :
                 throw ValidationException::withMessages([
                     'msg'   => 'Can not find room',
                 ]);

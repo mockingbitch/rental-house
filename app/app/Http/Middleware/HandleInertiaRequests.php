@@ -86,6 +86,7 @@ class HandleInertiaRequests extends Middleware
             'provinces' => \App\Models\Address\Province::all(),
             'districts' => \App\Models\Address\District::all(),
             'wards'     => \App\Models\Address\Ward::all(),
+            'categories' => \App\Models\Category::all(),
             'user_role' => [
                  'admin'    => UserEnum::ROLE_ADMIN,
                  'lessor'   => UserEnum::ROLE_LESSOR,

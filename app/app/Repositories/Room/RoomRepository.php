@@ -18,4 +18,3 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
         return Room::class;
     }
 }
-

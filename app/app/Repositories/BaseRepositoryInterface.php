@@ -152,7 +152,7 @@ interface BaseRepositoryInterface
      * @return Model|null
      */
     public function updates(Model $model, array $input): ?Model;
-    
+
     /**
      * @param integer $limit
      * @param string $orderBy

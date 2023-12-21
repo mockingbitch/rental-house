@@ -51,6 +51,19 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+  checker:
+    container_name: rental_house_checker
+    build:
+      context: docker/checker
+    restart: 'no'
+    tty: true
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge

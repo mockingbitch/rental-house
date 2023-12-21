@@ -33,8 +33,7 @@ class LessorController extends Controller
         public RoomRepositoryInterface $roomRepository,
         public HouseRepositoryInterface $houseRepository,
         public CategoryRepositoryInterface $categoryRepository,
-    )
-    {
+    ) {
     }
 
     /**
@@ -84,7 +83,7 @@ class LessorController extends Controller
         ]);
 
         // only get first image of room
-        foreach ($rooms as &$room):
+        foreach ($rooms as &$room) :
             $imageURLs = explode(',', $room->images);
             $room->first_image = reset($imageURLs);
         endforeach;

@@ -16,9 +16,7 @@ class CategoryController extends Controller
      */
     public function __construct(
         public CategoryRepositoryInterface $categoryRepository,
-        )
-    {
-
+    ) {
     }
 
     /**

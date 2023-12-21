@@ -39,8 +39,7 @@ class AuthController extends Controller
         public NotificationService $notificationService,
         public UserRepositoryInterface $userRepository,
         public PasswordResetRepositoryInterface $passwordResetRepository,
-        )
-    {
+    ) {
     }
 
     /**
@@ -66,7 +65,7 @@ class AuthController extends Controller
                         $credentials[UserConstant::COL_EMAIL]
                     );
             endif;
-            if (session()->has('url.intended')):
+            if (session()->has('url.intended')) :
                 return redirect(session()->pull('url.intended'));
             endif;
 
@@ -221,11 +220,11 @@ class AuthController extends Controller
         $existingGoogleUser = $this->userRepository
             ->findUserByEmail($googleUser->email);
 
-        if(
+        if (
             $existingGoogleUser
             && $existingGoogleUser->email_verified_at !== null
-            ) :
-            switch (session('prev_url')):
+        ) :
+            switch (session('prev_url')) :
                 case route('register.method'):
                     session()->forget('prev_url');
 
@@ -237,7 +236,7 @@ class AuthController extends Controller
                     session()->forget('prev_url');
                     auth()->login($existingGoogleUser);
 
-                    if (session()->has('url.intended')):
+                    if (session()->has('url.intended')) :
                         return redirect(session()->pull('url.intended'));
                     endif;
 
@@ -269,7 +268,7 @@ class AuthController extends Controller
             if (
                 $existingGoogleUser
                 && $existingGoogleUser->email_verified_at == null
-                ) :
+            ) :
                 $user = $existingGoogleUser;
                 $user->update($data);
             else :
@@ -321,7 +320,7 @@ class AuthController extends Controller
                 UserConstant::COL_EMAIL => $request->email
             ]);
 
-        if(!$reset_password_record) :
+        if (!$reset_password_record) :
             $user_token = Str::random(64);
             $data = [
                 UserConstant::COL_EMAIL => $request->email,
@@ -336,7 +335,7 @@ class AuthController extends Controller
             );
         endif;
 
-        if($reset_password_record) :
+        if ($reset_password_record) :
             $send_mail = $this->mailService
                 ->sendMailResetPassword(
                     $request->email,
@@ -384,7 +383,7 @@ class AuthController extends Controller
             Constant::TOKEN => $request->token
         ]);
 
-        if(!$reset_password_record) :
+        if (!$reset_password_record) :
             throw ValidationException::withMessages([
                 Constant::MSG => __('messages.reset_password.EM-001'),
             ]);

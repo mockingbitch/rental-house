@@ -111,11 +111,11 @@ abstract class BaseRepository
      * @param array $relations
      * @return mixed
      */
-    public function findOneByWithRelationships(array $data, array $relations = [] )
+    public function findOneByWithRelationships(array $data, array $relations = [])
     {
-        if (empty($relations)):
+        if (empty($relations)) :
             return $this->model->where($data)->first();
-        else:
+        else :
             return $this->model->with($relations)->where($data)->first();
         endif;
     }
@@ -174,8 +174,7 @@ abstract class BaseRepository
         $columns = ['*'],
         $orderBy = 'id',
         $sortBy = 'asc'
-    )
-    {
+    ) {
         return $this->model->with($relations)->orderBy($orderBy, $sortBy)->get($columns);
     }
 
@@ -187,26 +186,39 @@ abstract class BaseRepository
     /**
      * @param array $relations
      * @param array $data
+     * @param bool $isFindOne
      * @param string $columns
      * @param string $orderBy
      * @param string $sortBy
-     * @return Collection|array
+     * @return Model|Collection|Builder|array|null
      */
     public function findByWithRelationship(
         array $relations,
         array $data,
+        bool $isFindOne = false,
         string $columns = '*',
         string $orderBy = 'id',
         string $sortBy = 'desc'
-    ): Collection|array
-    {
+    ): Model|Collection|Builder|array|null {
+        if ($isFindOne) :
+            return $this->model->with($relations)
+                ->where($data)
+                ->first();
+        endif;
+
         return $this->model->with($relations)
             ->where($data)
             ->orderBy($orderBy, $sortBy)
             ->get($columns);
     }
 
-    public function whereIn($column, array $data, $relations)
+    /**
+     * @param $column
+     * @param array $data
+     * @param $relations
+     * @return Collection|array
+     */
+    public function whereIn($column, array $data, $relations): Collection|array
     {
         return $this->model->with($relations)->whereIn($column, $data)->get();
     }
