@@ -68,6 +68,7 @@ class LessorController extends Controller
             'houses'        => $houses,
             'category'      => $category,
             'breadcrumb'    => 'House',
+            'user'          => auth()->user(),
         ]);
     }
 

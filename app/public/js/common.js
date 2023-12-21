@@ -5,6 +5,7 @@ $(document).on("click", ".open-add-modal", function (e) {
 
 function errorFunction(request) {
     let message = request?.responseJSON?.message ?? '';
+    let HTTP_NOT_IMPLEMENTED = 501;
     switch (request.status) {
         case 403:
             message = message ?? "Bạn không có quyền thực hiện hành động này.";
@@ -20,10 +21,14 @@ function errorFunction(request) {
         case HTTP_NOT_IMPLEMENTED:
             message = message ?? "Không thể thực hiện yêu cầu này";
             break;
+        case 422:
+            message = message ?? "Thông tin nhập không chính xác.";
+            break;
         default:
             message = "Có lỗi xảy ra. Vui lòng thử lại sau ít phút";
     }
-    toastAlert(message, "", "error");
+    // toastAlert(message, "", "error");
+    swal({title: "Error", text: message, icon: "error", button: "Close"});
 }
 
 /**

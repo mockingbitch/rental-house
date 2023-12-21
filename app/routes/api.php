@@ -57,4 +57,12 @@ Route::prefix('v1')->group(function () {
             Route::post('status', 'updateStatus')->name('room.update.status');
         });
     });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::prefix('admin')->group(function () {
+            // Route::get('room/detail', 'detail')->name('lessor.room.detail');
+            Route::post('user/update', 'updateUserInfoByAdmin')->name('admin.user.update');
+            Route::post('status', 'updateStatus')->name('room.update.status');
+        });
+    });
 });

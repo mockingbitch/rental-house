@@ -61,14 +61,19 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 </style>
-    <div class="create-btn mx-3 my-3">
-        <button onclick="create()"
-            class="btn btn-primary "style="all: unset; cursor: pointer; font-size:20px; color: green; z-index: 1999">
-            <i class="fa-solid fa-circle-plus">Add</i>
-        </button>
-    </div>
-    <span style="font-size:20px; color: green"></span>
-    @include('lessor.house.create-form', ['category' => $category])
+    <?php
+        use App\Enum\UserEnum;
+    ?>
+    @if (isset($user) && $user->role == UserEnum::ROLE_LESSOR->value)
+        <div class="create-btn mx-3 my-3">
+            <button onclick="create()"
+                class="btn btn-primary "style="all: unset; cursor: pointer; font-size:20px; color: green; z-index: 1999">
+                <i class="fa-solid fa-circle-plus">Add</i>
+            </button>
+        </div>
+        <span style="font-size:20px; color: green"></span>
+        @include('lessor.house.create-form', ['category' => $category])
+    @endif
     @include('lessor.house.update')
     <div class="card mb-4">
         @if (isset($houses) && count($houses) >= 1)

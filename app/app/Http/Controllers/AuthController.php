@@ -161,7 +161,7 @@ class AuthController extends Controller
                 $user = $this->userRepository->create($data);
                 if ($user) :
                     $this->mailService->sendMail($user, $data);
-                    $user->assignRole('Lessee');
+//                    $user->assignRole('Lessee');
                     // $this->notificationService->sendNotification(
                     //     $user,
                     //     [
@@ -181,6 +181,7 @@ class AuthController extends Controller
                     'email'     => $data['email'],
                 ]);
         } catch (\Throwable $th) {
+            dd($th);
             DB::rollback();
 
             throw ValidationException::withMessages([

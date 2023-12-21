@@ -208,7 +208,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'User' ? 'active' : ''}}" href="{{route('lessor.house.index')}}">
+                <a class="nav-link {{isset($breadcrumb) && $breadcrumb == 'User' ? 'active' : ''}}" href="{{route('admin.user.index')}}">
                 <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
