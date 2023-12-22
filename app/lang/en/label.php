@@ -97,6 +97,7 @@ return [
 
     'top'   => [
         'capacity'              => 'Capacity',
+        'room_available'        => 'Room available',
     ],
 
     'search'        => [
@@ -130,7 +131,7 @@ return [
         'no_result'             => 'No result found',
         'related_house'         => 'Related house',
         'person'                => 'person',
-
+        'contact_more'          => 'Contact for more',
     ],
 
     'header'        => [
@@ -139,5 +140,37 @@ return [
         'join'              => 'Join',
         'logout'            => 'Logout',
 
-    ]
+    ],
+
+    'house_detail'      => [
+        'house'             => 'House',
+        'share_social'      => 'Share via social',
+        'show_more'         => 'Show more',
+        'show_less'         => 'Show less',
+        'price'             => 'Price',
+        'person'            => 'person',
+        'capacity'          => 'Capacity',
+        'contact_phone'     => 'Contact phone',
+        'contact_email'     => 'Contact email',
+        'rooms'             => 'Rooms',
+        'description'       => 'Description',
+        'check'             => 'Check',
+        'review'            => 'Review',
+
+    ],
+
+    'room_detail'      => [
+        'room'              => 'Room',
+        'share_social'      => 'Share via social',
+        'show_more'         => 'Show more',
+        'show_less'         => 'Show less',
+        'person'            => 'person',
+        'capacity'          => 'Capacity',
+        'type'              => 'Type',
+        'tag'               => 'Tag',
+        'contact_phone'     => 'Contact phone',
+        'contact_email'     => 'Contact email',
+        'more_images'       => 'More images',
+
+    ],
 ];

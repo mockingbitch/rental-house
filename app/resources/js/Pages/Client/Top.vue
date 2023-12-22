@@ -101,7 +101,7 @@ const imageUrlAlt = (event) => {
                         </div>
                         <div v-if="house.rooms[0]" class="age">
                             <p>
-                                Room available: {{ house?.rooms?.length }}
+                                {{ lang().label.top.room_available }}: {{ house?.rooms?.length }}
                             </p>
                         </div>
                         <div v-else class="age">

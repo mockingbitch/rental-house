@@ -145,7 +145,7 @@ const handleShareSocial = () => {
                                                 fill="#5392f9"
                                             />
                                         </svg>
-                                        <div>House</div>
+                                        <div>{{ lang().label.house_detail.house }}</div>
                                     </div>
                                     <div class="share-social-popup">
                                         <div
@@ -177,7 +177,7 @@ const handleShareSocial = () => {
                                                 <div
                                                     class="share-social-select-title"
                                                 >
-                                                    Share via social
+                                                    {{ lang().label.house_detail.share_social }}
                                                 </div>
                                                 <ShareSocial
                                                     :label="'X'"
@@ -276,14 +276,14 @@ const handleShareSocial = () => {
                                     class="showMore"
                                     @click="detailForm.moreContent = true"
                                 >
-                                    Show more
+                                    {{ lang().label.house_detail.show_more }}
                                 </span>
                                 <span
                                     v-show="detailForm.moreContent"
                                     class="showMore"
                                     @click="detailForm.moreContent = false"
                                 >
-                                    Show less
+                                    {{ lang().label.house_detail.show_less }}
                                 </span>
                             </div>
                             <div class="attributes">
@@ -311,7 +311,7 @@ const handleShareSocial = () => {
                                             }}
                                             VND
                                         </span>
-                                        <p>Price</p>
+                                        <p>{{ lang().label.house_detail.price }}</p>
                                     </li>
                                     <li>
                                         <span
@@ -330,9 +330,9 @@ const handleShareSocial = () => {
                                                 )[house?.rooms?.length - 1]
                                                     ?.capacity
                                             }}
-                                            Person
+                                            {{ lang().label.house_detail.person }}
                                         </span>
-                                        <p>Capacity</p>
+                                        <p>{{ lang().label.house_detail.capacity }}</p>
                                     </li>
 <!--                                    <li>-->
 <!--                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">-->
@@ -372,7 +372,7 @@ const handleShareSocial = () => {
                                         {{ house?.lessor?.phone }}
                                     </div>
                                     <div class="category-info-content">
-                                        Contact phone
+                                        {{ lang().label.house_detail.contact_phone }}
                                     </div>
                                 </BaseCard>
                                 <BaseCard
@@ -387,7 +387,7 @@ const handleShareSocial = () => {
                                         </div>
                                     </div>
                                     <div class="category-info-content">
-                                        Contact email
+                                        {{ lang().label.house_detail.contact_email }}
                                     </div>
                                 </BaseCard>
                                 <BaseCard
@@ -409,7 +409,7 @@ const handleShareSocial = () => {
                                 </BaseCard>
                             </div>
                             <div class="schedule">
-                                <p class="subTitle">Rooms</p>
+                                <p class="subTitle">{{ lang().label.house_detail.rooms }}</p>
                                 <div
                                     v-for="room in props.rooms"
                                     :key="room.id"
@@ -427,7 +427,7 @@ const handleShareSocial = () => {
                                             </div>
                                             <div class="top mt-1">
                                                 <div class="date">
-                                                    Description
+                                                    {{ lang().label.house_detail.description }}
                                                 </div>
                                                 <div class="time d-flex">
                                                     <div>
@@ -440,7 +440,7 @@ const handleShareSocial = () => {
                                                 style="padding-top: 0"
                                             >
                                                 <div class="seats">
-                                                    Capacity
+                                                    {{ lang().label.house_detail.capacity }}
                                                 </div>
                                                 <div class="count">
                                                     {{ room?.capacity }}
@@ -450,7 +450,7 @@ const handleShareSocial = () => {
                                                 class="bottom mt-1 align-items-center"
                                                 style="padding-top: 0"
                                             >
-                                                <div class="seats" style="color: #e71a41">Price</div>
+                                                <div class="seats" style="color: #e71a41">{{ lang().label.house_detail.price }}</div>
                                                 <div class="count">
                                                     {{ priceFormat(room?.price) }} VND
                                                 </div>
@@ -460,7 +460,7 @@ const handleShareSocial = () => {
                                             class="item__right pointer"
                                             :href="route('room.detail', room.id)"
                                         >
-                                            Check
+                                            {{ lang().label.house_detail.check }}
                                         </Link>
                                     </div>
                                 </div>
@@ -468,12 +468,12 @@ const handleShareSocial = () => {
                                     class="showMore show-more-button"
                                     @click="showMoreSchedule"
                                 >
-                                    Show more
+                                    {{ lang().label.house_detail.show_more }}
                                 </span>
                             </div>
 
                             <div class="reviewWrap">
-                                <p class="subTitle">review</p>
+                                <p class="subTitle">{{ lang().label.house_detail.review }}</p>
                                 <!--                                <div-->
                                 <!--                                    v-for="review in props.reviews.slice(-->
                                 <!--                                        0,-->
@@ -552,7 +552,7 @@ const handleShareSocial = () => {
                                 class="showMore show-more-button"
                                 @click="showMoreReview"
                             >
-                                Show more
+                                {{ lang().label.house_detail.show_more }}
                             </span>
                             <div
                                 class="d-flex justify-content-center align-items-center footer-share-social mt-4"

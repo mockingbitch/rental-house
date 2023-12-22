@@ -75,7 +75,7 @@ const handleShareSocial = () => {
                                                 fill="#5392f9"
                                             />
                                         </svg>
-                                        <div>Room</div>
+                                        <div>{{ lang().label.room_detail.room }}</div>
                                     </div>
                                     <div class="share-social-popup">
                                         <div
@@ -107,7 +107,7 @@ const handleShareSocial = () => {
                                                 <div
                                                     class="share-social-select-title"
                                                 >
-                                                    Share via social
+                                                    {{ lang().label.room_detail.share_social }}
                                                 </div>
                                                 <ShareSocial
                                                     :label="'X'"
@@ -211,14 +211,14 @@ const handleShareSocial = () => {
                                     class="showMore"
                                     @click="detailForm.moreContent = true"
                                 >
-                                    Show more
+                                    {{ lang().label.room_detail.show_more }}
                                 </span>
                                 <span
                                     v-show="detailForm.moreContent"
                                     class="showMore"
                                     @click="detailForm.moreContent = false"
                                 >
-                                    Show less
+                                    {{ lang().label.room_detail.show_less }}
                                 </span>
                             </div>
                             <div class="attributes">
@@ -229,9 +229,9 @@ const handleShareSocial = () => {
                                             class="d-flex align-items-center justify-content-center"
                                         >
                                             {{ room?.capacity }}
-                                            Person
+                                            {{ lang().label.room_detail.person }}
                                         </span>
-                                        <p>Capacity</p>
+                                        <p>{{ lang().label.room_detail.capacity }}</p>
                                     </li>
                                     <li>
                                         <span style="height: 34px" class="d-flex align-items-center justify-content-center">
@@ -239,7 +239,7 @@ const handleShareSocial = () => {
                                         </span>
                                         <!-- <span>{{ totalApplied(props.lessons) }}/{{ props.lessons.class_capacity }}名</span> -->
                                         <p>
-                                            Type
+                                            {{ lang().label.room_detail.type }}
                                         </p>
                                     </li>
                                     <li>
@@ -247,7 +247,7 @@ const handleShareSocial = () => {
                                             {{ props.room?.tags }}
                                         </span>
                                         <p>
-                                            Tag
+                                            {{ lang().label.room_detail.tag }}
                                         </p>
                                     </li>
                                 </ul>
@@ -263,7 +263,7 @@ const handleShareSocial = () => {
                                         {{ house?.lessor?.phone }}
                                     </div>
                                     <div class="category-info-content">
-                                        Contact phone
+                                        {{ lang().label.room_detail.contact_phone }}
                                     </div>
                                 </BaseCard>
                                 <BaseCard
@@ -278,12 +278,12 @@ const handleShareSocial = () => {
                                         </div>
                                     </div>
                                     <div class="category-info-content">
-                                        Contact email
+                                        {{ lang().label.room_detail.contact_email }}
                                     </div>
                                 </BaseCard>
                             </div>
                             <div class="note">
-                                <p class="subTitle">More images</p>
+                                <p class="subTitle">{{ lang().label.room_detail.more_images }}</p>
                                 <a v-if="props.room?.images[1]" href="" class="image">
                                     <img
                                         :src="props.room?.images[1]"
@@ -310,14 +310,14 @@ const handleShareSocial = () => {
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = true"
                                 >
-                                    Show more
+                                    {{ lang().label.room_detail.show_more }}
                                 </span>
                                 <span
                                     v-show="detailForm.moreExperience"
                                     class="showMore show-more-button"
                                     @click="detailForm.moreExperience = false"
                                 >
-                                    Show less
+                                    {{ lang().label.room_detail.show_less }}
                                 </span>
                             </div>
                             <div

@@ -55,6 +55,7 @@ return [
         'dont_have_account' => "Nếu bạn chưa có tài khoản,",
         'new_registration'  => 'dễ dàng để đăng ký!'
     ],
+
     'house' => [
         'field' => [
             'name'          => 'Tên nhà',
@@ -65,7 +66,12 @@ return [
             'address'       => 'Địa chỉ',
             'thumbnail'     => 'Ảnh đại diện',
             'category_id'   => 'Danh mục',
-        ]
+            'capacity'      => 'Phòng cho',
+            'price'         => 'Giá',
+        ],
+        'status' => [
+            'not_available' => 'Chưa khả dụng',
+        ],
     ],
 
     'side_menu'   => [
@@ -93,6 +99,7 @@ return [
 
     'top'   => [
         'capacity'              => 'Số người',
+        'room_available'        => 'Số phòng có sẵn',
     ],
 
     'search'        => [
@@ -126,7 +133,7 @@ return [
         'no_result'     => 'Không có kết quả nào được tìm thấy',
         'related_house' => 'Căn hộ liên quan',
         'person'        => 'người',
-
+        'contact_more'  => 'Liên hệ để có thêm thông tin',
     ],
 
     'header'        => [
@@ -137,21 +144,34 @@ return [
 
     ],
 
-    'house' => [
-        'field' => [
-            'name'          => 'House name',
-            'description'   => 'Description',
-            'province_code' => 'Province',
-            'district_code' => 'District',
-            'ward_code'     => 'Ward',
-            'address'       => 'Address',
-            'thumbnail'     => 'Thumbnail',
-            'category_id'   => 'Danh mục',
-            'capacity'      => 'Phòng cho',
-            'price'         => 'Giá',
-        ],
-        'status' => [
-            'not_available' => 'Chưa khả dụng',
-        ]
+    'house_detail'      => [
+        'house'           => 'Căn hộ',
+        'share_social'    => 'Chia sẻ qua mạng xã hội',
+        'show_more'       => 'Hiển thị thêm',
+        'show_less'       => 'Hiển thị ít hơn',
+        'price'           => 'Giá',
+        'person'          => 'người',
+        'capacity'        => 'Sức chứa',
+        'contact_phone'   => 'Liên hệ điện thoại',
+        'contact_email'   => 'Liên hệ email',
+        'rooms'           => 'Phòng',
+        'description'     => 'Mô tả',
+        'check'           => 'Kiểm tra',
+        'review'          => 'Đánh giá',
+
+    ],
+
+    'room_detail'      => [
+        'room'            => 'Phòng',
+        'share_social'    => 'Chia sẻ qua mạng xã hội',
+        'show_more'       => 'Hiển thị thêm',
+        'show_less'       => 'Hiển thị ít hơn',
+        'person'          => 'người',
+        'capacity'        => 'Sức chứa',
+        'type'            => 'Loại',
+        'tag'             => 'Thẻ',
+        'contact_phone'   => 'Liên hệ điện thoại',
+        'contact_email'   => 'Liên hệ email',
+        'more_images'     => 'Hình ảnh khác',
     ],
 ];
