@@ -63,6 +63,11 @@ return [
             'address'       => 'Address',
             'thumbnail'     => 'Thumbnail',
             'category_id'   => 'Category',
+            'capacity'      => 'Capacity',
+            'price'         => 'Price',
+        ],
+        'status' => [
+            'not_available' => 'Not available yet',
         ]
     ],
 ];

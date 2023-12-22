@@ -19,20 +19,18 @@ const closeDialogOutside = () => {
 </script>
 
 <template>
-    <div>
-        <transition name="fade" appear>
-            <div
-                v-if="isDialogVisible"
-                class="modal-overlay"
-                @click="closeDialogOutside"
-            ></div>
-        </transition>
-        <transition name="slide" appear>
-            <div v-if="isDialogVisible" class="dialog">
-                <slot />
-            </div>
-        </transition>
-    </div>
+    <transition name="fade" appear>
+        <div
+            v-if="isDialogVisible"
+            class="modal-overlay"
+            @click="closeDialogOutside"
+        ></div>
+    </transition>
+    <transition name="slide" appear>
+        <div v-if="isDialogVisible" class="dialog">
+            <slot />
+        </div>
+    </transition>
 </template>
 
 <style lang="scss" scoped>

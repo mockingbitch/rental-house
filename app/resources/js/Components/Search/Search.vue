@@ -197,6 +197,8 @@ const handleResetForm = () => {
     formSearch.finish_price_range = null;
     formSearch.start_draft_price = null;
     formSearch.finish_draft_price = null;
+    formSearch.category = null;
+    formSearch.category_id = null;
 };
 
 const handleClose = () => {

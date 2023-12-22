@@ -86,8 +86,8 @@ const listLesson = ref([props.lesson]);
         }
         .isActive {
             font-weight: bold;
-            color: #418997;
-            border-bottom: 2px solid #418997;
+            color: #5392f9;
+            border-bottom: 2px solid #5392f9;
         }
     }
 }

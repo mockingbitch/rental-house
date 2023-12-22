@@ -90,9 +90,10 @@ abstract class BaseRepository
 
     /**
      * @param array $data
+     * @param string $columns
      * @return Collection
      */
-    public function findBy(array $data, $columns = '*')
+    public function findBy(array $data, string $columns = '*'): Collection
     {
         return $this->model->where($data)->orderBy('created_at', 'DESC')->get($columns);
     }

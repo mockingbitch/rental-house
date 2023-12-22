@@ -58,7 +58,7 @@ const props = defineProps({
         .isActive {
             position: relative;
             font-weight: bold;
-            color: #418997;
+            color: #5392f9;
 
             &::before {
                 position: absolute;
@@ -67,7 +67,7 @@ const props = defineProps({
                 right: 0;
                 bottom: 0;
                 height: 2px;
-                background-color: #418997;
+                background-color: #5392f9;
             }
         }
     }

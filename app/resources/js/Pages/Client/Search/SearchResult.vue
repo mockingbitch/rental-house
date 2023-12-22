@@ -252,14 +252,14 @@ export default defineComponent({
                                 </div>
                             </div>
                             <div class="result__description-wrapper">
-                                <p class="result__description">
-                                    {{ house?.description }}
+                                <p v-if="house?.province?.name" class="result__description">
+                                    {{ house?.province?.name }} - {{ house?.district?.name }} - {{ house?.ward?.name }}
                                 </p>
                             </div>
                             <ul class="search__result-lesson-info">
                                 <li class="result__info-box">
                                     <div class="star">
-                                        <div class="result__info-top">
+                                        <div v-if="house.rooms[0]" class="result__info-top">
                                             <p>
                                                 <span>
                                                     {{ priceFormat(sortArrayByPrice(house?.rooms)[0]?.price) }}
@@ -269,17 +269,31 @@ export default defineComponent({
                                                 </span>
                                             </p>
                                         </div>
+                                        <div v-else class="result__info-top">
+                                            <p>
+                                                <span>
+                                                    Contact for more
+                                                </span>
+                                            </p>
+                                        </div>
                                         <p>Price</p>
                                     </div>
                                 </li>
                                 <li class="result__info-box">
                                     <div class="star">
-                                        <div class="result__info-top">
+                                        <div v-if="house.rooms[0]" class="result__info-top">
                                             <p>
                                                 <span>
                                                     {{ sortArrayByCapacity(house?.rooms)[0]?.capacity }}
                                                     -
                                                     {{ sortArrayByCapacity(house?.rooms)[house?.rooms?.length - 1]?.capacity }} Person
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div v-else class="result__info-top">
+                                            <p>
+                                                <span>
+                                                    Contact for more
                                                 </span>
                                             </p>
                                         </div>

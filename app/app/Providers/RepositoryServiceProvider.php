@@ -21,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'House\HouseRepositoryInterface'        => 'House\HouseRepository',
             'Room\RoomRepositoryInterface'          => 'Room\RoomRepository',
             'Ward\WardRepositoryInterface'          => 'Ward\WardRepository',
+            'Request\RequestRepositoryInterface'    => 'Request\RequestRepository',
         ];
 
         foreach ($repositories as $key => $value) {

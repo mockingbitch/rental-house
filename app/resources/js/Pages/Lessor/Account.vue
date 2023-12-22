@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
         line-height: 22.4px;
         letter-spacing: -0.14px;
         white-space: nowrap;
-        color: #418997 !important;
+        color: #5392f9 !important;
     }
     .create__request-button-right {
         font-size: 14px;
@@ -410,7 +410,7 @@ onBeforeUnmount(() => {
     font-weight: 700;
 }
 .text-link {
-    color: #418997;
+    color: #5392f9;
     cursor: pointer;
 }
 .chips-wrap {

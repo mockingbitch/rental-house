@@ -20,7 +20,6 @@ const checkScreenSize = () => {
 };
 const handleOpenNav = () => {
     navOpen.value = !navOpen.value;
-    console.log(navOpen.value);
 }
 window.addEventListener("resize", checkScreenSize);
 // Stop listening resize event

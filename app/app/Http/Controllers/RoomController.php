@@ -3,33 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RoomRequest;
+use App\Repositories\House\HouseRepositoryInterface;
 use App\Repositories\Room\RoomRepositoryInterface;
 use App\Repositories\Tag\TagRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
 use App\Services\FileService;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+use Inertia\Response;
+use Throwable;
 
 class RoomController extends Controller
 {
     /**
-     * @param TagRepositoryInterface $tagRepository
-     * @param UserRepositoryInterface $userRepository
+     * @param FileService $fileService
      * @param RoomRepositoryInterface $roomRepository
+     * @param TagRepositoryInterface $tagRepository
      * @param HouseRepositoryInterface $houseRepository
-     * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
         public FileService $fileService,
         public RoomRepositoryInterface $roomRepository,
         public TagRepositoryInterface $tagRepository,
+        public HouseRepositoryInterface $houseRepository,
     ) {
     }
 
 
     /**
+     * Create room
+     *
+     * @param Request $request
      * @return RedirectResponse
      */
-    public function create(Request $request)
+    public function create(Request $request): RedirectResponse
     {
         $data = $request->all();
 
@@ -58,7 +69,7 @@ class RoomController extends Controller
             return redirect()
                 ->route('lessor.house.room-list', ['id' => $data['house_id']])
                 ->with('errCode', 0);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return redirect()
                 ->route('lessor.house.room-list', ['id' => $data['house_id']])
                 ->with('errCode', 1);
@@ -69,7 +80,7 @@ class RoomController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function updateStatus(Request $request)
+    public function updateStatus(Request $request): JsonResponse
     {
         try {
             $house = $this->roomRepository
@@ -85,7 +96,7 @@ class RoomController extends Controller
                 'errCode'   => 0,
                 'message'   => 'Update status successfully'
             ], 200);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Something went wrong'
@@ -97,7 +108,7 @@ class RoomController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function detail(Request $request)
+    public function detail(Request $request): JsonResponse
     {
         $data = $request->all()['data'];
         $room = $this->roomRepository->find($data['id']);
@@ -110,7 +121,7 @@ class RoomController extends Controller
             ], 200);
         endif;
 
-        // convert room tages id to room tags name
+        // convert room tags id to room tags name
         $tags = $this->tagRepository->findTagsByIDString($room->tags);
         $room->tags = $tags->implode('name_vi', ',');
 
@@ -129,7 +140,7 @@ class RoomController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): JsonResponse
     {
         $data = $request->all();
 
@@ -176,7 +187,7 @@ class RoomController extends Controller
                 'errCode' => 0,
                 'message' => 'Update successfully!',
             ], 200);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return response()->json([
                 'errCode' => 1,
                 'message' => 'Something went wrong!',
@@ -188,7 +199,7 @@ class RoomController extends Controller
      * @param int|null $id
      * @return RedirectResponse
      */
-    public function delete(?int $id)
+    public function delete(?int $id): RedirectResponse
     {
         try {
             $room = $this->roomRepository->find($id);
@@ -206,12 +217,48 @@ class RoomController extends Controller
                     'errCode' => 0,
                     'message' => 'Delete house successfully',
                 ]);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return redirect()->route('lessor.house.room-list', ['id' => $room->house_id])
                 ->with([
                     'errCode' => 1,
                     'message' => 'Something went wrong',
                 ]);
+        }
+    }
+
+    /**
+     * @param int|null $id
+     * @return Exception|Throwable|Response
+     */
+    public function detailRoom(?int $id): Exception|Throwable|Response
+    {
+        try {
+            $room = $this->roomRepository->find($id);
+            $house = $this->houseRepository
+                ->findByWithRelationship(
+                    ['lessor'],
+                    ['id' => $room->house_id],
+                    true
+                );
+            $roomTag = explode(',', $room->tags);
+            $tags = [];
+            foreach ($roomTag as $item) :
+                $tag = \App\Models\Tag::select('name_vi')
+                    ->where('id', $item)
+                    ->first();
+            $tags[] = $tag->name_vi;
+            endforeach;
+            $images = explode(',', $room->images);
+            $room->tags = implode(", ", $tags);
+            $room->thumbnail = $images[0];
+            $room->images = $images;
+
+            return Inertia::render('Client/RoomDetail/RoomDetail', [
+                'room'  => $room,
+                'house' => $house,
+            ]);
+        } catch (Throwable $throwable) {
+            return $throwable;
         }
     }
 }

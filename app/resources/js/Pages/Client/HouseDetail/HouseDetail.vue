@@ -1,29 +1,35 @@
 <script setup>
 import { ref } from "vue";
-import { useForm, usePage } from "@inertiajs/vue3";
+import { useForm, usePage, Link } from "@inertiajs/vue3";
 import { houseRating } from "@/Helper/Rating";
 import { socialItems } from "@/Helper/ShareSocial.js";
 import moment from "moment";
 import Layout from "@/Layouts/Layout.vue";
 import Modal from "@/Components/Modal/Modal.vue";
-// import ShareSocial from "@/Components/Common/ShareSocial.vue";
+import ShareSocial from "@/Components/ShareSocial/ShareSocial.vue";
 import BaseDialog from "@/Components/Dialog/BaseDialog.vue";
 import BaseCard from "@/Components/Card/BaseCard.vue";
-import {priceFormat} from "../../../Helper/CurrencyHelper";
-import {sortArrayByCapacity, sortArrayByPrice} from "../../../Helper/SortHelper";
+import { priceFormat } from "@/Helper/CurrencyHelper";
+import {
+    sortArrayByCapacity,
+    sortArrayByPrice,
+} from "@/Helper/SortHelper";
 
 const props = defineProps({
+    // eslint-disable-next-line vue/require-default-prop
     house: Object,
+    // eslint-disable-next-line vue/require-default-prop
     rooms: Array,
+    // eslint-disable-next-line vue/require-default-prop
     reviews: Array,
 });
-
+const currentUrl = window.location.href;
 const formVideo = useForm({
     isOpen: false,
     role: "",
 });
 const formReason = useForm({
-    reason: ''
+    reason: "",
 });
 const detailForm = useForm({
     scheduleShow: 4,
@@ -74,7 +80,10 @@ const totalTime = (start_date_time, end_date_time) => {
 };
 const validCourses = (courses) => {
     let validCourse = courses;
-    if (usePage().props.auth?.user?.role === 'LESSEE' || !usePage().props.auth?.user) {
+    if (
+        usePage().props.auth?.user?.role === "LESSEE" ||
+        !usePage().props.auth?.user
+    ) {
         validCourse = courses.filter(
             (item) =>
                 moment(item.start_date_time)
@@ -105,7 +114,12 @@ const handleShareSocial = () => {
                         <div class="form__wrap">
                             <div class="news w-full">
                                 <a href="" class="image">
-                                    <img :src="props.house?.thumbnail || '/img/image-holder.png'" />
+                                    <img
+                                        :src="
+                                            props.house?.thumbnail ||
+                                            '/img/image-holder.png'
+                                        "
+                                    />
                                 </a>
                                 <div
                                     class="d-flex align-items-center justify-content-between"
@@ -114,7 +128,7 @@ const handleShareSocial = () => {
                                     <div
                                         class="d-flex align-items-center"
                                         style="
-                                            color: #418997;
+                                            color: #5392f9;
                                             gap: 4px;
                                             cursor: pointer;
                                         "
@@ -128,7 +142,7 @@ const handleShareSocial = () => {
                                         >
                                             <path
                                                 d="M14.5001 2C14.5001 1.86739 14.4474 1.74021 14.3536 1.64645C14.2598 1.55268 14.1327 1.5 14.0001 1.5C11.2451 1.5 8.41818 4.60687 6.84818 6.66437C6.28747 6.49265 5.69431 6.45482 5.11633 6.55392C4.53835 6.65302 3.99167 6.88629 3.52019 7.23499C3.04872 7.58369 2.66559 8.0381 2.40158 8.56172C2.13758 9.08535 2.00005 9.66359 2.00005 10.25C2.00005 12.18 0.778804 13.0456 0.720679 13.0856C0.631985 13.1455 0.564847 13.2323 0.52914 13.3332C0.493432 13.4341 0.491038 13.5437 0.52231 13.6461C0.553582 13.7485 0.61687 13.8381 0.702867 13.9018C0.788864 13.9655 0.893032 13.9999 1.00005 14H5.75005C6.33647 14 6.91471 13.8625 7.43833 13.5985C7.96195 13.3345 8.41637 12.9513 8.76506 12.4799C9.11376 12.0084 9.34703 11.4617 9.44613 10.8837C9.54523 10.3057 9.5074 9.71258 9.33568 9.15187C11.3938 7.58187 14.5001 4.755 14.5001 2ZM5.75005 13H2.16443C2.5863 12.4006 3.00005 11.495 3.00005 10.25C3.00005 9.7061 3.16134 9.17442 3.46351 8.72218C3.76569 8.26995 4.19518 7.91747 4.69767 7.70933C5.20017 7.50119 5.7531 7.44673 6.28655 7.55284C6.82 7.65895 7.31 7.92086 7.6946 8.30546C8.07919 8.69005 8.3411 9.18005 8.44721 9.7135C8.55332 10.247 8.49886 10.7999 8.29072 11.3024C8.08258 11.8049 7.73011 12.2344 7.27787 12.5365C6.82564 12.8387 6.29395 13 5.75005 13ZM7.7763 7.09688C7.99047 6.81938 8.20068 6.55792 8.40693 6.3125C8.91176 6.65357 9.34649 7.0883 9.68755 7.59312C9.44172 7.79896 9.18026 8.00917 8.90318 8.22375C8.61181 7.77238 8.22767 7.38824 7.7763 7.09688ZM10.4451 6.92938C10.0676 6.39675 9.60268 5.93185 9.07005 5.55438C11.0563 3.39625 12.5544 2.74187 13.4388 2.56C13.2607 3.445 12.6032 4.94313 10.4451 6.92938Z"
-                                                fill="#418997"
+                                                fill="#5392f9"
                                             />
                                         </svg>
                                         <div>House</div>
@@ -163,42 +177,33 @@ const handleShareSocial = () => {
                                                 <div
                                                     class="share-social-select-title"
                                                 >
-                                                    シェアする
+                                                    Share via social
                                                 </div>
-<!--                                                <ShareSocial-->
-<!--                                                    :label="'Xに共有'"-->
-<!--                                                    :social="'twitter'"-->
-<!--                                                    :url="currentUrl"-->
-<!--                                                    :title="props.lessons.title"-->
-<!--                                                    :description="-->
-<!--                                                        props.lessons-->
-<!--                                                            .short_description_for_parent-->
-<!--                                                    "-->
-<!--                                                />-->
-<!--                                                <ShareSocial-->
-<!--                                                    :label="'Facebookに共有'"-->
-<!--                                                    :social="'facebook'"-->
-<!--                                                    :url="currentUrl"-->
-<!--                                                    :title="props.lessons.title"-->
-<!--                                                    :description="-->
-<!--                                                        props.lessons-->
-<!--                                                            .short_description_for_parent-->
-<!--                                                    "-->
-<!--                                                />-->
-<!--                                                <ShareSocial-->
-<!--                                                    :label="'LINEに共有'"-->
-<!--                                                    :social="'line'"-->
-<!--                                                    :url="currentUrl"-->
-<!--                                                    :title="props.lessons.title"-->
-<!--                                                    :description="-->
-<!--                                                        props.lessons-->
-<!--                                                            .short_description_for_parent-->
-<!--                                                    "-->
-<!--                                                />-->
-<!--                                                <ShareSocial-->
-<!--                                                    :label="'copy'"-->
-<!--                                                    :url-copy="currentUrl"-->
-<!--                                                />-->
+                                                <ShareSocial
+                                                    :label="'X'"
+                                                    :social="'twitter'"
+                                                    :url="currentUrl"
+                                                    :title="props.house?.name"
+                                                    :description="props.house?.description"
+                                                />
+                                                <ShareSocial
+                                                    :label="'Facebook'"
+                                                    :social="'facebook'"
+                                                    :url="currentUrl"
+                                                    :title="props.house?.name"
+                                                    :description="props.house?.description"
+                                                />
+                                                <ShareSocial
+                                                    :label="'LINE'"
+                                                    :social="'line'"
+                                                    :url="currentUrl"
+                                                    :title="props.house?.name"
+                                                    :description="props.house?.description"
+                                                />
+                                                <ShareSocial
+                                                    :label="'copy'"
+                                                    :url-copy="currentUrl"
+                                                />
                                             </div>
                                         </BaseDialog>
                                     </div>
@@ -213,15 +218,15 @@ const handleShareSocial = () => {
                                     >
                                         <path
                                             d="M12.8242 6.25505L10.3578 8.40755L11.0966 11.6122C11.1357 11.7798 11.1246 11.9551 11.0646 12.1163C11.0046 12.2776 10.8983 12.4175 10.7592 12.5187C10.6201 12.6199 10.4542 12.6778 10.2824 12.6853C10.1105 12.6927 9.94024 12.6493 9.79289 12.5605L6.99781 10.8652L4.20875 12.5605C4.06141 12.6493 3.89115 12.6927 3.71928 12.6853C3.54741 12.6778 3.38154 12.6199 3.24242 12.5187C3.10329 12.4175 2.99709 12.2776 2.93707 12.1163C2.87706 11.9551 2.8659 11.7798 2.905 11.6122L3.64273 8.41083L1.17578 6.25505C1.0453 6.14251 0.950951 5.99396 0.904562 5.82802C0.858172 5.66208 0.861809 5.48613 0.915016 5.32225C0.968223 5.15836 1.06863 5.01384 1.20365 4.90679C1.33867 4.79974 1.50229 4.73494 1.67398 4.72052L4.9257 4.43888L6.195 1.41138C6.26128 1.25252 6.37309 1.11682 6.51634 1.02138C6.65958 0.925929 6.82787 0.875 7 0.875C7.17213 0.875 7.34042 0.925929 7.48366 1.02138C7.62691 1.11682 7.73872 1.25252 7.805 1.41138L9.07812 4.43888L12.3288 4.72052C12.5005 4.73494 12.6641 4.79974 12.7991 4.90679C12.9341 5.01384 13.0345 5.15836 13.0877 5.32225C13.1409 5.48613 13.1446 5.66208 13.0982 5.82802C13.0518 5.99396 12.9574 6.14251 12.827 6.25505H12.8242Z"
-                                            fill="#418997"
+                                            fill="#5392f9"
                                         />
                                     </svg>
                                     <p>
                                         <span>
-<!--                                            {{ rating.toFixed(1) }}-->
+                                            <!--{{ rating.toFixed(1) }}-->
                                             5.0
                                         </span>
-<!--                                        ({{ props.house?.reviews?.length }})-->
+                                        <!--({{ props.house?.reviews?.length }})-->
                                         (100)
                                     </p>
                                 </div>
@@ -237,15 +242,20 @@ const handleShareSocial = () => {
                                             <div class="avatar">
                                                 <img
                                                     :src="
-                                                        props.house?.lessor?.avatar
-                                                        || '/img/icon/iconAvatarDefault.svg'
+                                                        props.house?.lessor
+                                                            ?.avatar ||
+                                                        '/img/icon/iconAvatarDefault.svg'
                                                     "
                                                     alt=""
                                                 />
                                             </div>
                                             <p>
-                                                {{ props.house?.lessor?.first_name }}
-                                                {{ props.house?.lessor?.last_name }}
+                                                {{
+                                                    props.house?.lessor?.first_name
+                                                }}
+                                                {{
+                                                    props.house?.lessor?.last_name
+                                                }}
                                             </p>
                                         </div>
                                     </a>
@@ -259,7 +269,10 @@ const handleShareSocial = () => {
                                     {{ props.house?.description }}
                                 </p>
                                 <span
-                                    v-show="detailForm.moreContent == false && props.house?.description?.length >= 50"
+                                    v-show="
+                                        detailForm.moreContent === false &&
+                                        props.house?.description?.length >= 50
+                                    "
                                     class="showMore"
                                     @click="detailForm.moreContent = true"
                                 >
@@ -276,25 +289,50 @@ const handleShareSocial = () => {
                             <div class="attributes">
                                 <ul>
                                     <li>
-                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">
-                                            {{ priceFormat(sortArrayByPrice(house?.rooms)[0]?.price) }}
+                                        <span
+                                            style="height: 34px"
+                                            class="d-flex align-items-center justify-content-center"
+                                        >
+                                            {{
+                                                priceFormat(
+                                                    sortArrayByPrice(
+                                                        house?.rooms
+                                                    )[0]?.price
+                                                )
+                                            }}
                                             -
-                                            {{ priceFormat(sortArrayByPrice(house?.rooms)[house?.rooms?.length - 1]?.price) }}
+                                            {{
+                                                priceFormat(
+                                                    sortArrayByPrice(
+                                                        house?.rooms
+                                                    )[house?.rooms?.length - 1]
+                                                        ?.price
+                                                )
+                                            }}
                                             VND
                                         </span>
-                                        <p>
-                                            Price
-                                        </p>
+                                        <p>Price</p>
                                     </li>
                                     <li>
-                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">
-                                           {{ sortArrayByCapacity(house?.rooms)[0]?.capacity }}
+                                        <span
+                                            style="height: 34px"
+                                            class="d-flex align-items-center justify-content-center"
+                                        >
+                                            {{
+                                                sortArrayByCapacity(
+                                                    house?.rooms
+                                                )[0]?.capacity
+                                            }}
                                             -
-                                            {{ sortArrayByCapacity(house?.rooms)[house?.rooms?.length - 1]?.capacity }} Person
+                                            {{
+                                                sortArrayByCapacity(
+                                                    house?.rooms
+                                                )[house?.rooms?.length - 1]
+                                                    ?.capacity
+                                            }}
+                                            Person
                                         </span>
-                                        <p>
-                                            Capacity
-                                        </p>
+                                        <p>Capacity</p>
                                     </li>
 <!--                                    <li>-->
 <!--                                        <span style="height: 34px" class="d-flex align-items-center justify-content-center">-->
@@ -327,7 +365,10 @@ const handleShareSocial = () => {
                                 <BaseCard
                                     class="category-info d-flex flex-column align-items-center justify-content-center"
                                 >
-                                    <div class="category-info-title d-flex align-items-center justify-content-center" style="height: 34px">
+                                    <div
+                                        class="category-info-title d-flex align-items-center justify-content-center"
+                                        style="height: 34px"
+                                    >
                                         {{ house?.lessor?.phone }}
                                     </div>
                                     <div class="category-info-content">
@@ -337,7 +378,10 @@ const handleShareSocial = () => {
                                 <BaseCard
                                     class="category-info d-flex flex-column align-items-center justify-content-center"
                                 >
-                                    <div class="category-info-title d-flex align-items-center justify-content-center" style="height: 34px">
+                                    <div
+                                        class="category-info-title d-flex align-items-center justify-content-center"
+                                        style="height: 34px"
+                                    >
                                         <div>
                                             {{ house?.lessor?.email }}
                                         </div>
@@ -346,297 +390,80 @@ const handleShareSocial = () => {
                                         Contact email
                                     </div>
                                 </BaseCard>
-                            </div>
-                            <div class="videoWarp">
-                                <!-- <div class="item">
-                                <p class="subTitle">
-                                    {{ lang().label.lesson_detail.for_parent }}
-                                </p>
-                                <div class="video" @click="showParentVid">
-                                    <video
-                                        :src="
-                                            props.lessons.short_video_for_parent
-                                        "
-                                        class="h-full"
-                                    ></video>
-                                    <div class="icon">
-                                        <img
-                                            src="/img/icon/PlayCircle.svg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                            </div> -->
-                                <div class="item">
-                                    <p class="subTitle">
-                                        vvv
-                                    </p>
-                                    <div class="video" @click="showShortVideo">
-                                        <video
-                                            :src="props.house?.short_video"
-                                            class="h-full"
-                                        ></video>
-                                        <div class="icon">
-                                            <img
-                                                src="/img/icon/PlayCircle.svg"
-                                                alt=""
-                                            />
+                                <BaseCard
+                                    class="category-info d-flex flex-column align-items-center justify-content-center"
+                                >
+                                    <div
+                                        class="category-info-title d-flex align-items-center justify-content-center"
+                                        style="height: 34px"
+                                    >
+                                        <div>
+                                            {{ house?.province?.name }} -
+                                            {{ house?.district?.name }} -
+                                            {{ house?.ward?.name }}
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="category-info-content">
+                                        {{ house?.address }}
+                                    </div>
+                                </BaseCard>
                             </div>
                             <div class="schedule">
-                                <p class="subTitle">
-                                    a
-                                </p>
-<!--                                <div-->
-<!--                                    v-for="lesson_course in validCourses(-->
-<!--                                        props.lesson_courses-->
-<!--                                    ).slice(0, detailForm.scheduleShow)"-->
-<!--                                    :key="lesson_course.id"-->
-<!--                                >-->
-<!--                                    <div class="item">-->
-<!--                                        <div class="item__left">-->
-<!--                                            <div-->
-<!--                                                style="-->
-<!--                                                    font-size: 12px;-->
-<!--                                                    font-weight: 700;-->
-<!--                                                    line-height: 1.6;-->
-<!--                                                "-->
-<!--                                            >-->
-<!--                                                {{ lesson_course.title }}-->
-<!--                                            </div>-->
-<!--                                            <div class="top mt-1">-->
-<!--                                                <div class="date">-->
-<!--                                                    {{-->
-<!--                                                        moment(-->
-<!--                                                            lesson_course.start_date_time-->
-<!--                                                        ).format("YYYY/MM/DD")-->
-<!--                                                    }}-->
-<!--                                                </div>-->
-<!--                                                <div class="time d-flex">-->
-<!--                                                    <div>-->
-<!--                                                        {{-->
-<!--                                                            moment(lesson_course.start_date_time).format('HH:mm')-->
-<!--                                                        }}-->
-<!--                                                        ~-->
-<!--                                                        {{-->
-<!--                                                            moment(lesson_course.end_date_time).format('HH:mm')-->
-<!--                                                        }}-->
-<!--                                                        (<span-->
-<!--                                                        v-if="-->
-<!--                                                                totalTime(-->
-<!--                                                                    lesson_course.start_date_time,-->
-<!--                                                                    lesson_course.end_date_time-->
-<!--                                                                )[0] > 0-->
-<!--                                                            "-->
-<!--                                                    >{{-->
-<!--                                                            totalTime(-->
-<!--                                                                lesson_course.start_date_time,-->
-<!--                                                                lesson_course.end_date_time-->
-<!--                                                            )[0]-->
-<!--                                                        }}h-->
-<!--                                                        </span>-->
-<!--                                                        <span-->
-<!--                                                        >{{-->
-<!--                                                                totalTime(-->
-<!--                                                                    lesson_course.start_date_time,-->
-<!--                                                                    lesson_course.end_date_time-->
-<!--                                                                )[1]-->
-<!--                                                            }}m</span-->
-<!--                                                        >)-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div-->
-<!--                                                v-if="lesson_course.total_applied != lesson_course.max_seat"-->
-<!--                                                class="bottom mt-1 align-items-center"-->
-<!--                                                style="padding-top: 0px"-->
-<!--                                            >-->
-<!--                                                <div class="seats">-->
-<!--                                                    {{-->
-<!--                                                        lang().label-->
-<!--                                                            .lesson_detail-->
-<!--                                                            .available_seats-->
-<!--                                                    }}-->
-<!--                                                    {{-->
-<!--                                                        lesson_course.max_seat - -->
-<!--                                                        lesson_course.total_applied-->
-<!--                                                    }}-->
-<!--                                                    {{-->
-<!--                                                        lang().label-->
-<!--                                                            .lesson_detail-->
-<!--                                                            .seats-->
-<!--                                                    }}-->
-<!--                                                </div>-->
-<!--                                                <div class="count">-->
-<!--                                                    ({{-->
-<!--                                                        lesson_course.total_applied-->
-<!--                                                    }}/{{-->
-<!--                                                        lesson_course.max_seat-->
-<!--                                                    }})-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div-->
-<!--                                                v-if="lesson_course.total_applied == lesson_course.max_seat"-->
-<!--                                                class="bottom mt-1 align-items-center"-->
-<!--                                                style="padding-top: 0px"-->
-<!--                                            >-->
-<!--                                                <div class="seats" style="color: #e71a41">満席</div>-->
-<!--                                                <div class="count">-->
-<!--                                                    ({{-->
-<!--                                                        lesson_course.total_applied-->
-<!--                                                    }}/{{-->
-<!--                                                        lesson_course.max_seat-->
-<!--                                                    }})-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div-->
-<!--                                                v-for="schedule in lesson_course.course_schedules"-->
-<!--                                                :key="schedule"-->
-<!--                                                class="mt-2"-->
-<!--                                            >-->
-<!--                                                <div-->
-<!--                                                    v-if="-->
-<!--                                                        showTime.includes(-->
-<!--                                                            lesson_course.id-->
-<!--                                                        )-->
-<!--                                                    "-->
-<!--                                                    class="d-flex align-items-center lesson__detail-schedule"-->
-<!--                                                >-->
-<!--                                                    <img-->
-<!--                                                        v-if="-->
-<!--                                                            checkExpired(-->
-<!--                                                                schedule.end_date_time-->
-<!--                                                            )-->
-<!--                                                        "-->
-<!--                                                        src="/img/icon/check.svg"-->
-<!--                                                        alt=""-->
-<!--                                                        width="20"-->
-<!--                                                        height="20"-->
-<!--                                                    />-->
-<!--                                                    <div-->
-<!--                                                        v-else-->
-<!--                                                        class="lesson__detail-schedule-no-check"-->
-<!--                                                    ></div>-->
-<!--                                                    <div-->
-<!--                                                        class="lesson__detail-schedule-day"-->
-<!--                                                    >-->
-<!--                                                        {{-->
-<!--                                                            moment(-->
-<!--                                                                schedule?.start_date_time-->
-<!--                                                            ).format(-->
-<!--                                                                "ddd YYYY/MM/DD"-->
-<!--                                                            )-->
-<!--                                                        }}-->
-<!--                                                    </div>-->
-<!--                                                    <div>・</div>-->
-<!--                                                    <div-->
-<!--                                                        class="lesson__detail-schedule-time"-->
-<!--                                                    >-->
-<!--                                                        {{-->
-<!--                                                            moment(schedule?.start_date_time).format('HH:mm')-->
-<!--                                                        }}-->
-<!--                                                        - -->
-<!--                                                        {{ moment(schedule?.end_date_time).format('HH:mm') }}-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div-->
-<!--                                                v-if="lesson_course.course_schedules.length > 1"-->
-<!--                                                class="show-button"-->
-<!--                                                @click="-->
-<!--                                                    handleShowMoreTime(-->
-<!--                                                        lesson_course.id-->
-<!--                                                    )-->
-<!--                                                "-->
-<!--                                            >-->
-<!--                                                <div-->
-<!--                                                    v-if="-->
-<!--                                                        showTime.includes(-->
-<!--                                                            lesson_course.id-->
-<!--                                                        )-->
-<!--                                                    "-->
-<!--                                                    style="-->
-<!--                                                        color: #418997;-->
-<!--                                                        font-size: 12px;-->
-<!--                                                        text-decoration-line: underline;-->
-<!--                                                        cursor: pointer;-->
-<!--                                                    "-->
-<!--                                                >-->
-<!--                                                    閉じる-->
-<!--                                                </div>-->
-<!--                                                <div-->
-<!--                                                    v-else-->
-<!--                                                    style="-->
-<!--                                                        color: #418997;-->
-<!--                                                        font-size: 12px;-->
-<!--                                                        text-decoration-line: underline;-->
-<!--                                                        cursor: pointer;-->
-<!--                                                    "-->
-<!--                                                >-->
-<!--                                                    他の日程をみる-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <Link-->
-<!--                                            v-if="-->
-<!--                                                lesson_course.total_applied !==-->
-<!--                                                    lesson_course.max_seat &&-->
-<!--                                                usePage().props.auth.user &&-->
-<!--                                                props.lessons.teacher_id !== usePage().props.auth.user.id-->
-<!--                                            "-->
-<!--                                            class="item__right"-->
-<!--                                            :href="-->
-<!--                                                route(-->
-<!--                                                    'course.apply',-->
-<!--                                                    lesson_course.id-->
-<!--                                                )-->
-<!--                                            "-->
-<!--                                        >-->
-<!--{{-->
-<!--                                                lang().label.lesson_detail.apply-->
-<!--                                            }}-->
-<!--</Link-->
-<!--                                        >-->
-<!--                                        <div-->
-<!--                                            v-if="-->
-<!--                                                lesson_course.total_applied !==-->
-<!--                                                    lesson_course.max_seat &&-->
-<!--                                                !usePage().props.auth.user-->
-<!--                                            "-->
-<!--                                            class="item__right pointer"-->
-<!--                                            @click="-->
-<!--                                                handleTogglePopupSignin(-->
-<!--                                                    route(-->
-<!--                                                        'course.apply',-->
-<!--                                                        lesson_course.id-->
-<!--                                                    )-->
-<!--                                                )-->
-<!--                                            "-->
-<!--                                        >-->
-<!--                                            {{-->
-<!--                                                lang().label.lesson_detail.apply-->
-<!--                                            }}-->
-<!--                                        </div>-->
-<!--                                        <div-->
-<!--                                            v-if="-->
-<!--                                                lesson_course.total_applied ===-->
-<!--                                                lesson_course.max_seat-->
-<!--                                            "-->
-<!--                                            :class="{-->
-<!--                                                item__full:-->
-<!--                                                    lesson_course.total_applied ===-->
-<!--                                                    lesson_course.max_seat,-->
-<!--                                            }"-->
-<!--                                            class="item__right"-->
-<!--                                        >-->
-<!--                                            {{-->
-<!--                                                lang().label.lesson_detail.full-->
-<!--                                            }}-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <p class="subTitle">Rooms</p>
+                                <div
+                                    v-for="room in props.rooms"
+                                    :key="room.id"
+                                >
+                                    <div class="item">
+                                        <div class="item__left">
+                                            <div
+                                                style="
+                                                        font-size: 12px;
+                                                        font-weight: 700;
+                                                        line-height: 1.6;
+                                                    "
+                                            >
+                                                {{ room?.name }}
+                                            </div>
+                                            <div class="top mt-1">
+                                                <div class="date">
+                                                    Description
+                                                </div>
+                                                <div class="time d-flex">
+                                                    <div>
+                                                        {{ room?.description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="bottom mt-1 align-items-center"
+                                                style="padding-top: 0"
+                                            >
+                                                <div class="seats">
+                                                    Capacity
+                                                </div>
+                                                <div class="count">
+                                                    {{ room?.capacity }}
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="bottom mt-1 align-items-center"
+                                                style="padding-top: 0"
+                                            >
+                                                <div class="seats" style="color: #e71a41">Price</div>
+                                                <div class="count">
+                                                    {{ priceFormat(room?.price) }} VND
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <Link
+                                            class="item__right pointer"
+                                            :href="route('room.detail', room.id)"
+                                        >
+                                            Check
+                                        </Link>
+                                    </div>
+                                </div>
                                 <span
                                     class="showMore show-more-button"
                                     @click="showMoreSchedule"
@@ -644,158 +471,78 @@ const handleShareSocial = () => {
                                     Show more
                                 </span>
                             </div>
-                            <div class="note noTitle">
-                                <p class="subTitle">
-                                    Outline
-                                </p>
-                                <p
-                                    class="description"
-                                    :class="{
-                                        fullText: detailForm.moreDescription,
-                                    }"
-                                >
-                                    Des
-                                </p>
-                                <span
-                                    v-show="detailForm.moreDescription === false && props.house?.description?.length >= 50"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreDescription = true"
-                                >
-                                    Show more
-                                </span>
-                                <span
-                                    v-show="detailForm.moreDescription"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreDescription = false"
-                                >
-                                    Show less
-                                </span>
-                            </div>
-                            <div class="note">
-                                <p class="subTitle">
-                                    Ex
-                                </p>
-                                <p
-                                    class="description"
-                                    :class="{
-                                        fullText: detailForm.moreExperience,
-                                    }"
-                                >
-                                    ex
-                                </p>
-                                <span
-                                    v-show="detailForm.moreExperience === false && props.house?.description?.length >= 50"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreExperience = true"
-                                >
-                                    Show more
-                                </span>
-                                <span
-                                    v-show="detailForm.moreExperience"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreExperience = false"
-                                >
-                                    Show less
-                                </span>
-                            </div>
-                            <div class="note noTitle">
-                                <p class="subTitle">
-                                    addition note
-                                </p>
-                                <p
-                                    class="description"
-                                    :class="{ fullText: detailForm.moreNote }"
-                                >
-                                    prepare
-                                </p>
-                                <span
-                                    v-show="detailForm.moreNote === false && props.house?.description?.length >= 50"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreNote = true"
-                                >
-                                    show more
-                                </span>
-                                <span
-                                    v-show="detailForm.moreNote"
-                                    class="showMore show-more-button"
-                                    @click="detailForm.moreNote = false"
-                                >
-                                    Show less
-                                </span>
-                            </div>
+
                             <div class="reviewWrap">
-                                <p class="subTitle">
-                                    review
-                                </p>
-<!--                                <div-->
-<!--                                    v-for="review in props.reviews.slice(-->
-<!--                                        0,-->
-<!--                                        detailForm.reviewShow-->
-<!--                                    )"-->
-<!--                                    class="item"-->
-<!--                                >-->
-<!--                                    <div class="time">-->
-<!--                                        {{ review.created_at }}-->
-<!--                                    </div>-->
-<!--                                    <div class="author">-->
-<!--                                        <div class="author__left">-->
-<!--                                            <div class="avatar">-->
-<!--                                                <img-->
-<!--                                                    :src="-->
-<!--                                                        review.user.avatar ||-->
-<!--                                                        '/img/icon/iconAvatarDefault.svg'-->
-<!--                                                    "-->
-<!--                                                    alt=""-->
-<!--                                                />-->
-<!--                                            </div>-->
-<!--                                            <p>-->
-<!--                                                {{ review.user.first_name }}-->
-<!--                                                {{ review.user.last_name }}-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="author__right">-->
-<!--                                            <Stars-->
-<!--                                                :stars="-->
-<!--                                                    houseRating(-->
-<!--                                                        review-->
-<!--                                                    ).toFixed(1)-->
-<!--                                                "-->
-<!--                                                bg-star="#B1B1B1"-->
-<!--                                            />-->
-<!--                                            <p-->
-<!--                                                style="-->
-<!--                                                    margin-left: 2px;-->
-<!--                                                    font-size: 12px;-->
-<!--                                                    font-weight: 400;-->
-<!--                                                    line-height: 160%;-->
-<!--                                                "-->
-<!--                                            >-->
-<!--                                                {{-->
-<!--                                                    houseRating(-->
-<!--                                                        review-->
-<!--                                                    ).toFixed(1)-->
-<!--                                                }}-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="content">-->
-<!--                                        <p-->
-<!--                                            :id="'reviewNumber' + review.id"-->
-<!--                                            class="description"-->
-<!--                                        >-->
-<!--                                            {{ review.review }}-->
-<!--                                        </p>-->
-<!--                                        <span-->
-<!--                                            :id="'showMoreNumber' + review.id"-->
-<!--                                            class="showMore show-more-button"-->
-<!--                                            @click="showFullReview(review.id)"-->
-<!--                                        >{{-->
-<!--                                                lang().label.lesson_detail-->
-<!--                                                    .show_more-->
-<!--                                            }}</span-->
-<!--                                        >-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <p class="subTitle">review</p>
+                                <!--                                <div-->
+                                <!--                                    v-for="review in props.reviews.slice(-->
+                                <!--                                        0,-->
+                                <!--                                        detailForm.reviewShow-->
+                                <!--                                    )"-->
+                                <!--                                    class="item"-->
+                                <!--                                >-->
+                                <!--                                    <div class="time">-->
+                                <!--                                        {{ review.created_at }}-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="author">-->
+                                <!--                                        <div class="author__left">-->
+                                <!--                                            <div class="avatar">-->
+                                <!--                                                <img-->
+                                <!--                                                    :src="-->
+                                <!--                                                        review.user.avatar ||-->
+                                <!--                                                        '/img/icon/iconAvatarDefault.svg'-->
+                                <!--                                                    "-->
+                                <!--                                                    alt=""-->
+                                <!--                                                />-->
+                                <!--                                            </div>-->
+                                <!--                                            <p>-->
+                                <!--                                                {{ review.user.first_name }}-->
+                                <!--                                                {{ review.user.last_name }}-->
+                                <!--                                            </p>-->
+                                <!--                                        </div>-->
+                                <!--                                        <div class="author__right">-->
+                                <!--                                            <Stars-->
+                                <!--                                                :stars="-->
+                                <!--                                                    houseRating(-->
+                                <!--                                                        review-->
+                                <!--                                                    ).toFixed(1)-->
+                                <!--                                                "-->
+                                <!--                                                bg-star="#B1B1B1"-->
+                                <!--                                            />-->
+                                <!--                                            <p-->
+                                <!--                                                style="-->
+                                <!--                                                    margin-left: 2px;-->
+                                <!--                                                    font-size: 12px;-->
+                                <!--                                                    font-weight: 400;-->
+                                <!--                                                    line-height: 160%;-->
+                                <!--                                                "-->
+                                <!--                                            >-->
+                                <!--                                                {{-->
+                                <!--                                                    houseRating(-->
+                                <!--                                                        review-->
+                                <!--                                                    ).toFixed(1)-->
+                                <!--                                                }}-->
+                                <!--                                            </p>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="content">-->
+                                <!--                                        <p-->
+                                <!--                                            :id="'reviewNumber' + review.id"-->
+                                <!--                                            class="description"-->
+                                <!--                                        >-->
+                                <!--                                            {{ review.review }}-->
+                                <!--                                        </p>-->
+                                <!--                                        <span-->
+                                <!--                                            :id="'showMoreNumber' + review.id"-->
+                                <!--                                            class="showMore show-more-button"-->
+                                <!--                                            @click="showFullReview(review.id)"-->
+                                <!--                                        >{{-->
+                                <!--                                                lang().label.lesson_detail-->
+                                <!--                                                    .show_more-->
+                                <!--                                            }}</span-->
+                                <!--                                        >-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                             </div>
                             <span
                                 v-show="
@@ -814,40 +561,19 @@ const handleShareSocial = () => {
                                     v-for="socialItem in socialItems"
                                     :key="socialItem.label"
                                 >
-<!--                                    <ShareSocial-->
-<!--                                        :social="socialItem.social"-->
-<!--                                        :url="currentUrl"-->
-<!--                                        :title="props.lessons.title"-->
-<!--                                        :description="-->
-<!--                                            props.lessons-->
-<!--                                                .short_description_for_parent-->
-<!--                                        "-->
-<!--                                    />-->
+                                    <ShareSocial
+                                        :social="socialItem.social"
+                                        :url="currentUrl"
+                                        :title="props.house?.name"
+                                        :description="props.house?.description"
+                                    />
                                 </div>
-<!--                                <ShareSocial :url-copy="currentUrl" />-->
+                                <ShareSocial :url-copy="currentUrl" />
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-            <Modal
-                :show-modal="formVideo.isOpen"
-                @close="formVideo.isOpen = false"
-            >
-                <div class="videoShow">
-                    <!-- <video
-                    :src="props.lessons.short_video_for_parent"
-                    controls
-                    v-if="formVideo.role == 'parent'"
-                ></video> -->
-                    <video
-                        v-if="formVideo.role === 'child'"
-                        :src="props.lessons.short_video_for_learner"
-                        controls
-                        autoplay
-                    ></video>
-                </div>
-            </Modal>
         </Layout>
     </div>
 </template>

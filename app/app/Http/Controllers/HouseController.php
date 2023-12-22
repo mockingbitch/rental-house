@@ -120,6 +120,8 @@ class HouseController extends Controller
     }
 
     /**
+     * Update status
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -148,6 +150,8 @@ class HouseController extends Controller
     }
 
     /**
+     * Detail home
+     *
      * @param string|null $id
      * @return Response
      */
@@ -155,7 +159,7 @@ class HouseController extends Controller
     {
         $house = $this->houseRepository
             ->findByWithRelationship(
-                ['rooms', 'lessor'],
+                ['rooms', 'lessor', 'province', 'district', 'ward'],
                 ['id' => $id],
                 true
             );

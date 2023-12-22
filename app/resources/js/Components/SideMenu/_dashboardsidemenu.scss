@@ -11,7 +11,7 @@
     border-right: 1px solid #f4f4f4;
     padding: 32px 16px;
     gap: 16px;
-    
+
     .side-menu-content {
         flex-direction: column;
         gap: 8px;
@@ -27,7 +27,7 @@
 
         .isCurrentTab {
             background-color: #e1eff2;
-            color: #418997;
+            color: #5392f9;
             padding: 8px;
             font-weight: 700;
             border-radius: 4px;
@@ -56,10 +56,10 @@
 }
 :deep(.isCurrentTab) {
     .side-menu-content-item-left {
-            svg {
-                path {
-                    fill: #418997 !important
-                }
+        svg {
+            path {
+                fill: #5392f9 !important;
             }
         }
+    }
 }
