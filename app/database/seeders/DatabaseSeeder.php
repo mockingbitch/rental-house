@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-        ]);
+        $this->call(CategoriesSeeder::class);
+        $this->call(HouseSeeder::class);
+        $this->call(RoomSeeder::class);
     }
 }

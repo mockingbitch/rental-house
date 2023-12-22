@@ -91,7 +91,7 @@ const imageUrlAlt = (event) => {
                         </div>
                         <div v-if="house.rooms[0]" class="age">
                             <p>
-                                Capacity:
+                                {{ lang().label.top.capacity }}:
                                 {{ sortArrayByCapacity(house.rooms)[0]?.capacity }}
                                 -
                                 {{ sortArrayByCapacity(house.rooms)[house.rooms.length - 1]?.capacity }}

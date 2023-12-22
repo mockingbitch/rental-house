@@ -56,13 +56,13 @@ const isSearchPage = computed(() => {
                         <input
                             class="pc searchInput"
                             type="text"
-                            placeholder="Search here ..."
+                            :placeholder="lang().label.header.search_here"
                             readonly
                         />
                         <textarea
                             class="mobile searchInput"
                             type="text"
-                            placeholder="Search here ..."
+                            :placeholder="lang().label.header.search_here"
                         ></textarea>
                     </div>
                     <button class="buttonImage right" @click="toggleSearch">
@@ -75,21 +75,21 @@ const isSearchPage = computed(() => {
                         :href="route('login.method')"
                         class="buttonHeader"
                     >
-                        Sign in
+                        {{ lang().label.header.sign_in }}
                     </Link>
                     <Link
                         v-if="!$page.props.auth.user"
                         :href="route('register.method')"
                         class="buttonHeader green"
                     >
-                        Join
+                        {{ lang().label.header.join }}
                     </Link>
                     <Link
                         v-if="$page.props.auth.user && !props.isReviewForm"
                         :href="route('logout')"
                         class="buttonHeader"
                     >
-                        Logout
+                        {{ lang().label.header.logout }}
                     </Link>
                     <!-- <button class="buttonImage">
                         <img src="/img/icon/List.svg" alt="" />

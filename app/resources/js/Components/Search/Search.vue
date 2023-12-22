@@ -208,29 +208,29 @@ const handleClose = () => {
     <form class="form form-search" @submit.prevent="submit">
         <div class="form__wrap filter__form-wrapper">
             <SubHeader
-                :label="'Search'"
+                :label="lang().label.search.search"
                 is-close
                 @close="handleClose"
             />
             <div class="form__wrap-item" style="margin-top: 14.5px">
                 <label for="Title">
-                    <span class="title-text">Keyword</span>
+                    <span class="title-text">{{ lang().label.search.keyword }}</span>
                 </label>
                 <input
                     v-model="formSearch.keyword"
                     :class="`form__input ${formSearch.keyword && 'fillInput'}`"
                     type="text"
                     name="text-search"
-                    :placeholder="'Keyword search'"
+                    :placeholder="lang().label.search.placeholder_keyword"
                 />
             </div>
             <TripleSelect
                 v-model:selected1="formSearch.province"
                 v-model:selected2="formSearch.district"
                 v-model:selected3="formSearch.ward"
-                :label1="'Address'"
-                :label2="'District'"
-                :label3="'Ward'"
+                :label1="lang().label.search.address"
+                :label2="lang().label.search.district"
+                :label3="lang().label.search.ward"
                 :options1="listProvince"
                 :options2="listDistrict"
                 :options3="listWard"
@@ -240,32 +240,32 @@ const handleClose = () => {
                 :fill-input-condition1="formSearch.province"
                 :fill-input-condition2="formSearch.district"
                 :fill-input-condition3="formSearch.ward"
-                :placeholder1="'Province'"
-                :placeholder2="'District'"
-                :placeholder3="'Ward'"
+                :placeholder1="lang().label.search.province"
+                :placeholder2="lang().label.search.district"
+                :placeholder3="lang().label.search.ward"
             />
             <DoubleSelect
                 v-model:selected1="formSearch.start_draft_price"
                 v-model:selected2="formSearch.finish_draft_price"
-                :label1="'Min price'"
-                :label2="'Max price'"
+                :label1="lang().label.search.min_price"
+                :label2="lang().label.search.max_price"
                 :options1="minPriceRange"
                 :options2="maxPriceRange"
-                :text-to="'to'"
+                :text-to="lang().label.search.to"
                 icon="/img/icon/Wallet.svg"
                 unit=" VND"
                 :fill-input-condition1="formSearch.start_draft_price"
                 :fill-input-condition2="formSearch.finish_draft_price"
-                :placeholder1="'Enter min price'"
-                :placeholder2="'Enter max price'"
+                :placeholder1="lang().label.search.placeholder_min_price"
+                :placeholder2="lang().label.search.placeholder_max_price"
             />
             <SingleSelect
                 v-model:selected1="formSearch.category"
-                :label1="'Category'"
+                :label1="lang().label.search.category"
                 :options1="listCategory"
                 icon="/img/icon/category-icon.svg"
                 unit=""
-                :placeholder1="'Select category'"
+                :placeholder1="lang().label.search.placeholder_category"
             />
 
 <!--            <div class="form__wrap-item">-->
@@ -321,7 +321,7 @@ const handleClose = () => {
             <div class="space"></div>
             <div class="search-button">
                 <a href="#" @click="handleResetForm">
-                    Clear
+                    {{ lang().label.search.clear_form }}
                 </a>
                 <button type="submit" class="mainButton" @click="handleSearch">
                     <svg
@@ -336,7 +336,7 @@ const handleClose = () => {
                             fill="#FFF"
                         />
                     </svg>
-                    <p>Search</p>
+                    <p>{{ lang().label.search.search }}</p>
                 </button>
             </div>
             <Modal :show-modal="isOpenSelectPrice" @close="closeSelectPrice">

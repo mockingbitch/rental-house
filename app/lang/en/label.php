@@ -65,4 +65,74 @@ return [
             'category_id'   => 'Category',
         ]
     ],
+
+    'side_menu'   => [
+        'log_in_email'      => 'Log in using your email address',
+        'log_in_google'     => 'Log in from Google',
+        'forgot_password'   => 'Forgot your password?',
+        'here'              => 'here',
+        'new_registration'  => 'Easy! Click here for new registration',
+        'apply_lessor'      => 'Click here to apply as a lessor！',
+        'button_become_fun'         => 'Become a Rentalhouse\'s lessor and have fun!！',
+        'button_become'             => 'Become a Rentalhouse\'s lessor！',
+        'profile_setting'           => 'Profile setting',
+        'management'                => 'Management',
+        'request'                   => 'Request',
+        'notification'              => 'Notification',
+        'language_select'           => 'Language Select',
+        'contact'                   => 'Contact',
+        'logout'                    => 'Logout',
+        'company'                   => 'Company',
+        'term_service'              => 'Term of Services',
+        'privacy'                   => 'Privacy policy',
+        'description_base'          => 'Description based on SCTL',
+        'select_your_language'      => 'Select your language',
+
+    ],
+
+    'top'   => [
+        'capacity'              => 'Capacity',
+    ],
+
+    'search'        => [
+        'search'                => 'Search',
+        'keyword'               => 'Keyword',
+        'placeholder_keyword'   => 'Keyword search',
+        'address'               => 'Address',
+        'district'              => 'District',
+        'ward'                  => 'Ward',
+        'province'              => 'Province',
+        'min_price'             => 'Min price',
+        'max_price'             => 'Max price',
+        'to'                    => 'to',
+        'placeholder_min_price' => 'Enter min price',
+        'placeholder_max_price' => 'Enter max price',
+        'category'              => 'Category',
+        'placeholder_category'  => 'Select category',
+        'clear_form'            => 'Clear',
+        'search'                => 'Search',
+
+    ],
+
+    'search_result'     => [
+        'title'                 => 'Title',
+        'houses'                => 'houses',
+        'house'                 => 'house',
+        'found'                 => 'found',
+        'price'                 => 'Price',
+        'capacity'              => 'Capacity',
+        'type'                  => 'Type',
+        'no_result'             => 'No result found',
+        'related_house'         => 'Related house',
+        'person'                => 'person',
+
+    ],
+
+    'header'        => [
+        'search_here'       => 'Search here...',
+        'sign_in'           => 'Sign in',
+        'join'              => 'Join',
+        'logout'            => 'Logout',
+
+    ]
 ];

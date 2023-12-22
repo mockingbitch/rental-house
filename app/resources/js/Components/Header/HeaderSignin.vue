@@ -51,19 +51,19 @@ const handelBack = () => {
                         v-if="!$page.props.auth.user"
                         :href="route('login.method')"
                         class="buttonHeader"
-                        >Sign in</Link
+                        >{{ lang().label.header.sign_in }}</Link
                     >
                     <Link
                         v-if="!$page.props.auth.user"
                         :href="route('register.method')"
                         class="buttonHeader green"
-                        >Join</Link
+                        >{{ lang().label.header.join }}</Link
                     >
                     <Link
                         v-if="$page.props.auth.user"
                         :href="route('logout')"
                         class="buttonHeader"
-                        >Logout</Link
+                        >{{ lang().label.header.logout }}</Link
                     >
                     <!-- <button class="buttonImage">
                         <img src="/img/icon/List.svg" alt="" />

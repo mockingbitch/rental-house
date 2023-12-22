@@ -64,7 +64,7 @@ onMounted(() => {
                         src="/img/icon/email.svg"
                         alt=""
                     />
-                    <div>Log in using your email address</div>
+                    <div>{{ lang().label.side_menu.log_in_email }}</div>
                 </Link>
                 <Link
                     :href="route('login.google')"
@@ -74,18 +74,18 @@ onMounted(() => {
                         class="side-menu-header-button-icon"
                         src="/img/icon/google.svg"
                     />
-                    <div>Log in from Google</div>
+                    <div>{{ lang().label.side_menu.log_in_google }}</div>
                 </Link>
                 <div
                     class="d-flex align-items-center justify-content-center side-menu-header-button noneLoginDots"
                 >
                     <div>
-                        Forgot your password?
+                        {{ lang().label.side_menu.forgot_password }}
                         <Link
                             :href="route('top')"
                             class="side-menu-header-button-text-link"
                         >
-                        here
+                        {{ lang().label.side_menu.here }}
                         </Link>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ onMounted(() => {
                             class="d-flex align-items-center justify-content-center noneLoginDots"
                             style="font-weight: 700"
                         >
-                            <div>Easy! Click here for new registration</div>
+                            <div>{{ lang().label.side_menu.new_registration }}</div>
                         </div>
                     </div>
 
@@ -168,9 +168,9 @@ onMounted(() => {
                             class="d-flex flex-column justify-content-center noneLoginDots"
                             style="font-weight: 700"
                         >
-                            <div>Click here to apply as a lessor！</div>
+                            <div>{{ lang().label.side_menu.apply_lessor }}</div>
                             <div class="side-menu-header-button-subtitle">
-                                Become a Rentalhouse's lessor and have fun!！
+                                {{ lang().label.side_menu.button_become_fun }}
                             </div>
                         </div>
                     </div>
@@ -278,7 +278,7 @@ onMounted(() => {
                             fill="white"
                         />
                     </svg>
-                    <div>Become a Rentalhouse's lessor！</div>
+                    <div>{{ lang().label.side_menu.button_become }}</div>
                 </div>
             </Link>
             <div class="d-flex side-menu-content">
@@ -302,7 +302,7 @@ onMounted(() => {
                                 fill="#1B1B1B"
                             />
                         </svg>
-                        <div>Profile setting</div>
+                        <div>{{ lang().label.side_menu.profile_setting }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -329,7 +329,7 @@ onMounted(() => {
                                 fill="#1B1B1B"
                             />
                         </svg>
-                        <div>Profile setting</div>
+                        <div>{{ lang().label.side_menu.profile_setting }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -347,7 +347,7 @@ onMounted(() => {
                             src="/img/icon/MultiLanguage/tree-reserved.svg"
                             alt=""
                         />
-                        <div>Management</div>
+                        <div>{{ lang().label.side_menu.management }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -362,7 +362,7 @@ onMounted(() => {
                         class="d-flex align-items-center side-menu-content-item-left"
                     >
                         <img src="/img/icon/MultiLanguage/request.svg" alt="" />
-                        <div>リクエスト</div>
+                        <div>{{ lang().label.side_menu.request }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -388,7 +388,7 @@ onMounted(() => {
                                 fill="#1B1B1B"
                             />
                         </svg>
-                        <div>通知</div>
+                        <div>{{ lang().label.side_menu.notification }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -406,7 +406,7 @@ onMounted(() => {
                         <img
                             src="/img/icon/MultiLanguage/earth-multilang.svg"
                         />
-                        <div>Language Select</div>
+                        <div>{{ lang().label.side_menu.language_select }}</div>
                     </div>
                     <div class="d-flex align-items-center">
                         <img
@@ -463,7 +463,7 @@ onMounted(() => {
                                 fill="#1B1B1B"
                             />
                         </svg>
-                        <div>Contact</div>
+                        <div>{{ lang().label.side_menu.contact }}</div>
                     </div>
                     <img
                         src="/img/icon/MultiLanguage/caret-right-multilang.svg"
@@ -490,7 +490,7 @@ onMounted(() => {
                                 fill="#1B1B1B"
                             />
                         </svg>
-                        <Link :href="route('logout')">Logout</Link>
+                        <Link :href="route('logout')">{{ lang().label.side_menu.logout }}</Link>
                     </div>
                 </div>
             </div>
@@ -498,15 +498,15 @@ onMounted(() => {
             <div v-if="isMobile || props.userInfo?.role != 'LESSOR'" class="side-menu-footer d-flex align-items-center">
                 <div class="side-menu-footer-title d-flex flex-column">
                     <div class="d-flex side-menu-footer-title-wrap flex-row justify-content-center">
-                        <div class="footer-text">Company</div>
+                        <div class="footer-text">{{ lang().label.side_menu.company }}</div>
                         <div>・</div>
-                        <div class="footer-text">Term of Services</div>
+                        <div class="footer-text">{{ lang().label.side_menu.term_service }}</div>
                     </div>
                     <div class="d-flex side-menu-footer-title-wrap flex-row justify-content-center">
-                        <div class="footer-text">Privacy policy</div>
+                        <div class="footer-text">{{ lang().label.side_menu.privacy }}</div>
                         <div>・</div>
                         <div class="footer-text">
-                            Description based on SCTL</div>
+                            {{ lang().label.side_menu.description_base }}</div>
                     </div>
                 </div>
                 <img
@@ -545,7 +545,7 @@ onMounted(() => {
                 <div class="select-language-item-text">OK</div>
             </div>
             <div class="select-language-content-wrap d-flex flex-column mb-4">
-                <div class="select-language-title">Select your language</div>
+                <div class="select-language-title">{{ lang().label.side_menu.select_your_language }}</div>
                 <div
                     v-for="language in languages"
                     :key="language.id"
