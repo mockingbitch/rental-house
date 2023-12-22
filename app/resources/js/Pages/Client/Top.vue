@@ -11,6 +11,7 @@ import { priceFormat } from "@/Helper/CurrencyHelper";
 import { sortArrayByPrice, sortArrayByCapacity } from "@/Helper/SortHelper";
 
 const props = defineProps({
+    // eslint-disable-next-line vue/require-default-prop
     houses: Array,
 });
 
@@ -45,6 +46,7 @@ const imageUrlAlt = (event) => {
                         v-for="(house, index) in listHouse"
                         :key="index"
                         class="item"
+                        :href="route('house.detail', house.id)"
                     >
                         <div class="image">
                             <img
@@ -95,6 +97,16 @@ const imageUrlAlt = (event) => {
                                 {{ sortArrayByCapacity(house.rooms)[0]?.capacity }}
                                 -
                                 {{ sortArrayByCapacity(house.rooms)[house.rooms.length - 1]?.capacity }}
+                            </p>
+                        </div>
+                        <div v-if="house.rooms[0]" class="age">
+                            <p>
+                                Room available: {{ house?.rooms?.length }}
+                            </p>
+                        </div>
+                        <div v-else class="age">
+                            <p>
+                                {{ lang().label.house.status.not_available }}
                             </p>
                         </div>
                     </Link>

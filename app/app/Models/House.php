@@ -56,4 +56,40 @@ class House extends Model
     {
         return $this->hasMany(\App\Models\Room::class, 'house_id');
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(
+            \App\Models\Address\Province::class,
+            'province_code',
+            'code'
+        );
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(
+            \App\Models\Address\District::class,
+            'district_code',
+            'code'
+        );
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function ward(): BelongsTo
+    {
+        return $this->belongsTo(
+            \App\Models\Address\Ward::class,
+            'ward_code',
+            'code'
+        );
+    }
 }

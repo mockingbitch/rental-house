@@ -16,7 +16,7 @@
             </Link>
             <button v-else class="close-btn" type="button" @click="handleClose">
                 <div v-if="isDashboard">
-                    <img v-if="!isClose" src="/img/icon/CaretLeftLight.svg" alt="" />
+                    <img v-if="!isClose" src="/img/icon/CaretLeft.svg" alt="" />
                     <img v-else src="/img/icon/close-white.svg" alt="" />
                 </div>
                 <div v-else style="height: 32px;">
@@ -53,7 +53,7 @@ const props = defineProps({
         type: String,
         default: "",
     },
-    showLogoSp: { // true: show the Dottress logo
+    showLogoSp: {
         type: Boolean,
         default: false,
     },

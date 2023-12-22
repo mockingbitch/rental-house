@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Room extends Model
+class Request extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -21,22 +19,25 @@ class Room extends Model
      */
     protected $fillable = [
         'id',
-        'house_id',
-        'name',
-        'description',
-        'floor',
-        'images',
-        'price',
-        'capacity',
-        'status',
-        'tags',
+        'summary',
+        'category_id',
+        'user_id',
+        'min_price',
+        'max_price',
+        'min_capacity',
+        'max_capacity',
+        'detail',
+        'status'
     ];
 
     /**
      * @return BelongsTo
      */
-    public function house(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\House::class, 'house_id');
+        return $this->belongsTo(
+            \App\Models\Category::class,
+            'category_id'
+        );
     }
 }

@@ -27,7 +27,7 @@ class HouseRepository extends BaseRepository implements HouseRepositoryInterface
         $query = $this->model
             ->select('houses.*')
             ->distinct()
-            ->with(['lessor', 'rooms', 'category']);
+            ->with(['lessor', 'rooms', 'category', 'province', 'district', 'ward']);
         if (isset($data['keyword'])) :
             $query = $query->where(
                 'houses.name',

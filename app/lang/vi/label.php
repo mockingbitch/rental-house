@@ -15,12 +15,14 @@ return [
             'address'               => 'Địa chỉ',
         ],
     ],
+
     'login' => [
         'title'     => 'Đăng nhập',
         'hint'      => 'Hint hint hint hint',
         'note'      => 'Note note note note',
         'button'    => 'Đăng nhập',
     ],
+
     'register' => [
         'title'                 => 'Đăng lý',
         'note_email'            => '(Giả định) Sau khi hoàn tất đăng ký tài khoản, bạn có thể thay đổi email của mình',
@@ -133,5 +135,23 @@ return [
         'join'        => 'Tham gia',
         'logout'      => 'Đăng xuất',
 
-    ]
+    ],
+
+    'house' => [
+        'field' => [
+            'name'          => 'House name',
+            'description'   => 'Description',
+            'province_code' => 'Province',
+            'district_code' => 'District',
+            'ward_code'     => 'Ward',
+            'address'       => 'Address',
+            'thumbnail'     => 'Thumbnail',
+            'category_id'   => 'Danh mục',
+            'capacity'      => 'Phòng cho',
+            'price'         => 'Giá',
+        ],
+        'status' => [
+            'not_available' => 'Chưa khả dụng',
+        ]
+    ],
 ];

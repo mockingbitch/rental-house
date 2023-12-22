@@ -113,7 +113,7 @@
 }
 
 .result__description-wrapper {
-    height: calc(19px * 4);
+    height: calc(19px * 2);
 }
 .result__description {
     font-size: 12px;
@@ -209,7 +209,7 @@
         font-weight: 700;
         line-height: 19px;
         letter-spacing: -0.01em;
-        color: #418997;
+        color: #5392f9;
     }
 }
 
@@ -324,10 +324,10 @@
         font-size: 12px;
         font-weight: 700;
         .rating-star {
-            color: #418997;
+            color: #5392f9;
         }
         .rating-count {
-            color: #1B1B1B;
+            color: #1b1b1b;
         }
     }
 }

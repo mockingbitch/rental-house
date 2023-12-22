@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -109,5 +110,15 @@ Route::controller(RoomController::class)->group(function () {
         Route::post('room', 'create')->name('lessor.room.create');
         Route::get('room/{id}/delete', 'delete')->name('lessor.room.delete');
         // Route::post('room', 'create')->name('lessor.room.create');
+    });
+    Route::get('room/{id}/detail', 'detailRoom')->name('room.detail');
+});
+
+Route::controller(RequestController::class)->group(function () {
+    Route::prefix('request')->group(function () {
+        Route::get('/', 'list')->name('request.index');
+        Route::get('/create', 'create')->name('request.create');
+        Route::post('/create', 'store')->name('request.create.store');
+        Route::delete('/delete/{id}', 'delete')->name('request.delete');
     });
 });

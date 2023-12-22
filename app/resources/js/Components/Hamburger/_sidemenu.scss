@@ -58,22 +58,22 @@
         .side-menu-header-button-text-link {
             font-weight: 700;
             text-decoration: underline;
-            color: #418997;
+            color: #5392f9;
         }
     }
 
     .isTeacher {
-        color: #418997;
-        border: 1px solid #418997;
+        color: #5392f9;
+        border: 1px solid #5392f9;
     }
     .isUser {
         color: #fff;
-        background-color: #418997;
+        background-color: #5392f9;
         border: none;
     }
     .noneLogin {
         color: #fff;
-        background-color: #418997;
+        background-color: #5392f9;
         border: none;
     }
     .noneLoginGoogle {
@@ -82,7 +82,7 @@
     }
     .noneLoginDots {
         border: none;
-        color: #418997;
+        color: #5392f9;
     }
     .side-menu-content {
         flex-direction: column;
@@ -112,7 +112,7 @@
             padding: 16px 0px;
             gap: 24px;
             .side-menu-footer-title-wrap {
-                gap: 4px
+                gap: 4px;
             }
             .footer-text {
                 text-decoration: underline;
@@ -132,7 +132,7 @@
         position: relative;
         .select-language-item-text {
             position: absolute;
-            color: #418997;
+            color: #5392f9;
             font-size: 16px;
             font-weight: 700;
             right: 24px;
