@@ -123,7 +123,7 @@ export default defineComponent({
                         <button class="buttonImage" @click="toggleSearch">
                             <img src="/img/icon/arrownLeft.svg" alt="" />
                         </button>
-                        <h2>Title</h2>
+                        <h2>{{ lang().label.search_result.title }}</h2>
                         <!-- <button class="buttonImage" @click="toggleSearch">
                             <img src="/img//icon/Category.svg" alt="" />
                         </button> -->
@@ -139,8 +139,8 @@ export default defineComponent({
                         <div v-if="houses.length > 0" class="result-quantity">
                             <span>
                                 {{ houses.length }}
-                                {{ houses.length > 1 ? 'houses' : 'house' }}
-                                found
+                                {{ houses.length > 1 ? lang().label.search_result.houses : lang().label.search_result.house }}
+                                {{ lang().label.search_result.found }}
                             </span>
                         </div>
                         <div
@@ -272,11 +272,11 @@ export default defineComponent({
                                         <div v-else class="result__info-top">
                                             <p>
                                                 <span>
-                                                    Contact for more
+                                                    {{ lang().label.search_result.contact_more }}
                                                 </span>
                                             </p>
                                         </div>
-                                        <p>Price</p>
+                                        <p>{{ lang().label.search_result.price }}</p>
                                     </div>
                                 </li>
                                 <li class="result__info-box">
@@ -286,18 +286,19 @@ export default defineComponent({
                                                 <span>
                                                     {{ sortArrayByCapacity(house?.rooms)[0]?.capacity }}
                                                     -
-                                                    {{ sortArrayByCapacity(house?.rooms)[house?.rooms?.length - 1]?.capacity }} Person
+                                                    {{ sortArrayByCapacity(house?.rooms)[house?.rooms?.length - 1]?.capacity }}
+                                                    {{ lang().label.search_result.person }}
                                                 </span>
                                             </p>
                                         </div>
                                         <div v-else class="result__info-top">
                                             <p>
                                                 <span>
-                                                    Contact for more
+                                                    {{ lang().label.search_result.contact_more }}
                                                 </span>
                                             </p>
                                         </div>
-                                        <p>Capacity</p>
+                                        <p>{{ lang().label.search_result.capacity }}</p>
                                     </div>
                                 </li>
                                 <li class="result__info-box">
@@ -309,7 +310,7 @@ export default defineComponent({
                                                 </span>
                                             </p>
                                         </div>
-                                        <p>Type</p>
+                                        <p>{{ lang().label.search_result.type }}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -325,12 +326,12 @@ export default defineComponent({
                             <img src="/img/icon/house.svg" alt="" />
                         </div>
                         <p class="noData__desc-text">
-                            No result found
+                            {{ lang().label.search_result.no_result }}
                         </p>
                     </div>
                     <div class="bottom">
                         <h2 class="suggest__title-text">
-                            Related house
+                            {{ lang().label.search_result.related_house }}
                         </h2>
                         <div class="topScreen">
                             <div class="topScreen__wrap">
