@@ -29,16 +29,16 @@ class User extends Authenticatable
         'password',
         'description',
         'avatar',
-        'ward_id',
+        'province_code',
+        'district_code',
         'ward_code',
         'status',
-        'country_id',
-        'city_id',
         'vendor',
         'region',
         'remember_token',
         'email_verified_at',
         'birthday',
+        'verify_lessor',
     ];
 
     /**
@@ -83,7 +83,7 @@ class User extends Authenticatable
     //     return 'User.'.$this->id;
     // }
 
-    public function ward() 
+    public function ward()
     {
         return $this->belongsTo(Ward::class, 'ward_code', 'code');
     }

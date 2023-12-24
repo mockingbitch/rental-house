@@ -33,7 +33,7 @@
             <img
                 v-if="showLogoSp"
                 :class="{logo_sp: showLogoSp}"
-                src="../../../../public/img/icon/dottressRequest.svg"
+                src="/img/logo/RentalHouse.svg"
                 alt=""
             />
         </div>

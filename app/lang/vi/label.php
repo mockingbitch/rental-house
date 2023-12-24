@@ -156,11 +156,10 @@ return [
         'contact_email'   => 'Liên hệ email',
         'rooms'           => 'Phòng',
         'description'     => 'Mô tả',
-        'check'           => 'Kiểm tra',
+        'check'           => 'Xem',
         'review'          => 'Đánh giá',
 
     ],
-
     'room_detail'      => [
         'room'            => 'Phòng',
         'share_social'    => 'Chia sẻ qua mạng xã hội',

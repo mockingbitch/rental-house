@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
@@ -11,6 +13,7 @@ use App\Repositories\User\UserRepositoryInterface;
 use App\Services\FileService;
 use App\Services\MailService;
 use Carbon\Carbon;
+use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Enum\UserEnum;
@@ -21,6 +24,7 @@ class UserController extends Controller
 {
     /**
      * @param UserRepositoryInterface $userRepository
+     * @param WardRepositoryInterface $wardRepository
      * @param FileService $fileService
      * @param MailService $mailService
      */
@@ -52,10 +56,10 @@ class UserController extends Controller
 
     /**
      * @Route post("/user-information" name="account.info")
-     * @param UserRequest $request
+     * @param UserInfoRequest $request
      * @throws ValidationException
      */
-    public function updateUserInformation(UserInfoRequest $request)
+    public function updateUserInformation(UserInfoRequest $request): void
     {
         $data = $request->all();
         try {
@@ -95,7 +99,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function setupUserSuccessfully()
+    public function setupUserSuccessfully(): Response
     {
         return Inertia::render('Auth/AccountInformation/SetupSuccessfully');
     }
@@ -103,9 +107,9 @@ class UserController extends Controller
     /**
      * @Route get("/admin/user-index" name="admin.user.index")
      *
-     * @return View
+     * @return RedirectResponse|View
      */
-    public function userIndex()
+    public function userIndex(): RedirectResponse|View
     {
         $user = auth()->user();
         if (! $user):
@@ -121,7 +125,7 @@ class UserController extends Controller
         endforeach;
 
         $wards = $this->wardRepository->all();
-        
+
         return view('user.list', [
             'users' => $users,
             'wards' => $wards,
@@ -130,8 +134,9 @@ class UserController extends Controller
 
     /**
      * @Route post("/admin/user/update" name="admin.user.update")
+     * @throws ValidationException
      */
-    public function updateUserInfoByAdmin(UserUpdateByAdminRequest $request)
+    public function updateUserInfoByAdmin(UserUpdateByAdminRequest $request): JsonResponse
     {
         $data = $request->all();
         try {
@@ -150,13 +155,13 @@ class UserController extends Controller
                 $data[UserConstant::COL_ID],
                 $data
             );
-            
+
             if ($user):
                 return response()->json([
                     'user' => $user,
                     'errCode' => 0,
                     'message' => 'Update successfully!',
-                ], 200); 
+                ], 200);
             else:
                 return response()->json([
                     'errCode' => 1,

@@ -26,9 +26,9 @@ const handleBackToDashboard = () => {
                 <div
                     class="content d-flex flex-column justify-content-center align-items-center"
                 >
-                    <span>あいうえおあいうえおあいうえおあいうえお </span>
-                    <span> あいうえおあいうえおあいうえお</span>
-                    <span>あいうえおあいうえおあいうえおあいうえおあいうえお。</span>
+                    <span>Apply success fully</span>
+                    <span>Please check your information!</span>
+                    <span>Thank for your registration</span>
                 </div>
             </div>
             <div

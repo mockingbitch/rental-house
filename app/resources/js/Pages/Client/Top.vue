@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import Layout from "@/Layouts/Layout.vue";
 import Category from "@/Components/Category/Category.vue";
 import Banner from "@/Components/Banner/Banner.vue";
@@ -14,10 +14,9 @@ const props = defineProps({
     // eslint-disable-next-line vue/require-default-prop
     houses: Array,
 });
-
-const showModal = ref(false);
 const listHouse = ref(props.houses);
-
+console.log(usePage().props?.locale);
+console.log('test')
 const handleSearch = (category) => {
     if (category) {
         listHouse.value = props.houses.filter(
@@ -101,6 +100,12 @@ const imageUrlAlt = (event) => {
                         </div>
                         <div v-if="house.rooms[0]" class="age">
                             <p>
+                                Địa chỉ:
+                                {{ house?.full_address }}
+                            </p>
+                        </div>
+                        <div v-if="house.rooms[0]" class="age">
+                            <p>
                                 {{ lang().label.top.room_available }}: {{ house?.rooms?.length }}
                             </p>
                         </div>
@@ -118,4 +123,7 @@ const imageUrlAlt = (event) => {
 
 <style lang='scss' scoped>
 @import './top';
+.item:hover {
+    box-shadow: 5px 5px 5px grey;
+}
 </style>

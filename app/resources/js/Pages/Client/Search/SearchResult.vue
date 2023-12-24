@@ -189,6 +189,48 @@ export default defineComponent({
                                     </span>
                                 </div>
                             </div>
+                            <div
+                                v-if="dataSearch['province']"
+                                class="slide filter__wrapper carousel-cell"
+                                @click="toggleSearch"
+                            >
+                                <i class="filter__icon">
+                                    <img src="/img/icon/address.svg" alt="">
+                                </i>
+                                <div class="header-category_item_title">
+                                    <span class="day-text">
+                                        {{ dataSearch['province'] }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div
+                                v-if="dataSearch['district']"
+                                class="slide filter__wrapper carousel-cell"
+                                @click="toggleSearch"
+                            >
+                                <i class="filter__icon">
+                                    <img src="/img/icon/address.svg" alt="">
+                                </i>
+                                <div class="header-category_item_title">
+                                    <span class="day-text">
+                                        {{ dataSearch['district'] }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div
+                                v-if="dataSearch['ward']"
+                                class="slide filter__wrapper carousel-cell"
+                                @click="toggleSearch"
+                            >
+                                <i class="filter__icon">
+                                    <img src="/img/icon/address.svg" alt="">
+                                </i>
+                                <div class="header-category_item_title">
+                                    <span class="day-text">
+                                        {{ dataSearch['ward'] }}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

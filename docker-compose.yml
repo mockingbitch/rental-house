@@ -4,11 +4,12 @@ services:
     build: docker/worker
     container_name: rental_house_worker
     working_dir: /var/www/html
+    tty: true
     volumes:
       - ./app/:/var/www/html
       - ./docker/worker/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini
-#    command: [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=1215", "&&", "npm", "run", "dev" ]
-    command: sh -c 'php artisan octane:start --host=0.0.0.0 --port=1215 && npm run dev'
+    command: [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=1215" ]
+#    command: sh -c 'php artisan octane:start --host=0.0.0.0 --port=1215'
     ports:
       - "1215:1215" # Swoole port
       # - "9000:9000" # PHP-FPM port
@@ -40,14 +41,12 @@ services:
     volumes:
       - ./docker/data:/docker-entrypoint-initdb.d  #volume data
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-rentalhouse}
+      MYSQL_DATABASE: ${DB_DATABASE:-rentalhouses}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-password}
       MYSQL_PASSWORD: ${DB_PASSWORD:-password}
       MYSQL_USER: ${DB_USERNAME:-user}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-    expose:
-      - '3306'
     restart: unless-stopped
     networks:
       - app-network

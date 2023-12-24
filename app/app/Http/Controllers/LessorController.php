@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FileService;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -17,10 +19,13 @@ use App\Repositories\House\HouseRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use Inertia\Inertia;
 use Inertia\Response;
+use Mockery\Exception;
+use x\cache\File;
 
 class LessorController extends Controller
 {
     /**
+     * @param FileService $fileService
      * @param TagRepositoryInterface $tagRepository
      * @param UserRepositoryInterface $userRepository
      * @param RoomRepositoryInterface $roomRepository
@@ -28,6 +33,7 @@ class LessorController extends Controller
      * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
+        public FileService $fileService,
         public TagRepositoryInterface $tagRepository,
         public UserRepositoryInterface $userRepository,
         public RoomRepositoryInterface $roomRepository,
@@ -46,6 +52,22 @@ class LessorController extends Controller
 
     public function registerStep1(LessorRegistrationStep1 $request)
     {
+        $data = $request->all();
+        try {
+            if ($request->profileImage && gettype($request->profileImage) != 'string') :
+                $data['avatar'] = $this->fileService->storeFile(
+                    $request->profileImage,
+                    UserConstant::STORAGE_LINK_AVATAR
+                );
+            endif;
+            $data['birthday'] = Carbon::parse(
+                $data['year'] . '-' . $data['month'] . '-' . $data['day']
+            )->format('Y-m-d H:i:s');
+            $data['verify_lessor'] = 'VERIFYING';
+            $this->userRepository->update(auth()->user()->id, $data);
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 
     /**

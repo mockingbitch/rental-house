@@ -26,7 +26,7 @@
                 <div>書類イメージ1</div>
                 <div>
                     <img
-                        src="../../../../public/img/icon/ApplyToTeacher/IDCard1.svg"
+                        src="../../../../../public/img/icon/ApplyToTeacher/IDCard1.svg"
                         alt=""
                     />
                 </div>
@@ -35,15 +35,15 @@
                 <div>書類イメージ2</div>
                 <div>
                     <img
-                        src="../../../../public/img/icon/ApplyToTeacher/IDCard2.svg"
+                        src="../../../../../public/img/icon/ApplyToTeacher/IDCard2.svg"
                         alt=""
                     />
                 </div>
             </div>
             <ul class="note">
-                <li>・(仮)申請から承認までn日ほどかかります。</li>
-                <li>・(仮)申請の後、やり直しはできません。</li>
-                <li>・(仮)個人情報は〜なんとかなんとか。</li>
+                <li>・(Tentative) It will take about n days from application to approval.</li>
+                <li>・(Temporary) Once you apply, you cannot redo it.</li>
+                <li>・(Tentative) Personal information is ~ blah blah blah.</li>
             </ul>
             <div class="button-container">
                 <div

@@ -84,7 +84,7 @@
                             </td><td>
                                 <p class="text-xs text-secondary mb-0">{{$category->description_en}}</p>
                             </td><td>
-                                <p class="text-xs text-secondary mb-0">{{$category->icon}}</p>
+                                <p class="text-xs text-secondary mb-0">{!! $category->icon !!}</p>
                             </td><td>
                                 <p class="text-xs text-secondary mb-0">{{$category->status}}</p>
                             </td>

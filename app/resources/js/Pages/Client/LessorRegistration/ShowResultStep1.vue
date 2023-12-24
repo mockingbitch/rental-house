@@ -182,13 +182,14 @@ const handleBreadcrumbClick = (item) => {
             </div>
 
             <ul class="note" style="margin-top: 16px">
-                <li>・(仮)申請から承認までn日ほどかかります。</li>
-                <li>・(仮)申請の後、やり直しはできません。</li>
+                <li>・(Tentative) It will take about n days from application to approval.</li>
+                <li>・(Temporary) Once you apply, you cannot redo it.</li>
+                <li>・(Tentative) Personal information is ~ blah blah blah.</li>
             </ul>
             <div class="button-container">
                 <div
-                    class="create__request-button"
                     v-if="props.showButtonConfirm !== 2"
+                    class="create__request-button"
                 >
                     <div class="lineFull"></div>
                     <ButtonCommon

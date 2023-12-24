@@ -77,7 +77,7 @@ const handleClose = () => {
             <img
                 v-if="showLogoSp"
                 :class="{ logo_sp: showLogoSp }"
-                src="/img/icon/dottressRequest.svg"
+                src="/img/logo/RentalHouse.svg"
                 alt=""
             />
         </div>

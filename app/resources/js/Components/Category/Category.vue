@@ -21,7 +21,7 @@
                         v-html="category.icon"
                     ></div>
                     <div class="header-category_item_title title">
-                        {{ category.name_en }}
+                        {{ page?.locale === 'en' ? category?.name_en : category?.name_vi }}
                     </div>
                 </div>
             </swiper-slide>
@@ -34,9 +34,12 @@
 import { defineComponent, ref } from "vue";
 import { Pagination, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { usePage } from "@inertiajs/vue3";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
+
+const page = usePage().props;
 
 export default defineComponent({
     name: "SwiperExampleFreeMode",

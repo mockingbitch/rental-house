@@ -23,9 +23,10 @@ import { defineComponent } from "vue";
 import Flickity from "flickity";
 
 export default defineComponent({
-    name: "swiper-example-free-mode",
+    name: "SwiperExampleFreeMode",
     title: "Free mode / no fixed positions",
     components: {
+        // eslint-disable-next-line vue/no-unused-components
         Flickity,
     },
     data() {
@@ -35,42 +36,42 @@ export default defineComponent({
                 {
                     id: 0,
                     name: "banner-1",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/banner-1.jpeg",
                 },
                 {
                     id: 1,
                     name: "banner-2",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/homestay.jpeg",
                 },
-                { 
+                {
                     id: 2,
                     name: "banner-3",
-                    image: "/img/banner-1.jpeg" 
+                    image: "/img/banner/homestay1.png",
                 },
-                { 
+                {
                     id: 3,
                     name: "banner-4",
-                    image: "/img/banner-1.jpeg"
+                    image: "/img/banner/homestay2.png",
                 },
                 {
                     id: 4,
                     name: "banner-5",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/homestay3.png",
                 },
                 {
                     id: 5,
                     name: "banner-6",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/homestay.jpeg",
                 },
                 {
                     id: 6,
                     name: "banner-6",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/homestay2.png",
                 },
                 {
                     id: 7,
                     name: "banner-6",
-                    image: "/img/banner-1.jpeg",
+                    image: "/img/banner/homestay3.png",
                 },
             ],
             imagesLoaded: 0,

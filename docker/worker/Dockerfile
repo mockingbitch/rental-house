@@ -16,10 +16,10 @@ RUN docker-php-ext-enable swoole
 RUN docker-php-ext-configure pcntl --enable-pcntl \
   && docker-php-ext-install pcntl;
 
-# Install Nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
+## Install Nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+#RUN apt-get install -y nodejs
+#RUN apt-get install -y npm
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

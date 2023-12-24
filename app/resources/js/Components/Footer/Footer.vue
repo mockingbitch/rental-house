@@ -31,28 +31,28 @@ const isRouteActive = (routeName) => {
                     <Link :href="route('top')">
                         <li :class="{ active: isRouteActive('/') }">
                             <i><img src="/img/icon/home.svg" alt="" /></i>
-                            <p>ホーム</p>
+                            <p>Home</p>
                         </li>
                     </Link>
-                    <Link :href="route('top')">
-                        <li
-                            :class="{ active: isRouteActive('/reserved') }"
-                            v-if="isLogin"
-                        >
-                            <i><img src="/img/icon/plant.svg" alt="" /></i>
-                            <p>レッスン</p>
-                        </li>
-                    </Link>
-                    <Link :href="route('top')">
+<!--                    <Link :href="route('top')">-->
+<!--                        <li-->
+<!--                            :class="{ active: isRouteActive('/reserved') }"-->
+<!--                            v-if="isLogin"-->
+<!--                        >-->
+<!--                            <i><img src="/img/icon/plant.svg" alt="" /></i>-->
+<!--                            <p>レッスン</p>-->
+<!--                        </li>-->
+<!--                    </Link>-->
+                    <Link :href="route('request.index')">
                         <li :class="{ active: isRouteActive('/request') }">
                             <i><img src="/img/icon/request.svg" alt="" /></i>
-                            <p>リクエスト</p>
+                            <p>Request</p>
                         </li>
                     </Link>
                     <Link :href="route('top')">
                         <li
-                            :class="{ active: isRouteActive('/notification') }"
                             v-if="isLogin"
+                            :class="{ active: isRouteActive('/notification') }"
                             class="icon-notification"
                         >
                             <i
@@ -61,34 +61,34 @@ const isRouteActive = (routeName) => {
                                     {{ "10" }}
                                 </p></i
                             >
-                            <p>通知</p>
+                            <p>Notification</p>
                         </li>
                     </Link>
                     <div v-if="!isLogin">
-                        <Link :href="route('top')">
+                        <Link :href="route('login.method')">
                             <li>
                                 <i
                                     ><img src="/img/icon/account.svg" alt=""
                                 /></i>
-                                <p>ログイン</p>
+                                <p>Login</p>
                             </li>
                         </Link>
                     </div>
                     <div v-else>
                         <Link :href="route('top')">
                             <li
-                                v-bind:class="{ active: navOpen }"
-                                v-on:click="navOpen = !navOpen"
+                                :class="{ active: navOpen }"
+                                @click="navOpen = !navOpen"
                             >
                                 <i><img src="/img/icon/account.svg" alt="" /></i>
-                                <p>アカウント</p>
+                                <p>Account</p>
                             </li>
                         </Link>
                         <div id="sidemenu">
                             <transition name="fade" appear>
                                 <div
-                                    class="modal-overlay"
                                     v-if="navOpen"
+                                    class="modal-overlay"
                                     @click="navOpen = false"
                                 ></div>
                             </transition>
@@ -138,7 +138,7 @@ const isRouteActive = (routeName) => {
                     </div>
                 </ul>
             </div>
-            <div class="container" v-if="props.isDashBoard">
+            <div v-if="props.isDashBoard" class="container">
                 <ul>
                     <Link :href="route('top')">
                         <li class="active">

@@ -33,8 +33,8 @@ const statusData = computed(() => {
     } else if (props.status === 2 && props.step === 1) {
         return {
             image: "img/icon/ApplyToTeacher/Check.svg",
-            title: "teca",
-            buttonContent: "sdaf",
+            title: "Step 1",
+            buttonContent: "Confirm",
             FunctionButton: ReviewResult,
         };
     } else if (props.status === 2 && props.step === 2) {

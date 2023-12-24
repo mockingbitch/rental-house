@@ -201,7 +201,7 @@ const isRouteDetailActive = (routeNamesRegex) => {
             <div
                 class="mt-8 side-menu-hint d-flex flex-column align-items-center justify-content-center"
             >
-                © 2023 DotTrees,Inc. All rights reserved
+                © 2023 Rental House,Inc. All rights reserved
             </div>
         </div>
     </div>

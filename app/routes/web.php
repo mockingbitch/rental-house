@@ -74,16 +74,16 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
     Route::get('category', 'get')->name('category.get');
     Route::get('detail/{id}/category', 'detail')->name('category.detail');
-    Route::post('category', 'create');
+    Route::post('category', 'create')->name('category.create');
     Route::post('edit/{id}/category', 'update');
-    Route::get('delete/category', 'delete');
+    Route::get('delete/category', 'delete')->name('category.delete');
 });
 Route::controller(TagController::class)->group(function () {
     Route::get('tag', 'get')->name('tag.get');
     Route::get('detail/{id}/tag', 'detail')->name('tag.detail');
-    Route::post('tag', 'create');
+    Route::post('tag', 'create')->name('tag.create');
     Route::post('edit/{id}/tag', 'update');
-    Route::get('delete/tag', 'delete');
+    Route::get('delete/tag', 'delete')->name('tag.delete');
 });
 
 //LESSOR

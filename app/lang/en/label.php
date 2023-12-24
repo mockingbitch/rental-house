@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'common' => [
+        'home'          => 'Home',
+        'request'       => 'Yêu cầu',
+        'notification'  => 'Thông báo',
+        'account'       => 'Tài khoản',
+    ],
     'user' => [
         'field'   => [
             'email'                 => 'Email',
@@ -116,7 +122,6 @@ return [
         'category'              => 'Category',
         'placeholder_category'  => 'Select category',
         'clear_form'            => 'Clear',
-        'search'                => 'Search',
 
     ],
 
